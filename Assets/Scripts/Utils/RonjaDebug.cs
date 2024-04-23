@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class RonjaDebug : MonoBehaviour
 {
+    [SerializeField] PlayerInputManager pim;
+
     private void Awake()
     {
-        if (PlayerData.playerToControllerBinding == null) return;
 
-        foreach (var t in PlayerData.playerToControllerBinding)
-        {
-            Debug.Log(t);
-        }
-        
+    }
+
+    private void Update()
+    {
+
     }
 }

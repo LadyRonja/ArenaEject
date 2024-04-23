@@ -29,5 +29,10 @@ public class DevShortcuts : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            SceneManager.LoadScene("DevRonja");
+        }
     }
 }

@@ -59,11 +59,11 @@ public class Aiming : MonoBehaviour
         {
             // Instant roation
             /*
-            float angle = Mathf.Atan2(input.x, input.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, angle, 0);
-            */
+            float angle = Mathf.Atan2(targetDir.x, targetDir.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, angle, 0);*/
+            
 
-
+            // Over time
             float angle = Mathf.Atan2(targetDir.x, targetDir.z) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeedRads);
