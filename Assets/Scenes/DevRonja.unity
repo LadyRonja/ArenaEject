@@ -674,6 +674,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad5867212ff2144284f6a4746372d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraMode: 0
+  xOffSet: 0
+  yOffSet: 0
+  zOffSet: 0
+  xAngleDeg: 35
+  screenPadding: 1
+  transformsToTrack: []
 --- !u!1 &1156758826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,7 +1597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288350372321757139, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: playerCountToSpawn
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3664740952407604708, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_Name
