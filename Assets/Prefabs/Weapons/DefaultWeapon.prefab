@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4398090638825381503}
   - component: {fileID: 8341555756347850958}
+  - component: {fileID: 3367394978831467289}
   m_Layer: 9
   m_Name: DefaultWeapon
   m_TagString: Untagged
@@ -48,10 +49,36 @@ MonoBehaviour:
   ammoTypePrefab: {fileID: 6201352950495913662, guid: 8680688ddb2057748a544eb3f3ea3e90, type: 3}
   firePoint: {fileID: 1791492250410619928}
   ammoCount: 999
+  initialUpwardForce: 20
   fireRate: 0.5
+  knockbackForce: 10
   weaponDeterminesAmmoSpeed: 1
   ammoSpeed: 20
   ammoDirOffSet: {x: 0, y: 0, z: 0}
+  destroyDelay: 5
+--- !u!136 &3367394978831467289
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226069829308235546}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.29
+  m_Height: 2.3
+  m_Direction: 0
+  m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!1 &2812193074759238538
 GameObject:
   m_ObjectHideFlags: 0

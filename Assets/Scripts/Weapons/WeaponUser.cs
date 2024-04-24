@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -89,7 +90,14 @@ public class WeaponUser : MonoBehaviour
     {
         if (carriedWeapon == null) return;
 
-        CapsuleCollider collider = carriedWeapon.GetComponent<CapsuleCollider>();   
+        Collider collider = carriedWeapon.GetComponent<Collider>();   
+        if(collider == null)
+        {
+            Destroy(carriedWeapon.gameObject);
+            carriedWeapon = null;
+            return;
+        }
+
         Vector3 dropPosition = transform.position + transform.forward * 1.5f;
         dropPosition.y += 1f;
         Quaternion dropRotation = Quaternion.Euler(0f, 90f, 0f);
@@ -98,6 +106,7 @@ public class WeaponUser : MonoBehaviour
         carriedWeapon.transform.position = dropPosition;
         carriedWeapon.transform.rotation *= dropRotation;
         carriedWeapon.transform.SetParent(null);
+        collider.enabled = true;
 
         Rigidbody wpRb = carriedWeapon.AddComponent<Rigidbody>();
 
