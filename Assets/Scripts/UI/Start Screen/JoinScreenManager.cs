@@ -1,11 +1,81 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class JoinScreenManager : MonoBehaviour
 {
+    [HideInInspector] public List<PlayerConfigurations> playerConfigs = new();
+    [SerializeField] private int maxPLayers = 4;
+
+    [SerializeField] private GameObject playerDisplayPrefab;
+    [SerializeField] private Transform displayParent;
+    [SerializeField] private List<Color> playerColors = new List<Color>();
+
+    private static JoinScreenManager instance;
+    public static JoinScreenManager Instance { get => instance; }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            playerConfigs = new();
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnEnable()
+    {
+        if(SceneManager.GetActiveScene().name == Paths.START_SCENE_NAME)
+        {
+            playerConfigs = new();
+        }
+    }
+
+    public void ToggleReady(int index)
+    {
+        playerConfigs[index].isReady = !playerConfigs[index].isReady;
+        if (playerConfigs.Count > 1 && playerConfigs.All(p => p.isReady))
+        {
+            //SceneManager.LoadScene(Paths.GAME_SCENE_NAME);
+            Debug.Log("Loading DevRonja - change to loading a game scene when not testing");
+            SceneManager.LoadScene("DevRonja");
+        }
+    }
+
+    public void HandlePlayerJoined(PlayerInput pi)
+    {
+        Debug.Log("Player joined: " + pi.playerIndex);
+        pi.transform.SetParent(this.transform);
+        if(!playerConfigs.Any(p => p.playerIndex == pi.playerIndex))
+        {
+            playerConfigs.Add(new PlayerConfigurations(pi));
+           
+            GameObject displayObj = Instantiate(playerDisplayPrefab, Vector3.zero, Quaternion.identity, displayParent);
+            JoinDisplay displayComponents = displayObj.GetComponent<JoinDisplay>();
+            displayComponents.playerText.text = $"Player {pi.playerIndex + 1}";
+            if (playerColors[pi.playerIndex] != null)
+            {
+                displayComponents.displayImage.color = playerColors[pi.playerIndex];
+                playerConfigs[pi.playerIndex].playerColor = playerColors[pi.playerIndex];
+            }
+
+            Debug.Log($"Player {pi.playerIndex} instantly toggled ready - disable when character select is enabled");
+            ToggleReady(pi.playerIndex);
+        }
+    }
+
+    #region Old
+    /*
     private static JoinScreenManager instance;
     public static JoinScreenManager Instance { get => instance; }
 
@@ -36,13 +106,39 @@ public class JoinScreenManager : MonoBehaviour
         }
     }
 
-
+    /*
     private void Update()
     {
         CheckForJoiningPlayers();
         GeneratePrefabsForPlayers();
         DetermineIfStartConditionMet();
     }
+   
+    public void OnPlayerJoined(PlayerInput playerInput)
+    {
+        Debug.Log("Player joined!");
+        if(!(playerControllersJoined.Count < maxPlayersAllowed)) { 
+            Destroy(playerInput.gameObject); 
+            return; 
+        }
+
+        playerInput.transform.SetParent(displayParent);
+        int playerIndex = playerInput.playerIndex;
+        int gamepadIndex = -1;
+        foreach (Gamepad gamepad in Gamepad.all)
+        {
+            if(gamepad == Gamepad.all[playerInput.playerIndex])
+            {
+                gamepadIndex = playerInput.playerIndex;
+                break;
+            }
+        }
+        Debug.Log("PlayerIndex: " + playerIndex);
+        Debug.Log("Gamepladindex: " + gamepadIndex);
+    }
+
+
+
 
     /// <summary>
     /// TODO: Allow higher number of controls to join, despite max player count
@@ -115,5 +211,21 @@ public class JoinScreenManager : MonoBehaviour
             startButton.interactable = false;
         }
     }
+    */
+    #endregion
+}
 
+public class PlayerConfigurations
+{
+    public PlayerConfigurations(PlayerInput pi)
+    {
+        input= pi;
+        playerIndex = pi.playerIndex;
+        isReady = false;
+    }
+
+    public PlayerInput input;
+    public int playerIndex;
+    public Color playerColor = Color.white;
+    public bool isReady;
 }

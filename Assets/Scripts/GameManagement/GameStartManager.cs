@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameStartManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private List<Transform> spawnPoints;
-    [SerializeField] [Range(0,4)] private int playersToSpawn = 2;
+
+    [Header("Development options")]
+    [SerializeField] private bool createAPlayerForEachGamepad = false;
+    [SerializeField] [Range(0,4)] private int playerCountToSpawn = 2;
 
     private void Start()
     {
@@ -18,90 +23,146 @@ public class GameStartManager : MonoBehaviour
     {
         if (playerPrefab == null) return;
 
-        // Control player-controller-binding
-        Dictionary<int, int> playerControllerMappings = PlayerData.playerToControllerBinding;
-        if(playerControllerMappings == null)
-        {
-            Debug.Log($"Player Controller Bindings not found, constructing {playersToSpawn} player controller bindings");
-            playerControllerMappings = new Dictionary<int, int>();
+        List<PlayerConfigurations> playersToSpawn = new();
 
-            for (int i = 1; i < playersToSpawn+1; i++)
-            {
-                playerControllerMappings.Add(i,i);
+        // If game not started from start screen (development), create some players
+        if (JoinScreenManager.Instance == null || JoinScreenManager.Instance.playerConfigs == null || JoinScreenManager.Instance.playerConfigs.Count == 0)
+        {
+            //Determine amount of players
+            int _playerSpawnAmount = 0;
+            if (createAPlayerForEachGamepad) {
+                _playerSpawnAmount = Gamepad.all.Count; 
+            }
+            else {  
+                _playerSpawnAmount = playerCountToSpawn;
+            }
+            Debug.Log($"Game not started via proper method, constructing {_playerSpawnAmount} players.");
+
+            // Spawn
+            for (int i = 0; i < _playerSpawnAmount; i++) {
+                InputDevice playerInputDevice = null;
+
+                // If creating a player for each gamepad, determing controlscheme is easy
+                if (createAPlayerForEachGamepad) {
+                    playerInputDevice = Gamepad.all[i];
+                }
+                else {
+                    // If not, ensure some level of control.
+                    if(i < Gamepad.all.Count) {
+                        playerInputDevice = Gamepad.all[i];
+                    }
+                    else if(Gamepad.all.Count != 0) {
+                        Debug.LogError("Not enough Gamepads found, repeating last gamepad for input.");
+                        playerInputDevice = Gamepad.all[^1];
+                    }
+                    else {
+                        Debug.LogError("No Gamepad found, unexpected behaivor expected.");
+                    }
+                }
+
+                // Spawn player and determine spawn position
+                PlayerInput playerInputObj = PlayerInput.Instantiate(
+                                                        prefab: playerPrefab,
+                                                        playerIndex: i,
+                                                        controlScheme: null,
+                                                        splitScreenIndex: -1,
+                                                        pairWithDevice: playerInputDevice
+                                                        );
+
+                // Move player to a spawnpoint
+                TeleportPlayerToSpawn(i, playerInputObj.gameObject);
+
+                // Verify Component Validity
+                VerifyPlayer(playerInputObj.gameObject, i);
             }
 
+            // Development players created, exit function
+            return;
         }
 
-        // Spawning
-        foreach (int playerIndex in playerControllerMappings.Keys)
+        // Spawning apporpriatly
+        playersToSpawn = JoinScreenManager.Instance.playerConfigs;
+        for(int i = 0; i < playersToSpawn.Count;i++) { 
+
+            // Instansiate
+            PlayerInput playerInputObj = PlayerInput.Instantiate(   prefab: playerPrefab, 
+                                                                    playerIndex: playersToSpawn[i].playerIndex, 
+                                                                    controlScheme: null, 
+                                                                    splitScreenIndex: -1, 
+                                                                    pairWithDevice: playersToSpawn[i].input.devices[0]
+                                                                    );
+
+
+            // Move player to a spawnpoint
+            TeleportPlayerToSpawn(playersToSpawn[i].playerIndex, playerInputObj.gameObject);
+
+            // Verify Component Validity
+            VerifyPlayer(playerInputObj.gameObject, playersToSpawn[i].playerIndex, true);     
+        }
+    }
+
+    private void TeleportPlayerToSpawn(int playerIndex, GameObject player)
+    {
+        // Get Sapwn location
+        Vector3 spawnAt = transform.position;
+        try
         {
-            if(playerControllerMappings.TryGetValue(playerIndex, out int controllerIndex))
-            {
-                // Get Sapwn location
-                Vector3 spawnAt = transform.position;
-                try
-                {
-                    spawnAt = spawnPoints[playerIndex - 1].position;
-                }
-                catch
-                {
-                    Debug.LogError("Appropriate spawnpoint not found, spawning on controller");
-                }
+            spawnAt = spawnPoints[playerIndex].position;
+        }
+        catch
+        {
+            Debug.LogError("Appropriate spawnpoint not found, spawning on GameStartManager");
+        }
 
-                // Instansiate
-                GameObject playerObj = Instantiate(playerPrefab, spawnAt, Quaternion.identity);
-                PlayerStats playerStats = playerObj.GetComponent<PlayerStats>();
-                Movement playerMovement = playerObj.GetComponent<Movement>();
-                Aiming playerAim = playerObj.GetComponent<Aiming>();
-                WeaponUser weaponUser = playerObj.GetComponent<WeaponUser>();
-                PlayerShooting playerShooting = playerObj.GetComponent<PlayerShooting>();
-                
-                // Stats set-up
-                if(playerStats == null) {
-                    Debug.LogError("Player prefab missing PlayerStats script");
-                }
-                else
-                {
-                    playerStats.playerIndex = playerIndex;
-                }
+        player.transform.position = spawnAt;
+    }
 
-                // Movement setup
-                if(playerMovement == null) {
-                    Debug.LogError("Player prefab missing movement script");
-                }
-                else
-                {
-                    playerMovement.appropriatlySpawned = true;
-                    playerMovement.controllerIndex = controllerIndex;
-                }
+    private void VerifyPlayer(GameObject playerToVerify, int playerIndex, bool appropriatlySpawned = false)
+    {
+        PlayerStats playerStats = playerToVerify.GetComponent<PlayerStats>();
+        Movement playerMovement = playerToVerify.GetComponent<Movement>();
+        Aiming playerAim = playerToVerify.GetComponent<Aiming>();
+        WeaponUser weaponUser = playerToVerify.GetComponent<WeaponUser>();
 
-                // Aiming setup
-                if (playerAim == null) {
-                    Debug.LogError("Player prefab missing aiming script");
-                }
-                else
-                {
-                    playerAim.appropriatlySpawned = true;
-                    playerAim.controllerIndex = controllerIndex;
-                }
 
-                // Weapon Usage
-                if (weaponUser == null)
-                {
-                    Debug.LogError("Player prefab missing Weapon User script");
-                }
-                else
-                {
-                    weaponUser.appropriatlySpawned = true;
-                    weaponUser.controllerIndex = controllerIndex;
-                }
+        // Stats set-up
+        if (playerStats == null)
+        {
+            Debug.LogError("Player prefab missing PlayerStats script");
+        }
+        else
+        {
+            playerStats.playerIndex = playerIndex;
+        }
 
-            }
-            else
-            {
-                Debug.LogError("Unexpected state mutation in playerControllerMappings - see GameStartManager");
-                return;
-            }
+        // Movement setup
+        if (playerMovement == null)
+        {
+            Debug.LogError("Player prefab missing movement script");
+        }
+        else
+        {
+            playerMovement.appropriatlySpawned = appropriatlySpawned;
+        }
+
+        // Aiming setup
+        if (playerAim == null)
+        {
+            Debug.LogError("Player prefab missing aiming script");
+        }
+        else
+        {
+            playerAim.appropriatlySpawned = appropriatlySpawned;
+        }
+
+        // Weapon Usage setup
+        if (weaponUser == null)
+        {
+            Debug.LogError("Player prefab missing Weapon User script");
+        }
+        else
+        {
+            weaponUser.appropriatlySpawned = appropriatlySpawned;
         }
     }
 }

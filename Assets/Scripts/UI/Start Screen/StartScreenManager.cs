@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StartScreenManager : MonoBehaviour
 {
+
     private static StartScreenManager instance;
     public static StartScreenManager Instance { get => instance; }
 
@@ -79,8 +80,8 @@ public class StartScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        Dictionary<int, int> pci = JoinScreenManager.Instance.PlayerToControllerIndex;
-        PlayerData.playerToControllerBinding = pci;
+        //Dictionary<int, int> pci = JoinScreenManager.Instance.PlayerToControllerIndex;
+        //PlayerData.playerToControllerBinding = pci;
 
         SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
     }

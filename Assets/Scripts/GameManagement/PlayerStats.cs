@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int playerIndex = 1;
+    public int playerIndex = 0;
     public int lives = 1;
     public bool alive { get => lives > 0; }
 
@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
             if (colors.Count != 4) return;
 
             myRenderer.material = Instantiate(myRenderer.material);
-            myRenderer.material.color = colors[playerIndex-1];
+            myRenderer.material.color = colors[playerIndex];
         }
     }
 
