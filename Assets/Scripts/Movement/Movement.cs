@@ -10,10 +10,12 @@ public class Movement : MonoBehaviour
     [SerializeField] private float acceleration = 20f;
 	private Vector2 moveInput;
     private Rigidbody rb;
+    private Gravity gravity;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        gravity = GetComponent<Gravity>();
     }
 
     void FixedUpdate()
@@ -23,20 +25,27 @@ public class Movement : MonoBehaviour
 
     private void MoveLogic()
     {
+        if(gravity != null)
+        {
+            if (!gravity.IsGrounded) { return; }
+        }
+
         Vector3 perservedFallingVelocity = rb.velocity;
 
         // Acceleration
         if (moveInput != Vector2.zero)
         {
             Vector3 translatedMovement = new Vector3(moveInput.x, 0, moveInput.y);
-            rb.velocity += acceleration * maxSpeed * Time.deltaTime * translatedMovement;
+            rb.velocity += acceleration * maxSpeed * Time.fixedDeltaTime * translatedMovement;
             if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed) rb.velocity = rb.velocity.normalized * maxSpeed;
         }
         else
         {
             // Deceleration
-            rb.velocity -= acceleration * maxSpeed * Time.deltaTime * rb.velocity.normalized;
-            if (rb.velocity.sqrMagnitude < 3f) rb.velocity = Vector3.zero;
+            float deaccelerationAmount = acceleration * Time.fixedDeltaTime;
+            deaccelerationAmount = Mathf.Clamp(deaccelerationAmount, 0.01f, 0.99f); // Has to be less than 1 in order to actually reduce speed
+            rb.velocity *= deaccelerationAmount;
+            if (rb.velocity.sqrMagnitude < 2f) rb.velocity = Vector3.zero;
         }
 
         Vector3 newVelocity = rb.velocity;

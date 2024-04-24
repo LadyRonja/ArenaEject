@@ -7,7 +7,7 @@ public class Gravity : MonoBehaviour
     [SerializeField] private float gravityAmount = -9.82f;
     private Rigidbody rb;
 
-    private bool IsGrounded { get => GetIsGrounded();  }
+    public bool IsGrounded { get => GetIsGrounded();  }
 
     private void Awake()
     {
