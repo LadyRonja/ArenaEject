@@ -23,8 +23,8 @@ public class TempControlls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveLogic();
-        AimLogic();
+        //MoveLogic();
+        //AimLogic();
     }
 
     private void OnNorthButtonDown(InputValue value)
@@ -37,7 +37,7 @@ public class TempControlls : MonoBehaviour
         Debug.Log(value.Get<float>());
     }
 
-    private void MoveLogic()
+    /*private void MoveLogic()
     {
         Vector3 perservedFallingVelocity = rb.velocity;
 
@@ -72,8 +72,8 @@ public class TempControlls : MonoBehaviour
             if (Mathf.Abs(z) < 0.2f) z = 0;
 
         moveInput = new Vector2(x, z);
-    }
-
+    }*/
+    /*
     private void AimLogic()
     {
         if (aimInput != Vector2.zero)
@@ -87,7 +87,7 @@ public class TempControlls : MonoBehaviour
             /*
             float angle = Mathf.Atan2(aimInput.x, aimInput.y) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeedRads);*/
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeedRads);
         }
         else if (moveInput != Vector2.zero)
         {
@@ -96,9 +96,8 @@ public class TempControlls : MonoBehaviour
 
             /*float angle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeedRads);*/
-        }
-       
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeedRads);
+        }     
     }
 
 
@@ -112,5 +111,5 @@ public class TempControlls : MonoBehaviour
         if (Mathf.Abs(z) < 0.2f) z = 0;
 
         aimInput = new Vector2(x, z);
-    } 
+    } */
 }

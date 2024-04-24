@@ -1,70 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Aiming : MonoBehaviour
 {
     [HideInInspector] public bool appropriatlySpawned = false;
-    [HideInInspector] public int controllerIndex = 1;
-    [SerializeField] [Range(0.3f, 3.2f)] private float rotationSpeedRads = 1;
+    [SerializeField] public bool instantlyRotate = false;
+    [SerializeField] [Range(5f, 30f)] private float rotationSpeedRads = 15;
 
-    Vector3 targetDir = Vector3.zero;
+    Vector2 aimInput = Vector2.zero; // Primnary Input
+    Vector2 moveInput = Vector2.zero; // Secondary input
 
 
     private void Start()
     {
-        targetDir = transform.forward;
+        aimInput = transform.forward;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        PlayerLook();
+        AimLogic();
     }
 
-    private void PlayerLook()
+    private void OnAiming(InputValue value)
     {
+        aimInput = value.Get<Vector2>();
+        float x = aimInput.x;
+        float z = aimInput.y;
 
-        if (appropriatlySpawned)
+        if (Mathf.Abs(x) < 0.2f) x = 0;
+        if (Mathf.Abs(z) < 0.2f) z = 0;
+
+        aimInput = new Vector2(x, z);
+    }
+
+    // Also look for move input for secondary priority
+    private void OnMovement(InputValue value)
+    {
+        moveInput = value.Get<Vector2>();
+
+        float x = moveInput.x;
+        float z = moveInput.y;
+
+        if (Mathf.Abs(x) < 0.2f) x = 0;
+        if (Mathf.Abs(z) < 0.2f) z = 0;
+
+        moveInput = new Vector2(x, z);
+    }
+
+    private void AimLogic()
+    {
+        if (aimInput != Vector2.zero)
         {
-            float x = Input.GetAxisRaw($"P{controllerIndex}_Aim_Horizontal");
-            float y = 0;
-            float z = Input.GetAxisRaw($"P{controllerIndex}_Aim_Vertical") * -1f;
-
-            if (Mathf.Abs(x) < 0.2f) x = 0;
-            if (Mathf.Abs(z) < 0.2f) z = 0;
-
-            targetDir = new Vector3(x, y, z);
+            LookAt(aimInput);
         }
-        else targetDir = new Vector3(Input.GetAxisRaw($"Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-
-        if(targetDir.sqrMagnitude < 0.5f)
+        else if (moveInput != Vector2.zero)
         {
-            float x = Input.GetAxisRaw($"P{controllerIndex}_Horizontal_Duo");
-            float y = 0;
-            float z = Input.GetAxisRaw($"P{controllerIndex}_Vertical_Duo") * -1f;
+            LookAt(moveInput);
+        }
+    }
 
-
-            if (Mathf.Abs(x) > 0.2f || Mathf.Abs(z) > 0.2f)
-            {
-                targetDir = new Vector3(x, y, z);
-            }
-
+    private void LookAt(Vector2 direction)
+    {
+        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        if (instantlyRotate)
+        {
+            transform.rotation = Quaternion.Euler(0, angle, 0);
         }
         else
         {
-            targetDir.Normalize();
-        }
-
-        if(targetDir != Vector3.zero)
-        {
-            // Instant roation
-            /*
-            float angle = Mathf.Atan2(targetDir.x, targetDir.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, angle, 0);*/
-            
-
-            // Over time
-            float angle = Mathf.Atan2(targetDir.x, targetDir.z) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeedRads);
         }

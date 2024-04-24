@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2782248709497289612}
   - component: {fileID: -5137444874030891988}
   - component: {fileID: 6124344014326713301}
+  - component: {fileID: 109501444551750962}
   - component: {fileID: -4713559047619484691}
   - component: {fileID: 8277015850034542796}
   m_Layer: 0
@@ -107,7 +108,6 @@ MonoBehaviour:
   appropriatlySpawned: 0
   maxSpeed: 13
   acceleration: 8
-  controllerIndex: 1
 --- !u!114 &209684254705093327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
-  controllerIndex: 1
-  rotationSpeedRads: 1.5
+  instantlyRotate: 0
+  rotationSpeedRads: 24.3
 --- !u!114 &2782248709497289612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d905abe9e5b732e44932f5e523b1b7cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerIndex: 1
   appropriatlySpawned: 0
   weaponCarryPoint: {fileID: 3093174816102973738}
   weaponLaunchForce: 8
@@ -167,6 +166,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18d3b46f015059419be3be96511ee05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &109501444551750962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455113739012497393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb84e1f95e65ea45bb488e12e7388e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityAmount: -9.82
 --- !u!54 &-4713559047619484691
 Rigidbody:
   m_ObjectHideFlags: 0

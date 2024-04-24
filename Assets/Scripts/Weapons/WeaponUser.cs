@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponUser : MonoBehaviour 
 {
-    [HideInInspector] public int controllerIndex = 1;
     [HideInInspector] public bool appropriatlySpawned = false;
 
 
@@ -16,7 +16,7 @@ public class WeaponUser : MonoBehaviour
     public Weapon carriedWeapon = null;
 
 
-    void Update()
+    /*void Update()
     {
         if (Input.GetAxisRaw($"P{controllerIndex}_Fire_Duo") > 0.5f)
         {
@@ -28,6 +28,18 @@ public class WeaponUser : MonoBehaviour
             ThrowWeapon();
         }
 
+    }*/
+
+    private void OnFire(InputValue value)
+    {
+        if(value.Get<float>() > 0.5f)
+        {
+            TryFireWeapon();
+        }
+    }
+    private void OnNorthButtonDown(InputValue value)
+    {
+        ThrowWeapon();
     }
 
     private void TryFireWeapon()
