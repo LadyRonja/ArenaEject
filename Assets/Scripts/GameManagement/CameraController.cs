@@ -24,17 +24,28 @@ public class CameraController : MonoBehaviour
     [SerializeField] float screenPadding = 1f;
     [SerializeField] List<Transform> transformsToTrack;
 
-    //Vector3 targetPos = Vector3.zero;
+    Vector3 targetPos = Vector3.zero;
 
     private void Awake()
     {
         if(instance == null || instance == this)
         {
             instance = this;
+            targetPos = transform.position;
         }
         else
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    public float DEBUG_ShakeAmount = 5f;
+    public float DEBUG_ShakeDuration = 0.5f;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            AddShake(DEBUG_ShakeAmount, DEBUG_ShakeDuration);
         }
     }
 
@@ -52,6 +63,27 @@ public class CameraController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void AddShake(float amount, float duration)
+    {
+        StartCoroutine(ShakeRoutine(amount, duration));
+    }
+
+    private IEnumerator ShakeRoutine(float amount, float duration)
+    {
+        float timePassed = 0f;
+
+        while (timePassed < duration)
+        {
+            transform.position = targetPos + Random.insideUnitSphere * amount;
+
+            timePassed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.position = targetPos;
     }
 
     public void StartTrackingObjects(List<Transform> objectsToTrack)
@@ -79,9 +111,9 @@ public class CameraController : MonoBehaviour
 
         Vector3 centerPoint = (targetMaxs + targetMins) * 0.5f;
 
-        Vector3 tartgetPos = centerPoint;
-        tartgetPos.y += 15f;
-        tartgetPos.z -= 15f;
-        transform.transform.position = tartgetPos;
+        targetPos = centerPoint;
+        targetPos.y += 15f;
+        targetPos.z -= 15f;
+        transform.transform.position = targetPos;
     }
 }
