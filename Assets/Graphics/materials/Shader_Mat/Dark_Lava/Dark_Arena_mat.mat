@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StylizedLava_Mat
+  m_Name: Dark_Arena_mat
   m_Shader: {fileID: -6465566751694194690, guid: 06310a5d6870f4329815da375c83c865, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -47,31 +47,31 @@ Material:
     m_Floats:
     - _Brightness_Under_Lava: 2
     - _Cutoff_Top: 0.4
-    - _Distort_Scale: 0.03
+    - _Distort_Scale: 0.2
     - _Distortion_Strenght: 0.3
     - _Edge_Blur: 0.1
     - _Edge_Top_Brightness: 3
     - _Edge_Width: -0.27
-    - _Main_Texture_Scale: 0.03
+    - _Main_Texture_Scale: 0.2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed_Distort_X: 0.2
     - _Speed_Distort_Y: 0.2
     - _Speed_Main_X: 0.1
     - _Speed_Main_Y: 0.1
-    - _Start_End_Tint_Offset: 1.19
+    - _Start_End_Tint_Offset: 1.7
     - _Top_Blur: 0.1
     - _Vertex_Color_Distortion_Strenght: 0.2
-    - _Wave_Amount: 0.1
-    - _Wave_Height: 0.04
+    - _Wave_Amount: 0.5
+    - _Wave_Height: 0.05
     - _Wave_Move_Speed: 0.5
     m_Colors:
-    - _Edge_Color: {r: 0.8862745, g: 0.8664075, b: 0.09803923, a: 1}
-    - _Main_Tint_End: {r: 0.8666667, g: 0.33172143, b: 0.2235294, a: 1}
-    - _Main_Tint_Start: {r: 0.43529412, g: 0.15992491, b: 0.070588216, a: 1}
-    - _Top_Layer_Tint: {r: 0.77254903, g: 0.5337133, b: 0.0980392, a: 1}
+    - _Edge_Color: {r: 0.5566038, g: 0.14021653, b: 0.06563723, a: 1}
+    - _Main_Tint_End: {r: 0.5, g: 0, b: 0.010752678, a: 1}
+    - _Main_Tint_Start: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
+    - _Top_Layer_Tint: {r: 0.88235295, g: 0.5011699, b: 0.047058832, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &1584833226615353112
+--- !u!114 &5099892872153324393
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
