@@ -140,6 +140,7 @@ public class GameStartManager : MonoBehaviour
         Movement playerMovement = playerToVerify.GetComponent<Movement>();
         Aiming playerAim = playerToVerify.GetComponent<Aiming>();
         WeaponUser weaponUser = playerToVerify.GetComponent<WeaponUser>();
+        Jump jump = playerToVerify.GetComponent<Jump>();
 
 
         // Stats set-up
@@ -180,6 +181,16 @@ public class GameStartManager : MonoBehaviour
         else
         {
             weaponUser.appropriatlySpawned = appropriatlySpawned;
+        }
+
+        // Jump setup
+        if(jump == null)
+        {
+            Debug.LogError("Player prefab missing Jump script");
+        }
+        else
+        {
+            jump.appropriatlySpawned = appropriatlySpawned;
         }
     }
 
