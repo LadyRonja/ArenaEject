@@ -102,7 +102,7 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0, z: 1}
   knockbackForce: 15
   explodeTime: 1.5
-  explosionPrefab: {fileID: 6860196289586296487, guid: 9099636871efcab4588408f9424438a1, type: 3}
+  explosionPrefab: {fileID: 9019911631872019755, guid: 7e07a71a44a1456429b94d5d049f3c8c, type: 3}
   explodeOnImpact: 0
 --- !u!1 &7789918038147534920
 GameObject:

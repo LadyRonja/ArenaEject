@@ -49,7 +49,7 @@ MonoBehaviour:
   ammoTypePrefab: {fileID: 6201352950495913662, guid: 8680688ddb2057748a544eb3f3ea3e90, type: 3}
   firePoint: {fileID: 1791492250410619928}
   ammoCount: 999
-  initialUpwardForce: 20
+  initialUpwardForce: 0
   fireRate: 0.5
   knockbackForce: 10
   weaponDeterminesAmmoSpeed: 1

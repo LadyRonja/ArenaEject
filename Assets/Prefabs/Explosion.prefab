@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionRadius: 5
-  explosionForce: 50
+  explosionForce: 20
   duration: 0.1
 --- !u!33 &1255999164138185553
 MeshFilter:

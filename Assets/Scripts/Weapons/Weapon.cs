@@ -38,15 +38,18 @@ public class Weapon : MonoBehaviour
         Ammo projectileScr = projectileObj.GetComponent<Ammo>();
         Vector3 projectileDir = projectileObj.transform.forward;
         ammoDirOffSet.Normalize();
+        projectileDir.y += initialUpwardForce;
         projectileDir.Normalize();
         projectileScr.moveDir = projectileDir;
 
-        if (!projectileObj.GetComponent<Projectile>())
+
+        // 
+        /*if (!projectileObj.GetComponent<Projectile>())
         {
             Rigidbody projectileRb = projectileObj.GetComponent<Rigidbody>();
             projectileRb.velocity = Vector3.zero;
             projectileRb.AddForce(Vector3.up * initialUpwardForce, ForceMode.Impulse);
-        }
+        }*/
 
         if (weaponDeterminesAmmoSpeed)
         {
