@@ -9,32 +9,15 @@ using UnityEngine.InputSystem;
 public class WeaponUser : MonoBehaviour 
 {
     [HideInInspector] public bool appropriatlySpawned = false;
-    private PlayerStats playerStats;
+    
 
     [SerializeField] private Transform weaponCarryPoint;
     [SerializeField] private float weaponLaunchForce = 8f;
     public Transform carriedWeaponTransform;
 
     public Weapon carriedWeapon = null;
+    [HideInInspector] public int shotsFired = 0;
 
-    /*void Update()
-    {
-        if (Input.GetAxisRaw($"P{controllerIndex}_Fire_Duo") > 0.5f)
-        {
-            TryFireWeapon();
-        }
-
-        if (Input.GetButtonDown($"P{controllerIndex}_Toss"))
-        {
-            ThrowWeapon();
-        }
-
-    }*/
-
-    private void Awake()
-    {
-        playerStats = GetComponent<PlayerStats>();
-    }
 
     private void OnFire(InputValue value)
     {
@@ -55,7 +38,7 @@ public class WeaponUser : MonoBehaviour
         bool fireSuccess = carriedWeapon.TryShoot();
 
         if (fireSuccess)
-            playerStats.shotsFired++;
+            shotsFired++;
     }
 
     public bool AttemptAquireWeapon(Weapon weaponPrefabToAquire)

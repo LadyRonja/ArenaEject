@@ -15,6 +15,7 @@ using Random = UnityEngine.Random;
 public class KillPlane : MonoBehaviour
 {
     [SerializeField] private List<Transform> spawnPoints = new();
+    private Dictionary<int, int> shotsFiredTracking = new Dictionary<int, int>();
     private bool gameIsOver = false;
 
     [Header("Temp")]
@@ -80,7 +81,21 @@ public class KillPlane : MonoBehaviour
                     if (p.alive) alivePlayers.Add(p);
                 }
 
-                if(alivePlayers.Count < 1)
+                try
+                {
+                    List<Transform> alivePlayerTransforms = new();  
+                    foreach (var item in alivePlayers)
+                    {
+                        alivePlayerTransforms.Add(item.transform);
+                    }
+                    CameraController.Instance.StartTrackingObjects(alivePlayerTransforms);
+                }
+                catch
+                {
+                    // No camera controller
+                }
+
+                if (alivePlayers.Count < 1)
                 {
                     // TODO: Tie
                     gameIsOver = true;
@@ -93,6 +108,12 @@ public class KillPlane : MonoBehaviour
                     // Winner
                     EndGame(alivePlayers[0]);
                 }
+
+                if(player.TryGetComponent<WeaponUser>(out WeaponUser dyingUser))
+                {
+                    shotsFiredTracking.Add(player.playerIndex, dyingUser.shotsFired);
+                }
+                player.gameObject.SetActive(false);
             }
         }
     }
@@ -117,8 +138,15 @@ public class KillPlane : MonoBehaviour
 
     private void ShowEndGamePanel(int winnerIndex)
     {
-        List<PlayerStats> playerStats = 
+        List<PlayerStats> remainingPlayersPlayers = 
             ((PlayerStats[])FindObjectsOfType<PlayerStats>()).ToList();
+
+        foreach (PlayerStats player in remainingPlayersPlayers)
+        {
+            if(player.TryGetComponent<WeaponUser>(out WeaponUser aliveUser)){
+                shotsFiredTracking.Add(player.playerIndex, aliveUser.shotsFired);
+            }
+        }
         
         // Aktivera panelen
         gameOverScreen.SetActive(true);
@@ -161,7 +189,7 @@ public class KillPlane : MonoBehaviour
                     string shotsFiredPlayerThreeText = "";
                     string shotsFiredPlayerFourText = "";
                     
-                    foreach (PlayerStats player in playerStats)
+                    foreach (PlayerStats player in remainingPlayersPlayers)
                     {
                         if (player.playerIndex == 0)
                         {
