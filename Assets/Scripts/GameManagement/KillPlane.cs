@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
 using DG.Tweening;
 using TMPro;
@@ -214,37 +215,44 @@ public class KillPlane : MonoBehaviour
     private IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
     {
         PlayerShooting.shotsFiredPerPlayer.Clear();
-        
-        int sceneIndex = SceneManager.sceneCountInBuildSettings;
-        
+
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
         int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex;
 
-        int counter = 0;
-        do
+        List<int> allSceneIndices = Enumerable.Range(0, sceneCount).ToList();
+
+        allSceneIndices.Remove(currentLevelIndex);
+        allSceneIndices.RemoveAll(i => avoidedSceneIndex.Contains(i));
+
+        if (allSceneIndices.Count == 0)
         {
-            nextSceneIndex = Random.Range(0, sceneIndex);
-            counter++;
-            if (counter > 20)
-            {
-                Debug.Log("This level is the only one available in the builds settings. Reloading current level in " + levelLoadTime + " seconds...");
+            Debug.Log("This is the only level available in the builds settings. Reloading in " + levelLoadTime + " seconds...");
 
-                StartCoroutine(Countdown(levelLoadTime + 2));
-                
-                DOVirtual.DelayedCall(2f, () =>
-                {
-                    gameOverLoadingText.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
-                });
-                
-                yield return new WaitForSecondsRealtime(levelLoadTime + 2);
-                SceneManager.LoadScene(currentLevelIndex);
-                yield break;
-            }
-        } while (nextSceneIndex == currentLevelIndex || avoidedSceneIndex.Contains(nextSceneIndex));
-        
-        Debug.Log("Loading next level in " + levelLoadTime + " seconds...");
-        yield return new WaitForSecondsRealtime(levelLoadTime + 2);
-        SceneManager.LoadScene(nextSceneIndex);
+            StartCoroutine(Countdown(levelLoadTime + 2));
+            
+            DOVirtual.DelayedCall(2f, () =>
+            {
+                gameOverLoadingText.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
+            });
+            
+            yield return new WaitForSecondsRealtime(levelLoadTime + 2);
+            SceneManager.LoadScene(currentLevelIndex);
+        }
+        else
+        {
+            Debug.Log("Loading next level in " + levelLoadTime + " seconds...");
+            
+            int nextSceneIndex = allSceneIndices[Random.Range(0, allSceneIndices.Count)];
+            StartCoroutine(Countdown(levelLoadTime + 2));
+            
+            DOVirtual.DelayedCall(2f, () =>
+            {
+                gameOverLoadingText.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
+            });
+            
+            yield return new WaitForSecondsRealtime(levelLoadTime + 2);
+            SceneManager.LoadScene(nextSceneIndex);
+        }
     }
 
     private IEnumerator Countdown(int countdownTime)
