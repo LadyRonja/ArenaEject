@@ -189,7 +189,6 @@ public class KillPlane : MonoBehaviour
                     string shotsFiredPlayerThreeText = "";
                     string shotsFiredPlayerFourText = "";
                     
-                    // Use shotsFiredTracking to get the shots fired for each player
                     foreach (var shotsFired in shotsFiredTracking)
                     {
                         if (shotsFired.Key == 0)
