@@ -1495,15 +1495,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7829054644930169517, guid: 8e57e4e98beb549459644ce5c4a99e32, type: 3}
       propertyPath: spawnDelay
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7829054644930169517, guid: 8e57e4e98beb549459644ce5c4a99e32, type: 3}
+      propertyPath: pickUpPrefab
+      value: 
+      objectReference: {fileID: 8554639578332772152, guid: 2d28c274e7fddca46a100f0d88d175d3, type: 3}
+    - target: {fileID: 7829054644930169517, guid: 8e57e4e98beb549459644ce5c4a99e32, type: 3}
       propertyPath: spawnInterval
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9193210881451794286, guid: 8e57e4e98beb549459644ce5c4a99e32, type: 3}
       propertyPath: m_Name
-      value: Pickupspawner - GrenadeLauncher
+      value: Pickupspawner - Shark Launcher
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
