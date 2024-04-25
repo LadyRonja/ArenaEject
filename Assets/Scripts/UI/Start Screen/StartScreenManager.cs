@@ -80,8 +80,6 @@ public class StartScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        //SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
-        Debug.Log("Loading DevRonja, change here to load game scene");
-        SceneManager.LoadScene("DevRonja");
+        SceneManager.LoadScene(Paths.GAME_SCENE_NAME);
     }
 }

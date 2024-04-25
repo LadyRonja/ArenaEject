@@ -112,8 +112,10 @@ public class CameraController : MonoBehaviour
         Vector3 centerPoint = (targetMaxs + targetMins) * 0.5f;
 
         targetPos = centerPoint;
-        targetPos.y += 15f;
-        targetPos.z -= 15f;
-        transform.transform.position = targetPos;
+        targetPos.y += 10f;
+        targetPos.z -= 20f;
+        //transform.transform.position = targetPos;
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.fixedDeltaTime);
+
     }
 }

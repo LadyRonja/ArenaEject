@@ -5,9 +5,8 @@ using UnityEngine;
 public static class Paths
 {
     // Scenes
-    public const string GAME_SCENE_NAME = "_GameScene";
+    public const string GAME_SCENE_NAME = "_GameScenePlayTest";
     public const string START_SCENE_NAME = "_StartScreen";
-    public const string FARRAZ_SCENE_NAME = "DevFarraz";
 
     // Music
     public const string START_MENU_MUSIC = @"Music/menu";
