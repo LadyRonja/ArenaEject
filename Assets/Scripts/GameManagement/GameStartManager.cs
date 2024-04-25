@@ -15,13 +15,15 @@ public class GameStartManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnPlayers();
+        SpawnAllPlayers();
     }
 
-
-    private void SpawnPlayers()
+    private void SpawnAllPlayers()
     {
         if (playerPrefab == null) return;
+
+        // Clear existing players
+        KillAllPlayers();
 
         List<PlayerConfigurations> playersToSpawn = new();
 
@@ -60,14 +62,8 @@ public class GameStartManager : MonoBehaviour
                     }
                 }
 
-                // Spawn player and determine spawn position
-                PlayerInput playerInputObj = PlayerInput.Instantiate(
-                                                        prefab: playerPrefab,
-                                                        playerIndex: i,
-                                                        controlScheme: null,
-                                                        splitScreenIndex: -1,
-                                                        pairWithDevice: playerInputDevice
-                                                        );
+                // Spawn player
+                PlayerInput playerInputObj = SpawnAPlayer(i, playerInputDevice);
 
                 // Move player to a spawnpoint
                 TeleportPlayerToSpawn(i, playerInputObj.gameObject);
@@ -82,22 +78,41 @@ public class GameStartManager : MonoBehaviour
 
         // Spawning apporpriatly
         playersToSpawn = JoinScreenManager.Instance.playerConfigs;
-        for(int i = 0; i < playersToSpawn.Count;i++) { 
+        for(int i = 0; i < playersToSpawn.Count;i++) {
 
             // Instansiate
-            PlayerInput playerInputObj = PlayerInput.Instantiate(   prefab: playerPrefab, 
-                                                                    playerIndex: playersToSpawn[i].playerIndex, 
-                                                                    controlScheme: null, 
-                                                                    splitScreenIndex: -1, 
-                                                                    pairWithDevice: playersToSpawn[i].input.devices[0]
-                                                                    );
-
+            PlayerInput playerInputObj = SpawnAPlayer(playersToSpawn[i].playerIndex, playersToSpawn[i].input.devices[0]);
 
             // Move player to a spawnpoint
             TeleportPlayerToSpawn(playersToSpawn[i].playerIndex, playerInputObj.gameObject);
 
             // Verify Component Validity
             VerifyPlayer(playerInputObj.gameObject, playersToSpawn[i].playerIndex, true);     
+        }
+    }
+
+    private PlayerInput SpawnAPlayer(int playerIndex, InputDevice inputDevice)
+    {
+        PlayerInput playerInputObj = PlayerInput.Instantiate(prefab: playerPrefab,
+                                                        playerIndex: playerIndex,
+                                                        controlScheme: null,
+                                                        splitScreenIndex: -1,
+                                                        pairWithDevice: inputDevice
+                                                        );
+
+        playerInputObj.transform.SetParent(null);
+
+        return playerInputObj;
+    }
+
+    private void KillAllPlayers()
+    {
+        var players = (PlayerStats[])FindObjectsOfType(typeof(PlayerStats));
+        List<Transform> test = new List<Transform>();
+
+        foreach (var item in players)
+        {
+            Destroy(item.gameObject);
         }
     }
 
