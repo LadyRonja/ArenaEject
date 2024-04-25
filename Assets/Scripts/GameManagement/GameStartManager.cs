@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +17,7 @@ public class GameStartManager : MonoBehaviour
     private void Start()
     {
         SpawnAllPlayers();
+        StartCameraTracking();
     }
 
     private void SpawnAllPlayers()
@@ -179,5 +181,20 @@ public class GameStartManager : MonoBehaviour
         {
             weaponUser.appropriatlySpawned = appropriatlySpawned;
         }
+    }
+
+    private void StartCameraTracking()
+    {
+        if (CameraController.Instance == null) return;
+
+        var players = FindObjectsOfType<PlayerStats>().ToList();
+        List<Transform> playerTransforms = new List<Transform>();
+        foreach (var t in players)
+        {
+            playerTransforms.Add(t.transform);
+        }
+
+        if(playerTransforms.Count < 1) { return; }
+        CameraController.Instance.StartTrackingObjects(playerTransforms);
     }
 }
