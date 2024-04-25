@@ -47,12 +47,12 @@ Material:
     m_Floats:
     - _Brightness_Under_Lava: 2
     - _Cutoff_Top: 0.4
-    - _Distort_Scale: 0.05
+    - _Distort_Scale: 0.09
     - _Distortion_Strenght: 0.3
     - _Edge_Blur: 0.1
     - _Edge_Top_Brightness: 3
     - _Edge_Width: -0.27
-    - _Main_Texture_Scale: 0.05
+    - _Main_Texture_Scale: 0.09
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed_Distort_X: 0.05
