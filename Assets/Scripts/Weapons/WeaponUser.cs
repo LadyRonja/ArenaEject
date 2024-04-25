@@ -9,7 +9,6 @@ using UnityEngine.InputSystem;
 public class WeaponUser : MonoBehaviour 
 {
     [HideInInspector] public bool appropriatlySpawned = false;
-    
 
     [SerializeField] private Transform weaponCarryPoint;
     [SerializeField] private float weaponLaunchForce = 8f;
@@ -17,7 +16,6 @@ public class WeaponUser : MonoBehaviour
 
     public Weapon carriedWeapon = null;
     [HideInInspector] public int shotsFired = 0;
-
 
     private void OnFire(InputValue value)
     {

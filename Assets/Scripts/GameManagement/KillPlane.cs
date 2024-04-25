@@ -189,24 +189,21 @@ public class KillPlane : MonoBehaviour
                     string shotsFiredPlayerThreeText = "";
                     string shotsFiredPlayerFourText = "";
                     
-                    foreach (PlayerStats player in remainingPlayersPlayers)
+                    if (shotsFiredTracking.ContainsKey(0))
                     {
-                        if (player.playerIndex == 0)
-                        {
-                            shotsFiredWinnerText = player.shotsFired + " shots fired";
-                        }
-                        else if (player.playerIndex == 1)
-                        {
-                            shotsFiredPlayerTwoText = player.shotsFired + " shots fired";
-                        }
-                        else if (player.playerIndex == 2)
-                        {
-                            shotsFiredPlayerThreeText = player.shotsFired + " shots fired";
-                        }
-                        else if (player.playerIndex == 3)
-                        {
-                            shotsFiredPlayerFourText = player.shotsFired + " shots fired";
-                        }
+                        shotsFiredWinnerText = "Shots Fired: " + shotsFiredTracking[0];
+                    }
+                    if (shotsFiredTracking.ContainsKey(1))
+                    {
+                        shotsFiredPlayerTwoText = "Shots Fired: " + shotsFiredTracking[1];
+                    }
+                    if (shotsFiredTracking.ContainsKey(2))
+                    {
+                        shotsFiredPlayerThreeText = "Shots Fired: " + shotsFiredTracking[2];
+                    }
+                    if (shotsFiredTracking.ContainsKey(3))
+                    {
+                        shotsFiredPlayerFourText = "Shots Fired: " + shotsFiredTracking[3];
                     }
                     
                     gameOverWinnerShotsFiredText.text = shotsFiredWinnerText;
