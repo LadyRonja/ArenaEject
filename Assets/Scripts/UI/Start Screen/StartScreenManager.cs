@@ -80,9 +80,8 @@ public class StartScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        //Dictionary<int, int> pci = JoinScreenManager.Instance.PlayerToControllerIndex;
-        //PlayerData.playerToControllerBinding = pci;
-
-        SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
+        //SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
+        Debug.Log("Loading DevRonja, change here to load game scene");
+        SceneManager.LoadScene("DevRonja");
     }
 }

@@ -46,9 +46,17 @@ public class JoinScreenManager : MonoBehaviour
         playerConfigs[index].isReady = !playerConfigs[index].isReady;
         if (playerConfigs.Count > 1 && playerConfigs.All(p => p.isReady))
         {
-            //SceneManager.LoadScene(Paths.GAME_SCENE_NAME);
-            Debug.Log("Loading DevRonja - change to loading a game scene when not testing");
-            SceneManager.LoadScene("DevRonja");
+            var basicButtons = (BasicButton[])FindObjectsOfType<BasicButton>();
+            foreach (var buttonScripts in basicButtons)
+            {
+                if(buttonScripts.MyType == BasicButton.ButtonType.START)
+                {
+                    if(buttonScripts.TryGetComponent<Button>(out Button btn))
+                    {
+                        btn.interactable = true;
+                    }
+                }
+            }
         }
     }
 

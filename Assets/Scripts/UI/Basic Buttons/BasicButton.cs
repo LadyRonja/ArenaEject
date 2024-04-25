@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class BasicButton : MonoBehaviour
 {
-    private enum ButtonType { UNASSIGNED, START, OPEN_JOIN, CREDITS, OPTIONS, QUIT };
+    public enum ButtonType { UNASSIGNED, START, OPEN_JOIN, CREDITS, OPTIONS, QUIT };
     [SerializeField] private ButtonType buttonType = ButtonType.UNASSIGNED;
-
+    public ButtonType MyType { get => buttonType; }
 
     private void Start()
     {
