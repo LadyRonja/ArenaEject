@@ -825,6 +825,9 @@ MonoBehaviour:
   gameOverPlayerFourShotsFiredText: {fileID: 1968758306}
   gameOverPanel: {fileID: 1968758315}
   gameOverLoadingText: {fileID: 1968758305}
+  playerDeathSounds:
+  - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
+  - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
   levelLoadTime: 3
 --- !u!1 &490765632
 GameObject:
@@ -961,6 +964,9 @@ MonoBehaviour:
   gameOverPlayerFourShotsFiredText: {fileID: 1968758306}
   gameOverPanel: {fileID: 1968758315}
   gameOverLoadingText: {fileID: 1968758305}
+  playerDeathSounds:
+  - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
+  - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
   levelLoadTime: 3
 --- !u!1 &501517940
 GameObject:
