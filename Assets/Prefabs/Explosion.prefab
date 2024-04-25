@@ -50,6 +50,7 @@ MonoBehaviour:
   explosionRadius: 5
   explosionForce: 20
   duration: 0.1
+  explosionClip: {fileID: 8300000, guid: 0cd39043f3f583c4690204b72f5c81be, type: 3}
 --- !u!33 &1255999164138185553
 MeshFilter:
   m_ObjectHideFlags: 0

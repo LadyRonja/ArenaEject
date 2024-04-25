@@ -31,7 +31,8 @@ public class KillPlane : MonoBehaviour
     [SerializeField] private TMP_Text gameOverPlayerFourShotsFiredText;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameOverLoadingText;
-    
+    [SerializeField] private List<AudioClip> playerDeathSounds;
+
     [SerializeField] private int levelLoadTime = 3;
 
     // TEMP
@@ -114,6 +115,7 @@ public class KillPlane : MonoBehaviour
                     shotsFiredTracking.Add(player.playerIndex, dyingUser.shotsFired);
                 }
                 player.gameObject.SetActive(false);
+                AudioHandler.PlayRandomEffectFromList(playerDeathSounds);
             }
         }
     }

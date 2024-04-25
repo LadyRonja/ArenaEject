@@ -2,16 +2,29 @@ using System;
 using System.Collections;
 using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Explosion : MonoBehaviour
 {
     [SerializeField] private float explosionRadius = 5f;
     [SerializeField] private float explosionForce = 3000f;
     [SerializeField] private float duration = 0.1f;
+    [SerializeField] private AudioClip explosionClip = null;
 
     private void Start()
     {
         StartCoroutine(Explode());
+
+        try
+        {
+            CameraController.Instance.AddShake(0.3f, 0.1f);
+            AudioHandler.PlaySoundEffect(explosionClip);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
