@@ -38,22 +38,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Invoke(nameof(_temp), 0.5f);
-    }
-
-    private void _temp()
-    {
-        var players = FindObjectsOfType<PlayerStats>().ToList();
-        List<Transform> playerTransforms = new List<Transform>();
-        foreach (var t in players)
-        {
-            playerTransforms.Add(t.transform);
-        }
-        StartTrackingObjects(playerTransforms);
-    }
-
     private void FixedUpdate()
     {
         switch (cameraMode)

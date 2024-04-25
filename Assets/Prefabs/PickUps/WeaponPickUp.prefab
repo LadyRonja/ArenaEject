@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2637121075642425942}
   - component: {fileID: 1312033408873725218}
   - component: {fileID: 8564401647048773428}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponPickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1474954501940387738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PickUp GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: shark_launcher
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6e3090d82879c504f98cd2e2d9f907f9, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1911285147885027050, guid: 6e3090d82879c504f98cd2e2d9f907f9, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0008
@@ -260,6 +264,10 @@ PrefabInstance:
     - target: {fileID: 1911285147885027050, guid: 6e3090d82879c504f98cd2e2d9f907f9, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618526999340489795, guid: 6e3090d82879c504f98cd2e2d9f907f9, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24181474b91f07e4392efff36f109b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frictionCoefficient: 5
-  frictionDelay: 5
+  frictionCoefficient: 8000
+  frictionDelay: 0.3
 --- !u!114 &-5137444874030891988
 MonoBehaviour:
   m_ObjectHideFlags: 0

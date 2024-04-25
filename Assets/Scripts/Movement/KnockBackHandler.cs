@@ -7,8 +7,8 @@ public class KnockBackHandler : MonoBehaviour
 {
     private Rigidbody rb;
 
-    public float frictionCoefficient = 5;
-    public float frictionDelay = 5f;
+    public float frictionCoefficient = 10f;
+    public float frictionDelay = 0.3f;
     private bool knockedBack = false;
 
     void Start()
@@ -16,7 +16,7 @@ public class KnockBackHandler : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    /*void FixedUpdate()
     {
         if (!knockedBack) return; 
 
@@ -27,14 +27,15 @@ public class KnockBackHandler : MonoBehaviour
                 Deaccelerate();
             }
         }
-    }
+    }*/
 
     public void Deaccelerate()
     {
-        rb.velocity -= frictionCoefficient * Time.deltaTime * rb.velocity.normalized;
+        rb.velocity *= 1f/frictionCoefficient;
         if (rb.velocity.sqrMagnitude < 1f) // Check if velocity is close to zero
         {
             rb.velocity = Vector3.zero; // Ensure velocity is exactly zero
+            this.CancelInvoke();
             if (TryGetComponent<Movement>(out Movement myMovement))
             {
                 myMovement.enabled = true;
@@ -50,7 +51,10 @@ public class KnockBackHandler : MonoBehaviour
             myMovement.enabled = false;
         }
 
+        this.CancelInvoke();
+        rb.velocity = Vector3.zero;
         knockedBack = true;
         rb.AddForce(dir * force, ForceMode.Impulse);
+        InvokeRepeating(nameof(Deaccelerate), frictionDelay, Time.fixedDeltaTime);
     }
 }
