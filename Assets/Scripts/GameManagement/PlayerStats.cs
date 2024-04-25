@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     public int playerIndex = 0;
     public int lives = 1;
+    public int shotsFired = 0;
     public bool alive { get => lives > 0; }
 
     [Header("TEMP")]

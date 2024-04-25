@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,14 +9,13 @@ using UnityEngine.InputSystem;
 public class WeaponUser : MonoBehaviour 
 {
     [HideInInspector] public bool appropriatlySpawned = false;
-
+    private PlayerStats playerStats;
 
     [SerializeField] private Transform weaponCarryPoint;
     [SerializeField] private float weaponLaunchForce = 8f;
     public Transform carriedWeaponTransform;
 
     public Weapon carriedWeapon = null;
-
 
     /*void Update()
     {
@@ -30,6 +30,11 @@ public class WeaponUser : MonoBehaviour
         }
 
     }*/
+
+    private void Awake()
+    {
+        playerStats = GetComponent<PlayerStats>();
+    }
 
     private void OnFire(InputValue value)
     {
@@ -47,7 +52,10 @@ public class WeaponUser : MonoBehaviour
     {
         if (carriedWeapon == null) return;
 
-        _ = carriedWeapon.TryShoot();
+        bool fireSuccess = carriedWeapon.TryShoot();
+
+        if (fireSuccess)
+            playerStats.shotsFired++;
     }
 
     public bool AttemptAquireWeapon(Weapon weaponPrefabToAquire)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using DG.Tweening;
 using TMPro;
@@ -115,6 +116,9 @@ public class KillPlane : MonoBehaviour
 
     private void ShowEndGamePanel(int winnerIndex)
     {
+        List<PlayerStats> playerStats = 
+            ((PlayerStats[])FindObjectsOfType<PlayerStats>()).ToList();
+        
         // Aktivera panelen
         gameOverScreen.SetActive(true);
         DOVirtual.DelayedCall(0.4f, () =>
@@ -124,11 +128,11 @@ public class KillPlane : MonoBehaviour
                 if (winnerIndex == 0)
                 {
                     // gameOverWinnerText.text = "Tie!";
-                    gameOverWinnerText.text = "Player " + winnerIndex + " Wins!";
+                    gameOverWinnerText.text = "Player " + (winnerIndex + 1) + " Wins!";
                 }
                 else
                 {
-                    gameOverWinnerText.text = "Player " + winnerIndex + " Wins!";
+                    gameOverWinnerText.text = "Player " + (winnerIndex + 1) + " Wins!";
                 }
 
                 // Namn animation
@@ -156,23 +160,23 @@ public class KillPlane : MonoBehaviour
                     string shotsFiredPlayerThreeText = "";
                     string shotsFiredPlayerFourText = "";
                     
-                    foreach (var entry in PlayerShooting.shotsFiredPerPlayer)
+                    foreach (PlayerStats player in playerStats)
                     {
-                        if (entry.Key == 1)
+                        if (player.playerIndex == 0)
                         {
-                            shotsFiredWinnerText = entry.Value + " shots fired";
+                            shotsFiredWinnerText = player.shotsFired + " shots fired";
                         }
-                        else if (entry.Key == 2)
+                        else if (player.playerIndex == 1)
                         {
-                            shotsFiredPlayerTwoText = entry.Value + " shots fired";
+                            shotsFiredPlayerTwoText = player.shotsFired + " shots fired";
                         }
-                        else if (entry.Key == 3)
+                        else if (player.playerIndex == 2)
                         {
-                            shotsFiredPlayerThreeText = entry.Value + " shots fired";
+                            shotsFiredPlayerThreeText = player.shotsFired + " shots fired";
                         }
-                        else if (entry.Key == 4)
+                        else if (player.playerIndex == 3)
                         {
-                            shotsFiredPlayerFourText = entry.Value + " shots fired";
+                            shotsFiredPlayerFourText = player.shotsFired + " shots fired";
                         }
                     }
                     
@@ -183,19 +187,19 @@ public class KillPlane : MonoBehaviour
                 
                     DOVirtual.DelayedCall(1f, () =>
                     {
-                        gameOverWinnerShotsFiredText.transform.DOScale(1f, 0.2f).SetEase(Ease.OutElastic);
+                        gameOverWinnerShotsFiredText.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
                     });
                     DOVirtual.DelayedCall(1.1f, () =>
                     {
-                        gameOverPlayerTwoShotsFiredText.transform.DOScale(1f, 0.2f).SetEase(Ease.OutElastic);
+                        gameOverPlayerTwoShotsFiredText.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
                     });
                     DOVirtual.DelayedCall(1.2f, () =>
                     {
-                        gameOverPlayerThreeShotsFiredText.transform.DOScale(1f, 0.2f).SetEase(Ease.OutElastic);
+                        gameOverPlayerThreeShotsFiredText.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
                     });
                     DOVirtual.DelayedCall(1.3f, () =>
                     {
-                        gameOverPlayerFourShotsFiredText.transform.DOScale(1f, 0.2f).SetEase(Ease.OutElastic);
+                        gameOverPlayerFourShotsFiredText.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
                     });
                 
                     DOVirtual.DelayedCall(2f, () =>
