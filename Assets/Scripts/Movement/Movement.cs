@@ -7,8 +7,10 @@ public class Movement : MonoBehaviour
 {
     [HideInInspector] public bool appropriatlySpawned = false;
 	[SerializeField] private float maxSpeed = 18.0f;
-    [SerializeField] private float acceleration = 20f;
-	private Vector2 moveInput;
+    [SerializeField] private float groundAcceleration = 20f;
+    [SerializeField] private float deceleration = 10f;
+    [SerializeField] private float airAcceleration = 2f;
+    private Vector2 moveInput;
     private Rigidbody rb;
     private Gravity gravity;
 
@@ -25,35 +27,31 @@ public class Movement : MonoBehaviour
 
     private void MoveLogic()
     {
-        if(gravity != null)
-        {
-            if (!gravity.IsGrounded) { return; }
-        }
+        Vector3 preservedFallingVelocity = rb.velocity;
 
-        Vector3 perservedFallingVelocity = rb.velocity;
+        // Calculate current acceleration
+        float currentAcceleration = gravity != null && !gravity.IsGrounded ? airAcceleration : groundAcceleration;
 
         // Acceleration
         if (moveInput != Vector2.zero)
         {
             Vector3 translatedMovement = new Vector3(moveInput.x, 0, moveInput.y);
-            rb.velocity += acceleration * maxSpeed * Time.fixedDeltaTime * translatedMovement;
+            rb.velocity += currentAcceleration * maxSpeed * Time.fixedDeltaTime * translatedMovement;
             if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed) rb.velocity = rb.velocity.normalized * maxSpeed;
         }
         else
         {
-            // Deceleration
-            float deaccelerationAmount = acceleration * Time.fixedDeltaTime;
-            deaccelerationAmount = Mathf.Clamp(deaccelerationAmount, 0.01f, 0.99f); // Has to be less than 1 in order to actually reduce speed
-            rb.velocity *= deaccelerationAmount;
-            if (rb.velocity.sqrMagnitude < 2f) rb.velocity = Vector3.zero;
+            // Deacceleration
+            rb.velocity -= rb.velocity * deceleration * Time.fixedDeltaTime;
+            if (rb.velocity.sqrMagnitude < 0.1f) rb.velocity = Vector3.zero;
         }
 
         Vector3 newVelocity = rb.velocity;
-        newVelocity.y = perservedFallingVelocity.y;
+        newVelocity.y = preservedFallingVelocity.y;
         if (Mathf.Abs(newVelocity.y) < 0.1f) newVelocity.y = 0f;
 
         rb.velocity = newVelocity;
-    }
+}
 
     private void OnMovement(InputValue value)
     {

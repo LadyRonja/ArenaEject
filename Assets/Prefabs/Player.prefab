@@ -108,7 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
   maxSpeed: 13
-  acceleration: 8
+  groundAcceleration: 20
+  deceleration: 10
+  airAcceleration: 2
 --- !u!114 &209684254705093327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
-  jumpForce: 7.2
+  jumpForce: 6
 --- !u!54 &-4713559047619484691
 Rigidbody:
   m_ObjectHideFlags: 0
