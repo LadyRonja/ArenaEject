@@ -154,7 +154,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Edge_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Edge_Color: {r: 0.08499465, g: 0.08745385, b: 0.09433961, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Main_Tint_End: {r: 0, g: 0.3614655, b: 0.41509432, a: 1}
     - _Main_Tint_Start: {r: 0, g: 0, b: 0, a: 1}
