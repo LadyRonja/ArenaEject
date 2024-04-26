@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
-    [SerializeField] private float gravityAmount = -9.82f;
+    [SerializeField] private float gravityUpAmount = -9.82f;
+    [SerializeField] private float gravityDownAmount = -9.82f;
     private Rigidbody rb;
 
     public bool IsGrounded { get => GetIsGrounded();  }
@@ -16,9 +17,22 @@ public class Gravity : MonoBehaviour
 
     private void FixedUpdate()
     {
+        ApplyGravity();
+    }
+
+
+    private void ApplyGravity()
+    {
         if (!IsGrounded)
         {
-            rb.AddForce(Vector3.down * gravityAmount * Time.fixedDeltaTime);
+            if(rb.velocity.y > 0)
+            {
+                rb.AddForce(Vector3.down * gravityUpAmount * Time.fixedDeltaTime);
+            }
+            else
+            {
+                rb.AddForce(Vector3.down * gravityDownAmount * Time.fixedDeltaTime);
+            }
         }
     }
 
