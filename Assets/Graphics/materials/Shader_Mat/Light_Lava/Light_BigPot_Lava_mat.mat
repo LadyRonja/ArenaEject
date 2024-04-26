@@ -55,8 +55,8 @@ Material:
     - _Main_Texture_Scale: 0.09
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed_Distort_X: 0.05
-    - _Speed_Distort_Y: 0.05
+    - _Speed_Distort_X: 0
+    - _Speed_Distort_Y: 0
     - _Speed_Main_X: 0.1
     - _Speed_Main_Y: 0.1
     - _Start_End_Tint_Offset: 1.7
