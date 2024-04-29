@@ -297,7 +297,7 @@ public class KillPlane : MonoBehaviour
             
             DOVirtual.DelayedCall(2f, () =>
             {
-                endGameTitle.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
+                endGameLoading.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
             });
             
             yield return new WaitForSecondsRealtime(levelLoadTime + 2);
@@ -312,7 +312,7 @@ public class KillPlane : MonoBehaviour
             
             DOVirtual.DelayedCall(2f, () =>
             {
-                endGameTitle.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
+                endGameLoading.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
             });
             
             yield return new WaitForSecondsRealtime(levelLoadTime + 2);
@@ -324,7 +324,7 @@ public class KillPlane : MonoBehaviour
     {
         while (countdownTime > 0)
         {
-            endGameTitle.GetComponent<TMP_Text>().text = "Loading next level in " + countdownTime;
+            endGameLoading.GetComponent<TMP_Text>().text = "Loading next level in " + countdownTime;
             yield return new WaitForSecondsRealtime(1);
             countdownTime--;
         }
