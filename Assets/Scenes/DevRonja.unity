@@ -450,6 +450,7 @@ MonoBehaviour:
   gameOverPlayerFourShotsFiredText: {fileID: 0}
   gameOverPanel: {fileID: 0}
   gameOverLoadingText: {fileID: 0}
+  playerDeathSounds: []
   levelLoadTime: 3
 --- !u!4 &565193435
 Transform:
@@ -744,7 +745,11 @@ MonoBehaviour:
   yOffSet: 0
   zOffSet: 0
   xAngleDeg: 35
-  screenPadding: 1
+  displayDebugs: 0
+  trackSpeedMinimum: 0.1
+  paddingWidth: 2
+  paddingTop: 1
+  paddingBottom: 8
   transformsToTrack: []
   DEBUG_ShakeAmount: 5
   DEBUG_ShakeDuration: 0.5
@@ -1621,6 +1626,10 @@ PrefabInstance:
     - target: {fileID: 1072580415407378966, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288350372321757139, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
+      propertyPath: playerCountToSpawn
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3664740952407604708, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_Name
