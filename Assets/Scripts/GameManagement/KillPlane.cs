@@ -9,6 +9,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Collider))]
@@ -19,18 +20,18 @@ public class KillPlane : MonoBehaviour
     private bool gameIsOver = false;
 
     [Header("Temp")]
-    [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private TMP_Text gameOverWinnerText;
-    [SerializeField] private GameObject gameOverWinnerAvatar;
-    [SerializeField] private GameObject gameOverPlayerTwoAvatar;
-    [SerializeField] private GameObject gameOverPlayerThreeAvatar;
-    [SerializeField] private GameObject gameOverPlayerFourAvatar;
-    [SerializeField] private TMP_Text gameOverWinnerShotsFiredText;
-    [SerializeField] private TMP_Text gameOverPlayerTwoShotsFiredText;
-    [SerializeField] private TMP_Text gameOverPlayerThreeShotsFiredText;
-    [SerializeField] private TMP_Text gameOverPlayerFourShotsFiredText;
-    [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private GameObject gameOverLoadingText;
+    [SerializeField] private GameObject endGameCanvas;
+    [SerializeField] private TMP_Text endGameTitle;
+    [SerializeField] private GameObject endGameWinnerAvatar;
+    [SerializeField] private GameObject endGameSecondAvatar;
+    [SerializeField] private GameObject endGameThirdAvatar;
+    [SerializeField] private GameObject endGameFourthAvatar;
+    [SerializeField] private TMP_Text endGameWinnerShotsFired;
+    [SerializeField] private TMP_Text endGameSecondShotsFired;
+    [SerializeField] private TMP_Text endGameThirdShotsFired;
+    [SerializeField] private TMP_Text endGameFourthShotsFired;
+    [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private GameObject endGameLoading;
     [SerializeField] private List<AudioClip> playerDeathSounds;
 
     [SerializeField] private int levelLoadTime = 3;
@@ -122,16 +123,50 @@ public class KillPlane : MonoBehaviour
 
     private void EndGame(PlayerStats winner)
     {
-        if(gameOverScreen == null) return;
+        if(endGameCanvas == null) return;
         gameIsOver = true;
         Time.timeScale = 0.2f;
-        
+
+        // Check if JoinScreenManager and playerConfigs are initialized
+        if (StaticStuff.Instance.JoinScreenManager == null)
+        {
+            StaticStuff.Instance.JoinScreenManager = gameObject.AddComponent<JoinScreenManager>();
+        }
+        if (StaticStuff.Instance.JoinScreenManager.playerConfigs == null)
+        {
+            StaticStuff.Instance.JoinScreenManager.playerConfigs = new List<PlayerConfigurations>();
+        }
+
+        if (StaticStuff.Instance.JoinScreenManager.playerConfigs.Count >= 1)
+        {
+            for (int i = 0; i < StaticStuff.Instance.JoinScreenManager.playerConfigs.Count; i++)
+            {
+                PlayerConfigurations playerConfig = StaticStuff.Instance.JoinScreenManager.playerConfigs[i];
+
+                switch (i)
+                {
+                    case 0:
+                        endGameWinnerAvatar.GetComponent<Image>().color = playerConfig.playerColor;
+                        break;
+                    case 1:
+                        endGameSecondAvatar.GetComponent<Image>().color = playerConfig.playerColor;
+                        break;
+                    case 2:
+                        endGameThirdAvatar.GetComponent<Image>().color = playerConfig.playerColor;
+                        break;
+                    case 3:
+                        endGameFourthAvatar.GetComponent<Image>().color = playerConfig.playerColor;
+                        break;
+                }
+            }
+        }
+
         ShowEndGamePanel(winner.playerIndex);
     }
     
     private void EndGameTie()
     {
-        if(gameOverScreen == null) return;
+        if(endGameCanvas == null) return;
         gameIsOver = true;
         Time.timeScale = 0.2f;
 
@@ -151,7 +186,7 @@ public class KillPlane : MonoBehaviour
         }
         
         // Aktivera panelen
-        gameOverScreen.SetActive(true);
+        endGameCanvas.SetActive(true);
         DOVirtual.DelayedCall(0.4f, () =>
         {
             {
@@ -159,78 +194,78 @@ public class KillPlane : MonoBehaviour
                 if (winnerIndex == 0)
                 {
                     // gameOverWinnerText.text = "Tie!";
-                    gameOverWinnerText.text = "Player " + (winnerIndex + 1) + " Wins!";
+                    endGameTitle.text = "Player " + (winnerIndex + 1) + " Wins!";
                 }
                 else
                 {
-                    gameOverWinnerText.text = "Player " + (winnerIndex + 1) + " Wins!";
+                    endGameTitle.text = "Player " + (winnerIndex + 1) + " Wins!";
                 }
 
-                // Namn animation
-                gameOverWinnerText.transform.DOScale(1, 0.2f).SetEase(Ease.OutElastic);
+                // Animation för vinnarens namn
+                endGameTitle.transform.DOScale(1, 0.2f).SetEase(Ease.OutElastic);
 
                 // Panel animation
                 DOVirtual.DelayedCall(0.5f, () =>
                 {
-                    gameOverPanel.transform.DOScale(1, 0.2f).SetEase(Ease.OutQuart).onComplete += () =>
-                        gameOverWinnerText.transform.DOScale(1, 0.2f).SetEase(Ease.OutElastic);
+                    endGamePanel.transform.DOScale(1, 0.2f).SetEase(Ease.OutQuart).onComplete += () =>
+                        endGameTitle.transform.DOScale(1, 0.2f).SetEase(Ease.OutElastic);
                     
                     // Avatar animation
                     DOVirtual.DelayedCall(0.5f,
-                        () => { gameOverWinnerAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
+                        () => { endGameWinnerAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
                     DOVirtual.DelayedCall(0.6f,
-                        () => { gameOverPlayerTwoAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
+                        () => { endGameSecondAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
                     DOVirtual.DelayedCall(0.7f,
-                        () => { gameOverPlayerThreeAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
+                        () => { endGameThirdAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
                     DOVirtual.DelayedCall(0.8f,
-                        () => { gameOverPlayerFourAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
+                        () => { endGameFourthAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
                     
                     // Avfyrade skott animation
-                    string shotsFiredWinnerText = "";
-                    string shotsFiredPlayerTwoText = "";
-                    string shotsFiredPlayerThreeText = "";
-                    string shotsFiredPlayerFourText = "";
+                    string shotsFiredWinner = "";
+                    string shotsFiredSecond = "";
+                    string shotsFiredThird= "";
+                    string shotsFiredFourth = "";
                     
                     foreach (var shotsFired in shotsFiredTracking)
                     {
                         if (shotsFired.Key == 0)
                         {
-                            shotsFiredWinnerText = "Shots Fired: " + shotsFired.Value;
+                            shotsFiredWinner = "Shots Fired: " + shotsFired.Value;
                         }
                         else if (shotsFired.Key == 1)
                         {
-                            shotsFiredPlayerTwoText = "Shots Fired: " + shotsFired.Value;
+                            shotsFiredSecond = "Shots Fired: " + shotsFired.Value;
                         }
                         else if (shotsFired.Key == 2)
                         {
-                            shotsFiredPlayerThreeText = "Shots Fired: " + shotsFired.Value;
+                            shotsFiredThird = "Shots Fired: " + shotsFired.Value;
                         }
                         else if (shotsFired.Key == 3)
                         {
-                            shotsFiredPlayerFourText = "Shots Fired: " + shotsFired.Value;
+                            shotsFiredFourth = "Shots Fired: " + shotsFired.Value;
                         }
                     }
                     
-                    gameOverWinnerShotsFiredText.text = shotsFiredWinnerText;
-                    gameOverPlayerTwoShotsFiredText.text = shotsFiredPlayerTwoText;
-                    gameOverPlayerThreeShotsFiredText.text = shotsFiredPlayerThreeText;
-                    gameOverPlayerFourShotsFiredText.text = shotsFiredPlayerFourText;
+                    endGameWinnerShotsFired.text = shotsFiredWinner;
+                    endGameSecondShotsFired.text = shotsFiredThird;
+                    endGameThirdShotsFired.text = shotsFiredThird;
+                    endGameFourthShotsFired.text = shotsFiredFourth;
                 
                     DOVirtual.DelayedCall(1f, () =>
                     {
-                        gameOverWinnerShotsFiredText.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
+                        endGameWinnerShotsFired.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
                     });
                     DOVirtual.DelayedCall(1.1f, () =>
                     {
-                        gameOverPlayerTwoShotsFiredText.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
+                        endGameSecondShotsFired.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
                     });
                     DOVirtual.DelayedCall(1.2f, () =>
                     {
-                        gameOverPlayerThreeShotsFiredText.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
+                        endGameThirdShotsFired.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
                     });
                     DOVirtual.DelayedCall(1.3f, () =>
                     {
-                        gameOverPlayerFourShotsFiredText.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
+                        endGameFourthShotsFired.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
                     });
                 
                     DOVirtual.DelayedCall(2f, () =>
@@ -262,7 +297,7 @@ public class KillPlane : MonoBehaviour
             
             DOVirtual.DelayedCall(2f, () =>
             {
-                gameOverLoadingText.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
+                endGameTitle.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
             });
             
             yield return new WaitForSecondsRealtime(levelLoadTime + 2);
@@ -277,7 +312,7 @@ public class KillPlane : MonoBehaviour
             
             DOVirtual.DelayedCall(2f, () =>
             {
-                gameOverLoadingText.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
+                endGameTitle.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
             });
             
             yield return new WaitForSecondsRealtime(levelLoadTime + 2);
@@ -289,7 +324,7 @@ public class KillPlane : MonoBehaviour
     {
         while (countdownTime > 0)
         {
-            gameOverLoadingText.GetComponent<TMP_Text>().text = "Loading next level in " + countdownTime;
+            endGameTitle.GetComponent<TMP_Text>().text = "Loading next level in " + countdownTime;
             yield return new WaitForSecondsRealtime(1);
             countdownTime--;
         }

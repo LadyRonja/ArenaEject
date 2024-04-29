@@ -634,6 +634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -718,6 +719,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!114 &726376083 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
@@ -1929,45 +1953,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 57426433349721916, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_text
-      value: 99 Shots Fired
-      objectReference: {fileID: 0}
-    - target: {fileID: 57426433349721916, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontSize
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 57426433349721916, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 57426433349721916, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 57426433349721916, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 57426433349721916, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 336933107958268858, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 336933107958268858, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 336933107958268858, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 519258950022129003, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Name
-      value: Text-ShotsFired-P-Two
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 704538890084648600, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
@@ -1981,54 +1977,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1070842367351448225, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_text
-      value: 99 Shots Fired
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070842367351448225, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontSize
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070842367351448225, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 1070842367351448225, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070842367351448225, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 1070842367351448225, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096103050499498450, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_text
-      value: 99 Shots Fired
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096103050499498450, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontSize
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096103050499498450, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 1096103050499498450, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096103050499498450, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 1096103050499498450, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1556254615927998733, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2040,74 +1988,14 @@ PrefabInstance:
     - target: {fileID: 1556254615927998733, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1843861539821838567, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 1843861539821838567, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 1843861539821838567, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Color.a
-      value: 0.9019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Color.b
-      value: 0.19999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Color.g
-      value: 0.09471696
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Color.r
-      value: 0.100659676
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Maskable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_FillCenter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_UseSpriteMesh
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2670104623169518121, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_Name
-      value: GameOverCanvas
+      value: EndGameCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 2670104623169518121, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3059181293160196012, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Name
-      value: Text-ShotsFired-P-Four
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3801649959489841924, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
@@ -2122,68 +2010,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3807804944990203732, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 800.0693
-      objectReference: {fileID: 0}
-    - target: {fileID: 3807804944990203732, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3807804944990203732, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3807804944990203732, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3807804944990203732, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.000022888
-      objectReference: {fileID: 0}
-    - target: {fileID: 3807804944990203732, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -181
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontStyle
-      value: 33
+      propertyPath: m_fontSize
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_characterSpacing
-      value: 6.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_enableWordWrapping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_enableVertexGradient
-      value: 0
+      propertyPath: m_fontSizeBase
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 5196225871168477692, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5196225871168477692, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5196225871168477692, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5779277581503338046, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_Pivot.x
@@ -2277,93 +2133,53 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6075371716967926297, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Name
-      value: Text-ShotsFired-Winner
-      objectReference: {fileID: 0}
     - target: {fileID: 6130183596979567335, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130183596979567335, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130183596979567335, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907007313014661647, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_Name
-      value: Text-ShotsFired-P-Three
-      objectReference: {fileID: 0}
-    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7585593642076836922, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7633969538692819337, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_text
-      value: 99 shots fired
+    - target: {fileID: 6130183596979567335, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7633969538692819337, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontSize
-      value: 25
+    - target: {fileID: 6130183596979567335, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7633969538692819337, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 7633969538692819337, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 25
+    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7633969538692819337, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_isRightToLeft
-      value: 0
+    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7633969538692819337, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-    - target: {fileID: 7633969538692819337, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
+    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8403514873837269318, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8403514873837269318, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8403514873837269318, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9102773290228864887, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9102773290228864887, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9102773290228864887, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2448,7 +2264,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2004538679939060746, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
       propertyPath: m_Name
-      value: Lava
+      value: Killplane
       objectReference: {fileID: 0}
     - target: {fileID: 2567336373737295710, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2491,61 +2307,57 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverPanel
+      propertyPath: endGamePanel
       value: 
       objectReference: {fileID: 1557076686}
     - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: levelLoadTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverScreen
-      value: 
-      objectReference: {fileID: 252665948}
-    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverWinnerText
+      propertyPath: endGameTitle
       value: 
       objectReference: {fileID: 726376083}
     - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverLoadingText
+      propertyPath: endGameCanvas
+      value: 
+      objectReference: {fileID: 252665948}
+    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
+      propertyPath: endGameLoading
       value: 
       objectReference: {fileID: 1613518634}
     - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverWinnerAvatar
+      propertyPath: endGameThirdAvatar
       value: 
-      objectReference: {fileID: 790242770}
+      objectReference: {fileID: 1200733546}
     - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverPlayerTwoAvatar
-      value: 
-      objectReference: {fileID: 1774129663}
-    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverPlayerFourAvatar
+      propertyPath: endGameFourthAvatar
       value: 
       objectReference: {fileID: 283866869}
     - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverPlayerThreeAvatar
+      propertyPath: endGameSecondAvatar
       value: 
-      objectReference: {fileID: 1200733546}
+      objectReference: {fileID: 1774129663}
+    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
+      propertyPath: endGameWinnerAvatar
+      value: 
+      objectReference: {fileID: 790242770}
+    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
+      propertyPath: endGameThirdShotsFired
+      value: 
+      objectReference: {fileID: 1063402565}
+    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
+      propertyPath: endGameFourthShotsFired
+      value: 
+      objectReference: {fileID: 563008616}
+    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
+      propertyPath: endGameSecondShotsFired
+      value: 
+      objectReference: {fileID: 420129556}
+    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
+      propertyPath: endGameWinnerShotsFired
+      value: 
+      objectReference: {fileID: 84899152}
     - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
       propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 940735912}
-    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverWinnerShotsFiredText
-      value: 
-      objectReference: {fileID: 84899152}
-    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverPlayerTwoShotsFiredText
-      value: 
-      objectReference: {fileID: 420129556}
-    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverPlayerFourShotsFiredText
-      value: 
-      objectReference: {fileID: 563008616}
-    - target: {fileID: 5197516900069518111, guid: b7a49e236aab34e44a0daddc33051e3a, type: 3}
-      propertyPath: gameOverPlayerThreeShotsFiredText
-      value: 
-      objectReference: {fileID: 1063402565}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

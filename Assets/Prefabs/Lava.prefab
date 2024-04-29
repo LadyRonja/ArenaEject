@@ -49,19 +49,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 0}
-  gameOverScreen: {fileID: 0}
-  gameOverWinnerText: {fileID: 0}
-  gameOverWinnerAvatar: {fileID: 0}
-  gameOverPlayerTwoAvatar: {fileID: 0}
-  gameOverPlayerThreeAvatar: {fileID: 0}
-  gameOverPlayerFourAvatar: {fileID: 0}
-  gameOverWinnerShotsFiredText: {fileID: 0}
-  gameOverPlayerTwoShotsFiredText: {fileID: 0}
-  gameOverPlayerThreeShotsFiredText: {fileID: 0}
-  gameOverPlayerFourShotsFiredText: {fileID: 0}
-  gameOverPanel: {fileID: 0}
-  gameOverLoadingText: {fileID: 0}
-  levelLoadTime: 5
+  endGameCanvas: {fileID: 0}
+  endGameTitle: {fileID: 0}
+  endGameWinnerAvatar: {fileID: 0}
+  endGameSecondAvatar: {fileID: 0}
+  endGameThirdAvatar: {fileID: 0}
+  endGameFourthAvatar: {fileID: 0}
+  endGameWinnerShotsFired: {fileID: 0}
+  endGameSecondShotsFired: {fileID: 0}
+  endGameThirdShotsFired: {fileID: 0}
+  endGameFourthShotsFired: {fileID: 0}
+  endGamePanel: {fileID: 0}
+  endGameLoading: {fileID: 0}
+  playerDeathSounds: []
+  levelLoadTime: 3
 --- !u!33 &1560420024326792107
 MeshFilter:
   m_ObjectHideFlags: 0

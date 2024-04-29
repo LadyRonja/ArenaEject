@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5466391244083861618}
   - component: {fileID: 57426433349721916}
   m_Layer: 5
-  m_Name: Text-ShotsFired (1)
+  m_Name: ShotsFired
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -115.94327}
+  m_AnchoredPosition: {x: 0, y: -130.99998}
   m_SizeDelta: {x: 351.44, y: 131.101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5466391244083861618
@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Shots Fired
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3443372487006461863}
   - component: {fileID: 4486156173943091688}
   m_Layer: 5
-  m_Name: PlayerWinnerAvatar
+  m_Name: WinnerAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 725496652925240757}
   - component: {fileID: 1070842367351448225}
   m_Layer: 5
-  m_Name: Text-ShotsFired (3)
+  m_Name: ShotsFired
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,7 +352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000026479811, y: -115.94327}
+  m_AnchoredPosition: {x: -0.000026479811, y: -130.99998}
   m_SizeDelta: {x: 351.44, y: 131.101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &725496652925240757
@@ -385,8 +385,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Shots Fired
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 3304776364247320019}
   - component: {fileID: 811237755639450207}
   m_Layer: 5
-  m_Name: PlayerFourAvatar
+  m_Name: FourthAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 6593706584854581407}
   - component: {fileID: 7633969538692819337}
   m_Layer: 5
-  m_Name: Text-ShotsFired
+  m_Name: ShotsFired
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -562,7 +562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -115.9433}
+  m_AnchoredPosition: {x: 0.000061035156, y: -131}
   m_SizeDelta: {x: 351.44, y: 131.101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6593706584854581407
@@ -595,8 +595,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Shots Fired
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 2739695344450277126}
   - component: {fileID: 1924898757283572679}
   m_Layer: 5
-  m_Name: PlayerThreeAvatar
+  m_Name: ThirdAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 5392021267235982921}
   - component: {fileID: 1096103050499498450}
   m_Layer: 5
-  m_Name: Text-ShotsFired (2)
+  m_Name: ShotsFired
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -772,7 +772,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000026479811, y: -115.94327}
+  m_AnchoredPosition: {x: -0.000026479811, y: -130.99998}
   m_SizeDelta: {x: 351.44, y: 131.101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5392021267235982921
@@ -805,8 +805,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Shots Fired
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: 1116127532291461481}
   - component: {fileID: 1434966871164818364}
   m_Layer: 5
-  m_Name: PlayerTwoAvatar
+  m_Name: SecondAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -960,7 +960,7 @@ GameObject:
   - component: {fileID: 185644621399006432}
   - component: {fileID: 4903553546492107618}
   m_Layer: 5
-  m_Name: Text-Winner
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1015,8 +1015,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Player X Wins!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1040,8 +1040,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: e22c5495485cf42beb8b0fc4d35d1d0f, type: 2}
-  m_Color: {r: 0.12792921, g: 0.14761066, b: 0.278, a: 0.96862745}
+  m_Color: {r: 0.1981132, g: 0.029681468, b: 0, a: 0.9882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 4133493237308962333}
   - component: {fileID: 1843861539821838567}
   m_Layer: 5
-  m_Name: Text-Loading
+  m_Name: Loading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1224,8 +1224,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Loading next level in '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: b3ce86740fe5ae14b856b94eb2663414, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 820ff2aed1b39804dbcaeaa5116d169a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

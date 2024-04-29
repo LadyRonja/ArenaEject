@@ -24,6 +24,7 @@ public class JoinScreenManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            StaticStuff.Instance.JoinScreenManager = this;
             playerConfigs = new();
             DontDestroyOnLoad(gameObject);
         }

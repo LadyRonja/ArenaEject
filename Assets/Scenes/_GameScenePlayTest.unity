@@ -813,18 +813,18 @@ MonoBehaviour:
   - {fileID: 975413105}
   - {fileID: 1819387647}
   - {fileID: 200899848}
-  gameOverScreen: {fileID: 1968758304}
-  gameOverWinnerText: {fileID: 1968758314}
-  gameOverWinnerAvatar: {fileID: 1968758313}
-  gameOverPlayerTwoAvatar: {fileID: 1968758311}
-  gameOverPlayerThreeAvatar: {fileID: 1968758309}
-  gameOverPlayerFourAvatar: {fileID: 1968758307}
-  gameOverWinnerShotsFiredText: {fileID: 1968758312}
-  gameOverPlayerTwoShotsFiredText: {fileID: 1968758310}
-  gameOverPlayerThreeShotsFiredText: {fileID: 1968758308}
-  gameOverPlayerFourShotsFiredText: {fileID: 1968758306}
-  gameOverPanel: {fileID: 1968758315}
-  gameOverLoadingText: {fileID: 1968758305}
+  endGameCanvas: {fileID: 1968758304}
+  endGameTitle: {fileID: 1968758314}
+  endGameWinnerAvatar: {fileID: 1968758313}
+  endGameSecondAvatar: {fileID: 1968758311}
+  endGameThirdAvatar: {fileID: 1968758309}
+  endGameFourthAvatar: {fileID: 1968758307}
+  endGameWinnerShotsFired: {fileID: 1968758312}
+  endGameSecondShotsFired: {fileID: 1968758310}
+  endGameThirdShotsFired: {fileID: 1968758308}
+  endGameFourthShotsFired: {fileID: 1968758306}
+  endGamePanel: {fileID: 1968758315}
+  endGameLoading: {fileID: 1968758305}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
   - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
@@ -952,18 +952,18 @@ MonoBehaviour:
   - {fileID: 975413105}
   - {fileID: 1819387647}
   - {fileID: 200899848}
-  gameOverScreen: {fileID: 1968758304}
-  gameOverWinnerText: {fileID: 1968758314}
-  gameOverWinnerAvatar: {fileID: 1968758313}
-  gameOverPlayerTwoAvatar: {fileID: 1968758311}
-  gameOverPlayerThreeAvatar: {fileID: 1968758309}
-  gameOverPlayerFourAvatar: {fileID: 1968758307}
-  gameOverWinnerShotsFiredText: {fileID: 1968758312}
-  gameOverPlayerTwoShotsFiredText: {fileID: 1968758310}
-  gameOverPlayerThreeShotsFiredText: {fileID: 1968758308}
-  gameOverPlayerFourShotsFiredText: {fileID: 1968758306}
-  gameOverPanel: {fileID: 1968758315}
-  gameOverLoadingText: {fileID: 1968758305}
+  endGameCanvas: {fileID: 0}
+  endGameTitle: {fileID: 0}
+  endGameWinnerAvatar: {fileID: 0}
+  endGameSecondAvatar: {fileID: 0}
+  endGameThirdAvatar: {fileID: 0}
+  endGameFourthAvatar: {fileID: 0}
+  endGameWinnerShotsFired: {fileID: 0}
+  endGameSecondShotsFired: {fileID: 0}
+  endGameThirdShotsFired: {fileID: 0}
+  endGameFourthShotsFired: {fileID: 0}
+  endGamePanel: {fileID: 0}
+  endGameLoading: {fileID: 0}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
   - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
