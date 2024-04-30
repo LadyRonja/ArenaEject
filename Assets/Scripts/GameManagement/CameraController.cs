@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 
 public enum CameraModes { STILL, TRACK_OBJECTS, SHAKE}
@@ -48,8 +49,8 @@ public class CameraController : MonoBehaviour
     float camTrackSpeed = 0.1f; // dynamically changes, saved value only sets initial
 
     [Header("Shake Debug")]
-    public float DEBUG_ShakeAmount = 5f;
-    public float DEBUG_ShakeDuration = 0.5f;
+    /*public */float DEBUG_ShakeAmount = 0.3f;
+    /*public*/ float DEBUG_ShakeDuration = 0.1f;
 
     Vector3 targetPos = Vector3.zero;
 
@@ -100,6 +101,41 @@ public class CameraController : MonoBehaviour
     private IEnumerator ShakeRoutine(float amount, float duration)
     {
         float timePassed = 0f;
+
+        int shakeTimes = 4;
+        List<int> xOffSet = new();
+        List<int> zOffSet = new();
+
+        for (int i = 0; i < shakeTimes; i++)
+        {
+            if(i % 2 == 0)
+            {
+                xOffSet.Add(1);
+            }
+            else
+            {
+                zOffSet.Add(-1);
+            }
+        }
+
+        for (int i = 0; i < shakeTimes; i++)
+        {
+            //int xOffSet = (UnityEngine.Random.Range(0, 2) == 1) ? 1 : -1;
+            //int zOffSet = (UnityEngine.Random.Range(0, 2) == 1) ? 1 : -1;
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(
+                                            targetPos.x + amount * xOffSet[i], 
+                                            targetPos.y, 
+                                            targetPos.z + amount * zOffSet[i] 
+                                            );
+            while (timePassed < duration/shakeTimes)
+            {
+                transform.position = Vector3.Lerp(startPos, endPos, (timePassed / (duration/shakeTimes)));
+
+                timePassed += Time.deltaTime;
+                yield return null;
+            }
+        }
 
         while (timePassed < duration)
         {

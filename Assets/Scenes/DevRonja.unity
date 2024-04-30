@@ -438,18 +438,18 @@ MonoBehaviour:
   - {fileID: 568745677}
   - {fileID: 1661291280}
   - {fileID: 1237217948}
-  gameOverScreen: {fileID: 6675330079679440463}
-  gameOverWinnerText: {fileID: 8054557984995975032}
-  gameOverWinnerAvatar: {fileID: 0}
-  gameOverPlayerTwoAvatar: {fileID: 0}
-  gameOverPlayerThreeAvatar: {fileID: 0}
-  gameOverPlayerFourAvatar: {fileID: 0}
-  gameOverWinnerShotsFiredText: {fileID: 0}
-  gameOverPlayerTwoShotsFiredText: {fileID: 0}
-  gameOverPlayerThreeShotsFiredText: {fileID: 0}
-  gameOverPlayerFourShotsFiredText: {fileID: 0}
-  gameOverPanel: {fileID: 0}
-  gameOverLoadingText: {fileID: 0}
+  endGameCanvas: {fileID: 0}
+  endGameTitle: {fileID: 0}
+  endGameWinnerAvatar: {fileID: 0}
+  endGameSecondAvatar: {fileID: 0}
+  endGameThirdAvatar: {fileID: 0}
+  endGameFourthAvatar: {fileID: 0}
+  endGameWinnerShotsFired: {fileID: 0}
+  endGameSecondShotsFired: {fileID: 0}
+  endGameThirdShotsFired: {fileID: 0}
+  endGameFourthShotsFired: {fileID: 0}
+  endGamePanel: {fileID: 0}
+  endGameLoading: {fileID: 0}
   playerDeathSounds: []
   levelLoadTime: 3
 --- !u!4 &565193435
@@ -741,9 +741,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMode: 0
-  xOffSet: 0
-  yOffSet: 0
-  zOffSet: 0
   xAngleDeg: 35
   displayDebugs: 0
   trackSpeedMinimum: 0.1
@@ -751,6 +748,7 @@ MonoBehaviour:
   paddingTop: 1
   paddingBottom: 8
   transformsToTrack: []
+  lingerTime: 0.5
   DEBUG_ShakeAmount: 5
   DEBUG_ShakeDuration: 0.5
 --- !u!4 &1237217948 stripped
@@ -1629,7 +1627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288350372321757139, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: playerCountToSpawn
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3664740952407604708, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_Name
