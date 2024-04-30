@@ -17,11 +17,27 @@ public class WeaponUser : MonoBehaviour
     public Weapon carriedWeapon = null;
     [HideInInspector] public int shotsFired = 0;
 
-    private void OnFire(InputValue value)
+    bool shooting = false;
+
+    private void Update()
     {
-        if(value.Get<float>() > 0.5f)
+        if(shooting)
         {
             TryFireWeapon();
+        }
+    }
+
+    private void OnFire(InputValue value)
+    {
+        
+        if(value.Get<float>() > 0.5f)
+        {
+            shooting = true;
+            //TryFireWeapon();
+        }
+        else
+        {
+            shooting= false;
         }
     }
     private void OnNorthButtonDown(InputValue value)
