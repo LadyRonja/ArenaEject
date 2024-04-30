@@ -17,7 +17,7 @@ public class Explosion : MonoBehaviour
 
         try
         {
-            CameraController.Instance.AddShake(0.3f, 0.1f);
+            CameraController.Instance.AddShake();
             AudioHandler.PlaySoundEffect(explosionClip);
         }
         catch (Exception)

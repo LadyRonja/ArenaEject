@@ -1,9 +1,7 @@
-using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
 
 public enum CameraModes { STILL, TRACK_OBJECTS, SHAKE}
@@ -29,30 +27,31 @@ public class CameraController : MonoBehaviour
 
     [Header("Generic")]
     [SerializeField] CameraModes cameraMode = CameraModes.STILL;
-    //[SerializeField] float xOffSet = 0f;
-    //[SerializeField] float yOffSet = 0f;
-    //[SerializeField] float zOffSet = 0f;
     [Space]
     [SerializeField] float xAngleDeg = 35f;
     [Space]
     [SerializeField] bool displayDebugs = false;
+    
+    Vector3 targetPos = Vector3.zero;
 
     [Header("Track Objects")]
     [Range(0.01f, 0.99f)][SerializeField] float trackSpeedMinimum = 0.1f;
-    //[SerializeField] float maxZoom = 3f; // TODO
+    [SerializeField] float maxZoom = 3f;
+    [Space]
     [SerializeField] float paddingWidth = 2f;
     [SerializeField] float paddingTop = 1f;
     [SerializeField] float paddingBottom = 8f;
+    [Space]
+    [SerializeField] float lingerTime = 0.5f;
+    [Space]
     [SerializeField] List<Transform> transformsToTrack;
     private List<TrackPoint> delayedExtremes= new List<TrackPoint>();
-    [SerializeField] float lingerTime = 0.5f;
-    float camTrackSpeed = 0.1f; // dynamically changes, saved value only sets initial
+    float camTrackSpeed = 0.1f; // dynamically changes, initialized value only sets start speed, hence not serialized
 
     [Header("Shake Debug")]
-    /*public */float DEBUG_ShakeAmount = 0.3f;
-    /*public*/ float DEBUG_ShakeDuration = 0.1f;
+    public float DEBUG_ShakeAmount = 0.3f;
+    public float DEBUG_ShakeDuration = 0.1f;
 
-    Vector3 targetPos = Vector3.zero;
 
     private void Awake()
     {
@@ -78,7 +77,6 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Euler(xAngleDeg, 0f, 0f);
         switch (cameraMode)
         {
             case CameraModes.STILL:
@@ -93,7 +91,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void AddShake(float amount, float duration)
+    public void AddShake(float amount = 0.1f, float duration = 0.3f)
     {
         StartCoroutine(ShakeRoutine(amount, duration));
     }
@@ -102,32 +100,41 @@ public class CameraController : MonoBehaviour
     {
         float timePassed = 0f;
 
-        int shakeTimes = 4;
+        // Generate slightly offset points to move to while shaking
+        int shakeTimes = 6;
         List<int> xOffSet = new();
         List<int> zOffSet = new();
+        int lastX = 0;
+        int lastZ = 0;
 
+        // Ensure the camera doesn't linger in one corner
         for (int i = 0; i < shakeTimes; i++)
         {
-            if(i % 2 == 0)
+            int newX = ReturnRandPosOrNeg();
+            int newZ = ReturnRandPosOrNeg();
+
+            while (newX == lastX && newZ == lastZ)
             {
-                xOffSet.Add(1);
+                newX = ReturnRandPosOrNeg(); ;
+                newZ = ReturnRandPosOrNeg();
             }
-            else
-            {
-                zOffSet.Add(-1);
-            }
+            xOffSet.Add(newX);
+            zOffSet.Add(newZ);
+            lastX = newX;
+            lastZ = newZ;
         }
 
+        // Smoothly move the camera to each location in order
         for (int i = 0; i < shakeTimes; i++)
         {
-            //int xOffSet = (UnityEngine.Random.Range(0, 2) == 1) ? 1 : -1;
-            //int zOffSet = (UnityEngine.Random.Range(0, 2) == 1) ? 1 : -1;
+            timePassed = 0;
             Vector3 startPos = transform.position;
             Vector3 endPos = new Vector3(
                                             targetPos.x + amount * xOffSet[i], 
                                             targetPos.y, 
                                             targetPos.z + amount * zOffSet[i] 
                                             );
+           
             while (timePassed < duration/shakeTimes)
             {
                 transform.position = Vector3.Lerp(startPos, endPos, (timePassed / (duration/shakeTimes)));
@@ -137,16 +144,15 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        while (timePassed < duration)
+        // Reset the camera to the latest cameraMode (always tracking here)
+        cameraMode = CameraModes.TRACK_OBJECTS;
+
+        // Returns either 1, or -1
+        int ReturnRandPosOrNeg()
         {
-            transform.position = targetPos + UnityEngine.Random.insideUnitSphere * amount;
-
-            timePassed += Time.deltaTime;
-
-            yield return null;
+            int output = (UnityEngine.Random.Range(0, 2) == 1) ? 1 : -1;
+            return output;
         }
-
-        transform.position = targetPos;
     }
 
     public void StartTrackingObjects(List<Transform> objectsToTrack)
@@ -163,30 +169,16 @@ public class CameraController : MonoBehaviour
         // Find the largest and smallest extremes of each tracked object
         Vector3 targetMaxs = transformsToTrack[0].position;
         Vector3 targetMins = transformsToTrack[0].position;
-        for (int i = 0; i < transformsToTrack.Count; i++)
-        {
-            targetMaxs.x = Mathf.Max(targetMaxs.x, transformsToTrack[i].position.x);
-            targetMaxs.y = Mathf.Max(targetMaxs.y, transformsToTrack[i].position.y);
-            targetMaxs.z = Mathf.Max(targetMaxs.z, transformsToTrack[i].position.z);
-
-            targetMins.x = Mathf.Min(targetMins.x, transformsToTrack[i].position.x);
-            targetMins.y = Mathf.Min(targetMins.y, transformsToTrack[i].position.y);
-            targetMins.z = Mathf.Min(targetMins.z, transformsToTrack[i].position.z);
+        for (int i = 0; i < transformsToTrack.Count; i++) {
+            _ScanAndSetExtremes(transformsToTrack[i].position);
         }
 
         // Save max positions for a linger time for a less frantic camera
         delayedExtremes.Add(new TrackPoint(targetMaxs, DateTime.Now, lingerTime));
         delayedExtremes.Add(new TrackPoint(targetMins, DateTime.Now, lingerTime));       
         delayedExtremes.RemoveAll(de => de.Expired);
-        foreach (TrackPoint tp in delayedExtremes)
-        {
-            targetMaxs.x = Mathf.Max(targetMaxs.x, tp.position.x);
-            targetMaxs.y = Mathf.Max(targetMaxs.y, tp.position.y);
-            targetMaxs.z = Mathf.Max(targetMaxs.z, tp.position.z);
-
-            targetMins.x = Mathf.Min(targetMins.x, tp.position.x);
-            targetMins.y = Mathf.Min(targetMins.y, tp.position.y);
-            targetMins.z = Mathf.Min(targetMins.z, tp.position.z);
+        foreach (TrackPoint tp in delayedExtremes) {
+            _ScanAndSetExtremes(tp.position);
         }
 
         // Find middle point between players
@@ -202,6 +194,8 @@ public class CameraController : MonoBehaviour
         // Frustrums
         float frustrumDesiredWidth = paddedRightMost - paddedLeftMost;
         float frustrumDesiredHeight = paddedTopMost - paddedBottomMost;
+        frustrumDesiredWidth = Mathf.Max(maxZoom, frustrumDesiredWidth);
+        frustrumDesiredHeight = Mathf.Max(maxZoom, frustrumDesiredHeight);
 
         // Determine the zoom distance needed to encompass the largest frustrum
         float distanceHypotonuseHeight = (frustrumDesiredHeight * 0.5f) / (Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad));
@@ -212,6 +206,7 @@ public class CameraController : MonoBehaviour
 
         #region Debug Drawing
         if (displayDebugs) {
+            // Draw square using Debug.DrawLine(s) to display the currently tracked frustrum 
             float squareY = centerPoint.y;
 
             Vector3 squareOriginalCornerNW = new Vector3(targetMins.x, squareY, targetMaxs.z);
@@ -259,6 +254,19 @@ public class CameraController : MonoBehaviour
             }
 
             return true;
+        }
+
+        // Scan for extreme mins and maxs,
+        // OBS: Mutates scoped state directly
+        void _ScanAndSetExtremes(Vector3 scannedPosition)
+        {
+            targetMaxs.x = Mathf.Max(targetMaxs.x, scannedPosition.x);
+            targetMaxs.y = Mathf.Max(targetMaxs.y, scannedPosition.y);
+            targetMaxs.z = Mathf.Max(targetMaxs.z, scannedPosition.z);
+
+            targetMins.x = Mathf.Min(targetMins.x, scannedPosition.x);
+            targetMins.y = Mathf.Min(targetMins.y, scannedPosition.y);
+            targetMins.z = Mathf.Min(targetMins.z, scannedPosition.z);
         }
     }
 
