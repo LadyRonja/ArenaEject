@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Movement : MonoBehaviour
 {
@@ -18,6 +19,35 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         gravity = GetComponent<Gravity>();
+    }
+
+    private void Update()
+    {
+        // TODO: Remove before build
+        if (appropriatlySpawned) return;
+        #region Debug
+        int x = 0;
+        int z = 0;
+        if (Input.GetKey(KeyCode.A))
+        {
+            x--;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            x++;
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            z++;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            z--;
+        }
+
+        moveInput= new Vector2(x, z);
+        #endregion
     }
 
     void FixedUpdate()
