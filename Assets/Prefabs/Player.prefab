@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6124344014326713301}
   - component: {fileID: 109501444551750962}
   - component: {fileID: 5656706937345467536}
+  - component: {fileID: 5597062489536565801}
   - component: {fileID: -4713559047619484691}
   - component: {fileID: 8277015850034542796}
   m_Layer: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24181474b91f07e4392efff36f109b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingCumulativeKnockback: 1
   frictionCoefficient: 8000
   frictionDelay: 0.3
 --- !u!114 &-5137444874030891988
@@ -198,6 +200,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
   jumpForce: 6
+--- !u!114 &5597062489536565801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455113739012497393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6271dc5442f6a5a458341cb3244b9430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
 --- !u!54 &-4713559047619484691
 Rigidbody:
   m_ObjectHideFlags: 0

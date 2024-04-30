@@ -2,32 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void KnockbackRecieved();
+
 [RequireComponent(typeof(Rigidbody))]
 public class KnockBackHandler : MonoBehaviour
 {
     private Rigidbody rb;
 
+    [SerializeField] private bool usingCumulativeKnockback = true;
+    private float recievedKnockbackRaw = 0;
+    public float recievedKnockbackDisplay { get => Mathf.Max(0, Mathf.Min(recievedKnockbackRaw, 999)); }
+
     public float frictionCoefficient = 10f;
     public float frictionDelay = 0.3f;
     private bool knockedBack = false;
+
+    public KnockbackRecieved OnKnockbackRecieved;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-
-    /*void FixedUpdate()
-    {
-        if (!knockedBack) return; 
-
-        if(rb != null)
-        {
-            if (rb.velocity.sqrMagnitude > 0)
-            {
-                Deaccelerate();
-            }
-        }
-    }*/
 
     public void Deaccelerate()
     {
@@ -49,12 +44,23 @@ public class KnockBackHandler : MonoBehaviour
         if(TryGetComponent<Movement>(out Movement myMovement))
         {
             myMovement.enabled = false;
+        
+        }
+        this.CancelInvoke();
+        dir.Normalize();
+        
+        recievedKnockbackRaw += force;
+
+        if (usingCumulativeKnockback){
+            force += recievedKnockbackRaw;
         }
 
-        this.CancelInvoke();
         rb.velocity = Vector3.zero;
-        knockedBack = true;
         rb.AddForce(dir * force, ForceMode.Impulse);
+
+        OnKnockbackRecieved?.Invoke();
+
+        knockedBack = true;
         InvokeRepeating(nameof(Deaccelerate), frictionDelay, Time.fixedDeltaTime);
     }
 }

@@ -82,7 +82,7 @@ MonoBehaviour:
   destroyDelay: 3
   moveSpeed: 10
   moveDir: {x: 0, y: 0, z: 0}
-  knockbackForce: 50
+  knockbackForce: 10
 --- !u!54 &5025870226158059827
 Rigidbody:
   m_ObjectHideFlags: 0
