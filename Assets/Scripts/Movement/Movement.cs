@@ -15,10 +15,15 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     private Gravity gravity;
 
+    // DEBUG TODO:REMOVE ON RELEASE
+    PlayerStats playerStats;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         gravity = GetComponent<Gravity>();
+        
+        playerStats= GetComponent<PlayerStats>();
     }
 
     private void Update()
@@ -26,6 +31,9 @@ public class Movement : MonoBehaviour
         // TODO: Remove before build
         if (appropriatlySpawned) return;
         #region Debug
+        if (playerStats == null) return;
+        if (playerStats.playerIndex != 1) return;
+
         int x = 0;
         int z = 0;
         if (Input.GetKey(KeyCode.A))
