@@ -124,7 +124,7 @@ public class CameraController : MonoBehaviour
     {
         if (transformsToTrack.Count < 1) { return; }
 
-        // Find the largest and smallest exremes of each tracked object
+        // Find the largest and smallest extremes of each tracked object
         Vector3 targetMaxs = transformsToTrack[0].position;
         Vector3 targetMins = transformsToTrack[0].position;
         for (int i = 0; i < transformsToTrack.Count; i++)
