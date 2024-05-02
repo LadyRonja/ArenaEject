@@ -256,7 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
-  jumpForce: 6
+  jumpForce: 8
+  jumpAmount: 1
 --- !u!114 &5597062489536565801
 MonoBehaviour:
   m_ObjectHideFlags: 0

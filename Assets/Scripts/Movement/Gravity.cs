@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,8 +39,8 @@ public class Gravity : MonoBehaviour
 
     private bool GetIsGrounded()
     {
-        float tempHeight = 1f;
-        if (Physics.Raycast(transform.position, Vector3.down, tempHeight))
+        float groundPlanckDist = 0.05f;
+        if (Physics.Raycast(transform.position, Vector3.down, groundPlanckDist))
         {
             return true;
         }
