@@ -48,15 +48,16 @@ public class KnockBackHandler : MonoBehaviour
         }
         this.CancelInvoke();
         dir.Normalize();
-        
+
         recievedKnockbackRaw += force;
+        float forceToApply = force;
 
         if (usingCumulativeKnockback){
-            force += recievedKnockbackRaw;
+            forceToApply *= Mathf.Max(1f + (recievedKnockbackRaw * 0.1f), 1f);
         }
 
         rb.velocity = Vector3.zero;
-        rb.AddForce(dir * force, ForceMode.Impulse);
+        rb.AddForce(dir * forceToApply, ForceMode.Impulse);
 
         OnKnockbackRecieved?.Invoke();
 
