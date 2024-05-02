@@ -11,7 +11,13 @@ public class Projectile : Ammo
             dir.y = 0;
             hit.GetKnockedBack(dir, knockbackForce);
         }
-
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Projectile"))
+        {
+            return;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
