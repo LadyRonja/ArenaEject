@@ -10,8 +10,10 @@ public class Weapon : MonoBehaviour
     public float initialUpwardForce = 20f;
     [SerializeField] protected float fireRate = 0.5f;
     private float fireTimer = 0;
+    private float spreadAngle = 20;
     [SerializeField] protected float knockbackForce = 10f;
     [SerializeField] protected bool weaponDeterminesAmmoSpeed = true;
+    [SerializeField] protected bool fireAll = false;
     [SerializeField] protected float ammoSpeed = 3f;
     [SerializeField] protected Vector3 ammoDirOffSet = Vector3.zero;
     [SerializeField] protected float destroyDelay = 5f;
@@ -34,16 +36,44 @@ public class Weapon : MonoBehaviour
         fireTimer = Time.time + fireRate;
         ammoCount--;
         shotsFired++;
+        GameObject projectileObj;
 
-        GameObject projectileObj = Instantiate(ammoTypePrefab, firePoints[shotsFired%firePoints.Count].position, Quaternion.identity).gameObject;
-        projectileObj.transform.forward = transform.forward;
+        if (fireAll)
+        {
+            foreach (Transform firePoint in firePoints)
+            {
+                projectileObj = Instantiate(ammoTypePrefab, firePoint.position, Quaternion.identity).gameObject;
 
-        Ammo projectileScr = projectileObj.GetComponent<Ammo>();
-        Vector3 projectileDir = projectileObj.transform.forward;
-        ammoDirOffSet.Normalize();
-        projectileDir.y += initialUpwardForce;
-        projectileDir.Normalize();
-        projectileScr.moveDir = projectileDir;
+                Ammo projectileScr = projectileObj.GetComponent<Ammo>();
+                Vector3 baseDirection = transform.forward;
+                Vector3 randomDirection = Quaternion.Euler(Random.Range(-spreadAngle, spreadAngle), Random.Range(-spreadAngle, spreadAngle), 0) * baseDirection;
+                randomDirection.y += initialUpwardForce;
+                randomDirection.Normalize();
+                projectileScr.moveDir = randomDirection;
+
+                if (weaponDeterminesAmmoSpeed)
+                {
+                    projectileScr.moveSpeed = ammoSpeed;
+                }
+            }
+        }
+        else
+        {
+            projectileObj = Instantiate(ammoTypePrefab, firePoints[shotsFired % firePoints.Count].position, Quaternion.identity).gameObject;
+
+            projectileObj.transform.forward = transform.forward;
+            Ammo projectileScr = projectileObj.GetComponent<Ammo>();
+            Vector3 projectileDir = projectileObj.transform.forward;
+            ammoDirOffSet.Normalize();
+            projectileDir.y += initialUpwardForce;
+            projectileDir.Normalize();
+            projectileScr.moveDir = projectileDir;
+
+            if (weaponDeterminesAmmoSpeed)
+            {
+                projectileScr.moveSpeed = ammoSpeed;
+            }
+        }
 
 
         // 
@@ -53,11 +83,6 @@ public class Weapon : MonoBehaviour
             projectileRb.velocity = Vector3.zero;
             projectileRb.AddForce(Vector3.up * initialUpwardForce, ForceMode.Impulse);
         }*/
-
-        if (weaponDeterminesAmmoSpeed)
-        {
-            projectileScr.moveSpeed = ammoSpeed;
-        }
 
     }
 
