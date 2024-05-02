@@ -1,5 +1,61 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &381641340603652102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4442763421482548109}
+  - component: {fileID: 687899780915874521}
+  m_Layer: 0
+  m_Name: Aim Assist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4442763421482548109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381641340603652102}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7336916088099221024}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &687899780915874521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381641340603652102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 3df35c2f11ac97447b71d505a9fd8a52, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_DecalLayerMask: 1
+  m_ScaleMode: 0
+  m_Offset: {x: -0.024508134, y: -0.03, z: 2.91}
+  m_Size: {x: 1.5, y: 1.5, z: 6.99}
+  m_FadeFactor: 1
 --- !u!1 &3455113739012497393
 GameObject:
   m_ObjectHideFlags: 0
@@ -21,7 +77,6 @@ GameObject:
   - component: {fileID: 5597062489536565801}
   - component: {fileID: -4713559047619484691}
   - component: {fileID: 8277015850034542796}
-  - component: {fileID: 8146509393593071448}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -44,6 +99,7 @@ Transform:
   m_Children:
   - {fileID: 7658507316004262278}
   - {fileID: 3093174816102973738}
+  - {fileID: 4442763421482548109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4340838396610217047
@@ -262,30 +318,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.41426492, y: 1.945233, z: 0.23571679}
   m_Center: {x: 0.007267475, y: 0.9591002, z: -0.03874603}
---- !u!114 &8146509393593071448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3455113739012497393}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 3df35c2f11ac97447b71d505a9fd8a52, type: 2}
-  m_DrawDistance: 1000
-  m_FadeScale: 0.9
-  m_StartAngleFade: 180
-  m_EndAngleFade: 180
-  m_UVScale: {x: 1, y: 1}
-  m_UVBias: {x: 0, y: 0}
-  m_DecalLayerMask: 1
-  m_ScaleMode: 0
-  m_Offset: {x: -0.018802434, y: 0.14974362, z: 0.08242643}
-  m_Size: {x: 1.1507874, y: 0.42051268, z: 1.8351471}
-  m_FadeFactor: 1
 --- !u!1 &7516387057732576127
 GameObject:
   m_ObjectHideFlags: 0
