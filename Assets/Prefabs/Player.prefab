@@ -269,12 +269,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3455113739012497393}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 31d0dcc6f2dd4e4408d18036a2c93862, type: 2}
+  m_Material: {fileID: 2100000, guid: 3df35c2f11ac97447b71d505a9fd8a52, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
   m_StartAngleFade: 180
@@ -283,8 +283,8 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_DecalLayerMask: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0.26, z: 0.5}
-  m_Size: {x: 1, y: 0.2, z: 1}
+  m_Offset: {x: -0.018802434, y: 0.14974362, z: 0.08242643}
+  m_Size: {x: 1.1507874, y: 0.42051268, z: 1.8351471}
   m_FadeFactor: 1
 --- !u!1 &7516387057732576127
 GameObject:
