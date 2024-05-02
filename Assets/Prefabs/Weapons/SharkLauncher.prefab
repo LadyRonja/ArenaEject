@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoTypePrefab: {fileID: 3074894832236722532, guid: f7d237defa8089d44a5570b96e9b5a24, type: 3}
-  firePoint: {fileID: 7763658273381309656}
+  firePoints:
+  - {fileID: 7763658273381309656}
   ammoCount: 999
   initialUpwardForce: 1
   fireRate: 0.5

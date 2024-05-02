@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Ammo ammoTypePrefab;
-    public Transform firePoint;
+    public List<Transform> firePoints = new();
     public int ammoCount = 1;
     public float initialUpwardForce = 20f;
     [SerializeField] protected float fireRate = 0.5f;
@@ -15,12 +15,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float ammoSpeed = 3f;
     [SerializeField] protected Vector3 ammoDirOffSet = Vector3.zero;
     [SerializeField] protected float destroyDelay = 5f;
+    protected int shotsFired = 0;
 
     public virtual bool TryShoot()
     {
         if (ammoCount <= 0) return false;
         if (ammoTypePrefab == null) return false;
-        if (firePoint == null) return false;
+        if (firePoints == null) return false;
+        if (firePoints.Count == 0) return false;
         if (Time.time <= fireTimer) return false;
         
         Shoot();
@@ -31,8 +33,9 @@ public class Weapon : MonoBehaviour
     {
         fireTimer = Time.time + fireRate;
         ammoCount--;
+        shotsFired++;
 
-        GameObject projectileObj = Instantiate(ammoTypePrefab, firePoint.position, Quaternion.identity).gameObject;
+        GameObject projectileObj = Instantiate(ammoTypePrefab, firePoints[shotsFired%firePoints.Count].position, Quaternion.identity).gameObject;
         projectileObj.transform.forward = transform.forward;
 
         Ammo projectileScr = projectileObj.GetComponent<Ammo>();

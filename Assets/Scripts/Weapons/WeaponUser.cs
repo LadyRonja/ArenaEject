@@ -29,7 +29,6 @@ public class WeaponUser : MonoBehaviour
 
     private void OnFire(InputValue value)
     {
-        
         if(value.Get<float>() > 0.5f)
         {
             shooting = true;
