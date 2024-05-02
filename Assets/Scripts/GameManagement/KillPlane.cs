@@ -119,6 +119,10 @@ public class KillPlane : MonoBehaviour
                 AudioHandler.PlayRandomEffectFromList(playerDeathSounds);
             }
         }
+        else
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     private void EndGame(PlayerStats winner)

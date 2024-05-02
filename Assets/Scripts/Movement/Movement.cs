@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
     }
 
     private void Update()
-    {
+    {/*
         // TODO: Remove before build
         if (appropriatlySpawned) return;
         #region Debug
@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
         }
 
         moveInput= new Vector2(x, z);
-        #endregion
+        #endregion*/
     }
 
     void FixedUpdate()
