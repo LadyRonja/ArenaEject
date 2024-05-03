@@ -137,6 +137,7 @@ MonoBehaviour:
   knockbackForce: 2
   explodeOnImpact: 0
   explodeTime: 1.5
+  explosionDelay: 5
   explosionPrefab: {fileID: 6860196289586296487, guid: 9099636871efcab4588408f9424438a1, type: 3}
 --- !u!114 &5460644942702441315
 MonoBehaviour:
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24181474b91f07e4392efff36f109b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingCumulativeKnockback: 1
   frictionCoefficient: 5
   frictionDelay: 5
 --- !u!54 &6759703220165393284

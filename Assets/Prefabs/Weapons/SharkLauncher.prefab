@@ -49,11 +49,12 @@ MonoBehaviour:
   ammoTypePrefab: {fileID: 3074894832236722532, guid: f7d237defa8089d44a5570b96e9b5a24, type: 3}
   firePoints:
   - {fileID: 7763658273381309656}
-  ammoCount: 999
+  ammoCount: 5
   initialUpwardForce: 1
-  fireRate: 0.5
+  fireRate: 1.5
   knockbackForce: 10
   weaponDeterminesAmmoSpeed: 1
+  fireAll: 0
   ammoSpeed: 10
   ammoDirOffSet: {x: 0, y: 0, z: 0}
   destroyDelay: 5
