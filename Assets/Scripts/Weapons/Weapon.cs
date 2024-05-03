@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Ammo ammoTypePrefab;
+    public WeaponUser weaponUser;
     public List<Transform> firePoints = new();
     public int ammoCount = 1;
     public float initialUpwardForce = 20f;
@@ -103,13 +104,13 @@ public class Weapon : MonoBehaviour
         if (collision.gameObject.TryGetComponent<KnockBackHandler>(out KnockBackHandler hit)) {
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
 
-            if(rb != null)  {
+            if(rb != null)  
+            {
                 Vector3 dir = rb.velocity.normalized;
                 dir.y = 0;
                 Vector3 velocityCheck = rb.velocity;
                 velocityCheck.y = 0;
-                if(velocityCheck.sqrMagnitude > 1f) { hit.GetKnockedBack(dir, knockbackForce); }
-                
+                if (velocityCheck.sqrMagnitude > 1f) { hit.GetKnockedBack(dir, knockbackForce); }
             }
             Destroy(gameObject);
         }

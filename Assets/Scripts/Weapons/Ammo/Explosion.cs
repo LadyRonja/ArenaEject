@@ -23,7 +23,7 @@ public class Explosion : MonoBehaviour
         catch (Exception)
         {
 
-            throw;
+            //throw;
         }
     }
 

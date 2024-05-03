@@ -13,6 +13,7 @@ public class WeaponUser : MonoBehaviour
     [SerializeField] private Transform weaponCarryPoint;
     [SerializeField] private float weaponLaunchForce = 8f;
     public Transform carriedWeaponTransform;
+    private GameObject weaponUser;
 
     public Weapon carriedWeapon = null;
     [HideInInspector] public int shotsFired = 0;
@@ -156,7 +157,7 @@ public class WeaponUser : MonoBehaviour
 
         Vector3 dropPosition = transform.position + transform.forward * 1.5f;
         dropPosition.y += 1f;
-        Quaternion dropRotation = Quaternion.Euler(45f, 0, 0f);
+        Quaternion dropRotation = Quaternion.Euler(30f, 0, 0f);
 
         carriedWeapon.gameObject.SetActive(true);
         carriedWeapon.transform.position = dropPosition;
