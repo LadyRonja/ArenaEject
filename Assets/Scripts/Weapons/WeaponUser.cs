@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
 
-public class WeaponUser : MonoBehaviour 
+public class WeaponUser : MonoBehaviour
 {
     [HideInInspector] public bool appropriatlySpawned = false;
 
@@ -36,43 +36,47 @@ public class WeaponUser : MonoBehaviour
 
     private void Update()
     {
-        if(shooting)
+        if (shooting)
         {
             TryFireWeapon();
         }
 
-        if(!groundChecker.IsGrounded)
+        if (!groundChecker.IsGrounded)
         {
             DisplayThrowAimAssist();
         }
         else
         {
-           HideThrowAimAssist();
+            HideThrowAimAssist();
         }
     }
 
     private void OnFire(InputValue value)
     {
-        if(value.Get<float>() > 0.5f) {
+        if (value.Get<float>() > 0.5f)
+        {
             shooting = true;
             //TryFireWeapon();
         }
-        else {
-            shooting= false;
+        else
+        {
+            shooting = false;
         }
     }
     private void OnNorthButtonDown(InputValue value)
     {
-        if(groundChecker == null)
+        if (groundChecker == null)
         {
             ThrowWeapon();
             return;
         }
 
-        if(groundChecker.IsGrounded) {
+        if (groundChecker.IsGrounded)
+        {
             ThrowWeapon();
         }
-        else {
+        else
+        {
             ThrowWeapon(true);
         }
     }
@@ -89,7 +93,7 @@ public class WeaponUser : MonoBehaviour
 
     public bool AttemptAquireWeapon(Weapon weaponPrefabToAquire)
     {
-        if(carriedWeapon == null)
+        if (carriedWeapon == null)
         {
             AquireWeapon(weaponPrefabToAquire);
             return true;
@@ -106,7 +110,7 @@ public class WeaponUser : MonoBehaviour
 
     private void AquireWeapon(Weapon weaponPrefabToAquire)
     {
-        if(carriedWeapon!= null)
+        if (carriedWeapon != null)
         {
             Destroy(carriedWeapon.gameObject);
             carriedWeapon = null;
@@ -115,8 +119,8 @@ public class WeaponUser : MonoBehaviour
         GameObject weaponObj = Instantiate(weaponPrefabToAquire).gameObject;
         Weapon weaponScr = weaponObj.GetComponent<Weapon>();
         Transform weaponCarryParent;
-        if (weaponCarryPoint != null)   { weaponCarryParent = weaponCarryPoint; }
-        else                            { weaponCarryParent = transform; }
+        if (weaponCarryPoint != null) { weaponCarryParent = weaponCarryPoint; }
+        else { weaponCarryParent = transform; }
         weaponObj.transform.SetParent(weaponCarryParent);
         weaponObj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
@@ -126,7 +130,7 @@ public class WeaponUser : MonoBehaviour
     private void ThrowWeapon(bool throwWeaponToExplode = false)
     {
         if (carriedWeapon == null) return;
-        if(throwWeaponToExplode)
+        if (throwWeaponToExplode)
         {
             //if (carriedWeapon.ammoCount > 0) { return; } // TODO: Once ammo count is balanced, enable this check.
         }
@@ -158,7 +162,8 @@ public class WeaponUser : MonoBehaviour
         if (wpRb != null)
         {
             Vector3 launchDirection = gameObject.transform.forward;
-            if (throwWeaponToExplode) {
+            if (throwWeaponToExplode)
+            {
                 launchDirection = carriedWeapon.transform.forward.normalized;
             }
 
@@ -166,13 +171,14 @@ public class WeaponUser : MonoBehaviour
             {
                 wpRb.useGravity = false;
                 wpRb.AddForce(launchDirection * weaponLaunchForceExplosive, ForceMode.Impulse);
-                if(TryGetComponent<Rigidbody>(out Rigidbody userRb))
+                if (TryGetComponent<Rigidbody>(out Rigidbody userRb))
                 {
                     wpRb.AddForce(userRb.velocity, ForceMode.Impulse);
                 }
                 carriedWeapon.ReadyExplodeOnImpact();
             }
-            else {
+            else
+            {
                 wpRb.AddForce(launchDirection * weaponLaunchForce, ForceMode.Impulse);
                 wpRb.AddForce(transform.TransformDirection(Vector3.up) * 3f, ForceMode.Impulse);
                 if (TryGetComponent<Rigidbody>(out Rigidbody userRb))
@@ -189,7 +195,7 @@ public class WeaponUser : MonoBehaviour
     private void DisplayThrowAimAssist()
     {
         if (weaponThrowAssisst == null) { return; }
-        if (carriedWeapon == null){ return; }
+        if (carriedWeapon == null) { return; }
 
         Vector3 throwPosition = transform.position + transform.forward * weaponThrowForwardOffset;
         throwPosition.y += 1f;
@@ -207,3 +213,11 @@ public class WeaponUser : MonoBehaviour
             weaponThrowAssisst.transform.position = hit.point;
         }
     }
+
+    private void HideThrowAimAssist()
+    {
+        if(weaponThrowAssisst == null) { return; }
+        if (!weaponThrowAssisst.gameObject.activeSelf) { return; }
+        weaponThrowAssisst.SetActive(false);
+    }
+}
