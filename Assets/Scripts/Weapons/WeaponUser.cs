@@ -13,7 +13,7 @@ public class WeaponUser : MonoBehaviour
     [SerializeField] private Transform weaponCarryPoint;
     [SerializeField] private float weaponLaunchForce = 8f;
     public Transform carriedWeaponTransform;
-    private GameObject weaponUser;
+    private Animator animator;
 
     public Weapon carriedWeapon = null;
     [HideInInspector] public int shotsFired = 0;
@@ -32,6 +32,13 @@ public class WeaponUser : MonoBehaviour
         if(shooting)
         {
             TryFireWeapon();
+        }
+
+        // Animations
+
+        if(carriedWeapon != null)
+        {
+            animator.SetBool("WeaponEquipped", true);
         }
     }
 
