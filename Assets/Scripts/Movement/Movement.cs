@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(GroundChecker))]
 public class Movement : MonoBehaviour
 {
     [HideInInspector] public bool appropriatlySpawned = false;
@@ -13,7 +15,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float airAcceleration = 2f;
     private Vector2 moveInput;
     private Rigidbody rb;
-    private Gravity gravity;
+    private GroundChecker groundChecker;
 
     // DEBUG TODO:REMOVE ON RELEASE
     PlayerStats playerStats;
@@ -21,9 +23,9 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        gravity = GetComponent<Gravity>();
+        groundChecker = GetComponent<GroundChecker>();
         
-        playerStats= GetComponent<PlayerStats>();
+        playerStats= GetComponent<PlayerStats>(); // REMOVE ON BUILD
     }
 
     private void Update()
@@ -68,7 +70,7 @@ public class Movement : MonoBehaviour
         Vector3 preservedFallingVelocity = rb.velocity;
 
         // Calculate current acceleration
-        float currentAcceleration = gravity != null && !gravity.IsGrounded ? airAcceleration : groundAcceleration;
+        float currentAcceleration = !groundChecker.IsGrounded ? airAcceleration : groundAcceleration;
 
         // Acceleration
         if (moveInput != Vector2.zero)

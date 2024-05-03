@@ -50,6 +50,8 @@ public class KillPlane : MonoBehaviour
         {
             player.lives--;
 
+            AudioHandler.PlayRandomEffectFromList(playerDeathSounds);
+
             if (player.lives <= 0)
             {
                 player.lives = 0;
@@ -72,6 +74,8 @@ public class KillPlane : MonoBehaviour
                 player.transform.position = respawnPos;
                 Rigidbody rb = player.GetComponent<Rigidbody>();
                 if(rb != null) rb.velocity = Vector3.zero;
+
+
             }
             else
             {
@@ -116,7 +120,6 @@ public class KillPlane : MonoBehaviour
                     shotsFiredTracking.Add(player.playerIndex, dyingUser.shotsFired);
                 }
                 player.gameObject.SetActive(false);
-                AudioHandler.PlayRandomEffectFromList(playerDeathSounds);
             }
         }
         else
@@ -129,7 +132,7 @@ public class KillPlane : MonoBehaviour
     {
         if(endGameCanvas == null) return;
         gameIsOver = true;
-        Time.timeScale = 0.2f;
+        //Time.timeScale = 0.2f;
 
         // Check if JoinScreenManager and playerConfigs are initialized
         if (StaticStuff.Instance.JoinScreenManager == null)

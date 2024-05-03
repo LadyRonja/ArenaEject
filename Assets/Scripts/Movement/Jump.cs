@@ -1,60 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.LightAnchor;
 
+[RequireComponent(typeof(GroundChecker))]
+[RequireComponent(typeof(Rigidbody))]
 public class Jump : MonoBehaviour
 {
     [HideInInspector] public bool appropriatlySpawned = false;
     private Rigidbody rb;
-    private Gravity myGravity; // TODO: Make independant
+    private GroundChecker groundChecker; // TODO: Make independant
 
     [SerializeField] private float jumpForce = 6f;
-    private bool canJump = true;
-    private bool canDoubleJump = true;
+    [SerializeField] private float jumpAmount = 1;
+    public bool CanJump { get => GetCanJump();  }
+    public bool CanMultiJump { get => GetCanMultiJump(); }
+    public bool CanCoyoteJump { get => GetCanCoyoteJump(); }
     private float jumpCounter = 0;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        myGravity = GetComponent<Gravity>();
+        groundChecker = GetComponent<GroundChecker>();
     }
 
     private void Update()
     {
+        JumpCounterResetCheck();
+    }
+
+    private bool GetCanJump()
+    {
         // Check if the player is on the ground or if they've reached the maximum jumps
-        if (myGravity != null && myGravity.IsGrounded || jumpCounter >= 2)
+        if (groundChecker.IsGrounded)
         {
-            canJump = true;
-            canDoubleJump = false;
+            return true;
         }
         else
         {
-            canJump = false;
-            canDoubleJump = true;
+            return false; 
         }
+    }
+
+    private bool GetCanMultiJump()
+    {
+        if (groundChecker.IsGrounded) { return false; }
+        if (jumpAmount < 2) { return false; }
+        if (jumpCounter < jumpAmount) { return false; }
+        return true;
+    }
+
+    private bool GetCanCoyoteJump()
+    {
+        if (jumpCounter != 0) { return false; }
+        return true;
     }
 
     private void OnSouthButtonDown(InputValue value)
     {
-        if (myGravity == null)
-            return;
-
-        if (canJump)
+        if (CanJump)
         {
             AttemptJump();
         }
-        else if (canDoubleJump)
+        else if (CanMultiJump)
         {
             AttemptDoubleJump();
+        }
+        else if(CanCoyoteJump)
+        {
+            ExecuteJump((Vector3.up + transform.forward).normalized);
         }
     }
 
     private void AttemptJump()
     {
-        if (rb == null || myGravity == null || !myGravity.IsGrounded)
+        if (!groundChecker.IsGrounded)
             return;
 
         ExecuteJump(Vector3.up);
@@ -62,10 +82,10 @@ public class Jump : MonoBehaviour
 
     private void AttemptDoubleJump()
     {
-        if (rb == null || myGravity == null || myGravity.IsGrounded)
+        if (groundChecker.IsGrounded)
             return;
 
-        Vector3 jumpDirection = Vector3.up + rb.velocity.normalized;
+        Vector3 jumpDirection = (Vector3.up + rb.velocity.normalized).normalized;
 
         ExecuteJump(jumpDirection);
     }
@@ -79,6 +99,16 @@ public class Jump : MonoBehaviour
         rb.velocity = jumpDirection * jumpForce;
     }
 
+    private void JumpCounterResetCheck()
+    {
+        if (jumpCounter == 0) { return; }
+        if (rb.velocity.y > 0) { return; }
+
+        if (groundChecker.IsGrounded) { 
+            jumpCounter = 0; 
+        }
+    }
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         if (myGravity != null && myGravity.IsGrounded)
@@ -86,5 +116,5 @@ public class Jump : MonoBehaviour
             // Reset jump counter when grounded
             jumpCounter = 0;
         }
-    }
+    }*/
 }

@@ -8,4 +8,5 @@ public class PlayerPotrait : MonoBehaviour
 {
     public Image playerPotrait;
     public TMP_Text damagePercentage;
+    public Transform lifeParent;
 }

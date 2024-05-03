@@ -17,7 +17,14 @@ public class WeaponUser : MonoBehaviour
     public Weapon carriedWeapon = null;
     [HideInInspector] public int shotsFired = 0;
 
-    bool shooting = false;
+    private bool shooting = false;
+
+    private GroundChecker groundChecker;
+
+    private void Start()
+    {
+        groundChecker = GetComponent<GroundChecker>();
+    }
 
     private void Update()
     {
@@ -29,19 +36,28 @@ public class WeaponUser : MonoBehaviour
 
     private void OnFire(InputValue value)
     {
-        if(value.Get<float>() > 0.5f)
-        {
+        if(value.Get<float>() > 0.5f) {
             shooting = true;
             //TryFireWeapon();
         }
-        else
-        {
+        else {
             shooting= false;
         }
     }
     private void OnNorthButtonDown(InputValue value)
     {
-        ThrowWeapon();
+        if(groundChecker == null)
+        {
+            ThrowWeapon();
+            return;
+        }
+
+        if(groundChecker.IsGrounded) {
+            ThrowWeapon();
+        }
+        else {
+            ThrowWeaponExplosivly();
+        }
     }
 
     private void TryFireWeapon()
@@ -121,6 +137,40 @@ public class WeaponUser : MonoBehaviour
             wpRb.AddForce(transform.TransformDirection(Vector3.up) * 3f, ForceMode.Impulse);
             collider.isTrigger = false;
         }
+
+        carriedWeapon = null;
+    }
+
+    private void ThrowWeaponExplosivly()
+    {
+        if (carriedWeapon == null) { return; }
+        //if (carriedWeapon.ammoCount > 0) { return; } // TODO: Once ammo count is balanced, enable this check.
+
+        Collider collider = carriedWeapon.GetComponent<Collider>();
+        if (collider == null)
+        {
+            Destroy(carriedWeapon.gameObject);
+            carriedWeapon = null;
+            return;
+        }
+
+        Vector3 dropPosition = transform.position + transform.forward * 1.5f;
+        dropPosition.y += 1f;
+        Quaternion dropRotation = Quaternion.Euler(45f, 0, 0f);
+
+        carriedWeapon.gameObject.SetActive(true);
+        carriedWeapon.transform.position = dropPosition;
+        carriedWeapon.transform.rotation *= dropRotation;
+        carriedWeapon.transform.SetParent(null);
+        collider.enabled = true;
+
+        Rigidbody wpRb = carriedWeapon.AddComponent<Rigidbody>();
+
+        Vector3 launchDirection = carriedWeapon.transform.forward.normalized;
+        wpRb.AddForce(launchDirection * weaponLaunchForce * 5f, ForceMode.Impulse);
+        collider.isTrigger = false;
+
+        carriedWeapon.ReadyExplodeOnImpact();
 
         carriedWeapon = null;
     }

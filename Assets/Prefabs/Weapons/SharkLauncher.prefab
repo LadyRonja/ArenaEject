@@ -58,6 +58,7 @@ MonoBehaviour:
   ammoSpeed: 10
   ammoDirOffSet: {x: 0, y: 0, z: 0}
   destroyDelay: 5
+  explosionPrefab: {fileID: 6860196289586296487, guid: 9099636871efcab4588408f9424438a1, type: 3}
 --- !u!136 &1179666738940177425
 CapsuleCollider:
   m_ObjectHideFlags: 0

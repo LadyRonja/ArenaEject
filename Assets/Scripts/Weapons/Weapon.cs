@@ -17,6 +17,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float ammoSpeed = 3f;
     [SerializeField] protected Vector3 ammoDirOffSet = Vector3.zero;
     [SerializeField] protected float destroyDelay = 5f;
+
+    [SerializeField] protected GameObject explosionPrefab;
+    protected bool explodeOnImpact = false;
+
     protected int shotsFired = 0;
 
     public virtual bool TryShoot()
@@ -88,12 +92,18 @@ public class Weapon : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<KnockBackHandler>(out KnockBackHandler hit))
-        {
+        if(explodeOnImpact) {
+            if(explosionPrefab != null) {
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                return;
+            }
+        }
+
+        if (collision.gameObject.TryGetComponent<KnockBackHandler>(out KnockBackHandler hit)) {
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
 
-            if(rb != null) 
-            {
+            if(rb != null)  {
                 Vector3 dir = rb.velocity.normalized;
                 dir.y = 0;
                 Vector3 velocityCheck = rb.velocity;
@@ -106,8 +116,12 @@ public class Weapon : MonoBehaviour
         DestroyAfterDelay();
     }
 
-    protected virtual void DestroyAfterDelay()
-    {
+    public void ReadyExplodeOnImpact() {
+        explodeOnImpact = true;
+        Destroy(gameObject, 20f);
+    }
+
+    protected virtual void DestroyAfterDelay() {
         Destroy(gameObject, destroyDelay);
     }
 }
