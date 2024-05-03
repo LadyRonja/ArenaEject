@@ -16,7 +16,6 @@ public class Movement : MonoBehaviour
     private Vector2 moveInput;
     private Rigidbody rb;
     private GroundChecker groundChecker;
-    public Animator animator;
 
     // DEBUG TODO:REMOVE ON RELEASE
     PlayerStats playerStats;
@@ -27,7 +26,6 @@ public class Movement : MonoBehaviour
         groundChecker = GetComponent<GroundChecker>();
         
         playerStats= GetComponent<PlayerStats>(); // REMOVE ON BUILD
-        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -61,16 +59,6 @@ public class Movement : MonoBehaviour
         moveInput= new Vector2(x, z);
         #endregion*/
 
-        // Animations 
-
-        if(rb.velocity == Vector3.zero)
-        {
-            animator.SetFloat("Speed", 0);
-        }
-        else if(rb.velocity != Vector3.zero)
-        {
-            animator.SetFloat("Speed", rb.velocity.magnitude);
-        }
     }
 
     void FixedUpdate()

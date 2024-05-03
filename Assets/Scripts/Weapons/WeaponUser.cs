@@ -40,23 +40,6 @@ public class WeaponUser : MonoBehaviour
         {
             TryFireWeapon();
         }
-
-<<<<<<< HEAD
-        // Animations
-
-        if(carriedWeapon != null)
-        {
-            animator.SetBool("WeaponEquipped", true);
-=======
-        if (!groundChecker.IsGrounded)
-        {
-            DisplayThrowAimAssist();
-        }
-        else
-        {
-            HideThrowAimAssist();
->>>>>>> 52b14bd37007b3c8a487a4f687aba4c884b5beb0
-        }
     }
 
     private void OnFire(InputValue value)
