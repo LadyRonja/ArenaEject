@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 public class WeaponUser : MonoBehaviour 
 {
@@ -20,11 +22,16 @@ public class WeaponUser : MonoBehaviour
 
     private bool shooting = false;
 
+    [SerializeField] private float angleToThrowExplosiveWeapon = 45f;
+    [SerializeField] private float weaponLaunchForceExplosive = 40f;
+    private float weaponThrowForwardOffset = 1.5f;
     private GroundChecker groundChecker;
+    [SerializeField] private GameObject weaponThrowAssisst;
 
     private void Start()
     {
         groundChecker = GetComponent<GroundChecker>();
+        HideThrowAimAssist();
     }
 
     private void Update()
@@ -32,6 +39,15 @@ public class WeaponUser : MonoBehaviour
         if(shooting)
         {
             TryFireWeapon();
+        }
+
+        if(!groundChecker.IsGrounded)
+        {
+            DisplayThrowAimAssist();
+        }
+        else
+        {
+           HideThrowAimAssist();
         }
     }
 
@@ -57,7 +73,7 @@ public class WeaponUser : MonoBehaviour
             ThrowWeapon();
         }
         else {
-            ThrowWeaponExplosivly();
+            ThrowWeapon(true);
         }
     }
 
@@ -107,21 +123,29 @@ public class WeaponUser : MonoBehaviour
         carriedWeapon = weaponScr;
     }
 
-    private void ThrowWeapon()
+    private void ThrowWeapon(bool throwWeaponToExplode = false)
     {
         if (carriedWeapon == null) return;
+        if(throwWeaponToExplode)
+        {
+            //if (carriedWeapon.ammoCount > 0) { return; } // TODO: Once ammo count is balanced, enable this check.
+        }
 
-        Collider collider = carriedWeapon.GetComponent<Collider>();   
-        if(collider == null)
+        Collider collider = carriedWeapon.GetComponent<Collider>();
+        if (collider == null)
         {
             Destroy(carriedWeapon.gameObject);
             carriedWeapon = null;
             return;
         }
 
-        Vector3 dropPosition = transform.position + transform.forward * 1.5f;
+        Vector3 dropPosition = transform.position + transform.forward * weaponThrowForwardOffset;
         dropPosition.y += 1f;
         Quaternion dropRotation = Quaternion.Euler(0f, 90f, 0f);
+        if (throwWeaponToExplode)
+        {
+            dropRotation = Quaternion.Euler(angleToThrowExplosiveWeapon, 0, 0f);
+        }
 
         carriedWeapon.gameObject.SetActive(true);
         carriedWeapon.transform.position = dropPosition;
@@ -134,106 +158,52 @@ public class WeaponUser : MonoBehaviour
         if (wpRb != null)
         {
             Vector3 launchDirection = gameObject.transform.forward;
-            wpRb.AddForce(launchDirection * weaponLaunchForce, ForceMode.Impulse);
-            wpRb.AddForce(transform.TransformDirection(Vector3.up) * 3f, ForceMode.Impulse);
+            if (throwWeaponToExplode) {
+                launchDirection = carriedWeapon.transform.forward.normalized;
+            }
+
+            if (throwWeaponToExplode)
+            {
+                wpRb.useGravity = false;
+                wpRb.AddForce(launchDirection * weaponLaunchForceExplosive, ForceMode.Impulse);
+                if(TryGetComponent<Rigidbody>(out Rigidbody userRb))
+                {
+                    wpRb.AddForce(userRb.velocity, ForceMode.Impulse);
+                }
+                carriedWeapon.ReadyExplodeOnImpact();
+            }
+            else {
+                wpRb.AddForce(launchDirection * weaponLaunchForce, ForceMode.Impulse);
+                wpRb.AddForce(transform.TransformDirection(Vector3.up) * 3f, ForceMode.Impulse);
+                if (TryGetComponent<Rigidbody>(out Rigidbody userRb))
+                {
+                    wpRb.AddForce(userRb.velocity, ForceMode.Impulse);
+                }
+            }
             collider.isTrigger = false;
         }
 
         carriedWeapon = null;
     }
 
-    private void ThrowWeaponExplosivly()
+    private void DisplayThrowAimAssist()
     {
-        if (carriedWeapon == null) { return; }
-        //if (carriedWeapon.ammoCount > 0) { return; } // TODO: Once ammo count is balanced, enable this check.
+        if (weaponThrowAssisst == null) { return; }
+        if (carriedWeapon == null){ return; }
 
-        Collider collider = carriedWeapon.GetComponent<Collider>();
-        if (collider == null)
+        Vector3 throwPosition = transform.position + transform.forward * weaponThrowForwardOffset;
+        throwPosition.y += 1f;
+
+        Vector3 throwRotation = transform.forward;
+        Vector3 throwangle = new Vector3(0f, angleToThrowExplosiveWeapon, 0f).normalized;
+
+        throwRotation.y -= throwangle.y;
+
+        if (Physics.Raycast(throwPosition, throwRotation, out RaycastHit hit))
         {
-            Destroy(carriedWeapon.gameObject);
-            carriedWeapon = null;
-            return;
-        }
-
-        Vector3 dropPosition = transform.position + transform.forward * 1.5f;
-        dropPosition.y += 1f;
-        Quaternion dropRotation = Quaternion.Euler(30f, 0, 0f);
-
-        carriedWeapon.gameObject.SetActive(true);
-        carriedWeapon.transform.position = dropPosition;
-        carriedWeapon.transform.rotation *= dropRotation;
-        carriedWeapon.transform.SetParent(null);
-        collider.enabled = true;
-
-        Rigidbody wpRb = carriedWeapon.AddComponent<Rigidbody>();
-
-        Vector3 launchDirection = carriedWeapon.transform.forward.normalized;
-        wpRb.AddForce(launchDirection * weaponLaunchForce * 5f, ForceMode.Impulse);
-        collider.isTrigger = false;
-
-        carriedWeapon.ReadyExplodeOnImpact();
-
-        carriedWeapon = null;
-    }
-
-    #region Decrepit
-    /*
-     
-    public List<Weapon> inventory = new List<Weapon>();
-    private bool isNearWeapon = false;
-    private Weapon nearbyWeapon;
-    private Vector3 carriedWeaponOffset;
-
-
-    void Update()
-    {
-
-        if(inventory.Count > 0)
-         {
-             UpdateCarriedWeaponPosition();
-         }
-    }
-    
-    void OnTriggerEnter(Collider other)
-{
-    if (other.CompareTag("Weapon"))
-    {
-        isNearWeapon = true;
-        nearbyWeapon = other.GetComponent<Weapon>();
-        PickupWeapon();
-    }
-}
-
-void OnTriggerExit(Collider other)
-{
-    if (other.CompareTag("Weapon"))
-    {
-        isNearWeapon = false;
-        nearbyWeapon = null;
-    }
-
-
-    public void PickupWeapon()
-    {
-        if (nearbyWeapon != null)
-        {
-            inventory.Add(nearbyWeapon);
-            nearbyWeapon.transform.SetParent(transform);
-            nearbyWeapon.transform.localPosition = Vector3.zero;
-            nearbyWeapon.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            weaponThrowAssisst.SetActive(true);
+            Vector3 hitPosition = hit.point;
+            hitPosition.y += 0.5f;
+            weaponThrowAssisst.transform.position = hit.point;
         }
     }
-
-     private void UpdateCarriedWeaponPosition()
-     {
-         foreach (Weapon weapon in inventory)
-         {
-             if(weapon != null)
-             {
-                 carriedWeaponOffset = new Vector3(0.6f, 1f, 1);
-                 weapon.transform.position = carriedWeaponTransform.position + carriedWeaponOffset;
-             }
-         }
-     }*/
-    #endregion
-}
