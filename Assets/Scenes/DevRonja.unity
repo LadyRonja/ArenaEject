@@ -273,7 +273,6 @@ GameObject:
   m_Component:
   - component: {fileID: 560639308}
   - component: {fileID: 560639309}
-  - component: {fileID: 560639310}
   m_Layer: 0
   m_Name: DEV TEMP Shortcuts
   m_TagString: Untagged
@@ -308,19 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad89a3dd90d39640b35a9e9808ab066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &560639310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560639307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f071f9493523815438248240a5d0a593, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pim: {fileID: 0}
 --- !u!1001 &562431060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1699,7 +1685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288350372321757139, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: playerCountToSpawn
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3664740952407604708, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_Name

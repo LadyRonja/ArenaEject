@@ -153,7 +153,7 @@ MonoBehaviour:
   - {r: 0.9150943, g: 0, b: 0.054829244, a: 1}
   - {r: 0.0040049935, g: 0.030560136, b: 0.8490566, a: 1}
   - {r: 0.7169812, g: 0, b: 0.67784715, a: 1}
-  myRenderer: {fileID: 0}
+  myRenderer: {fileID: 3884799048379192886}
 --- !u!114 &3575394810099702661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +442,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
+--- !u!137 &3884799048379192886 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3769261667070428252, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
+  m_PrefabInstance: {fileID: 9104431666753957266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8778581239764519545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}

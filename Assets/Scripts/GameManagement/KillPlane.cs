@@ -117,7 +117,14 @@ public class KillPlane : MonoBehaviour
 
                 if(player.TryGetComponent<WeaponUser>(out WeaponUser dyingUser))
                 {
-                    shotsFiredTracking.Add(player.playerIndex, dyingUser.shotsFired);
+                    try
+                    {
+                        shotsFiredTracking.Add(player.playerIndex, dyingUser.shotsFired);
+                    }
+                    catch 
+                    {
+                        shotsFiredTracking[player.playerIndex] = dyingUser.shotsFired;
+                    }
                 }
                 player.gameObject.SetActive(false);
             }

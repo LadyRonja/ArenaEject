@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("TEMP")]
     public List<Color> colors = new List<Color>();
-    public MeshRenderer myRenderer;
+    public SkinnedMeshRenderer myRenderer;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("KillPlane"))
         {
@@ -33,5 +33,5 @@ public class PlayerStats : MonoBehaviour
             // I'm leaving it here for now but this might need to be removed
             Destroy(gameObject);
         }
-    }
+    }*/
 }
