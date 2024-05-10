@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoTypePrefab: {fileID: 6201352950495913662, guid: 8680688ddb2057748a544eb3f3ea3e90, type: 3}
+  weaponUser: {fileID: 0}
   firePoints:
   - {fileID: 1791492250410619928}
   ammoCount: 999
@@ -58,7 +59,7 @@ MonoBehaviour:
   ammoSpeed: 20
   ammoDirOffSet: {x: 0, y: 0, z: 0}
   destroyDelay: 5
-  explosionPrefab: {fileID: 6860196289586296487, guid: 9099636871efcab4588408f9424438a1, type: 3}
+  explosionPrefab: {fileID: 787993282556171092, guid: 0e8d8238b0825da40ab95e384d2402c9, type: 3}
 --- !u!136 &3367394978831467289
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -106,14 +107,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2812193074759238538}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8989149128841249899}
   m_Father: {fileID: 4398090638825381503}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &4363597869362837280
 GameObject:
   m_ObjectHideFlags: 0

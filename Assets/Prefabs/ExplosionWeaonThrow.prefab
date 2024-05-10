@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2457129191743372172
+--- !u!1001 &6186771174154429939
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,12 +9,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2570821257632207711, guid: 9099636871efcab4588408f9424438a1, type: 3}
-      propertyPath: explosionForce
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2570821257632207711, guid: 9099636871efcab4588408f9424438a1, type: 3}
       propertyPath: explosionRadius
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6026580547577750548, guid: 9099636871efcab4588408f9424438a1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6860196289586296487, guid: 9099636871efcab4588408f9424438a1, type: 3}
       propertyPath: m_Name
-      value: BombExplosion
+      value: ExplosionWeaonThrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

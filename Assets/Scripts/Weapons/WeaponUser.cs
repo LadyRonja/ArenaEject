@@ -193,8 +193,8 @@ public class WeaponUser : MonoBehaviour
 
     private void DisplayThrowAimAssist()
     {
-        if (weaponThrowAssisst == null) { return; }
-        if (carriedWeapon == null) { return; }
+        if (weaponThrowAssisst == null) { HideThrowAimAssist(); return; }
+        if (carriedWeapon == null) { HideThrowAimAssist(); return; }
 
         Vector3 throwPosition = transform.position + transform.forward * weaponThrowForwardOffset;
         throwPosition.y += 1f;

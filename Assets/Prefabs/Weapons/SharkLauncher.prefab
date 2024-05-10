@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoTypePrefab: {fileID: 3074894832236722532, guid: f7d237defa8089d44a5570b96e9b5a24, type: 3}
+  weaponUser: {fileID: 0}
   firePoints:
   - {fileID: 7763658273381309656}
   ammoCount: 5
@@ -58,7 +59,7 @@ MonoBehaviour:
   ammoSpeed: 10
   ammoDirOffSet: {x: 0, y: 0, z: 0}
   destroyDelay: 5
-  explosionPrefab: {fileID: 6860196289586296487, guid: 9099636871efcab4588408f9424438a1, type: 3}
+  explosionPrefab: {fileID: 787993282556171092, guid: 0e8d8238b0825da40ab95e384d2402c9, type: 3}
 --- !u!136 &1179666738940177425
 CapsuleCollider:
   m_ObjectHideFlags: 0

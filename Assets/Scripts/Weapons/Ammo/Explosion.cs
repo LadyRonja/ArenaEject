@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -10,6 +11,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] private float explosionForce = 3000f;
     [SerializeField] private float duration = 0.1f;
     [SerializeField] private AudioClip explosionClip = null;
+    private List<KnockBackHandler> hits = new();
 
     private void Start()
     {
@@ -31,6 +33,9 @@ public class Explosion : MonoBehaviour
     {
         if(other.gameObject.TryGetComponent<KnockBackHandler>(out KnockBackHandler kbh))
         {
+            if (hits.Contains(kbh)) { return; }
+
+            hits.Add(kbh);
             Vector3 dir = other.transform.position - transform.position;
             dir.y = 0;
             dir.Normalize();
