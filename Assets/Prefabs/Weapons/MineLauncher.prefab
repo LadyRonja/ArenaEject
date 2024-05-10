@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2226069829308235546, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: m_Name
-      value: GrenadeLauncher
+      value: MineLauncher
       objectReference: {fileID: 0}
     - target: {fileID: 3367394978831467289, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: m_Enabled
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ae5aa1c2880461247a586befdc1c07a9, type: 2}
     - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: ammoCount
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: ammoSpeed

@@ -16,7 +16,7 @@ using Random = UnityEngine.Random;
 public class KillPlane : MonoBehaviour
 {
     [SerializeField] private List<Transform> spawnPoints = new();
-    private Dictionary<int, int> shotsFiredTracking = new Dictionary<int, int>();
+    public static Dictionary<int, int> shotsFiredTracking = new Dictionary<int, int>();
     private bool gameIsOver = false;
 
     [Header("Temp")]
@@ -40,6 +40,7 @@ public class KillPlane : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1.0f;
+        shotsFiredTracking = new();
     }
 
     private void OnTriggerEnter(Collider other)
