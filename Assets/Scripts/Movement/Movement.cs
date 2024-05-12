@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
 
     // DEBUG TODO:REMOVE ON RELEASE
     PlayerStats playerStats;
+    public Rigidbody RB { get => rb; }
 
     private void Awake()
     {

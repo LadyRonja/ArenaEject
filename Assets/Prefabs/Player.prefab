@@ -72,13 +72,13 @@ GameObject:
   - component: {fileID: 2782248709497289612}
   - component: {fileID: -5137444874030891988}
   - component: {fileID: 6124344014326713301}
+  - component: {fileID: 8699441653679465506}
   - component: {fileID: 109501444551750962}
   - component: {fileID: 5656706937345467536}
   - component: {fileID: 5597062489536565801}
   - component: {fileID: -4713559047619484691}
   - component: {fileID: 8277015850034542796}
-  - component: {fileID: 8699441653679465506}
-  - component: {fileID: -6116438072117276783}
+  - component: {fileID: 989872724748604163}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -235,6 +235,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18d3b46f015059419be3be96511ee05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8699441653679465506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455113739012497393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567825725355be74b9fc5c33962cc547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &109501444551750962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +337,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.73786235, y: 1.945233, z: 0.45199767}
   m_Center: {x: 0.018834233, y: 0.9591002, z: -0.027304366}
---- !u!114 &8699441653679465506
+--- !u!114 &989872724748604163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,30 +346,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3455113739012497393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567825725355be74b9fc5c33962cc547, type: 3}
+  m_Script: {fileID: 11500000, guid: d744c576b56630f40bfd2decc46af084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &-6116438072117276783
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3455113739012497393}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 57349df95a01c91448285200ece5688f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  _anim: {fileID: 7200369519764091995}
 --- !u!1 &4411590136687848730
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,13 +492,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7200369519764091995}
   m_SourcePrefab: {fileID: 100100000, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
 --- !u!137 &3884799048379192886 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -3769261667070428252, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
   m_PrefabInstance: {fileID: 9104431666753957266}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8257378010007785667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
+  m_PrefabInstance: {fileID: 9104431666753957266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7200369519764091995
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8257378010007785667}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 290fa6e79166169459751bcde059b223, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &8778581239764519545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
