@@ -25,14 +25,20 @@ public class DevShortcuts : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad5))
+        if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             SceneManager.LoadScene(1);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            SceneManager.LoadScene("DevRonja");
+            SceneManager.LoadScene(2);
         }
+
+        /*
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            SceneManager.LoadScene("DevRonja");
+        }*/
     }
 }
