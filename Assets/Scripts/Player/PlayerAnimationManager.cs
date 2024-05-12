@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
-    [SerializeField] private Animator _anim;
+    private Animator _anim;
     private Movement _movementController;
     private WeaponUser _weaponUser;
     private GroundChecker _groundCheck;
@@ -50,17 +50,15 @@ public class PlayerAnimationManager : MonoBehaviour
         if(_weaponUser == null) { return; }
         if(_groundCheck == null) { return; }
 
-        // VERY VERY temp way of doing this
+        // VERY temp way of doing this
         if(_movementController.RB.velocity.sqrMagnitude == 0)
         {
             if(_weaponUser.carriedWeapon == null)
             {
-                Debug.Log("Should IDLE");
                 TrySetAnimation(IDLE);
             }
             else
             {
-                Debug.Log("Should IDLE_GUN");
                 TrySetAnimation(IDLE_GUN);
             }
         }
@@ -69,12 +67,10 @@ public class PlayerAnimationManager : MonoBehaviour
             if (_weaponUser.carriedWeapon == null)
             {
 
-                Debug.Log("Should RUN");
                 TrySetAnimation(RUN);
             }
             else
             {
-                Debug.Log("Should RUN_GUN");
                 TrySetAnimation(RUN_GUN);
             }
         }
@@ -85,12 +81,10 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private void TrySetAnimation(int animation)
     {
-        Debug.Log("currnetstate: " + currentState + ", animation: " + animation);
         if (currentState != animation)
         {
             _anim.CrossFade(animation, 0f, 0);
             currentState = animation;
-            Debug.Log("Setting animation to: " + animation);
         }
     }
 }
