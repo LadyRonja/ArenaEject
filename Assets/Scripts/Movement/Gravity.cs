@@ -37,7 +37,6 @@ public class Gravity : MonoBehaviour
             }
             else
             {
-                Debug.Log("Heavy down!");
                 rb.AddForce(Vector3.down * Mathf.Abs(rb.velocity.y * gravityDownAmount));
             }
         }

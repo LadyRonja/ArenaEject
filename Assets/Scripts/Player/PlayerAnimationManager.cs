@@ -8,8 +8,9 @@ public class PlayerAnimationManager : MonoBehaviour
     private Movement _movementController;
     private WeaponUser _weaponUser;
     private GroundChecker _groundCheck;
-    private int currentState;
+    private int currentState = 0;
 
+    private int defaultAnimation = 0;
     private static readonly int IDLE = Animator.StringToHash("rig|placeholder_idle");
     private static readonly int IDLE_GUN = Animator.StringToHash("rig|placeholder_idle_weapon_gun");
     private static readonly int RUN = Animator.StringToHash("rig|placeholder_run_nogun");
@@ -39,7 +40,7 @@ public class PlayerAnimationManager : MonoBehaviour
             Debug.LogError("AnimationHandler unable To find player GroundCheck script!");
         }
 
-        currentState = IDLE;
+        defaultAnimation = IDLE;
 
     }
 
@@ -74,8 +75,6 @@ public class PlayerAnimationManager : MonoBehaviour
                 TrySetAnimation(RUN_GUN);
             }
         }
-
-        //Debug.Log(_movementController.RB.velocity.sqrMagnitude);
         
     }
 
