@@ -18,7 +18,7 @@ public class Jump : MonoBehaviour
     public bool CanCoyoteJump { get => GetCanCoyoteJump(); }
     private float jumpCounter = 0;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         groundChecker = GetComponent<GroundChecker>();
@@ -96,8 +96,7 @@ public class Jump : MonoBehaviour
         jumpCounter++;
 
         // Perform jump
-        //rb.velocity = jumpDirection * jumpForce;
-        rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
+        rb.velocity = jumpDirection * jumpForce;
     }
 
     private void JumpCounterResetCheck()
@@ -109,13 +108,4 @@ public class Jump : MonoBehaviour
             jumpCounter = 0; 
         }
     }
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (myGravity != null && myGravity.IsGrounded)
-        {
-            // Reset jump counter when grounded
-            jumpCounter = 0;
-        }
-    }*/
 }

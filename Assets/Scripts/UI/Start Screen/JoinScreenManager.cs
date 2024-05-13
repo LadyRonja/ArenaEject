@@ -13,8 +13,10 @@ public class JoinScreenManager : MonoBehaviour
     [SerializeField] private int maxPLayers = 4;
 
     [SerializeField] private GameObject playerDisplayPrefab;
+    [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform displayParent;
     [SerializeField] private List<Color> playerColors = new List<Color>();
+    private List<GameObject> spawnPoints = new();
 
     private static JoinScreenManager instance;
     public static JoinScreenManager Instance { get => instance; }
@@ -39,6 +41,8 @@ public class JoinScreenManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name == Paths.START_SCENE_NAME)
         {
             playerConfigs = new();
+            spawnPoints = new();
+            spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
         }
     }
 
@@ -67,7 +71,8 @@ public class JoinScreenManager : MonoBehaviour
         pi.transform.SetParent(this.transform);
         if(!playerConfigs.Any(p => p.playerIndex == pi.playerIndex))
         {
-            playerConfigs.Add(new PlayerConfigurations(pi));
+            PlayerConfigurations playerConfig = new PlayerConfigurations(pi);
+            playerConfigs.Add(playerConfig);
            
             GameObject displayObj = Instantiate(playerDisplayPrefab, Vector3.zero, Quaternion.identity, displayParent);
             JoinDisplay displayComponents = displayObj.GetComponent<JoinDisplay>();
@@ -78,9 +83,30 @@ public class JoinScreenManager : MonoBehaviour
                 playerConfigs[pi.playerIndex].playerColor = playerColors[pi.playerIndex];
             }
 
+            PlayerInput player = GameStartManager.SpawnAPlayer(playerPrefab, pi.playerIndex, playerConfig.input.devices[0]);
+            GameStartManager.VerifyPlayer(player.gameObject, pi.playerIndex, true);
+            player.transform.position = spawnPoints[playerConfigs.Count - 1].transform.position;
+
+            UpdateCameraTracking();
+
             Debug.Log($"Player {pi.playerIndex} instantly toggled ready - disable when character select is enabled");
             ToggleReady(pi.playerIndex);
         }
+    }
+
+    private void UpdateCameraTracking()
+    {
+        if (CameraController.Instance == null) return;
+
+        var players = FindObjectsOfType<PlayerStats>().ToList();
+        List<Transform> playerTransforms = new List<Transform>();
+        foreach (var t in players)
+        {
+            playerTransforms.Add(t.transform);
+        }
+
+        if (playerTransforms.Count < 1) { return; }
+        CameraController.Instance.StartTrackingObjects(playerTransforms);
     }
 
     #region Old

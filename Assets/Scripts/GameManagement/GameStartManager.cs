@@ -17,7 +17,7 @@ public class GameStartManager : MonoBehaviour
     private void Start()
     {
         SpawnAllPlayers();
-        StartCameraTracking();
+        Invoke(nameof(StartCameraTracking), 0.2f);
     }
 
     private void SpawnAllPlayers()
@@ -95,6 +95,11 @@ public class GameStartManager : MonoBehaviour
 
     private PlayerInput SpawnAPlayer(int playerIndex, InputDevice inputDevice)
     {
+        return GameStartManager.SpawnAPlayer(playerPrefab, playerIndex, inputDevice);
+    }
+
+    public  static PlayerInput SpawnAPlayer(GameObject playerPrefab, int playerIndex, InputDevice inputDevice)
+    {
         PlayerInput playerInputObj = PlayerInput.Instantiate(prefab: playerPrefab,
                                                         playerIndex: playerIndex,
                                                         controlScheme: null,
@@ -134,7 +139,7 @@ public class GameStartManager : MonoBehaviour
         player.transform.position = spawnAt;
     }
 
-    private void VerifyPlayer(GameObject playerToVerify, int playerIndex, bool appropriatlySpawned = false)
+    public static void VerifyPlayer(GameObject playerToVerify, int playerIndex, bool appropriatlySpawned = false)
     {
         PlayerStats playerStats = playerToVerify.GetComponent<PlayerStats>();
         Movement playerMovement = playerToVerify.GetComponent<Movement>();

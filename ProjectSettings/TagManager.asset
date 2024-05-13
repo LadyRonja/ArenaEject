@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - KillPlane
   - Ground
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

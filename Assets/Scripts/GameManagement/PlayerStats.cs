@@ -12,16 +12,19 @@ public class PlayerStats : MonoBehaviour
 
     [Header("TEMP")]
     public List<Color> colors = new List<Color>();
-    public SkinnedMeshRenderer myRenderer;
+    public List<SkinnedMeshRenderer> myRenderers = new();
 
     private void Start()
     {
-        if(myRenderer != null)
+        if(myRenderers != null)
         {
             if (colors.Count != 4) return;
 
-            myRenderer.material = Instantiate(myRenderer.material);
-            myRenderer.material.color = colors[playerIndex];
+            foreach (SkinnedMeshRenderer rendered in myRenderers)
+            {
+                rendered.material = Instantiate(rendered.material);
+                rendered.material.color = colors[playerIndex];
+            }
         }
     }
 

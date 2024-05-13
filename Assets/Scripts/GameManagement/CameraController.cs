@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
     [Space]
     [SerializeField] float lingerTime = 0.5f;
     [Space]
-    [SerializeField] List<Transform> transformsToTrack;
+    List<Transform> transformsToTrack;
     private List<TrackPoint> delayedExtremes= new List<TrackPoint>();
     float camTrackSpeed = 0.1f; // dynamically changes, initialized value only sets start speed, hence not serialized
 
@@ -53,25 +53,18 @@ public class CameraController : MonoBehaviour
     public float DEBUG_ShakeDuration = 0.1f;
 
 
-    private void Awake()
+    private void Start()
     {
         if(instance == null || instance == this)
         {
             instance = this;
             targetPos = transform.position;
             transform.rotation = Quaternion.Euler(xAngleDeg, 0f, 0f);
+            transformsToTrack = new();
         }
         else
         {
             Destroy(this.gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            AddShake(DEBUG_ShakeAmount, DEBUG_ShakeDuration);
         }
     }
 

@@ -24,8 +24,9 @@ public class PlayerUIHandler : MonoBehaviour
     private void SetUp()
     {
         if (playerPotraitPrefab == null) { return; }
-        potraitParentGroup = FindAnyObjectByType<PlayerStatDisplay>().transform;
-        if (potraitParentGroup == null) { return; }
+        PlayerStatDisplay potraitParentObject = FindAnyObjectByType<PlayerStatDisplay>();
+        if (potraitParentObject == null) { return; }
+        potraitParentGroup = potraitParentObject.transform;
 
         if (TryGetComponent<KnockBackHandler>(out knockbackHandler)) {
             knockbackHandler.OnKnockbackRecieved += UpdateMyUI;
