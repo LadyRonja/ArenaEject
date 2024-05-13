@@ -16272,8 +16272,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  TopGrid: {fileID: 6296548186471224286}
-  BotGrid: {fileID: 6296548186471224295}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -16940,8 +16938,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  TopGrid: {fileID: 6296548186471224286}
-  BotGrid: {fileID: 6296548186471224295}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -17158,8 +17154,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  TopGrid: {fileID: 6296548186471224286}
-  BotGrid: {fileID: 6296548186471224295}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -22247,8 +22241,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  TopGrid: {fileID: 6296548186471224286}
-  BotGrid: {fileID: 6296548186471224295}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -34011,8 +34003,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  TopGrid: {fileID: 6296548186471224286}
-  BotGrid: {fileID: 6296548186471224295}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -35351,11 +35341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &6296548186471224286 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1171082212654874388, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 6296548186471224284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6296548186471224287 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8178782992467509892, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
@@ -35424,11 +35409,6 @@ GameObject:
 --- !u!1 &6296548186471224294 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6642646613344059961, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 6296548186471224284}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &6296548186471224295 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7036850265627782774, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
   m_PrefabInstance: {fileID: 6296548186471224284}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

@@ -269,23 +269,25 @@ public class KillPlane : MonoBehaviour
         {
             int index = i;
 
-            DOVirtual.DelayedCall(1.5f + (1f * index), () =>
+            float delay = i == 0 ? 1.5f : 3.0f + (0.1f * (index - 1));
+
+            DOVirtual.DelayedCall(delay, () =>
             {
                 avatars[index].SetActive(true);
-                avatars[index].transform.DOScale(1, 1f).SetEase(Ease.OutElastic);
+                avatars[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
 
-            DOVirtual.DelayedCall(1.6f + (1f * index), () =>
+            DOVirtual.DelayedCall(delay + 0.3f, () =>
             {
                 timeAliveTexts[index].text = $"Survived {deadPlayers[deadPlayers.Count - 1 - index].timeAlive} s";
-                timeAliveTexts[index].transform.DOScale(1, 1f).SetEase(Ease.OutElastic);
+                timeAliveTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
 
-            DOVirtual.DelayedCall(1.7f + (1f * index), () =>
+            DOVirtual.DelayedCall(delay + 0.6f, () =>
             {
                 int shotsFired = shotsFiredTracking.ContainsKey(deadPlayers[deadPlayers.Count - 1 - index].playerIndex) ? shotsFiredTracking[deadPlayers[deadPlayers.Count - 1 - index].playerIndex] : 0;
                 shotsFiredTexts[index].text = $"Fired {shotsFired} shots";
-                shotsFiredTexts[index].transform.DOScale(1, 1f).SetEase(Ease.OutElastic);
+                shotsFiredTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
         }
         
