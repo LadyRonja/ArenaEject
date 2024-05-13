@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2567336373737295710}
   - component: {fileID: 5197516900069518111}
-  - component: {fileID: 1560420024326792107}
-  - component: {fileID: 6941212576878725206}
-  - component: {fileID: 3140886679384178665}
+  - component: {fileID: 7306492871713726423}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Untagged
@@ -30,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.13923, y: -5, z: 19.12}
-  m_LocalScale: {x: 8, y: 1, z: 8}
+  m_LocalScale: {x: 142.67148, y: 1, z: 108.42749}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,70 +49,26 @@ MonoBehaviour:
   - {fileID: 0}
   endGameCanvas: {fileID: 0}
   endGameTitle: {fileID: 0}
-  endGameWinnerAvatar: {fileID: 0}
-  endGameSecondAvatar: {fileID: 0}
-  endGameThirdAvatar: {fileID: 0}
-  endGameFourthAvatar: {fileID: 0}
-  endGameWinnerShotsFired: {fileID: 0}
-  endGameSecondShotsFired: {fileID: 0}
-  endGameThirdShotsFired: {fileID: 0}
-  endGameFourthShotsFired: {fileID: 0}
+  winnerAvatar: {fileID: 0}
+  secondAvatar: {fileID: 0}
+  thirdAvatar: {fileID: 0}
+  fourthAvatar: {fileID: 0}
+  shotsFiredWinner: {fileID: 0}
+  shotsFiredSecond: {fileID: 0}
+  shotsFiredThird: {fileID: 0}
+  shotsFiredFourth: {fileID: 0}
+  timeAliveWinner: {fileID: 0}
+  timeAliveSecond: {fileID: 0}
+  timeAliveThird: {fileID: 0}
+  timeAliveFourth: {fileID: 0}
   endGamePanel: {fileID: 0}
   endGameLoading: {fileID: 0}
-  playerDeathSounds: []
-  levelLoadTime: 3
---- !u!33 &1560420024326792107
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004538679939060746}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6941212576878725206
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004538679939060746}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: c719e38f25a9480abd2480ab621a2949, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3140886679384178665
-MeshCollider:
+  playerDeathSounds:
+  - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
+  - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
+  levelLoadTime: 2
+--- !u!65 &7306492871713726423
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -131,7 +85,6 @@ MeshCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

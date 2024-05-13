@@ -17,19 +17,28 @@ public class KillPlane : MonoBehaviour
 {
     [SerializeField] private List<Transform> spawnPoints = new();
     public static Dictionary<int, int> shotsFiredTracking = new Dictionary<int, int>();
+    private Dictionary<int, int> timeAliveTracking = new Dictionary<int, int>();
     private bool gameIsOver = false;
 
     [Header("Temp")]
     [SerializeField] private GameObject endGameCanvas;
     [SerializeField] private TMP_Text endGameTitle;
-    [SerializeField] private GameObject endGameWinnerAvatar;
-    [SerializeField] private GameObject endGameSecondAvatar;
-    [SerializeField] private GameObject endGameThirdAvatar;
-    [SerializeField] private GameObject endGameFourthAvatar;
-    [SerializeField] private TMP_Text endGameWinnerShotsFired;
-    [SerializeField] private TMP_Text endGameSecondShotsFired;
-    [SerializeField] private TMP_Text endGameThirdShotsFired;
-    [SerializeField] private TMP_Text endGameFourthShotsFired;
+    
+    [SerializeField] private GameObject winnerAvatar;
+    [SerializeField] private GameObject secondAvatar;
+    [SerializeField] private GameObject thirdAvatar;
+    [SerializeField] private GameObject fourthAvatar;
+    
+    [SerializeField] private TMP_Text shotsFiredWinner;
+    [SerializeField] private TMP_Text shotsFiredSecond;
+    [SerializeField] private TMP_Text shotsFiredThird;
+    [SerializeField] private TMP_Text shotsFiredFourth;
+    
+    [SerializeField] private TMP_Text timeAliveWinner;
+    [SerializeField] private TMP_Text timeAliveSecond;
+    [SerializeField] private TMP_Text timeAliveThird;
+    [SerializeField] private TMP_Text timeAliveFourth;
+    
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private GameObject endGameLoading;
     [SerializeField] private List<AudioClip> playerDeathSounds;
@@ -41,6 +50,29 @@ public class KillPlane : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         shotsFiredTracking = new();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(IncrementTimeAlive());
+    }
+
+    private IEnumerator IncrementTimeAlive()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+
+            PlayerStats[] allPlayers = (PlayerStats[])FindObjectsOfType(typeof(PlayerStats));
+            foreach (PlayerStats player in allPlayers)
+            {
+                if (player.alive)
+                {
+                    player.timeAlive++;
+                    timeAliveTracking[player.playerIndex] = player.timeAlive;
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,6 +88,14 @@ public class KillPlane : MonoBehaviour
             if (player.lives <= 0)
             {
                 player.lives = 0;
+            }
+            
+            if(!player.alive)
+            {
+                if (!timeAliveTracking.ContainsKey(player.playerIndex))
+                {
+                    timeAliveTracking[player.playerIndex] = player.timeAlive;
+                }
             }
 
             if(player.alive)
@@ -75,8 +115,6 @@ public class KillPlane : MonoBehaviour
                 player.transform.position = respawnPos;
                 Rigidbody rb = player.GetComponent<Rigidbody>();
                 if(rb != null) rb.velocity = Vector3.zero;
-
-
             }
             else
             {
@@ -132,7 +170,7 @@ public class KillPlane : MonoBehaviour
         }
         else
         {
-            Destroy(other.gameObject);
+            // Destroy(other.gameObject);
         }
     }
 
@@ -140,7 +178,6 @@ public class KillPlane : MonoBehaviour
     {
         if(endGameCanvas == null) return;
         gameIsOver = true;
-        //Time.timeScale = 0.2f;
 
         // Check if JoinScreenManager and playerConfigs are initialized
         if (StaticStuff.Instance.JoinScreenManager == null)
@@ -161,16 +198,16 @@ public class KillPlane : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        endGameWinnerAvatar.GetComponent<Image>().color = playerConfig.playerColor;
+                        winnerAvatar.GetComponent<Image>().color = playerConfig.playerColor;
                         break;
                     case 1:
-                        endGameSecondAvatar.GetComponent<Image>().color = playerConfig.playerColor;
+                        secondAvatar.GetComponent<Image>().color = playerConfig.playerColor;
                         break;
                     case 2:
-                        endGameThirdAvatar.GetComponent<Image>().color = playerConfig.playerColor;
+                        thirdAvatar.GetComponent<Image>().color = playerConfig.playerColor;
                         break;
                     case 3:
-                        endGameFourthAvatar.GetComponent<Image>().color = playerConfig.playerColor;
+                        fourthAvatar.GetComponent<Image>().color = playerConfig.playerColor;
                         break;
                 }
             }
@@ -183,17 +220,16 @@ public class KillPlane : MonoBehaviour
     {
         if(endGameCanvas == null) return;
         gameIsOver = true;
-        Time.timeScale = 0.2f;
 
         ShowEndGamePanel(0);
     }
 
     private void ShowEndGamePanel(int winnerIndex)
     {
-        List<PlayerStats> remainingPlayersPlayers = 
-            ((PlayerStats[])FindObjectsOfType<PlayerStats>()).ToList();
+        List<PlayerStats> sortedPlayersByTimeAlive =
+            ((PlayerStats[])FindObjectsOfType<PlayerStats>()).OrderByDescending(player => player.timeAlive).ToList();
 
-        foreach (PlayerStats player in remainingPlayersPlayers)
+        foreach (PlayerStats player in sortedPlayersByTimeAlive)
         {
             if(player.TryGetComponent<WeaponUser>(out WeaponUser aliveUser)){
                 shotsFiredTracking.Add(player.playerIndex, aliveUser.shotsFired);
@@ -202,7 +238,7 @@ public class KillPlane : MonoBehaviour
         
         // Aktivera panelen
         endGameCanvas.SetActive(true);
-        DOVirtual.DelayedCall(0.4f, () =>
+        DOVirtual.DelayedCall(0.5f, () =>
         {
             {
                 // Bestäm vinnare
@@ -217,70 +253,83 @@ public class KillPlane : MonoBehaviour
                 }
 
                 // Animation för vinnarens namn
-                endGameTitle.transform.DOScale(1, 0.2f).SetEase(Ease.OutElastic);
+                endGameTitle.transform.DOScale(1, 0.5f).SetEase(Ease.OutElastic);
 
                 // Panel animation
                 DOVirtual.DelayedCall(0.5f, () =>
                 {
-                    endGamePanel.transform.DOScale(1, 0.2f).SetEase(Ease.OutQuart).onComplete += () =>
-                        endGameTitle.transform.DOScale(1, 0.2f).SetEase(Ease.OutElastic);
+                    endGamePanel.transform.DOScale(1, 0.5f).SetEase(Ease.OutQuart).onComplete += () =>
+                        endGameTitle.transform.DOScale(1, 0.5f).SetEase(Ease.OutElastic);
                     
                     // Avatar animation
                     DOVirtual.DelayedCall(0.5f,
-                        () => { endGameWinnerAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
-                    DOVirtual.DelayedCall(0.6f,
-                        () => { endGameSecondAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
+                        () => { winnerAvatar.transform.DOScale(2, 0.5f).SetEase(Ease.OutElastic); });
                     DOVirtual.DelayedCall(0.7f,
-                        () => { endGameThirdAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
-                    DOVirtual.DelayedCall(0.8f,
-                        () => { endGameFourthAvatar.transform.DOScale(2, 0.2f).SetEase(Ease.OutElastic); });
+                        () => { secondAvatar.transform.DOScale(2, 0.5f).SetEase(Ease.OutElastic); });
+                    DOVirtual.DelayedCall(0.9f,
+                        () => { thirdAvatar.transform.DOScale(2, 0.5f).SetEase(Ease.OutElastic); });
+                    DOVirtual.DelayedCall(1.1f,
+                        () => { fourthAvatar.transform.DOScale(2, 0.5f).SetEase(Ease.OutElastic); });
                     
-                    // Avfyrade skott animation
-                    string shotsFiredWinner = "";
-                    string shotsFiredSecond = "";
-                    string shotsFiredThird= "";
-                    string shotsFiredFourth = "";
-                    
-                    foreach (var shotsFired in shotsFiredTracking)
+                    // Stats
+                    for (int i = 0; i < sortedPlayersByTimeAlive.Count; i++)
                     {
-                        if (shotsFired.Key == 0)
+                        PlayerStats player = sortedPlayersByTimeAlive[i];
+                        int shotsFired = shotsFiredTracking.ContainsKey(player.playerIndex) ? shotsFiredTracking[player.playerIndex] : 0;
+
+                        switch (i)
                         {
-                            shotsFiredWinner = "Shots Fired: " + shotsFired.Value;
-                        }
-                        else if (shotsFired.Key == 1)
-                        {
-                            shotsFiredSecond = "Shots Fired: " + shotsFired.Value;
-                        }
-                        else if (shotsFired.Key == 2)
-                        {
-                            shotsFiredThird = "Shots Fired: " + shotsFired.Value;
-                        }
-                        else if (shotsFired.Key == 3)
-                        {
-                            shotsFiredFourth = "Shots Fired: " + shotsFired.Value;
+                            case 0:
+                                timeAliveWinner.text = "";
+                                shotsFiredWinner.text = $"Fired {shotsFired} shots";
+                                break;
+                            case 1:
+                                timeAliveSecond.text = $"Survived {player.timeAlive} s";
+                                shotsFiredSecond.text = $"Fired {shotsFired} shots";
+                                break;
+                            case 2:
+                                timeAliveThird.text = $"Survived {player.timeAlive} s";
+                                shotsFiredThird.text = $"Fired {shotsFired} shots";
+                                break;
+                            case 3:
+                                timeAliveFourth.text = $"Survived {player.timeAlive} s";
+                                shotsFiredFourth.text = $"Fired {shotsFired} shots";
+                                break;
                         }
                     }
                     
-                    endGameWinnerShotsFired.text = shotsFiredWinner;
-                    endGameSecondShotsFired.text = shotsFiredThird;
-                    endGameThirdShotsFired.text = shotsFiredThird;
-                    endGameFourthShotsFired.text = shotsFiredFourth;
-                
                     DOVirtual.DelayedCall(1f, () =>
                     {
-                        endGameWinnerShotsFired.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
-                    });
-                    DOVirtual.DelayedCall(1.1f, () =>
-                    {
-                        endGameSecondShotsFired.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
+                        timeAliveWinner.transform.DOScale(0.5f, 0.5f).SetEase(Ease.OutElastic);
                     });
                     DOVirtual.DelayedCall(1.2f, () =>
                     {
-                        endGameThirdShotsFired.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
+                        timeAliveSecond.transform.DOScale(0.5f, 0.5f).SetEase(Ease.OutElastic);
                     });
-                    DOVirtual.DelayedCall(1.3f, () =>
+                    DOVirtual.DelayedCall(1.4f, () =>
                     {
-                        endGameFourthShotsFired.transform.DOScale(0.5f, 0.2f).SetEase(Ease.OutElastic);
+                        timeAliveThird.transform.DOScale(0.5f, 0.5f).SetEase(Ease.OutElastic);
+                    });
+                    DOVirtual.DelayedCall(1.6f, () =>
+                    {
+                        timeAliveFourth.transform.DOScale(0.5f, 0.5f).SetEase(Ease.OutElastic);
+                    });
+                
+                    DOVirtual.DelayedCall(1f, () =>
+                    {
+                        shotsFiredWinner.transform.DOScale(0.5f, 0.5f).SetEase(Ease.OutElastic);
+                    });
+                    DOVirtual.DelayedCall(1.2f, () =>
+                    {
+                        shotsFiredSecond.transform.DOScale(0.5f, 0.5f).SetEase(Ease.OutElastic);
+                    });
+                    DOVirtual.DelayedCall(1.4f, () =>
+                    {
+                        shotsFiredThird.transform.DOScale(0.5f, 0.5f).SetEase(Ease.OutElastic);
+                    });
+                    DOVirtual.DelayedCall(1.6f, () =>
+                    {
+                        shotsFiredFourth.transform.DOScale(0.5f, 0.5f).SetEase(Ease.OutElastic);
                     });
                 
                     DOVirtual.DelayedCall(2f, () =>
@@ -288,7 +337,7 @@ public class KillPlane : MonoBehaviour
                         StartCoroutine(ChangeLevel(new List<int> {0, 1}));
                     });
                 });
-            };
+            }
         });
     }
     
