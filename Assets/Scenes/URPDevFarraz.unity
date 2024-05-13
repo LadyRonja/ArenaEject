@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15949416, g: 0.19281867, b: 0.29580408, a: 1}
+  m_IndirectSpecularColor: {r: 0.15949428, g: 0.19281885, b: 0.29580438, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6308,6 +6308,61 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653341241}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &743123460 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6503630949186868952, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1401031195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &743123461 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 713556530258251798, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1401031195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &743123462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4653775452676195445, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1401031195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &743123463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7715910227717340336, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1401031195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &743123464 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1843861539821838567, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1401031195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414150528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &747780705 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7633969538692819337, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
@@ -7204,7 +7259,6 @@ MonoBehaviour:
   paddingTop: 1
   paddingBottom: 8
   lingerTime: 0.5
-  transformsToTrack: []
   DEBUG_ShakeAmount: 0.3
   DEBUG_ShakeDuration: 0.1
 --- !u!1 &997512422
@@ -12091,14 +12145,18 @@ MonoBehaviour:
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
   endGameTitle: {fileID: 1401031197}
-  endGameWinnerAvatar: {fileID: 1401031198}
-  endGameSecondAvatar: {fileID: 1401031199}
-  endGameThirdAvatar: {fileID: 1401031200}
-  endGameFourthAvatar: {fileID: 1200528728}
-  endGameWinnerShotsFired: {fileID: 747780705}
-  endGameSecondShotsFired: {fileID: 1506256531}
-  endGameThirdShotsFired: {fileID: 1501644947}
-  endGameFourthShotsFired: {fileID: 1945913418}
+  winnerAvatar: {fileID: 1401031198}
+  secondAvatar: {fileID: 1401031199}
+  thirdAvatar: {fileID: 1401031200}
+  fourthAvatar: {fileID: 1200528728}
+  shotsFiredWinner: {fileID: 747780705}
+  shotsFiredSecond: {fileID: 1506256531}
+  shotsFiredThird: {fileID: 1501644947}
+  shotsFiredFourth: {fileID: 743123464}
+  timeAliveWinner: {fileID: 743123463}
+  timeAliveSecond: {fileID: 743123462}
+  timeAliveThird: {fileID: 743123461}
+  timeAliveFourth: {fileID: 743123460}
   endGamePanel: {fileID: 1485824338}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
@@ -22494,14 +22552,18 @@ MonoBehaviour:
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
   endGameTitle: {fileID: 1401031197}
-  endGameWinnerAvatar: {fileID: 1401031198}
-  endGameSecondAvatar: {fileID: 1401031199}
-  endGameThirdAvatar: {fileID: 1401031200}
-  endGameFourthAvatar: {fileID: 1200528728}
-  endGameWinnerShotsFired: {fileID: 747780705}
-  endGameSecondShotsFired: {fileID: 1506256531}
-  endGameThirdShotsFired: {fileID: 1501644947}
-  endGameFourthShotsFired: {fileID: 1945913418}
+  winnerAvatar: {fileID: 1401031198}
+  secondAvatar: {fileID: 1401031199}
+  thirdAvatar: {fileID: 1401031200}
+  fourthAvatar: {fileID: 1200528728}
+  shotsFiredWinner: {fileID: 747780705}
+  shotsFiredSecond: {fileID: 1506256531}
+  shotsFiredThird: {fileID: 1501644947}
+  shotsFiredFourth: {fileID: 743123464}
+  timeAliveWinner: {fileID: 743123463}
+  timeAliveSecond: {fileID: 743123462}
+  timeAliveThird: {fileID: 743123461}
+  timeAliveFourth: {fileID: 743123460}
   endGamePanel: {fileID: 1485824338}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
@@ -22633,14 +22695,18 @@ MonoBehaviour:
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
   endGameTitle: {fileID: 1401031197}
-  endGameWinnerAvatar: {fileID: 1401031198}
-  endGameSecondAvatar: {fileID: 1401031199}
-  endGameThirdAvatar: {fileID: 1401031200}
-  endGameFourthAvatar: {fileID: 1200528728}
-  endGameWinnerShotsFired: {fileID: 747780705}
-  endGameSecondShotsFired: {fileID: 1506256531}
-  endGameThirdShotsFired: {fileID: 1501644947}
-  endGameFourthShotsFired: {fileID: 1945913418}
+  winnerAvatar: {fileID: 1401031198}
+  secondAvatar: {fileID: 1401031199}
+  thirdAvatar: {fileID: 1401031200}
+  fourthAvatar: {fileID: 1200528728}
+  shotsFiredWinner: {fileID: 747780705}
+  shotsFiredSecond: {fileID: 1506256531}
+  shotsFiredThird: {fileID: 1501644947}
+  shotsFiredFourth: {fileID: 743123464}
+  timeAliveWinner: {fileID: 743123463}
+  timeAliveSecond: {fileID: 743123462}
+  timeAliveThird: {fileID: 743123461}
+  timeAliveFourth: {fileID: 743123460}
   endGamePanel: {fileID: 1485824338}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
@@ -24017,14 +24083,18 @@ MonoBehaviour:
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
   endGameTitle: {fileID: 1401031197}
-  endGameWinnerAvatar: {fileID: 1401031198}
-  endGameSecondAvatar: {fileID: 1401031199}
-  endGameThirdAvatar: {fileID: 1401031200}
-  endGameFourthAvatar: {fileID: 1200528728}
-  endGameWinnerShotsFired: {fileID: 747780705}
-  endGameSecondShotsFired: {fileID: 1506256531}
-  endGameThirdShotsFired: {fileID: 1501644947}
-  endGameFourthShotsFired: {fileID: 1945913418}
+  winnerAvatar: {fileID: 1401031198}
+  secondAvatar: {fileID: 1401031199}
+  thirdAvatar: {fileID: 1401031200}
+  fourthAvatar: {fileID: 1200528728}
+  shotsFiredWinner: {fileID: 747780705}
+  shotsFiredSecond: {fileID: 1506256531}
+  shotsFiredThird: {fileID: 1501644947}
+  shotsFiredFourth: {fileID: 743123464}
+  timeAliveWinner: {fileID: 743123463}
+  timeAliveSecond: {fileID: 743123462}
+  timeAliveThird: {fileID: 743123461}
+  timeAliveFourth: {fileID: 743123460}
   endGamePanel: {fileID: 1485824338}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
@@ -24291,17 +24361,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1945913418 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1070842367351448225, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1957424478
 GameObject:
   m_ObjectHideFlags: 0
@@ -34136,14 +34195,18 @@ MonoBehaviour:
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
   endGameTitle: {fileID: 1401031197}
-  endGameWinnerAvatar: {fileID: 1401031198}
-  endGameSecondAvatar: {fileID: 1401031199}
-  endGameThirdAvatar: {fileID: 1401031200}
-  endGameFourthAvatar: {fileID: 1200528728}
-  endGameWinnerShotsFired: {fileID: 747780705}
-  endGameSecondShotsFired: {fileID: 1506256531}
-  endGameThirdShotsFired: {fileID: 1501644947}
-  endGameFourthShotsFired: {fileID: 1945913418}
+  winnerAvatar: {fileID: 1401031198}
+  secondAvatar: {fileID: 1401031199}
+  thirdAvatar: {fileID: 1401031200}
+  fourthAvatar: {fileID: 1200528728}
+  shotsFiredWinner: {fileID: 747780705}
+  shotsFiredSecond: {fileID: 1506256531}
+  shotsFiredThird: {fileID: 1501644947}
+  shotsFiredFourth: {fileID: 743123464}
+  timeAliveWinner: {fileID: 743123463}
+  timeAliveSecond: {fileID: 743123462}
+  timeAliveThird: {fileID: 743123461}
+  timeAliveFourth: {fileID: 743123460}
   endGamePanel: {fileID: 1485824338}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
