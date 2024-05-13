@@ -18,7 +18,6 @@ public class Gravity : MonoBehaviour
         if(!TryGetComponent<Rigidbody>(out rb))
         {
             rb =gameObject.AddComponent<Rigidbody>();
-
         }
         groundChecker = GetComponent<GroundChecker>();
     }
@@ -34,11 +33,12 @@ public class Gravity : MonoBehaviour
         {
             if(rb.velocity.y > 0)
             {
-                rb.AddForce(Vector3.down * gravityUpAmount * Time.fixedDeltaTime);
+                rb.AddForce(Vector3.down * gravityUpAmount);
             }
             else
             {
-                rb.AddForce(Vector3.down * gravityDownAmount * Time.fixedDeltaTime);
+                Debug.Log("Heavy down!");
+                rb.AddForce(Vector3.down * Mathf.Abs(rb.velocity.y * gravityDownAmount));
             }
         }
     }

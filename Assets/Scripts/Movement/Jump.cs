@@ -96,7 +96,8 @@ public class Jump : MonoBehaviour
         jumpCounter++;
 
         // Perform jump
-        rb.velocity = jumpDirection * jumpForce;
+        //rb.velocity = jumpDirection * jumpForce;
+        rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
     }
 
     private void JumpCounterResetCheck()

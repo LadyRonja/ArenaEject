@@ -76,9 +76,9 @@ GameObject:
   - component: {fileID: 109501444551750962}
   - component: {fileID: 5656706937345467536}
   - component: {fileID: 5597062489536565801}
+  - component: {fileID: 989872724748604163}
   - component: {fileID: -4713559047619484691}
   - component: {fileID: 8277015850034542796}
-  - component: {fileID: 989872724748604163}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -259,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb84e1f95e65ea45bb488e12e7388e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityUpAmount: -9.82
-  gravityDownAmount: -19.64
+  gravityUpAmount: 0
+  gravityDownAmount: 8
 --- !u!114 &5656706937345467536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
-  jumpForce: 8
+  jumpForce: 7
   jumpAmount: 1
 --- !u!114 &5597062489536565801
 MonoBehaviour:
@@ -289,6 +289,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
+--- !u!114 &989872724748604163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455113739012497393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d744c576b56630f40bfd2decc46af084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &-4713559047619484691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -337,19 +349,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.73786235, y: 1.945233, z: 0.45199767}
   m_Center: {x: 0.018834233, y: 0.9591002, z: -0.027304366}
---- !u!114 &989872724748604163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3455113739012497393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d744c576b56630f40bfd2decc46af084, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _anim: {fileID: 7200369519764091995}
 --- !u!1 &4411590136687848730
 GameObject:
   m_ObjectHideFlags: 0

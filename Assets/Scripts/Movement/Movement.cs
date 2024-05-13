@@ -30,12 +30,12 @@ public class Movement : MonoBehaviour
     }
 
     private void Update()
-    {/*
+    {
         // TODO: Remove before build
-        if (appropriatlySpawned) return;
+       /* if (appropriatlySpawned) return;
         #region Debug
         if (playerStats == null) return;
-        if (playerStats.playerIndex != 1) return;
+        if (playerStats.playerIndex != 0) return;
 
         int x = 0;
         int z = 0;
@@ -58,8 +58,8 @@ public class Movement : MonoBehaviour
         }
 
         moveInput= new Vector2(x, z);
-        #endregion*/
-
+        #endregion
+       */
     }
 
     void FixedUpdate()
