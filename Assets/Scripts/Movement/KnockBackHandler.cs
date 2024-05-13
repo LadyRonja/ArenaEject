@@ -12,6 +12,7 @@ public class KnockBackHandler : MonoBehaviour
     [SerializeField] private bool usingCumulativeKnockback = true;
     private float recievedKnockbackRaw = 0;
     public float recievedKnockbackDisplay { get => Mathf.Ceil(Mathf.Max(0, Mathf.Min(recievedKnockbackRaw, 999))); }
+    public bool KnockedBack { get => knockedBack; }
 
     public float frictionCoefficient = 10f;
     public float frictionDelay = 0.3f;
