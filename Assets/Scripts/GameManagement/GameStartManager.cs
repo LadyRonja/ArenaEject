@@ -112,7 +112,7 @@ public class GameStartManager : MonoBehaviour
         return playerInputObj;
     }
 
-    private void KillAllPlayers()
+    public static void KillAllPlayers()
     {
         var players = (PlayerStats[])FindObjectsOfType(typeof(PlayerStats));
         List<Transform> test = new List<Transform>();
@@ -146,6 +146,9 @@ public class GameStartManager : MonoBehaviour
         Aiming playerAim = playerToVerify.GetComponent<Aiming>();
         WeaponUser weaponUser = playerToVerify.GetComponent<WeaponUser>();
         Jump jump = playerToVerify.GetComponent<Jump>();
+        ReadyBehaivor  readyBehaivor = playerToVerify.GetComponent<ReadyBehaivor>();
+        PlayerAnimationManager playerAnimationManager = playerToVerify.GetComponent<PlayerAnimationManager>();
+        GroundChecker groundChecker = playerToVerify.GetComponent<GroundChecker>();
 
 
         // Stats set-up
@@ -196,6 +199,24 @@ public class GameStartManager : MonoBehaviour
         else
         {
             jump.appropriatlySpawned = appropriatlySpawned;
+        }
+
+        // Ready behaivor
+        if(readyBehaivor == null)
+        {
+            Debug.LogError("Player prefab missing ReadyBehaivor script");
+        }
+
+        // Ground checker
+        if (groundChecker == null)
+        {
+            Debug.LogError("Player prefab missing GroundChecker script");
+        }
+
+        // Ready behaivor
+        if (playerAnimationManager == null)
+        {
+            Debug.LogError("Player prefab missing PlayerAnimationManager script");
         }
     }
 

@@ -23,11 +23,12 @@ public class JoinScreenManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance == null || instance == this)
         {
             instance = this;
             StaticStuff.Instance.JoinScreenManager = this;
             playerConfigs = new();
+            SceneManager.sceneLoaded += delegate { OnSceneLoad(); };
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -36,15 +37,65 @@ public class JoinScreenManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void OnSceneLoad()
     {
-        if(SceneManager.GetActiveScene().name == Paths.START_SCENE_NAME)
+        // When entering a new scene, wcheck if the new scene is the start screen
+        if (SceneManager.GetActiveScene().name == Paths.START_SCENE_NAME)
         {
+            // Cleanup things that should be resey
+            GameStartManager.KillAllPlayers();
+            DestroyChildren();
             playerConfigs = new();
             spawnPoints = new();
+            if(displayParent != null)
+            {
+                List<Transform> children = new();
+                foreach (Transform t in displayParent.transform) { 
+                    children.Add(t);
+                }
+
+                foreach (Transform child in children)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
+            // Find things that should be in the scene
+            displayParent = FindObjectOfType<JoinDisplayParent>(true).transform;
             spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
+
+        }
+
+        void DestroyChildren()
+        {
+            int i = 0;
+
+            //Array to hold all child obj
+            GameObject[] allChildren = new GameObject[transform.childCount];
+
+            //Find all child obj and store to that array
+            foreach (Transform child in transform)
+            {
+                allChildren[i] = child.gameObject;
+                i += 1;
+            }
+
+            //Now destroy them
+            foreach (GameObject child in allChildren)
+            {
+                DestroyImmediate(child.gameObject);
+            }
         }
     }
+
+
+    private void OnDestroy()
+    {
+        // Make sure to unsubscribe from events on destroy (game end)
+        // Otherwise these subscriptions will persist between sessions during development
+        SceneManager.sceneLoaded -= delegate { OnSceneLoad(); };
+    }
+
 
     public void ToggleReady(int index)
     {
@@ -73,7 +124,12 @@ public class JoinScreenManager : MonoBehaviour
         {
             PlayerConfigurations playerConfig = new PlayerConfigurations(pi);
             playerConfigs.Add(playerConfig);
-           
+           if(displayParent == null || displayParent == this.transform)
+            {
+                Debug.LogError("No display parent found! Parenting to self");
+                displayParent = this.transform;
+            }
+
             GameObject displayObj = Instantiate(playerDisplayPrefab, Vector3.zero, Quaternion.identity, displayParent);
             JoinDisplay displayComponents = displayObj.GetComponent<JoinDisplay>();
             displayComponents.playerText.text = $"Player {pi.playerIndex + 1}";
@@ -109,145 +165,35 @@ public class JoinScreenManager : MonoBehaviour
         CameraController.Instance.StartTrackingObjects(playerTransforms);
     }
 
-    #region Old
-    /*
-    private static JoinScreenManager instance;
-    public static JoinScreenManager Instance { get => instance; }
-
-    [SerializeField] [Range(2, 8)] private int maxPlayersAllowed = 4;
-    [Space]
-    [SerializeField] private GameObject playerDisplayPrefab;
-    [SerializeField] private Transform displayParent;
-    [SerializeField] private Button startButton;
-    [Space]
-    [SerializeField] private List<Color> playerColors = new List<Color>();
-
-    private List<string> playerControllersJoined = new List<string>();
-    private Dictionary<int, int> playerToControllerIndex= new Dictionary<int, int>();
-    public Dictionary<int, int> PlayerToControllerIndex { get => playerToControllerIndex;}
-
-    private void OnEnable()
+    public void RemovePlayerFromLobby(int playerIndex)
     {
-        if(instance == null || instance == this)
-        {
-            instance = this;
-            playerControllersJoined = new List<string>();
-            playerToControllerIndex = new Dictionary<int, int>();
-            maxPlayersAllowed = Math.Clamp(maxPlayersAllowed, 2, 8);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
+        Debug.LogError("RemovePlayerFromLobby not implemented, returning");
+        return;
 
-    /*
-    private void Update()
-    {
-        CheckForJoiningPlayers();
-        GeneratePrefabsForPlayers();
-        DetermineIfStartConditionMet();
-    }
-   
-    public void OnPlayerJoined(PlayerInput playerInput)
-    {
-        Debug.Log("Player joined!");
-        if(!(playerControllersJoined.Count < maxPlayersAllowed)) { 
-            Destroy(playerInput.gameObject); 
-            return; 
-        }
-
-        playerInput.transform.SetParent(displayParent);
-        int playerIndex = playerInput.playerIndex;
-        int gamepadIndex = -1;
-        foreach (Gamepad gamepad in Gamepad.all)
+        PlayerConfigurations playerToRemove;
+        try
         {
-            if(gamepad == Gamepad.all[playerInput.playerIndex])
-            {
-                gamepadIndex = playerInput.playerIndex;
-                break;
+            playerToRemove = playerConfigs.Where(p => p.playerIndex == playerIndex).ToList()[0];
+            playerConfigs.Remove(playerToRemove);
+            PlayerStats[] players = (PlayerStats[])FindObjectsOfType(typeof(PlayerStats));
+            if(players.Length > 0) {
+                foreach (PlayerStats player in players)
+                {
+                    if(player.playerIndex == playerIndex)
+                    {
+                        Destroy(player);
+                        break;
+                    }
+                }
             }
+
         }
-        Debug.Log("PlayerIndex: " + playerIndex);
-        Debug.Log("Gamepladindex: " + gamepadIndex);
-    }
-
-
-
-
-    /// <summary>
-    /// TODO: Allow higher number of controls to join, despite max player count
-    /// </summary>
-    private void CheckForJoiningPlayers()
-    {
-        for (int i = 1; i < maxPlayersAllowed + 1; i++)
+        catch 
         {
-            if (Input.GetButtonDown($"P{i}_Join_Duo"))
-            {
-                string inputDevice = $"InputDevice_{i}";
-                if (playerControllersJoined.Contains(inputDevice)) return;
 
-                playerToControllerIndex.Add(playerControllersJoined.Count + 1, i);
-                playerControllersJoined.Add(inputDevice);
-            }
         }
     }
 
-    private void GeneratePrefabsForPlayers()
-    {
-        if (displayParent == null) return;
-        if (displayParent.childCount == playerControllersJoined.Count) return;
-
-        // Clear display
-        // TODO: If players get to select avatars/colors/hats, then this needs to be saved/reworked
-        List<GameObject> displayParentChildren = new List<GameObject>();
-        for (int i = 0; i < displayParent.childCount; i++)
-        {
-            displayParentChildren.Add(displayParent.GetChild(i).gameObject);
-        }
-        foreach (GameObject child in displayParentChildren)
-        {
-            Destroy(child);
-        }
-
-        // Generate new display
-        for (int i = 1; i < playerControllersJoined.Count+1; i++)
-        {
-            GameObject displayObj = Instantiate(playerDisplayPrefab, Vector3.zero, Quaternion.identity, displayParent);
-            JoinDisplay displayComponents = displayObj.GetComponent<JoinDisplay>();
-           
-            if (!playerToControllerIndex.TryGetValue(i, out int controllerIndex))
-            {
-                Debug.LogError(playerControllersJoined[i] + "not included in dictonary, state mutated unexpectantly");
-                return;
-            }
-            
-            displayComponents.playerText.text = $"Player {i}";
-            displayComponents.controllerText.text = $"Controller {controllerIndex}";
-            if (playerColors[i-1] != null) {
-                displayComponents.displayImage.color = playerColors[i-1];
-            }
-        }
-    }
-
-    /// <summary>
-    /// Determine if two or more players have joined
-    /// </summary>
-    private void DetermineIfStartConditionMet()
-    {
-        if (startButton == null) return;
-
-        if(playerControllersJoined.Count >= 2)
-        {
-            startButton.interactable = true;
-        }
-        else
-        {
-            startButton.interactable = false;
-        }
-    }
-    */
-    #endregion
 }
 
 public class PlayerConfigurations

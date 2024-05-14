@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Rendering;
 using UnityEngine;
 
-public enum CameraModes { STILL, TRACK_OBJECTS, SHAKE}
+public enum CameraModes { STILL, TRACK_OBJECTS, SHAKE, RESETTING}
 
 public struct TrackPoint{
     public TrackPoint(Vector3 position, DateTime savedAt, float lifeTime)
@@ -31,7 +32,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] float xAngleDeg = 35f;
     [Space]
     [SerializeField] bool displayDebugs = false;
-    
+    Vector3 initialPosition = Vector3.zero;
+    Quaternion initialRotation = Quaternion.identity;
+
+
+
     Vector3 targetPos = Vector3.zero;
 
     [Header("Track Objects")]
@@ -61,6 +66,9 @@ public class CameraController : MonoBehaviour
             targetPos = transform.position;
             transform.rotation = Quaternion.Euler(xAngleDeg, 0f, 0f);
             transformsToTrack = new();
+
+            initialPosition = transform.position;
+            initialRotation = transform.rotation;
         }
         else
         {
@@ -72,11 +80,11 @@ public class CameraController : MonoBehaviour
     {
         switch (cameraMode)
         {
-            case CameraModes.STILL:
-                break;
             case CameraModes.TRACK_OBJECTS:
                 TrackObjects();
                 break;
+            case CameraModes.RESETTING:
+            case CameraModes.STILL:
             case CameraModes.SHAKE:
                 break;
             default:
@@ -157,7 +165,11 @@ public class CameraController : MonoBehaviour
 
     private void TrackObjects()
     {
-        if (transformsToTrack.Count < 1) { return; }
+        EnsureLegalTrackedObjects();
+        if (transformsToTrack.Count < 1) {
+            StartCoroutine(ResetCamera());
+            return; 
+        }
 
         // Find the largest and smallest extremes of each tracked object
         Vector3 targetMaxs = transformsToTrack[0].position;
@@ -261,6 +273,47 @@ public class CameraController : MonoBehaviour
             targetMins.y = Mathf.Min(targetMins.y, scannedPosition.y);
             targetMins.z = Mathf.Min(targetMins.z, scannedPosition.z);
         }
+    }
+
+    private void EnsureLegalTrackedObjects()
+    {
+        List<Transform> missingTrackedObjects = new();
+        foreach (Transform trackedObject in transformsToTrack)
+        {
+            if (trackedObject == null)
+            {
+                missingTrackedObjects.Add(trackedObject);
+            }
+        }
+        foreach (Transform trackedObject in missingTrackedObjects)
+        {
+            transformsToTrack.Remove(trackedObject);
+        }
+    }
+
+    private IEnumerator ResetCamera(float inSeconds = 1.5f)
+    {
+        cameraMode = CameraModes.RESETTING;
+
+        float timePassed = 0;
+        Vector3 startPos = transform.position;
+        Vector3 endPos = initialPosition;
+        Quaternion startRot = transform.rotation;
+        Quaternion endRot = initialRotation;
+
+        while (timePassed < inSeconds)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, (timePassed / inSeconds));
+            transform.rotation = Quaternion.Lerp(startRot, endRot, (timePassed / inSeconds));
+
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = endPos;
+        transform.rotation = endRot;
+
+        cameraMode = CameraModes.STILL;
+        yield return null;
     }
 
     private void DrawDebugSquare(Vector3 squareCornerNW, Vector3 squareCornerNE, Vector3 squareCornerSE, Vector3 squareCornerSW, Color color)

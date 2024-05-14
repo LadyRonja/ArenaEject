@@ -28,7 +28,7 @@ public class ReadyRegion : MonoBehaviour
         {
             player.inReadyArea = false;
             player.isReady = false;
-            player.HideReady();
+            player.HideDisplayCanvas();
             playersInRegion.Remove(player);
         }
     }

@@ -183,9 +183,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2556d60fbce9194ba56f117a1965132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inExitRegion: 0
   inReadyArea: 0
   isReady: 0
   readyCanvas: {fileID: 7348668813372045821}
+  displayImage: {fileID: 4537377214595825589}
+  readySprite: {fileID: 21300000, guid: 84cde053824188f4abb4d4c273fe3079, type: 3}
+  exitSprite: {fileID: 21300000, guid: 60dda68ef74c656459440eee63fcc565, type: 3}
 --- !u!114 &3575394810099702661
 MonoBehaviour:
   m_ObjectHideFlags: 0
