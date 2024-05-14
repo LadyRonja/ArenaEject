@@ -6130,39 +6130,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &743123460 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6503630949186868952, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &743123461 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 713556530258251798, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &743123462 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4653775452676195445, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &743123463 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7715910227717340336, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
@@ -11810,20 +11777,20 @@ MonoBehaviour:
   - {fileID: 206118990}
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
+  endGamePanel: {fileID: 1485824338}
   endGameTitle: {fileID: 1401031197}
   winnerAvatar: {fileID: 1401031198}
-  secondAvatar: {fileID: 1401031199}
-  thirdAvatar: {fileID: 1401031200}
-  fourthAvatar: {fileID: 1200528728}
-  shotsFiredWinner: {fileID: 747780705}
-  shotsFiredSecond: {fileID: 1506256531}
-  shotsFiredThird: {fileID: 1501644947}
-  shotsFiredFourth: {fileID: 743123464}
   timeAliveWinner: {fileID: 743123463}
-  timeAliveSecond: {fileID: 743123462}
-  timeAliveThird: {fileID: 743123461}
-  timeAliveFourth: {fileID: 743123460}
-  endGamePanel: {fileID: 1485824338}
+  shotsFiredWinner: {fileID: 747780705}
+  secondAvatar: {fileID: 0}
+  timeAliveSecond: {fileID: 0}
+  shotsFiredSecond: {fileID: 0}
+  thirdAvatar: {fileID: 0}
+  timeAliveThird: {fileID: 0}
+  shotsFiredThird: {fileID: 0}
+  fourthAvatar: {fileID: 0}
+  timeAliveFourth: {fileID: 0}
+  shotsFiredFourth: {fileID: 743123464}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
@@ -12082,7 +12049,7 @@ Transform:
   m_GameObject: {fileID: 1139810463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.37, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 45.47182, y: 45.47182, z: 45.47182}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12137,11 +12104,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1200528728 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3179756585030140281, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1219142140
 GameObject:
   m_ObjectHideFlags: 0
@@ -22029,20 +21991,20 @@ MonoBehaviour:
   - {fileID: 206118990}
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
+  endGamePanel: {fileID: 1485824338}
   endGameTitle: {fileID: 1401031197}
   winnerAvatar: {fileID: 1401031198}
-  secondAvatar: {fileID: 1401031199}
-  thirdAvatar: {fileID: 1401031200}
-  fourthAvatar: {fileID: 1200528728}
-  shotsFiredWinner: {fileID: 747780705}
-  shotsFiredSecond: {fileID: 1506256531}
-  shotsFiredThird: {fileID: 1501644947}
-  shotsFiredFourth: {fileID: 743123464}
   timeAliveWinner: {fileID: 743123463}
-  timeAliveSecond: {fileID: 743123462}
-  timeAliveThird: {fileID: 743123461}
-  timeAliveFourth: {fileID: 743123460}
-  endGamePanel: {fileID: 1485824338}
+  shotsFiredWinner: {fileID: 747780705}
+  secondAvatar: {fileID: 0}
+  timeAliveSecond: {fileID: 0}
+  shotsFiredSecond: {fileID: 0}
+  thirdAvatar: {fileID: 0}
+  timeAliveThird: {fileID: 0}
+  shotsFiredThird: {fileID: 0}
+  fourthAvatar: {fileID: 0}
+  timeAliveFourth: {fileID: 0}
+  shotsFiredFourth: {fileID: 743123464}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
@@ -22172,20 +22134,20 @@ MonoBehaviour:
   - {fileID: 206118990}
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
+  endGamePanel: {fileID: 1485824338}
   endGameTitle: {fileID: 1401031197}
   winnerAvatar: {fileID: 1401031198}
-  secondAvatar: {fileID: 1401031199}
-  thirdAvatar: {fileID: 1401031200}
-  fourthAvatar: {fileID: 1200528728}
-  shotsFiredWinner: {fileID: 747780705}
-  shotsFiredSecond: {fileID: 1506256531}
-  shotsFiredThird: {fileID: 1501644947}
-  shotsFiredFourth: {fileID: 743123464}
   timeAliveWinner: {fileID: 743123463}
-  timeAliveSecond: {fileID: 743123462}
-  timeAliveThird: {fileID: 743123461}
-  timeAliveFourth: {fileID: 743123460}
-  endGamePanel: {fileID: 1485824338}
+  shotsFiredWinner: {fileID: 747780705}
+  secondAvatar: {fileID: 0}
+  timeAliveSecond: {fileID: 0}
+  shotsFiredSecond: {fileID: 0}
+  thirdAvatar: {fileID: 0}
+  timeAliveThird: {fileID: 0}
+  shotsFiredThird: {fileID: 0}
+  fourthAvatar: {fileID: 0}
+  timeAliveFourth: {fileID: 0}
+  shotsFiredFourth: {fileID: 743123464}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
@@ -22487,16 +22449,6 @@ MonoBehaviour:
 --- !u!1 &1401031198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2666802987249883081, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1401031199 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7451752766181668933, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1401031200 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6477154796350665972, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
   m_PrefabInstance: {fileID: 1401031195}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1435069482
@@ -22897,10 +22849,30 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: daeb4e9e92dac425496c974bc1fd6e3c, type: 2}
+    - target: {fileID: -7998700780809160596, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae8385b4a5dc147eca39b756265d592e, type: 2}
     - target: {fileID: -7944802574840951022, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a080902a57924432ba1649c5fe815870, type: 2}
+    - target: {fileID: -7659972862206429206, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 709bea696145d4895b0f67a9f7928326, type: 2}
+    - target: {fileID: -7570414092163122881, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 709bea696145d4895b0f67a9f7928326, type: 2}
+    - target: {fileID: -6413396288018779871, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4189758575a43448c859eeddca302e28, type: 2}
+    - target: {fileID: -6107040817666727926, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f896bc70bc6540f387f3ec3275c311f, type: 2}
     - target: {fileID: -6031708411201975295, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -22921,6 +22893,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: daeb4e9e92dac425496c974bc1fd6e3c, type: 2}
+    - target: {fileID: -4839558800751703920, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 414e48dde5ed04b3a84d43aaf0686730, type: 2}
+    - target: {fileID: -4475965900079699850, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4396aa4f5adfb4550ac53f75c2ac9105, type: 2}
+    - target: {fileID: -4431144320272763597, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4396aa4f5adfb4550ac53f75c2ac9105, type: 2}
     - target: {fileID: -3285947951069746247, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -22937,6 +22921,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1734180063125161341, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 709bea696145d4895b0f67a9f7928326, type: 2}
     - target: {fileID: -1698007539219393228, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -22961,6 +22949,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 391397717677626752, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 709bea696145d4895b0f67a9f7928326, type: 2}
     - target: {fileID: 597380298134971516, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -22977,6 +22969,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0f896bc70bc6540f387f3ec3275c311f, type: 2}
+    - target: {fileID: 945273146991400780, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4396aa4f5adfb4550ac53f75c2ac9105, type: 2}
     - target: {fileID: 1888860263428733326, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -22993,6 +22989,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3103395699406999287, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 709bea696145d4895b0f67a9f7928326, type: 2}
     - target: {fileID: 3853385372961052669, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -23029,6 +23029,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 169ff4a9115a04c66b51528b788a3b18, type: 2}
+    - target: {fileID: 5762892452220905622, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 414e48dde5ed04b3a84d43aaf0686730, type: 2}
     - target: {fileID: 6350275822672312469, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -23037,14 +23041,38 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c021cc3e302f4463b9c5f987945e6e34, type: 2}
+    - target: {fileID: 6863839605709039566, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4189758575a43448c859eeddca302e28, type: 2}
     - target: {fileID: 7089723034573841526, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2f70aecffeb3f4fd5865f9fc9d80e4dd, type: 2}
+    - target: {fileID: 7654475753495622801, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 414e48dde5ed04b3a84d43aaf0686730, type: 2}
     - target: {fileID: 7793591296301008433, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8131073225402582755, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f04ed5ccf74ee43d78fb6b46bfb020d3, type: 2}
+    - target: {fileID: 8550370957961943405, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 709bea696145d4895b0f67a9f7928326, type: 2}
+    - target: {fileID: 8852087023577678257, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 414e48dde5ed04b3a84d43aaf0686730, type: 2}
+    - target: {fileID: 8973547987832646092, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c021cc3e302f4463b9c5f987945e6e34, type: 2}
     - target: {fileID: 9047353989894546948, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -23286,28 +23314,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8002316427403002959, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
   m_PrefabInstance: {fileID: 1401031195}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1501644947 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1096103050499498450, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1506256531 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 57426433349721916, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-  m_PrefabInstance: {fileID: 1401031195}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1623040096
 GameObject:
   m_ObjectHideFlags: 0
@@ -23550,20 +23556,20 @@ MonoBehaviour:
   - {fileID: 206118990}
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
+  endGamePanel: {fileID: 1485824338}
   endGameTitle: {fileID: 1401031197}
   winnerAvatar: {fileID: 1401031198}
-  secondAvatar: {fileID: 1401031199}
-  thirdAvatar: {fileID: 1401031200}
-  fourthAvatar: {fileID: 1200528728}
-  shotsFiredWinner: {fileID: 747780705}
-  shotsFiredSecond: {fileID: 1506256531}
-  shotsFiredThird: {fileID: 1501644947}
-  shotsFiredFourth: {fileID: 743123464}
   timeAliveWinner: {fileID: 743123463}
-  timeAliveSecond: {fileID: 743123462}
-  timeAliveThird: {fileID: 743123461}
-  timeAliveFourth: {fileID: 743123460}
-  endGamePanel: {fileID: 1485824338}
+  shotsFiredWinner: {fileID: 747780705}
+  secondAvatar: {fileID: 0}
+  timeAliveSecond: {fileID: 0}
+  shotsFiredSecond: {fileID: 0}
+  thirdAvatar: {fileID: 0}
+  timeAliveThird: {fileID: 0}
+  shotsFiredThird: {fileID: 0}
+  fourthAvatar: {fileID: 0}
+  timeAliveFourth: {fileID: 0}
+  shotsFiredFourth: {fileID: 743123464}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
@@ -23779,7 +23785,7 @@ Transform:
   m_GameObject: {fileID: 1744079181}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 24.94, z: 0}
+  m_LocalPosition: {x: 0, y: 25.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33614,20 +33620,20 @@ MonoBehaviour:
   - {fileID: 206118990}
   - {fileID: 206118989}
   endGameCanvas: {fileID: 1401031196}
+  endGamePanel: {fileID: 1485824338}
   endGameTitle: {fileID: 1401031197}
   winnerAvatar: {fileID: 1401031198}
-  secondAvatar: {fileID: 1401031199}
-  thirdAvatar: {fileID: 1401031200}
-  fourthAvatar: {fileID: 1200528728}
-  shotsFiredWinner: {fileID: 747780705}
-  shotsFiredSecond: {fileID: 1506256531}
-  shotsFiredThird: {fileID: 1501644947}
-  shotsFiredFourth: {fileID: 743123464}
   timeAliveWinner: {fileID: 743123463}
-  timeAliveSecond: {fileID: 743123462}
-  timeAliveThird: {fileID: 743123461}
-  timeAliveFourth: {fileID: 743123460}
-  endGamePanel: {fileID: 1485824338}
+  shotsFiredWinner: {fileID: 747780705}
+  secondAvatar: {fileID: 0}
+  timeAliveSecond: {fileID: 0}
+  shotsFiredSecond: {fileID: 0}
+  thirdAvatar: {fileID: 0}
+  timeAliveThird: {fileID: 0}
+  shotsFiredThird: {fileID: 0}
+  fourthAvatar: {fileID: 0}
+  timeAliveFourth: {fileID: 0}
+  shotsFiredFourth: {fileID: 743123464}
   endGameLoading: {fileID: 414150528}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
