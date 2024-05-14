@@ -56,6 +56,19 @@ public class Jump : MonoBehaviour
         return true;
     }
 
+    private void OnLeftTrigger(InputValue value)
+    {
+        float input = value.Get<float>();
+        if(input > 0.5) { 
+            OnSouthButtonDown(value);
+        }
+    }
+
+    private void OnLeftBumperDown(InputValue value)
+    {
+        OnSouthButtonDown(value);
+    }
+
     private void OnSouthButtonDown(InputValue value)
     {
         if (CanJump)

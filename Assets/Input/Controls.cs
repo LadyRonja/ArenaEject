@@ -107,6 +107,33 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RightBumperDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3408bde-5733-42ae-a1f6-a7c5c36f13e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftBumperDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec3095d8-9628-4cb7-bd50-323e180e52a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftTrigger"",
+                    ""type"": ""Value"",
+                    ""id"": ""689a3769-5713-4d91-bedf-75cabf31ccc3"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -208,6 +235,39 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""AltFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9587b0d6-e68a-4598-9076-794d2be94a6a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightBumperDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25af07a6-94e4-4316-82d7-425fb18b5733"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftBumperDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c3bf112-40c3-4bcd-b24d-9b0aafc4e6d8"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftTrigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -225,6 +285,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_EastButtonDown = m_Gameplay.FindAction("EastButtonDown", throwIfNotFound: true);
         m_Gameplay_Start = m_Gameplay.FindAction("Start", throwIfNotFound: true);
         m_Gameplay_AltFire = m_Gameplay.FindAction("AltFire", throwIfNotFound: true);
+        m_Gameplay_RightBumperDown = m_Gameplay.FindAction("RightBumperDown", throwIfNotFound: true);
+        m_Gameplay_LeftBumperDown = m_Gameplay.FindAction("LeftBumperDown", throwIfNotFound: true);
+        m_Gameplay_LeftTrigger = m_Gameplay.FindAction("LeftTrigger", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +358,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_EastButtonDown;
     private readonly InputAction m_Gameplay_Start;
     private readonly InputAction m_Gameplay_AltFire;
+    private readonly InputAction m_Gameplay_RightBumperDown;
+    private readonly InputAction m_Gameplay_LeftBumperDown;
+    private readonly InputAction m_Gameplay_LeftTrigger;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -308,6 +374,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @EastButtonDown => m_Wrapper.m_Gameplay_EastButtonDown;
         public InputAction @Start => m_Wrapper.m_Gameplay_Start;
         public InputAction @AltFire => m_Wrapper.m_Gameplay_AltFire;
+        public InputAction @RightBumperDown => m_Wrapper.m_Gameplay_RightBumperDown;
+        public InputAction @LeftBumperDown => m_Wrapper.m_Gameplay_LeftBumperDown;
+        public InputAction @LeftTrigger => m_Wrapper.m_Gameplay_LeftTrigger;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -344,6 +413,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @AltFire.started += instance.OnAltFire;
             @AltFire.performed += instance.OnAltFire;
             @AltFire.canceled += instance.OnAltFire;
+            @RightBumperDown.started += instance.OnRightBumperDown;
+            @RightBumperDown.performed += instance.OnRightBumperDown;
+            @RightBumperDown.canceled += instance.OnRightBumperDown;
+            @LeftBumperDown.started += instance.OnLeftBumperDown;
+            @LeftBumperDown.performed += instance.OnLeftBumperDown;
+            @LeftBumperDown.canceled += instance.OnLeftBumperDown;
+            @LeftTrigger.started += instance.OnLeftTrigger;
+            @LeftTrigger.performed += instance.OnLeftTrigger;
+            @LeftTrigger.canceled += instance.OnLeftTrigger;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -375,6 +453,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @AltFire.started -= instance.OnAltFire;
             @AltFire.performed -= instance.OnAltFire;
             @AltFire.canceled -= instance.OnAltFire;
+            @RightBumperDown.started -= instance.OnRightBumperDown;
+            @RightBumperDown.performed -= instance.OnRightBumperDown;
+            @RightBumperDown.canceled -= instance.OnRightBumperDown;
+            @LeftBumperDown.started -= instance.OnLeftBumperDown;
+            @LeftBumperDown.performed -= instance.OnLeftBumperDown;
+            @LeftBumperDown.canceled -= instance.OnLeftBumperDown;
+            @LeftTrigger.started -= instance.OnLeftTrigger;
+            @LeftTrigger.performed -= instance.OnLeftTrigger;
+            @LeftTrigger.canceled -= instance.OnLeftTrigger;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -403,5 +490,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnEastButtonDown(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
         void OnAltFire(InputAction.CallbackContext context);
+        void OnRightBumperDown(InputAction.CallbackContext context);
+        void OnLeftBumperDown(InputAction.CallbackContext context);
+        void OnLeftTrigger(InputAction.CallbackContext context);
     }
 }

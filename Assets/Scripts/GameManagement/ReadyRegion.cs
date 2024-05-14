@@ -1,24 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ReadyRegion : MonoBehaviour
 {
-    List<PlayerStats> playersInRegion = new();
+    private bool startingGame = false;
+    List<ReadyBehaivor> playersInRegion = new();
+
+    private void Update()
+    {
+        CheckPlayCondition();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<PlayerStats>(out PlayerStats player))
+        if(other.TryGetComponent<ReadyBehaivor>(out ReadyBehaivor player))
         {
             playersInRegion.Add(player);
-            CheckPlayCondition();
+            player.inReadyArea = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<PlayerStats>(out PlayerStats player))
+        if (other.TryGetComponent<ReadyBehaivor>(out ReadyBehaivor player))
         {
+            player.inReadyArea = false;
+            player.isReady = false;
+            player.HideReady();
             playersInRegion.Remove(player);
         }
     }
@@ -26,10 +36,21 @@ public class ReadyRegion : MonoBehaviour
     private void CheckPlayCondition()
     {
         if(playersInRegion.Count < 2) { return; }
+        if(startingGame) { return; }
 
-        PlayerStats[] allPlayers = (PlayerStats[])FindObjectsOfType(typeof(PlayerStats));
-        if(allPlayers.Length == allPlayers.Length ) { 
-            StartScreenManager.Instance.StartGame();
-        }
+        ReadyBehaivor[] allPlayers = (ReadyBehaivor[])FindObjectsOfType(typeof(ReadyBehaivor));
+        if(allPlayers.Length != allPlayers.Length ) { return; }
+
+        if(playersInRegion.All(p => p.isReady))
+        {
+            StartCoroutine(StartGame());
+        }   
+    }
+
+    private IEnumerator StartGame()
+    {
+        startingGame = true;
+        StartScreenManager.Instance.StartGame();
+        yield return null;
     }
 }

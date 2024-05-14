@@ -62,6 +62,11 @@ public class WeaponUser : MonoBehaviour
             shooting = false;
         }
     }
+    private void OnRightBumperDown(InputValue value)
+    {
+        OnNorthButtonDown(value);
+    }
+
     private void OnNorthButtonDown(InputValue value)
     {
         if (groundChecker == null)
