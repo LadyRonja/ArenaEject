@@ -97,25 +97,6 @@ public class JoinScreenManager : MonoBehaviour
     }
 
 
-    public void ToggleReady(int index)
-    {
-        playerConfigs[index].isReady = !playerConfigs[index].isReady;
-        if (playerConfigs.Count > 1 && playerConfigs.All(p => p.isReady))
-        {
-            var basicButtons = (BasicButton[])FindObjectsOfType<BasicButton>();
-            foreach (var buttonScripts in basicButtons)
-            {
-                if(buttonScripts.MyType == BasicButton.ButtonType.START)
-                {
-                    if(buttonScripts.TryGetComponent<Button>(out Button btn))
-                    {
-                        btn.interactable = true;
-                    }
-                }
-            }
-        }
-    }
-
     public void HandlePlayerJoined(PlayerInput pi)
     {
         Debug.Log("Player joined: " + pi.playerIndex);
@@ -132,6 +113,7 @@ public class JoinScreenManager : MonoBehaviour
 
             GameObject displayObj = Instantiate(playerDisplayPrefab, Vector3.zero, Quaternion.identity, displayParent);
             JoinDisplay displayComponents = displayObj.GetComponent<JoinDisplay>();
+            displayComponents.playerIndex = pi.playerIndex;
             displayComponents.playerText.text = $"Player {pi.playerIndex + 1}";
             if (playerColors[pi.playerIndex] != null)
             {
@@ -144,9 +126,6 @@ public class JoinScreenManager : MonoBehaviour
             player.transform.position = spawnPoints[playerConfigs.Count - 1].transform.position;
 
             UpdateCameraTracking();
-
-            Debug.Log($"Player {pi.playerIndex} instantly toggled ready - disable when character select is enabled");
-            ToggleReady(pi.playerIndex);
         }
     }
 
@@ -167,30 +146,61 @@ public class JoinScreenManager : MonoBehaviour
 
     public void RemovePlayerFromLobby(int playerIndex)
     {
-        Debug.LogError("RemovePlayerFromLobby not implemented, returning");
-        return;
-
         PlayerConfigurations playerToRemove;
         try
         {
+            // Remove player config
             playerToRemove = playerConfigs.Where(p => p.playerIndex == playerIndex).ToList()[0];
             playerConfigs.Remove(playerToRemove);
+
+            // Remove player input
+            foreach (Transform child in transform)
+            {
+                if(child.TryGetComponent<PlayerInput>(out PlayerInput pi))
+                {
+                    if(pi.splitScreenIndex == playerIndex)
+                    {
+                        Destroy(child.gameObject);
+                        break;
+                    }
+                }
+            }
+
+            // Remove player icon
+            foreach (Transform child in displayParent)
+            {
+                if (child.TryGetComponent<JoinDisplay>(out JoinDisplay jp))
+                {
+                    if (jp.playerIndex == playerIndex)
+                    {
+                        Destroy(child.gameObject);
+                        break;
+                    }
+                }
+            }
+
+            // Remove player object
             PlayerStats[] players = (PlayerStats[])FindObjectsOfType(typeof(PlayerStats));
             if(players.Length > 0) {
                 foreach (PlayerStats player in players)
                 {
                     if(player.playerIndex == playerIndex)
                     {
-                        Destroy(player);
+                        Destroy(player.gameObject);
                         break;
                     }
                 }
+            }
+            else
+            {
+                Debug.LogError("Last player in lobby does not have index 0, this should be impossible");
+                StartScreenManager.Instance.GoToDefault();
             }
 
         }
         catch 
         {
-
+            Debug.LogError("Whopsie doodle");
         }
     }
 
@@ -202,11 +212,9 @@ public class PlayerConfigurations
     {
         input= pi;
         playerIndex = pi.playerIndex;
-        isReady = false;
     }
 
     public PlayerInput input;
     public int playerIndex;
     public Color playerColor = Color.white;
-    public bool isReady;
 }

@@ -38,7 +38,7 @@ public class ReadyBehaivor : MonoBehaviour
 
         if(inExitRegion) {
             // TODO: Let player index 0 reset the lobby, but have all other just leave the lobby
-            /*
+            
             if(TryGetComponent<PlayerStats>(out PlayerStats myStats))
             {
                 if(myStats.playerIndex == 0)
@@ -50,7 +50,7 @@ public class ReadyBehaivor : MonoBehaviour
                     JoinScreenManager.Instance.RemovePlayerFromLobby(myStats.playerIndex);
                 }
                 return;
-            }*/
+            }
 
             StartScreenManager.Instance.GoToDefault();
         }

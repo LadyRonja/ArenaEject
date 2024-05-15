@@ -10,4 +10,5 @@ public class JoinDisplay : MonoBehaviour
 {
     public TMP_Text playerText;
     public Image displayImage;
+    public int playerIndex = -1;
 }
