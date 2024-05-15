@@ -525,6 +525,7 @@ MonoBehaviour:
   moveSpeed: 10
   moveDir: {x: 0, y: 0, z: 0}
   knockbackForce: 2
+  useAimAssist: 0
   explodeOnImpact: 0
   explodeTime: 1.5
   explosionDelay: 10
