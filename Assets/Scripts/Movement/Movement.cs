@@ -85,7 +85,7 @@ public class Movement : MonoBehaviour
         {
             // Deacceleration
             rb.velocity -= rb.velocity * deceleration * Time.fixedDeltaTime;
-            if (rb.velocity.sqrMagnitude < 0.1f) rb.velocity = Vector3.zero;
+            if (rb.velocity.sqrMagnitude < 0.2f) rb.velocity = Vector3.zero;
         }
 
         Vector3 newVelocity = rb.velocity;
