@@ -162,11 +162,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
   - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
   - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
-  backGrpundSprites:
-  - {fileID: 21300000, guid: 0b70958d0dedf4dbc9a221215968f1ee, type: 3}
-  - {fileID: 21300000, guid: 0b70958d0dedf4dbc9a221215968f1ee, type: 3}
-  - {fileID: 21300000, guid: 0b70958d0dedf4dbc9a221215968f1ee, type: 3}
-  - {fileID: 21300000, guid: 0b70958d0dedf4dbc9a221215968f1ee, type: 3}
+  backGrpundSprites: {fileID: 21300000, guid: 1e6167ce73a66df4e9e2046fd397d15c, type: 3}
   myRenderers:
   - {fileID: 8568212395356218875}
   - {fileID: 1704151142379565545}

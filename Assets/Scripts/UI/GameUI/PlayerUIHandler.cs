@@ -44,9 +44,9 @@ public class PlayerUIHandler : MonoBehaviour
                 myPlayerPotrait.playerPotrait.sprite = myPlayerStats.playerSprites[myPlayerStats.playerIndex];
             }
 
-            if(myPlayerStats.backGrpundSprites.Count != 0)
+            if(myPlayerStats.backGrpundSprites != null)
             {
-                myPlayerPotrait.background.sprite = myPlayerStats.backGrpundSprites[myPlayerStats.playerIndex];
+                myPlayerPotrait.background.sprite = myPlayerStats.backGrpundSprites;
             }
 
             if(myPlayerStats.colors.Count != 0)
