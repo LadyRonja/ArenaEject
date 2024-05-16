@@ -293,7 +293,7 @@ public class KillPlane : MonoBehaviour
         
         DOVirtual.DelayedCall(5f, () =>
         {
-            StartCoroutine(ChangeLevel(new List<int> {0, 1}));
+            StartCoroutine(ChangeLevel(new List<int> {0}));
         });
     }
         

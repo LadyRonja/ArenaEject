@@ -18885,6 +18885,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8329716533989173631, guid: 1c9d4e9ab51ca7e4095189bc1bd10000, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7862580207460014358, guid: 1c9d4e9ab51ca7e4095189bc1bd10000, type: 3}
@@ -20570,6 +20574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1744079184}
+  - component: {fileID: 1744079185}
   - component: {fileID: 1744079183}
   - component: {fileID: 1744079182}
   m_Layer: 0
@@ -20672,6 +20677,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1744079185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744079181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa983968fef3c54db7ec0063705c952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initDelay: 0
+  timeToFullSize: 1
+  fullSizeLinger: 2
+  timeToShrink: 0.5
 --- !u!1 &1776619756
 GameObject:
   m_ObjectHideFlags: 0
