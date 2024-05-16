@@ -39,9 +39,20 @@ public class PlayerUIHandler : MonoBehaviour
 
         if(TryGetComponent<PlayerStats>(out PlayerStats myPlayerStats))
         {
+            if(myPlayerStats.playerSprites.Count != 0)
+            {
+                myPlayerPotrait.playerPotrait.sprite = myPlayerStats.playerSprites[myPlayerStats.playerIndex];
+            }
+
+            if(myPlayerStats.backGrpundSprites.Count != 0)
+            {
+                myPlayerPotrait.background.sprite = myPlayerStats.backGrpundSprites[myPlayerStats.playerIndex];
+            }
+
             if(myPlayerStats.colors.Count != 0)
             {
-                myPlayerPotrait.playerPotrait.color = myPlayerStats.colors[myPlayerStats.playerIndex];
+                //myPlayerPotrait.playerPotrait.color = myPlayerStats.colors[myPlayerStats.playerIndex];
+                myPlayerPotrait.background.color = myPlayerStats.colors[myPlayerStats.playerIndex];
                 myPlayerPotrait.damagePercentage.color = myPlayerStats.colors[myPlayerStats.playerIndex];
             }
         }

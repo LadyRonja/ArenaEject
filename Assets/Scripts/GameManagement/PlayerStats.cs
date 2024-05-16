@@ -12,6 +12,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header("TEMP")]
     public List<Color> colors = new List<Color>();
+    public List<Sprite> playerSprites = new();
+    public List<Sprite> backGrpundSprites = new();
     public List<SkinnedMeshRenderer> myRenderers = new();
 
     private void Start()
