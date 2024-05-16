@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2637121075642425942}
   - component: {fileID: 1312033408873725218}
   - component: {fileID: 8564401647048773428}
+  - component: {fileID: -7921504930450050683}
   m_Layer: 10
   m_Name: WeaponPickupShotgun
   m_TagString: Untagged
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   weaponPrefab: {fileID: 65456400974118212, guid: d7a7c2afc96c4904c95a22b2298c8a70, type: 3}
+--- !u!114 &-7921504930450050683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192823205627750621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce49968ca66353409b944c87d91f940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0.3
+  speed: 5
 --- !u!1 &5092130439107031485
 GameObject:
   m_ObjectHideFlags: 0
