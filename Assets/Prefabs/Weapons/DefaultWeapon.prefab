@@ -59,6 +59,7 @@ MonoBehaviour:
   ammoSpeed: 20
   ammoDirOffSet: {x: 0, y: 0, z: 0}
   destroyDelay: 5
+  fireSound: {fileID: 8300000, guid: cd1c14c5c5473c84ab5bd9a62e6511fa, type: 3}
   explosionPrefab: {fileID: 787993282556171092, guid: 0e8d8238b0825da40ab95e384d2402c9, type: 3}
 --- !u!136 &3367394978831467289
 CapsuleCollider:
@@ -242,6 +243,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -4628302791972393431, guid: 3bd6fc3b78c12164abf8cf5405de0c0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e61c41514d48a2f45ad178e76c9f424b, type: 2}
     - target: {fileID: -4327454787360258323, guid: 3bd6fc3b78c12164abf8cf5405de0c0e, type: 3}
       propertyPath: m_Layer
       value: 9

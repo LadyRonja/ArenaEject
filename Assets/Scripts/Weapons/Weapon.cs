@@ -19,6 +19,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected Vector3 ammoDirOffSet = Vector3.zero;
     [SerializeField] protected float destroyDelay = 5f;
 
+    [SerializeField] protected AudioClip fireSound;
+
     [SerializeField] protected GameObject explosionPrefab;
     protected bool explodeOnImpact = false;
 
@@ -42,6 +44,8 @@ public class Weapon : MonoBehaviour
         ammoCount--;
         shotsFired++;
         GameObject projectileObj;
+
+        AudioHandler.PlaySoundEffect(fireSound);
 
         if (fireAll)
         {
@@ -79,16 +83,6 @@ public class Weapon : MonoBehaviour
                 projectileScr.moveSpeed = ammoSpeed;
             }
         }
-
-
-        // 
-        /*if (!projectileObj.GetComponent<Projectile>())
-        {
-            Rigidbody projectileRb = projectileObj.GetComponent<Rigidbody>();
-            projectileRb.velocity = Vector3.zero;
-            projectileRb.AddForce(Vector3.up * initialUpwardForce, ForceMode.Impulse);
-        }*/
-
     }
 
     private void OnCollisionEnter(Collision collision)
