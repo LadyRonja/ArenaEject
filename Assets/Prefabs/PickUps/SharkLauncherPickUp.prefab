@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 5058047968691279332, guid: b0860aa5d4dd29d42bcdd112df971851, type: 3}
       propertyPath: weaponPrefab
       value: 
-      objectReference: {fileID: 5047443182740006600, guid: 29b236a5c4fc361408c94108981df591, type: 3}
+      objectReference: {fileID: 4382589121823247566, guid: 6483a0689ee532a4cbb08f575f1a7c52, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83,3 +83,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 0.3
   speed: 5
+  randomStart: 1

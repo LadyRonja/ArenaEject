@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float destroyDelay = 5f;
 
     [SerializeField] protected AudioClip fireSound;
+    [SerializeField] protected List<TMP_Text> outOfAmmoDisplay;
 
     [SerializeField] protected GameObject explosionPrefab;
     protected bool explodeOnImpact = false;
@@ -28,12 +31,17 @@ public class Weapon : MonoBehaviour
 
     public virtual bool TryShoot()
     {
-        if (ammoCount <= 0) return false;
+
         if (ammoTypePrefab == null) return false;
         if (firePoints == null) return false;
         if (firePoints.Count == 0) return false;
-        if (Time.time <= fireTimer) return false;
-        
+        if (Time.time <= fireTimer) return false; 
+        if (ammoCount <= 0)
+        {
+            DisplayOutOfAmmo();
+            return false;
+        }
+
         Shoot();
         return true;
     }
@@ -118,5 +126,46 @@ public class Weapon : MonoBehaviour
 
     protected virtual void DestroyAfterDelay() {
         Destroy(gameObject, destroyDelay);
+    }
+
+    private void DisplayOutOfAmmo()
+    {
+        if(outOfAmmoDisplay == null) { return; }/*
+        for (int i = 0; i < outOfAmmoDisplay.Count; i++)
+        {
+            if (outOfAmmoDisplay[i].color.a != 0) 
+            { 
+                continue;
+            }
+            StopCoroutine(FlashClick(i));
+            StartCoroutine(FlashClick(i));
+            break;
+
+        }*/
+        if (outOfAmmoDisplay[0].color.a != 0)
+        {
+            return;
+        }
+        StopCoroutine(FlashClick(0));
+        StartCoroutine(FlashClick(0));
+    }
+
+    private IEnumerator FlashClick(int index)
+    {
+        Color startColor = Color.white;
+        outOfAmmoDisplay[index].color = startColor;
+
+        Color endColor = new Color(1, 1, 1, 0);
+        float fadeTime = fireRate;
+        float timePassed = 0;
+
+        while(timePassed < fadeTime) {
+            outOfAmmoDisplay[index].color = Color.Lerp(startColor, endColor, (timePassed / fadeTime));
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+        outOfAmmoDisplay[index].color = endColor;
+
+        yield return null;
     }
 }
