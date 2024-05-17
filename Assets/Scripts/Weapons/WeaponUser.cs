@@ -207,9 +207,8 @@ public class WeaponUser : MonoBehaviour
         throwPosition.y += 1f;
 
         Vector3 throwRotation = transform.forward;
-        Vector3 throwangle = new Vector3(0f, angleToThrowExplosiveWeapon, 0f).normalized;
-
-        throwRotation.y -= throwangle.y;
+        Vector3 angle = Vector3.Cross(throwRotation, Vector3.down);
+        throwRotation = Quaternion.AngleAxis(angleToThrowExplosiveWeapon, angle) * throwRotation;
 
         if (Physics.Raycast(throwPosition, throwRotation, out RaycastHit hit))
         {

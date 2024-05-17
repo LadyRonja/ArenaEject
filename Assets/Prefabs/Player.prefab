@@ -261,7 +261,8 @@ MonoBehaviour:
   carriedWeaponTransform: {fileID: 7336916088099221024}
   carriedWeapon: {fileID: 0}
   shotsFired: 0
-  angleToThrowExplosiveWeapon: 45
+  userIndex: -1
+  angleToThrowExplosiveWeapon: 20
   weaponLaunchForceExplosive: 40
   weaponThrowAssisst: {fileID: 4411590136687848730}
 --- !u!114 &6124344014326713301
