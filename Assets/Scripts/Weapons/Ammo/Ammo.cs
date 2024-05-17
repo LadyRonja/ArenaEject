@@ -11,6 +11,8 @@ public abstract class Ammo : MonoBehaviour
     [HideInInspector] public Vector3 moveDir = Vector3.forward;
     [SerializeField] protected float knockbackForce = 15f;
 
+    [HideInInspector] public int ownerIndex = -1;
+
     [Header("Aim Assist")]
     [SerializeField] protected bool useAimAssist = true;
     protected float aimAssistLength = 10f;

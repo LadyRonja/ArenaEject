@@ -5373,7 +5373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288350372321757139, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: playerCountToSpawn
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1955220042488997718, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19608,6 +19608,10 @@ PrefabInstance:
     - target: {fileID: -1807970279642858887, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1778250503712608719, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1734180063125161341, guid: d7ffc999bcd3243279d899cf7160afd2, type: 3}
       propertyPath: m_Materials.Array.data[0]

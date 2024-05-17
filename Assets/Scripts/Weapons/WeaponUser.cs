@@ -20,6 +20,7 @@ public class WeaponUser : MonoBehaviour
     [HideInInspector] public int shotsFired = 0;
 
     private bool shooting = false;
+    [HideInInspector] public int userIndex = -1;
 
     [SerializeField] private float angleToThrowExplosiveWeapon = 45f;
     [SerializeField] private float weaponLaunchForceExplosive = 40f;
@@ -122,6 +123,7 @@ public class WeaponUser : MonoBehaviour
 
         GameObject weaponObj = Instantiate(weaponPrefabToAquire).gameObject;
         Weapon weaponScr = weaponObj.GetComponent<Weapon>();
+        weaponScr.ownerIndex = userIndex;
         Transform weaponCarryParent;
         if (weaponCarryPoint != null) { weaponCarryParent = weaponCarryPoint; }
         else { weaponCarryParent = transform; }
@@ -138,7 +140,7 @@ public class WeaponUser : MonoBehaviour
         {
             //if (carriedWeapon.ammoCount > 0) { return; } // TODO: Once ammo count is balanced, enable this check.
         }
-
+        carriedWeapon.ownerIndex = -1;
         Collider collider = carriedWeapon.GetComponent<Collider>();
         if (collider == null)
         {

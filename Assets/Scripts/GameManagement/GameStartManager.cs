@@ -189,6 +189,7 @@ public class GameStartManager : MonoBehaviour
         else
         {
             weaponUser.appropriatlySpawned = appropriatlySpawned;
+            weaponUser.userIndex = playerIndex;
         }
 
         // Jump setup

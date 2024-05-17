@@ -21,6 +21,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected Vector3 ammoDirOffSet = Vector3.zero;
     [SerializeField] protected float destroyDelay = 5f;
 
+    [HideInInspector] public int ownerIndex = -1;
+
     [SerializeField] protected AudioClip fireSound;
     [SerializeField] protected List<TMP_Text> outOfAmmoDisplay;
 
@@ -62,6 +64,7 @@ public class Weapon : MonoBehaviour
                 projectileObj = Instantiate(ammoTypePrefab, firePoint.position, Quaternion.identity).gameObject;
 
                 Ammo projectileScr = projectileObj.GetComponent<Ammo>();
+                projectileScr.ownerIndex = ownerIndex;
                 Vector3 baseDirection = transform.forward;
                 Vector3 randomDirection = Quaternion.Euler(Random.Range(-spreadAngle, spreadAngle), Random.Range(-spreadAngle, spreadAngle), 0) * baseDirection;
                 randomDirection.y += initialUpwardForce;
@@ -80,6 +83,7 @@ public class Weapon : MonoBehaviour
 
             projectileObj.transform.forward = transform.forward;
             Ammo projectileScr = projectileObj.GetComponent<Ammo>();
+            projectileScr.ownerIndex = ownerIndex;
             Vector3 projectileDir = projectileObj.transform.forward;
             ammoDirOffSet.Normalize();
             projectileDir.y += initialUpwardForce;

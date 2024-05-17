@@ -29,6 +29,13 @@ public class Bomb : Ammo
     {
         if (other.gameObject.TryGetComponent<KnockBackHandler>(out KnockBackHandler hit))
         {
+            if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats hitPlayer))
+            {
+                if (hitPlayer.playerIndex == ownerIndex)
+                {
+                    return;
+                }
+            }
             Explode();
         }
 

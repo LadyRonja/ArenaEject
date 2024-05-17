@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2637121075642425942, guid: 0cc41dad41e50d54b85aca31064e685a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 412881e6da9059446b744d99faa234c4, type: 2}
     - target: {fileID: 3979681237999330934, guid: 0cc41dad41e50d54b85aca31064e685a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -366,3 +370,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 0.3
   speed: 5
+  randomStart: 1
