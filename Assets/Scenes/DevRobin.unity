@@ -19667,9 +19667,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1637158037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9471044e569cdfa47bf3fd9108dae12b, type: 3}
+  m_Script: {fileID: 11500000, guid: f226472203f36694098f89bf2d5694e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPLayers: 4
+  playerDisplayPrefab: {fileID: 0}
+  playerPrefab: {fileID: 0}
+  displayParent: {fileID: 0}
+  playerColors: []
 --- !u!1 &1690801697
 GameObject:
   m_ObjectHideFlags: 0

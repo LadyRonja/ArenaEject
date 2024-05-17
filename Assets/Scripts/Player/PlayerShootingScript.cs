@@ -43,14 +43,17 @@ public class PlayerShooting : MonoBehaviour
         // Instantiate the projectile at the calculated position
         GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
 
-        if (shotsFiredPerPlayer.ContainsKey(controllerIndex))
+        if (projectile != null)
         {
-            shotsFiredPerPlayer[controllerIndex]++;
-            Debug.Log(shotsFiredPerPlayer[controllerIndex]);
-        }
-        else
-        {
-            shotsFiredPerPlayer[controllerIndex] = 1;
+            if (shotsFiredPerPlayer.ContainsKey(controllerIndex))
+            {
+                shotsFiredPerPlayer[controllerIndex]++;
+                Debug.Log(shotsFiredPerPlayer[controllerIndex]);
+            }
+            else
+            {
+                shotsFiredPerPlayer[controllerIndex] = 1;
+            }
         }
         
         // Get the Rigidbody component of the projectile

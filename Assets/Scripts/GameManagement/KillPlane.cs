@@ -195,7 +195,6 @@ public class KillPlane : MonoBehaviour
         if (!deadPlayers.Contains(winner))
         {
             deadPlayers.Add(winner);
-            winner.playerIndex = winner.playerIndex;
         }
 
         JoinScreenManager joinScreenManager = FindObjectOfType<JoinScreenManager>();
