@@ -26,7 +26,6 @@ public class JoinScreenManager : MonoBehaviour
         if (instance == null || instance == this)
         {
             instance = this;
-            StaticStuff.Instance.JoinScreenManager = this;
             playerConfigs = new();
             SceneManager.sceneLoaded += delegate { OnSceneLoad(); };
             DontDestroyOnLoad(gameObject);

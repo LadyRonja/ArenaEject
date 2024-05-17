@@ -18,7 +18,6 @@ public class KillPlane : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints = new();
     private List<PlayerStats> players = new();
     private List<PlayerStats> deadPlayers = new();
-    public static Dictionary<int, int> shotsFiredTracking = new Dictionary<int, int>();
     private Dictionary<int, int> timeAliveTracking = new Dictionary<int, int>();
     private static bool isTimeTrackingStarted = false;
     private bool gameIsOver = false;
@@ -53,12 +52,10 @@ public class KillPlane : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1.0f;
-        shotsFiredTracking = new();
     }
 
     private void Start()
     {
-        shotsFiredTracking = new();
         timeAliveTracking = new();
         if (!isTimeTrackingStarted)
         {
@@ -174,11 +171,11 @@ public class KillPlane : MonoBehaviour
                 {
                     try
                     {
-                        shotsFiredTracking.Add(player.playerIndex, dyingUser.shotsFired);
+                        PlayerShooting.shotsFiredPerPlayer.Add(player.playerIndex, dyingUser.shotsFired);
                     }
                     catch 
                     {
-                        shotsFiredTracking[player.playerIndex] = dyingUser.shotsFired;
+                        PlayerShooting.shotsFiredPerPlayer[player.playerIndex] = dyingUser.shotsFired;
                     }
                 }
                 player.gameObject.SetActive(false);
@@ -201,20 +198,13 @@ public class KillPlane : MonoBehaviour
             winner.playerIndex = winner.playerIndex;
         }
 
-        if (StaticStuff.Instance.JoinScreenManager == null)
-        {
-            StaticStuff.Instance.JoinScreenManager = gameObject.AddComponent<JoinScreenManager>();
-        }
-        if (StaticStuff.Instance.JoinScreenManager.playerConfigs == null)
-        {
-            StaticStuff.Instance.JoinScreenManager.playerConfigs = new List<PlayerConfigurations>();
-        }
+        JoinScreenManager joinScreenManager = FindObjectOfType<JoinScreenManager>();
 
-        if (StaticStuff.Instance.JoinScreenManager.playerConfigs.Count >= 1)
+        if (joinScreenManager.playerConfigs.Count >= 1)
         {
-            for (int i = 0; i < StaticStuff.Instance.JoinScreenManager.playerConfigs.Count; i++)
+            for (int i = 0; i < joinScreenManager.playerConfigs.Count; i++)
             {
-                PlayerConfigurations playerConfig = StaticStuff.Instance.JoinScreenManager.playerConfigs[i];
+                PlayerConfigurations playerConfig = joinScreenManager.playerConfigs[i];
 
                 switch (i)
                 {
@@ -285,7 +275,7 @@ public class KillPlane : MonoBehaviour
 
             DOVirtual.DelayedCall(delay + 0.6f, () =>
             {
-                int shotsFired = shotsFiredTracking.ContainsKey(deadPlayers[deadPlayers.Count - 1 - index].playerIndex) ? shotsFiredTracking[deadPlayers[deadPlayers.Count - 1 - index].playerIndex] : 0;
+                int shotsFired = PlayerShooting.shotsFiredPerPlayer.ContainsKey(deadPlayers[deadPlayers.Count - 1 - index].playerIndex) ? PlayerShooting.shotsFiredPerPlayer[deadPlayers[deadPlayers.Count - 1 - index].playerIndex] : 0;
                 shotsFiredTexts[index].text = $"Fired {shotsFired} shots";
                 shotsFiredTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
@@ -299,6 +289,7 @@ public class KillPlane : MonoBehaviour
         
     private IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
     {
+        isTimeTrackingStarted = false;
         PlayerShooting.shotsFiredPerPlayer.Clear();
 
         int sceneCount = SceneManager.sceneCountInBuildSettings;
