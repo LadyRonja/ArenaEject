@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
-    private Animator _anim;
+    [HideInInspector] public Animator animator;
     private Movement _movementController;
     private WeaponUser _weaponUser;
     private GroundChecker _groundCheck;
@@ -29,8 +29,8 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private void Start()
     {
-        _anim = GetComponentInChildren<Animator>();
-        if (_anim == null)
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
         {
             Debug.LogError("AnimationHandler unable To find player animator component!");
         }
@@ -141,7 +141,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private bool ComponentsVerified()
     {
-        if (_anim == null) { return false; }
+        if (animator == null) { return false; }
         if (_movementController == null) { return false; }
         if (_weaponUser == null) { return false; }
         if (_groundCheck == null) { return false; }
@@ -154,7 +154,7 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         if (currentState != animation)
         {
-            _anim.CrossFade(animation, 0f, 0);
+            animator.CrossFade(animation, 0f, 0);
             currentState = animation;
         }
     }

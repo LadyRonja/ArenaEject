@@ -178,6 +178,7 @@ public class GameStartManager : MonoBehaviour
         ReadyBehaivor  readyBehaivor = playerToVerify.GetComponent<ReadyBehaivor>();
         PlayerAnimationManager playerAnimationManager = playerToVerify.GetComponent<PlayerAnimationManager>();
         GroundChecker groundChecker = playerToVerify.GetComponent<GroundChecker>();
+        CharacterSelectManager characterSelectManager = playerToVerify.GetComponent<CharacterSelectManager>();
 
 
         // Stats set-up
@@ -247,6 +248,16 @@ public class GameStartManager : MonoBehaviour
         if (playerAnimationManager == null)
         {
             Debug.LogError("Player prefab missing PlayerAnimationManager script");
+        }
+
+        // Character select manager
+        if(characterSelectManager == null)
+        {
+            Debug.LogError("Player prefab missing Character Select Manager script");
+        }
+        else
+        {
+            characterSelectManager.currentIndex = playerIndex;
         }
     }
 
