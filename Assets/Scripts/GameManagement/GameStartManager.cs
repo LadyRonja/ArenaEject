@@ -5,14 +5,35 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public delegate void AllPlayersSpawned();
 public class GameStartManager : MonoBehaviour
 {
+    private static GameStartManager instance;
+    public static GameStartManager Instance { get => instance; }
+
+
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private List<Transform> spawnPoints;
 
     [Header("Development options")]
     [SerializeField] private bool createAPlayerForEachGamepad = false;
     [SerializeField] [Range(0,4)] private int playerCountToSpawn = 2;
+
+
+    public AllPlayersSpawned OnAllPlayersSpawned;
+
+
+    private void Awake()
+    {
+        if(instance == null || instance == this)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -74,7 +95,11 @@ public class GameStartManager : MonoBehaviour
                 VerifyPlayer(playerInputObj.gameObject, i);
             }
 
+            // Raise Event for spawned players
+            OnAllPlayersSpawned?.Invoke();
+
             // Development players created, exit function
+
             return;
         }
 
@@ -91,6 +116,10 @@ public class GameStartManager : MonoBehaviour
             // Verify Component Validity
             VerifyPlayer(playerInputObj.gameObject, playersToSpawn[i].playerIndex, true);     
         }
+
+
+        // Raise Event for spawned players
+        OnAllPlayersSpawned?.Invoke();
     }
 
     private PlayerInput SpawnAPlayer(int playerIndex, InputDevice inputDevice)
