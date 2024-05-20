@@ -17,6 +17,16 @@ public class StartScreenManager : MonoBehaviour
     [SerializeField] private GameObject creditsScreen;
     private List<GameObject> screens;
 
+    [Space]
+    [SerializeField] private Button joinButton;
+    [SerializeField] private Button optionsButton;
+    [SerializeField] private Button creditsButton;
+    [SerializeField] private Button quitButton;
+    [Space]
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Button creditsBackButton;
+    private Button lastSelected;
+
     [SerializeField] private GameObject joinScreenManagerPrefab;
 
 
@@ -37,6 +47,10 @@ public class StartScreenManager : MonoBehaviour
 
             PlayerInputManager.instance.DisableJoining(); 
             TurnOffAllSCreens();
+            if(joinButton != null)
+            {
+                lastSelected = joinButton;
+            }
         }
         else
         {
@@ -50,15 +64,36 @@ public class StartScreenManager : MonoBehaviour
         GoToScreen(joinScreen);
         PlayerInputManager.instance.EnableJoining();
         buttonRegion.SetActive(false);
+        if (joinButton != null)
+        {
+            lastSelected = joinButton;
+        }
     }
 
     public void GoToOptions()
     {
         GoToScreen(optionsScreen);
+        if(musicSlider != null)
+        {
+            musicSlider.Select();
+        }
+        if(optionsButton != null)
+        {
+            lastSelected = optionsButton;
+        }
     }
     public void GoToCredits()
     {
         GoToScreen(creditsScreen);
+        musicSlider.Select();
+        if(creditsBackButton != null)
+        {
+            creditsBackButton.Select();
+        }
+        if (creditsButton != null)
+        {
+            lastSelected = creditsButton;
+        }
     }
 
     private void GoToScreen(GameObject screen)
@@ -80,6 +115,10 @@ public class StartScreenManager : MonoBehaviour
 
         }
         TurnOffAllSCreens();
+        if(lastSelected != null)
+        {
+            lastSelected.Select();
+        }
     }
 
     private void TurnOffAllSCreens()
