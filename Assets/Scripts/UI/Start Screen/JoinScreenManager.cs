@@ -59,10 +59,16 @@ public class JoinScreenManager : MonoBehaviour
                 }
             }
 
+
+
             // Find things that should be in the scene
             displayParent = FindObjectOfType<JoinDisplayParent>(true).transform;
             spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
 
+        }
+        else
+        {
+            PlayerInputManager.instance.DisableJoining();      
         }
 
         void DestroyChildren()

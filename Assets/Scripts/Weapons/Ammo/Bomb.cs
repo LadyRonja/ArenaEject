@@ -27,6 +27,10 @@ public class Bomb : Ammo
 
     private void OnCollisionEnter(Collision other)
     {
+        if (!explodeOnImpact) {
+            return;
+        }
+        
         if (other.gameObject.TryGetComponent<KnockBackHandler>(out KnockBackHandler hit))
         {
             if (other.gameObject.TryGetComponent<PlayerStats>(out PlayerStats hitPlayer))
@@ -38,13 +42,11 @@ public class Bomb : Ammo
             }
             Explode();
         }
-
-        if(other.gameObject.TryGetComponent<BoxCollider>(out BoxCollider collider))
+        else
         {
             Explode();
         }
 
-        if (!explodeOnImpact) return;
     }
 
     private void Explode()

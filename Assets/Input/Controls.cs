@@ -134,6 +134,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DPadRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""91b02fa0-c28a-4d89-a974-9bd1a23582de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DPadLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""73b5c80a-898c-4b22-bcd9-44819012d29e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -268,6 +286,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""LeftTrigger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52f066c8-d927-4c5d-b8a4-36b136fd43b4"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""edd55933-254f-4b99-9216-3603a37d55cc"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -288,6 +328,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_RightBumperDown = m_Gameplay.FindAction("RightBumperDown", throwIfNotFound: true);
         m_Gameplay_LeftBumperDown = m_Gameplay.FindAction("LeftBumperDown", throwIfNotFound: true);
         m_Gameplay_LeftTrigger = m_Gameplay.FindAction("LeftTrigger", throwIfNotFound: true);
+        m_Gameplay_DPadRight = m_Gameplay.FindAction("DPadRight", throwIfNotFound: true);
+        m_Gameplay_DPadLeft = m_Gameplay.FindAction("DPadLeft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +403,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_RightBumperDown;
     private readonly InputAction m_Gameplay_LeftBumperDown;
     private readonly InputAction m_Gameplay_LeftTrigger;
+    private readonly InputAction m_Gameplay_DPadRight;
+    private readonly InputAction m_Gameplay_DPadLeft;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -377,6 +421,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @RightBumperDown => m_Wrapper.m_Gameplay_RightBumperDown;
         public InputAction @LeftBumperDown => m_Wrapper.m_Gameplay_LeftBumperDown;
         public InputAction @LeftTrigger => m_Wrapper.m_Gameplay_LeftTrigger;
+        public InputAction @DPadRight => m_Wrapper.m_Gameplay_DPadRight;
+        public InputAction @DPadLeft => m_Wrapper.m_Gameplay_DPadLeft;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -422,6 +468,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LeftTrigger.started += instance.OnLeftTrigger;
             @LeftTrigger.performed += instance.OnLeftTrigger;
             @LeftTrigger.canceled += instance.OnLeftTrigger;
+            @DPadRight.started += instance.OnDPadRight;
+            @DPadRight.performed += instance.OnDPadRight;
+            @DPadRight.canceled += instance.OnDPadRight;
+            @DPadLeft.started += instance.OnDPadLeft;
+            @DPadLeft.performed += instance.OnDPadLeft;
+            @DPadLeft.canceled += instance.OnDPadLeft;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -462,6 +514,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LeftTrigger.started -= instance.OnLeftTrigger;
             @LeftTrigger.performed -= instance.OnLeftTrigger;
             @LeftTrigger.canceled -= instance.OnLeftTrigger;
+            @DPadRight.started -= instance.OnDPadRight;
+            @DPadRight.performed -= instance.OnDPadRight;
+            @DPadRight.canceled -= instance.OnDPadRight;
+            @DPadLeft.started -= instance.OnDPadLeft;
+            @DPadLeft.performed -= instance.OnDPadLeft;
+            @DPadLeft.canceled -= instance.OnDPadLeft;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -493,5 +551,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnRightBumperDown(InputAction.CallbackContext context);
         void OnLeftBumperDown(InputAction.CallbackContext context);
         void OnLeftTrigger(InputAction.CallbackContext context);
+        void OnDPadRight(InputAction.CallbackContext context);
+        void OnDPadLeft(InputAction.CallbackContext context);
     }
 }
