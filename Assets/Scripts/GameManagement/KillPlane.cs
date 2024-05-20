@@ -18,9 +18,12 @@ public class KillPlane : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints = new();
     private List<PlayerStats> players = new();
     private List<PlayerStats> deadPlayers = new();
+    private List<PlayerPotrait> playerPotraits = new List<PlayerPotrait>();
     private Dictionary<int, int> timeAliveTracking = new Dictionary<int, int>();
     private static bool isTimeTrackingStarted = false;
     private bool gameIsOver = false;
+    
+    [SerializeField] private PlayerPotrait playerPotraitPrefab;
 
     [Header("Temp")]
     [SerializeField] private GameObject endGameCanvas;
@@ -107,7 +110,7 @@ public class KillPlane : MonoBehaviour
                 if (!deadPlayers.Contains(player))
                 {
                     deadPlayers.Add(player);
-                    player.playerIndex = deadPlayers.Count - 1;
+                    //player.playerIndex = deadPlayers.Count - 1;
                 }
             }
 
@@ -189,43 +192,41 @@ public class KillPlane : MonoBehaviour
 
     private void EndGame(PlayerStats winner)
     {
-        if(endGameCanvas == null) return;
+        if (endGameCanvas == null) return;
         gameIsOver = true;
-        
+
         if (!deadPlayers.Contains(winner))
         {
             deadPlayers.Add(winner);
         }
+        
+        //deadPlayers = deadPlayers.OrderBy(p => p.playerIndex).ToList();
 
-        JoinScreenManager joinScreenManager = FindObjectOfType<JoinScreenManager>();
-
-        if (joinScreenManager.playerConfigs.Count >= 1)
+        GameObject[] avatars = new GameObject[] { winnerAvatar, secondAvatar, thirdAvatar, fourthAvatar };
+        //GameObject[] avatars = new GameObject[] {  fourthAvatar, thirdAvatar,  secondAvatar,  winnerAvatar};
+        
+        playerPotraits.Clear();
+        
+        for (int i = 0; i < deadPlayers.Count; i++)
         {
-            for (int i = 0; i < joinScreenManager.playerConfigs.Count; i++)
-            {
-                PlayerConfigurations playerConfig = joinScreenManager.playerConfigs[i];
+            PlayerStats playerStats = deadPlayers[i];
 
-                switch (i)
-                {
-                    case 0:
-                        winnerAvatar.GetComponent<Image>().color = playerConfig.playerColor;
-                        break;
-                    case 1:
-                        secondAvatar.GetComponent<Image>().color = playerConfig.playerColor;
-                        break;
-                    case 2:
-                        thirdAvatar.GetComponent<Image>().color = playerConfig.playerColor;
-                        break;
-                    case 3:
-                        fourthAvatar.GetComponent<Image>().color = playerConfig.playerColor;
-                        break;
-                }
-            }
+            PlayerPotrait playerPotraitInstance = Instantiate(playerPotraitPrefab, avatars[deadPlayers.Count - 1 - i].transform);
+
+            playerPotraitInstance.background.color = playerStats.colors[playerStats.playerIndex];
+            playerPotraitInstance.playerPotrait.sprite = playerStats.playerSprites[playerStats.playerIndex];
+            playerPotraitInstance.damagePercentage.color = playerStats.colors[playerStats.playerIndex];
+            
+            playerPotraitInstance.damagePercentage.text = "0%";
+            playerPotraitInstance.transform.localScale = Vector3.zero;
+            playerPotraitInstance.gameObject.SetActive(true);
+            Debug.Log("Player " + playerStats.playerIndex + " is dead");
+            playerPotraits.Add(playerPotraitInstance);
         }
 
         ShowEndGamePanel(winner.playerIndex);
     }
-    
+
     private void EndGameTie()
     {
         if(endGameCanvas == null) return;
@@ -236,14 +237,8 @@ public class KillPlane : MonoBehaviour
 
     private void ShowEndGamePanel(int winnerIndex)
     {
-        List<GameObject> avatars = new List<GameObject> { winnerAvatar, secondAvatar, thirdAvatar, fourthAvatar };
         List<TMP_Text> timeAliveTexts = new List<TMP_Text> { timeAliveWinner, timeAliveSecond, timeAliveThird, timeAliveFourth };
         List<TMP_Text> shotsFiredTexts = new List<TMP_Text> { shotsFiredWinner, shotsFiredSecond, shotsFiredThird, shotsFiredFourth };
-
-        foreach (GameObject avatar in avatars)
-        {
-            avatar.SetActive(false);
-        }
 
         endGameCanvas.SetActive(true);
         endGameTitle.text = "Player " + (winnerIndex + 1) + " Wins!";
@@ -254,36 +249,36 @@ public class KillPlane : MonoBehaviour
             endGamePanel.transform.DOScale(1, 1f).SetEase(Ease.OutQuart);
         });
 
-        for (int i = 0; i < deadPlayers.Count; i++)
+        int playerCount = Math.Min(deadPlayers.Count, timeAliveTexts.Count);
+        playerCount = Math.Min(playerCount, shotsFiredTexts.Count);
+        playerCount = Math.Min(playerCount, playerPotraits.Count);
+
+        for (int i = 0; i < playerCount; i++)
         {
             int index = i;
-
+            PlayerStats playerStats = deadPlayers[deadPlayers.Count - 1 - index];
+            PlayerPotrait playerPotrait = playerPotraits[i];
+            
             float delay = i == 0 ? 1.5f : 3.0f + (0.1f * (index - 1));
 
-            DOVirtual.DelayedCall(delay, () =>
+            DOVirtual.DelayedCall(delay + 0.1f, () =>
             {
-                avatars[index].SetActive(true);
-                avatars[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+                playerPotrait.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
 
             DOVirtual.DelayedCall(delay + 0.3f, () =>
             {
-                timeAliveTexts[index].text = $"Survived {deadPlayers[deadPlayers.Count - 1 - index].timeAlive} s";
+                timeAliveTexts[index].text = $"Survived {playerStats.timeAlive} s";
                 timeAliveTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
 
             DOVirtual.DelayedCall(delay + 0.6f, () =>
             {
-                int shotsFired = PlayerShooting.shotsFiredPerPlayer.ContainsKey(deadPlayers[deadPlayers.Count - 1 - index].playerIndex) ? PlayerShooting.shotsFiredPerPlayer[deadPlayers[deadPlayers.Count - 1 - index].playerIndex] : 0;
+                int shotsFired = PlayerShooting.shotsFiredPerPlayer.ContainsKey(playerStats.playerIndex) ? PlayerShooting.shotsFiredPerPlayer[playerStats.playerIndex] : 0;
                 shotsFiredTexts[index].text = $"Fired {shotsFired} shots";
                 shotsFiredTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
         }
-        
-        DOVirtual.DelayedCall(5f, () =>
-        {
-            StartCoroutine(ChangeLevel(new List<int> {0}));
-        });
     }
         
     private IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
