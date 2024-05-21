@@ -200,10 +200,7 @@ public class KillPlane : MonoBehaviour
             deadPlayers.Add(winner);
         }
         
-        //deadPlayers = deadPlayers.OrderBy(p => p.playerIndex).ToList();
-
         GameObject[] avatars = new GameObject[] { winnerAvatar, secondAvatar, thirdAvatar, fourthAvatar };
-        //GameObject[] avatars = new GameObject[] {  fourthAvatar, thirdAvatar,  secondAvatar,  winnerAvatar};
         
         playerPotraits.Clear();
         
@@ -252,18 +249,21 @@ public class KillPlane : MonoBehaviour
         int playerCount = Math.Min(deadPlayers.Count, timeAliveTexts.Count);
         playerCount = Math.Min(playerCount, shotsFiredTexts.Count);
         playerCount = Math.Min(playerCount, playerPotraits.Count);
+        
+        List<PlayerPotrait> reversedPlayerPotraits = new List<PlayerPotrait>(playerPotraits);
+        reversedPlayerPotraits.Reverse();
 
         for (int i = 0; i < playerCount; i++)
         {
             int index = i;
             PlayerStats playerStats = deadPlayers[deadPlayers.Count - 1 - index];
-            PlayerPotrait playerPotrait = playerPotraits[i];
+            PlayerPotrait playerPotrait = reversedPlayerPotraits[i];
             
             float delay = i == 0 ? 1.5f : 3.0f + (0.1f * (index - 1));
 
             DOVirtual.DelayedCall(delay + 0.1f, () =>
             {
-                playerPotrait.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+                playerPotrait.transform.DOScale(0.7f, 0.7f).SetEase(Ease.OutBounce);
             });
 
             DOVirtual.DelayedCall(delay + 0.3f, () =>

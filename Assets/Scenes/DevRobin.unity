@@ -17583,7 +17583,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
-  playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
+  playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -17789,7 +17789,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
-  playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
+  playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -18035,7 +18035,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
-  playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
+  playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -18589,7 +18589,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
-  playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
+  playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -29903,7 +29903,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
-  playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
+  playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -30755,7 +30755,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
-  playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
+  playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
   endGameTitle: {fileID: 538644564}
@@ -30855,6 +30855,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1171082212654874388, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1368.048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171082212654874388, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.223999
+      objectReference: {fileID: 0}
     - target: {fileID: 1459678586295089277, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -31082,6 +31090,14 @@ PrefabInstance:
     - target: {fileID: 6312888449478594622, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036850265627782774, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1368
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036850265627782774, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.2257
       objectReference: {fileID: 0}
     - target: {fileID: 7899442269955898850, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchorMax.y
