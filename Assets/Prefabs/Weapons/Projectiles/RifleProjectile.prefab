@@ -82,7 +82,8 @@ MonoBehaviour:
   destroyDelay: 3
   moveSpeed: 10
   moveDir: {x: 0, y: 0, z: 0}
-  knockbackForce: 1
+  knockbackForce: 3
+  ownerIndex: -1
   useAimAssist: 1
 --- !u!54 &1086252269806628507
 Rigidbody:

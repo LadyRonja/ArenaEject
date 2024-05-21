@@ -54,12 +54,13 @@ MonoBehaviour:
   ammoCount: 10
   initialUpwardForce: 0
   fireRate: 0.5
-  knockbackForce: 10
+  knockbackForce: 4
   weaponDeterminesAmmoSpeed: 1
   fireAll: 0
   ammoSpeed: 20
   ammoDirOffSet: {x: 0, y: 0, z: 0}
   destroyDelay: 5
+  ownerIndex: -1
   fireSound: {fileID: 8300000, guid: cd1c14c5c5473c84ab5bd9a62e6511fa, type: 3}
   outOfAmmoDisplay:
   - {fileID: 3796650473421026491}
