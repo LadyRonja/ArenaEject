@@ -15,15 +15,16 @@ public class PlayerAnimationManager : MonoBehaviour
     private Dictionary<int, int> animationsWithWeaponPairings = new();
 
     private int defaultAnimation = 0;
-    private static string defaultAnimationName = "rig|placeholder_idle";
-    private static readonly int IDLE = Animator.StringToHash("rig|placeholder_idle");
-    private static readonly int IDLE_GUN = Animator.StringToHash("rig|placeholder_idle_weapon_gun");
-    private static readonly int RUN = Animator.StringToHash("rig|placeholder_run_nogun");
-    private static readonly int RUN_GUN = Animator.StringToHash("rig|placeholder_run_gun");
+    private static string defaultAnimationName = "rig|anim_player_idle";
+    private static readonly int IDLE = Animator.StringToHash("rig|anim_player_idle");
+    private static readonly int IDLE_GUN = Animator.StringToHash("rig|anim_idle_weapon");
+    private static readonly int RUN = Animator.StringToHash("rig|anim_player_run");
+    private static readonly int RUN_GUN = Animator.StringToHash("rig|anim_player_run_with_gun");
+    private static readonly int JUMP = Animator.StringToHash("rig|anim_jump_start");
+    private static readonly int FALL = Animator.StringToHash("rig|anim_jump_midair");
 
     // Unimplemented
-    private static readonly int JUMP = Animator.StringToHash(defaultAnimationName);
-    private static readonly int FALL = Animator.StringToHash(defaultAnimationName);
+    private static readonly int LAND = Animator.StringToHash("rig|anim_jump_end");
     private static readonly int KNOCKEDBACK = Animator.StringToHash(defaultAnimationName);
 
 
