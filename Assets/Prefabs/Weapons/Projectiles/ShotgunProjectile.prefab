@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: useAimAssist
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7139334326160002435, guid: 34f30ebf46a800c4e9f083fe71cd7469, type: 3}
+      propertyPath: knockbackForce
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8377264897841567806, guid: 34f30ebf46a800c4e9f083fe71cd7469, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 8430777811742988483, guid: 1dd707cc2fd3fff4f9d49063f434c668, type: 3}
     - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: knockbackForce
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: ammoDirOffSet.y

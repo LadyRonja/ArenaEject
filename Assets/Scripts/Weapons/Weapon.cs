@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float fireRate = 0.5f;
     private float fireTimer = 0;
     private float spreadAngle = 20;
-    [SerializeField] protected float knockbackForce = 10f;
+    [SerializeField] protected float knockbackForce = 4f;
     [SerializeField] protected bool weaponDeterminesAmmoSpeed = true;
     [SerializeField] protected bool fireAll = false;
     [SerializeField] protected float ammoSpeed = 3f;
@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] protected GameObject explosionPrefab;
     protected bool explodeOnImpact = false;
+    protected bool onGround = false;
 
     protected int shotsFired = 0;
 
@@ -107,7 +108,7 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.TryGetComponent<KnockBackHandler>(out KnockBackHandler hit)) {
+        if (collision.gameObject.TryGetComponent<KnockBackHandler>(out KnockBackHandler hit) && !onGround) {
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
 
             if(rb != null)  
@@ -129,6 +130,7 @@ public class Weapon : MonoBehaviour
     }
 
     protected virtual void DestroyAfterDelay() {
+        onGround = true;
         Destroy(gameObject, destroyDelay);
     }
 

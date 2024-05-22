@@ -8,7 +8,7 @@ using UnityEngine.Audio;
 public class Explosion : MonoBehaviour
 {
     [SerializeField] private float explosionRadius = 5f;
-    [SerializeField] private float explosionForce = 3000f;
+    [SerializeField] private float explosionForce = 13f;
     [SerializeField] private float duration = 0.1f;
     [SerializeField] private AudioClip explosionClip = null;
     private List<KnockBackHandler> hits = new();

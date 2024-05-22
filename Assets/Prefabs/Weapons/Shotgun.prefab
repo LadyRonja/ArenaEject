@@ -368,6 +368,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3496778654839189278, guid: 506946483ba030d4181419c480760153, type: 3}
     - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: knockbackForce
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: firePoints.Array.size
       value: 10
       objectReference: {fileID: 0}
