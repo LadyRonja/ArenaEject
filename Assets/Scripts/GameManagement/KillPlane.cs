@@ -8,6 +8,7 @@ using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -28,6 +29,7 @@ public class KillPlane : MonoBehaviour
     [Header("Temp")]
     [SerializeField] private GameObject endGameCanvas;
     [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private GameObject endGameLoading;
     [SerializeField] private TMP_Text endGameTitle;
     
     [SerializeField] private GameObject winnerAvatar;
@@ -46,10 +48,12 @@ public class KillPlane : MonoBehaviour
     [SerializeField] private TMP_Text timeAliveFourth;
     [SerializeField] private TMP_Text shotsFiredFourth;
     
-    [SerializeField] private GameObject endGameLoading;
     [SerializeField] private List<AudioClip> playerDeathSounds;
 
     [SerializeField] private int levelLoadTime = 3;
+
+    [SerializeField] private Button menu;
+    [SerializeField] private Button next;
 
     // TEMP
     private void Awake()
@@ -267,7 +271,7 @@ public class KillPlane : MonoBehaviour
 
             DOVirtual.DelayedCall(delay + 0.1f, () =>
             {
-                playerPotrait.transform.DOScale(0.7f, 0.7f).SetEase(Ease.OutBounce);
+                playerPotrait.transform.DOScale(0.6f, 0.7f).SetEase(Ease.OutBounce);
             });
 
             DOVirtual.DelayedCall(delay + 0.3f, () =>
@@ -283,57 +287,69 @@ public class KillPlane : MonoBehaviour
                 shotsFiredTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
         }
-    }
+
+        DOVirtual.DelayedCall(5f, () =>
+        {
+            menu.interactable = true;
+            next.interactable = true;
+            
+            EventSystem eventSystem = FindObjectOfType<EventSystem>();
+            eventSystem.SetSelectedGameObject(next.gameObject);
+            
+            menu.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+            next.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+        });
         
-    private IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
+    }
+    
+    public void OnMenuButtonPress()
     {
+        SceneManager.LoadScene(0);
+    }
+    
+    public void OnNextButtonPress()
+    {
+        StartCoroutine(ChangeLevel(new List<int>()));
+    }
+    
+    public IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
+    {
+        menu.transform.DOScale(0, 0.7f).SetEase(Ease.OutBounce);
+        next.transform.DOScale(0, 0.7f).SetEase(Ease.OutBounce);
+        menu.interactable = false;
+        next.interactable = false;
+        
         isTimeTrackingStarted = false;
         PlayerShooting.shotsFiredPerPlayer.Clear();
 
-        int sceneCount = SceneManager.sceneCountInBuildSettings;
-        int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex;
 
-        List<int> allSceneIndices = Enumerable.Range(0, sceneCount).ToList();
-
-        allSceneIndices.Remove(currentLevelIndex);
-        allSceneIndices.RemoveAll(i => avoidedSceneIndex.Contains(i));
-
-        if (allSceneIndices.Count == 0)
-        {
-            Debug.Log("This is the only level available in the builds settings. Reloading in " + levelLoadTime + " seconds...");
-
-            StartCoroutine(Countdown(levelLoadTime + 2));
-            
-            DOVirtual.DelayedCall(2f, () =>
-            {
-                endGameLoading.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
-            });
-            
-            yield return new WaitForSecondsRealtime(levelLoadTime + 2);
-            SceneManager.LoadScene(currentLevelIndex);
-        }
+        if (SceneManager.sceneCountInBuildSettings <= 2)
+            nextSceneIndex = currentScene;
+        else if (currentScene == 1)
+            nextSceneIndex = 2;
         else
+            nextSceneIndex = 1;
+        
+        Debug.Log("Loading next level in " + levelLoadTime + " seconds...");
+        
+        StartCoroutine(Countdown(levelLoadTime));
+        
+        DOVirtual.DelayedCall(0.2f, () =>
         {
-            Debug.Log("Loading next level in " + levelLoadTime + " seconds...");
-            
-            int nextSceneIndex = allSceneIndices[Random.Range(0, allSceneIndices.Count)];
-            StartCoroutine(Countdown(levelLoadTime + 2));
-            
-            DOVirtual.DelayedCall(2f, () =>
-            {
-                endGameLoading.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
-            });
-            
-            yield return new WaitForSecondsRealtime(levelLoadTime + 2);
-            SceneManager.LoadScene(nextSceneIndex);
-        }
+            endGameLoading.transform.DOScale(1, 0.7f).SetEase(Ease.OutExpo);
+        });
+        
+        yield return new WaitForSecondsRealtime(levelLoadTime);
+        SceneManager.LoadScene(nextSceneIndex);
     }
-
+    
     private IEnumerator Countdown(int countdownTime)
     {
         while (countdownTime > 0)
         {
-            endGameLoading.GetComponent<TMP_Text>().text = "Loading next level in " + countdownTime;
+            endGameLoading.GetComponent<TMP_Text>().text = "Loading next level in " + (countdownTime);
             yield return new WaitForSecondsRealtime(1);
             countdownTime--;
         }
