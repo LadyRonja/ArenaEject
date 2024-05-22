@@ -10,7 +10,7 @@ public class GameStartManager : MonoBehaviour
 {
     private static GameStartManager instance;
     public static GameStartManager Instance { get => instance; }
-
+    public static List<PlayerUIHandler> playerUIHandlers = new List<PlayerUIHandler>();
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private List<Transform> spawnPoints;
@@ -127,7 +127,7 @@ public class GameStartManager : MonoBehaviour
         return GameStartManager.SpawnAPlayer(playerPrefab, playerIndex, inputDevice);
     }
 
-    public  static PlayerInput SpawnAPlayer(GameObject playerPrefab, int playerIndex, InputDevice inputDevice)
+    public static PlayerInput SpawnAPlayer(GameObject playerPrefab, int playerIndex, InputDevice inputDevice)
     {
         PlayerInput playerInputObj = PlayerInput.Instantiate(prefab: playerPrefab,
                                                         playerIndex: playerIndex,
@@ -137,6 +137,12 @@ public class GameStartManager : MonoBehaviour
                                                         );
 
         playerInputObj.transform.SetParent(null);
+        
+        PlayerUIHandler playerUIHandler = playerInputObj.GetComponent<PlayerUIHandler>();
+        if (playerUIHandler != null)
+        {
+            playerUIHandlers.Add(playerUIHandler);
+        }
 
         return playerInputObj;
     }

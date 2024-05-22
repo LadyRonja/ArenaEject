@@ -24,7 +24,7 @@ public class KillPlane : MonoBehaviour
     private bool gameIsOver = false;
     
     [SerializeField] private PlayerPotrait playerPotraitPrefab;
-
+    
     [Header("Temp")]
     [SerializeField] private GameObject endGameCanvas;
     [SerializeField] private GameObject endGamePanel;
@@ -217,7 +217,6 @@ public class KillPlane : MonoBehaviour
             playerPotraitInstance.damagePercentage.text = "0%";
             playerPotraitInstance.transform.localScale = Vector3.zero;
             playerPotraitInstance.gameObject.SetActive(true);
-            Debug.Log("Player " + playerStats.playerIndex + " is dead");
             playerPotraits.Add(playerPotraitInstance);
         }
 
@@ -234,6 +233,11 @@ public class KillPlane : MonoBehaviour
 
     private void ShowEndGamePanel(int winnerIndex)
     {
+        foreach (PlayerUIHandler playerUIHandler in GameStartManager.playerUIHandlers)
+        {
+            playerUIHandler.HidePlayerPotraits();
+        }
+        
         List<TMP_Text> timeAliveTexts = new List<TMP_Text> { timeAliveWinner, timeAliveSecond, timeAliveThird, timeAliveFourth };
         List<TMP_Text> shotsFiredTexts = new List<TMP_Text> { shotsFiredWinner, shotsFiredSecond, shotsFiredThird, shotsFiredFourth };
 
