@@ -17583,6 +17583,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
+  eventSystem: {fileID: 1099194469}
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
@@ -17881,6 +17882,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
+  eventSystem: {fileID: 1099194469}
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
@@ -18129,6 +18131,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
+  eventSystem: {fileID: 1099194469}
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
@@ -18685,6 +18688,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
+  eventSystem: {fileID: 1099194469}
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
@@ -30017,6 +30021,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
+  eventSystem: {fileID: 1099194469}
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
@@ -30871,6 +30876,7 @@ MonoBehaviour:
   - {fileID: 1280872832}
   - {fileID: 1280872831}
   - {fileID: 1280872830}
+  eventSystem: {fileID: 1099194469}
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 777413249}
   endGamePanel: {fileID: 1427962306}
