@@ -2,12 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Threading;
 using DG.Tweening;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -22,14 +20,15 @@ public class KillPlane : MonoBehaviour
     private Dictionary<int, int> timeAliveTracking = new Dictionary<int, int>();
     private static bool isTimeTrackingStarted = false;
     private bool gameIsOver = false;
-    
+
     [SerializeField] private PlayerPotrait playerPotraitPrefab;
 
     [Header("Temp")]
     [SerializeField] private GameObject endGameCanvas;
     [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private GameObject endGameLoading;
     [SerializeField] private TMP_Text endGameTitle;
-    
+
     [SerializeField] private GameObject winnerAvatar;
     [SerializeField] private TMP_Text timeAliveWinner;
     [SerializeField] private TMP_Text shotsFiredWinner;
@@ -45,11 +44,15 @@ public class KillPlane : MonoBehaviour
     [SerializeField] private GameObject fourthAvatar;
     [SerializeField] private TMP_Text timeAliveFourth;
     [SerializeField] private TMP_Text shotsFiredFourth;
-    
-    [SerializeField] private GameObject endGameLoading;
+
     [SerializeField] private List<AudioClip> playerDeathSounds;
 
     [SerializeField] private int levelLoadTime = 3;
+
+    [SerializeField] private Button menu;
+    [SerializeField] private Button next;
+
+    [SerializeField] protected float deathDelay = 3f;
 
     // TEMP
     private void Awake()
@@ -116,21 +119,23 @@ public class KillPlane : MonoBehaviour
 
             if(player.alive)
             {
-                // Respawn
-                Vector3 respawnPos = Vector3.zero;
-                try
-                {
-                    int rand = Random.Range(0, spawnPoints.Count);
-                    respawnPos = spawnPoints[rand].position;
-                }
-                catch
-                {
-                    Debug.LogError("No Respawn Points Listed, spawns player at 0,0,0");
-                }
+                CameraController cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
 
-                player.transform.position = respawnPos;
-                Rigidbody rb = player.GetComponent<Rigidbody>();
-                if(rb != null) rb.velocity = Vector3.zero;
+                List<Transform> activePlayers = FindAllPlayers();
+
+                foreach (Transform activePlayer in activePlayers)
+                {
+                    if(activePlayer == player.gameObject)
+                    {
+                        activePlayers.Remove(activePlayer);
+                    }
+                }
+                
+                if(cameraController != null)
+                {
+                    cameraController.StartTrackingObjects(activePlayers); // Think this works but needs testing with more than one controller
+                }
+                RespawnAfterDelay();
             }
             else
             {
@@ -190,6 +195,45 @@ public class KillPlane : MonoBehaviour
         }
     }
 
+    List<Transform> FindAllPlayers()
+    {
+        // Find all game objects in the scene
+        Transform[] allObjects = FindObjectsOfType<Transform>();
+
+        // Filter the objects to those named "Player" and convert to a list
+        List<Transform> playerObjects = allObjects.Where(obj => obj.name == "Player").ToList();
+
+        return playerObjects;
+    }
+
+    private void RespawnAfterDelay()
+    {
+        this.Invoke(nameof(RespawnPlayer), 5f); // Deathdelay seems to not be working??
+    }
+
+    private void RespawnPlayer()
+    {
+        // Respawn
+        this.CancelInvoke();
+
+        PlayerStats player = players[0];
+
+        Vector3 respawnPos = Vector3.zero;
+        try
+        {
+            int rand = Random.Range(0, spawnPoints.Count);
+            respawnPos = spawnPoints[rand].position;
+        }
+        catch
+        {
+            Debug.LogError("No Respawn Points Listed, spawns player at 0,0,0");
+        }
+
+        player.transform.position = respawnPos;
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        if (rb != null) rb.velocity = Vector3.zero;
+    }
+
     private void EndGame(PlayerStats winner)
     {
         if (endGameCanvas == null) return;
@@ -200,10 +244,7 @@ public class KillPlane : MonoBehaviour
             deadPlayers.Add(winner);
         }
         
-        //deadPlayers = deadPlayers.OrderBy(p => p.playerIndex).ToList();
-
         GameObject[] avatars = new GameObject[] { winnerAvatar, secondAvatar, thirdAvatar, fourthAvatar };
-        //GameObject[] avatars = new GameObject[] {  fourthAvatar, thirdAvatar,  secondAvatar,  winnerAvatar};
         
         playerPotraits.Clear();
         
@@ -220,7 +261,6 @@ public class KillPlane : MonoBehaviour
             playerPotraitInstance.damagePercentage.text = "0%";
             playerPotraitInstance.transform.localScale = Vector3.zero;
             playerPotraitInstance.gameObject.SetActive(true);
-            Debug.Log("Player " + playerStats.playerIndex + " is dead");
             playerPotraits.Add(playerPotraitInstance);
         }
 
@@ -237,6 +277,11 @@ public class KillPlane : MonoBehaviour
 
     private void ShowEndGamePanel(int winnerIndex)
     {
+        foreach (PlayerUIHandler playerUIHandler in GameStartManager.playerUIHandlers)
+        {
+            playerUIHandler.HidePlayerPotraits();
+        }
+        
         List<TMP_Text> timeAliveTexts = new List<TMP_Text> { timeAliveWinner, timeAliveSecond, timeAliveThird, timeAliveFourth };
         List<TMP_Text> shotsFiredTexts = new List<TMP_Text> { shotsFiredWinner, shotsFiredSecond, shotsFiredThird, shotsFiredFourth };
 
@@ -252,18 +297,21 @@ public class KillPlane : MonoBehaviour
         int playerCount = Math.Min(deadPlayers.Count, timeAliveTexts.Count);
         playerCount = Math.Min(playerCount, shotsFiredTexts.Count);
         playerCount = Math.Min(playerCount, playerPotraits.Count);
+        
+        List<PlayerPotrait> reversedPlayerPotraits = new List<PlayerPotrait>(playerPotraits);
+        reversedPlayerPotraits.Reverse();
 
         for (int i = 0; i < playerCount; i++)
         {
             int index = i;
             PlayerStats playerStats = deadPlayers[deadPlayers.Count - 1 - index];
-            PlayerPotrait playerPotrait = playerPotraits[i];
+            PlayerPotrait playerPotrait = reversedPlayerPotraits[i];
             
             float delay = i == 0 ? 1.5f : 3.0f + (0.1f * (index - 1));
 
             DOVirtual.DelayedCall(delay + 0.1f, () =>
             {
-                playerPotrait.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+                playerPotrait.transform.DOScale(0.6f, 0.7f).SetEase(Ease.OutBounce);
             });
 
             DOVirtual.DelayedCall(delay + 0.3f, () =>
@@ -279,57 +327,69 @@ public class KillPlane : MonoBehaviour
                 shotsFiredTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
         }
-    }
+
+        DOVirtual.DelayedCall(5f, () =>
+        {
+            menu.interactable = true;
+            next.interactable = true;
+            
+            EventSystem eventSystem = FindObjectOfType<EventSystem>();
+            eventSystem.SetSelectedGameObject(next.gameObject);
+            
+            menu.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+            next.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+        });
         
-    private IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
+    }
+    
+    public void OnMenuButtonPress()
     {
+        SceneManager.LoadScene(0);
+    }
+    
+    public void OnNextButtonPress()
+    {
+        StartCoroutine(ChangeLevel(new List<int>()));
+    }
+    
+    public IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
+    {
+        menu.transform.DOScale(0, 0.7f).SetEase(Ease.OutBounce);
+        next.transform.DOScale(0, 0.7f).SetEase(Ease.OutBounce);
+        menu.interactable = false;
+        next.interactable = false;
+        
         isTimeTrackingStarted = false;
         PlayerShooting.shotsFiredPerPlayer.Clear();
 
-        int sceneCount = SceneManager.sceneCountInBuildSettings;
-        int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex;
 
-        List<int> allSceneIndices = Enumerable.Range(0, sceneCount).ToList();
-
-        allSceneIndices.Remove(currentLevelIndex);
-        allSceneIndices.RemoveAll(i => avoidedSceneIndex.Contains(i));
-
-        if (allSceneIndices.Count == 0)
-        {
-            Debug.Log("This is the only level available in the builds settings. Reloading in " + levelLoadTime + " seconds...");
-
-            StartCoroutine(Countdown(levelLoadTime + 2));
-            
-            DOVirtual.DelayedCall(2f, () =>
-            {
-                endGameLoading.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
-            });
-            
-            yield return new WaitForSecondsRealtime(levelLoadTime + 2);
-            SceneManager.LoadScene(currentLevelIndex);
-        }
+        if (SceneManager.sceneCountInBuildSettings <= 2)
+            nextSceneIndex = currentScene;
+        else if (currentScene == 1)
+            nextSceneIndex = 2;
         else
+            nextSceneIndex = 1;
+        
+        Debug.Log("Loading next level in " + levelLoadTime + " seconds...");
+        
+        StartCoroutine(Countdown(levelLoadTime));
+        
+        DOVirtual.DelayedCall(0.2f, () =>
         {
-            Debug.Log("Loading next level in " + levelLoadTime + " seconds...");
-            
-            int nextSceneIndex = allSceneIndices[Random.Range(0, allSceneIndices.Count)];
-            StartCoroutine(Countdown(levelLoadTime + 2));
-            
-            DOVirtual.DelayedCall(2f, () =>
-            {
-                endGameLoading.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
-            });
-            
-            yield return new WaitForSecondsRealtime(levelLoadTime + 2);
-            SceneManager.LoadScene(nextSceneIndex);
-        }
+            endGameLoading.transform.DOScale(1, 0.7f).SetEase(Ease.OutExpo);
+        });
+        
+        yield return new WaitForSecondsRealtime(levelLoadTime);
+        SceneManager.LoadScene(nextSceneIndex);
     }
-
+    
     private IEnumerator Countdown(int countdownTime)
     {
         while (countdownTime > 0)
         {
-            endGameLoading.GetComponent<TMP_Text>().text = "Loading next level in " + countdownTime;
+            endGameLoading.GetComponent<TMP_Text>().text = "Loading next level in " + (countdownTime);
             yield return new WaitForSecondsRealtime(1);
             countdownTime--;
         }

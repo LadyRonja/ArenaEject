@@ -68,4 +68,12 @@ public class PlayerUIHandler : MonoBehaviour
 
         myPlayerPotrait.damagePercentage.text = $"{knockbackHandler.recievedKnockbackDisplay}%";
     }
+
+    public void HidePlayerPotraits()
+    {
+        if (myPlayerPotrait != null)
+        {
+            myPlayerPotrait.gameObject.SetActive(false);
+        }
+    }
 }
