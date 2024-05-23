@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -19,15 +20,15 @@ public class KillPlane : MonoBehaviour
     private Dictionary<int, int> timeAliveTracking = new Dictionary<int, int>();
     private static bool isTimeTrackingStarted = false;
     private bool gameIsOver = false;
-    
+
     [SerializeField] private PlayerPotrait playerPotraitPrefab;
-    
+
     [Header("Temp")]
     [SerializeField] private GameObject endGameCanvas;
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private GameObject endGameLoading;
     [SerializeField] private TMP_Text endGameTitle;
-    
+
     [SerializeField] private GameObject winnerAvatar;
     [SerializeField] private TMP_Text timeAliveWinner;
     [SerializeField] private TMP_Text shotsFiredWinner;
@@ -43,13 +44,15 @@ public class KillPlane : MonoBehaviour
     [SerializeField] private GameObject fourthAvatar;
     [SerializeField] private TMP_Text timeAliveFourth;
     [SerializeField] private TMP_Text shotsFiredFourth;
-    
+
     [SerializeField] private List<AudioClip> playerDeathSounds;
 
     [SerializeField] private int levelLoadTime = 3;
 
     [SerializeField] private Button menu;
     [SerializeField] private Button next;
+
+    [SerializeField] protected float deathDelay = 3f;
 
     // TEMP
     private void Awake()
@@ -116,21 +119,23 @@ public class KillPlane : MonoBehaviour
 
             if(player.alive)
             {
-                // Respawn
-                Vector3 respawnPos = Vector3.zero;
-                try
-                {
-                    int rand = Random.Range(0, spawnPoints.Count);
-                    respawnPos = spawnPoints[rand].position;
-                }
-                catch
-                {
-                    Debug.LogError("No Respawn Points Listed, spawns player at 0,0,0");
-                }
+                CameraController cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
 
-                player.transform.position = respawnPos;
-                Rigidbody rb = player.GetComponent<Rigidbody>();
-                if(rb != null) rb.velocity = Vector3.zero;
+                List<Transform> activePlayers = FindAllPlayers();
+
+                foreach (Transform activePlayer in activePlayers)
+                {
+                    if(activePlayer == player.gameObject)
+                    {
+                        activePlayers.Remove(activePlayer);
+                    }
+                }
+                
+                if(cameraController != null)
+                {
+                    cameraController.StartTrackingObjects(activePlayers); // Think this works but needs testing with more than one controller
+                }
+                RespawnAfterDelay();
             }
             else
             {
@@ -188,6 +193,45 @@ public class KillPlane : MonoBehaviour
         {
             // Destroy(other.gameObject);
         }
+    }
+
+    List<Transform> FindAllPlayers()
+    {
+        // Find all game objects in the scene
+        Transform[] allObjects = FindObjectsOfType<Transform>();
+
+        // Filter the objects to those named "Player" and convert to a list
+        List<Transform> playerObjects = allObjects.Where(obj => obj.name == "Player").ToList();
+
+        return playerObjects;
+    }
+
+    private void RespawnAfterDelay()
+    {
+        this.Invoke(nameof(RespawnPlayer), 5f); // Deathdelay seems to not be working??
+    }
+
+    private void RespawnPlayer()
+    {
+        // Respawn
+        this.CancelInvoke();
+
+        PlayerStats player = players[0];
+
+        Vector3 respawnPos = Vector3.zero;
+        try
+        {
+            int rand = Random.Range(0, spawnPoints.Count);
+            respawnPos = spawnPoints[rand].position;
+        }
+        catch
+        {
+            Debug.LogError("No Respawn Points Listed, spawns player at 0,0,0");
+        }
+
+        player.transform.position = respawnPos;
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        if (rb != null) rb.velocity = Vector3.zero;
     }
 
     private void EndGame(PlayerStats winner)

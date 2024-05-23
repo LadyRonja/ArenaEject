@@ -1620,6 +1620,7 @@ MonoBehaviour:
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 2071789274}
   endGamePanel: {fileID: 2071789283}
+  endGameLoading: {fileID: 2071789275}
   endGameTitle: {fileID: 2071789282}
   winnerAvatar: {fileID: 2071789281}
   timeAliveWinner: {fileID: 2071789280}
@@ -1633,11 +1634,13 @@ MonoBehaviour:
   fourthAvatar: {fileID: 2071789276}
   timeAliveFourth: {fileID: 1964454919}
   shotsFiredFourth: {fileID: 1964454918}
-  endGameLoading: {fileID: 2071789275}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
   - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
   levelLoadTime: 3
+  menu: {fileID: 0}
+  next: {fileID: 0}
+  deathDelay: 50
 --- !u!65 &349182183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17087,6 +17090,7 @@ MonoBehaviour:
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 2071789274}
   endGamePanel: {fileID: 2071789283}
+  endGameLoading: {fileID: 2071789275}
   endGameTitle: {fileID: 2071789282}
   winnerAvatar: {fileID: 2071789281}
   timeAliveWinner: {fileID: 2071789280}
@@ -17100,11 +17104,13 @@ MonoBehaviour:
   fourthAvatar: {fileID: 2071789276}
   timeAliveFourth: {fileID: 1964454919}
   shotsFiredFourth: {fileID: 1964454918}
-  endGameLoading: {fileID: 2071789275}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
   - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
   levelLoadTime: 3
+  menu: {fileID: 0}
+  next: {fileID: 0}
+  deathDelay: 50
 --- !u!65 &830912742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18094,6 +18100,7 @@ MonoBehaviour:
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 2071789274}
   endGamePanel: {fileID: 2071789283}
+  endGameLoading: {fileID: 2071789275}
   endGameTitle: {fileID: 2071789282}
   winnerAvatar: {fileID: 2071789281}
   timeAliveWinner: {fileID: 2071789280}
@@ -18107,11 +18114,13 @@ MonoBehaviour:
   fourthAvatar: {fileID: 2071789276}
   timeAliveFourth: {fileID: 1964454919}
   shotsFiredFourth: {fileID: 1964454918}
-  endGameLoading: {fileID: 2071789275}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
   - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
   levelLoadTime: 3
+  menu: {fileID: 0}
+  next: {fileID: 0}
+  deathDelay: 50
 --- !u!65 &1130153445
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24445,6 +24454,7 @@ MonoBehaviour:
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 2071789274}
   endGamePanel: {fileID: 2071789283}
+  endGameLoading: {fileID: 2071789275}
   endGameTitle: {fileID: 2071789282}
   winnerAvatar: {fileID: 2071789281}
   timeAliveWinner: {fileID: 2071789280}
@@ -24458,11 +24468,13 @@ MonoBehaviour:
   fourthAvatar: {fileID: 2071789276}
   timeAliveFourth: {fileID: 1964454919}
   shotsFiredFourth: {fileID: 1964454918}
-  endGameLoading: {fileID: 2071789275}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
   - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
   levelLoadTime: 3
+  menu: {fileID: 0}
+  next: {fileID: 0}
+  deathDelay: 3
 --- !u!65 &1604335506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25128,6 +25140,7 @@ MonoBehaviour:
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 2071789274}
   endGamePanel: {fileID: 2071789283}
+  endGameLoading: {fileID: 2071789275}
   endGameTitle: {fileID: 2071789282}
   winnerAvatar: {fileID: 2071789281}
   timeAliveWinner: {fileID: 2071789280}
@@ -25141,11 +25154,13 @@ MonoBehaviour:
   fourthAvatar: {fileID: 2071789276}
   timeAliveFourth: {fileID: 1964454919}
   shotsFiredFourth: {fileID: 1964454918}
-  endGameLoading: {fileID: 2071789275}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
   - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
   levelLoadTime: 3
+  menu: {fileID: 0}
+  next: {fileID: 0}
+  deathDelay: 50
 --- !u!65 &1713716618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25993,6 +26008,7 @@ MonoBehaviour:
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: d497bcaf79766224585201b80f239c80, type: 3}
   endGameCanvas: {fileID: 2071789274}
   endGamePanel: {fileID: 2071789283}
+  endGameLoading: {fileID: 2071789275}
   endGameTitle: {fileID: 2071789282}
   winnerAvatar: {fileID: 2071789281}
   timeAliveWinner: {fileID: 2071789280}
@@ -26006,11 +26022,13 @@ MonoBehaviour:
   fourthAvatar: {fileID: 2071789276}
   timeAliveFourth: {fileID: 1964454919}
   shotsFiredFourth: {fileID: 1964454918}
-  endGameLoading: {fileID: 2071789275}
   playerDeathSounds:
   - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
   - {fileID: 8300000, guid: 242b65b30b3fb044db872a062d7b49b2, type: 3}
   levelLoadTime: 3
+  menu: {fileID: 0}
+  next: {fileID: 0}
+  deathDelay: 50
 --- !u!65 &1866731055
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31602,6 +31620,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1032899120002325574, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032899120002325574, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032899120002325574, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032899120002325574, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032899120002325574, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032899120002325574, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1459678586295089277, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -31647,6 +31689,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2162370728646747746, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337233059815878610, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337233059815878610, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337233059815878610, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337233059815878610, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337233059815878610, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337233059815878610, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
