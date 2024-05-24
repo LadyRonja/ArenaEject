@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MineLauncher
       objectReference: {fileID: 0}
+    - target: {fileID: 2438554576672716070, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae5aa1c2880461247a586befdc1c07a9, type: 2}
     - target: {fileID: 3367394978831467289, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -69,10 +73,6 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
-      propertyPath: firePoint
-      value: 
-      objectReference: {fileID: 6128284208675663175}
-    - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: fireSound
       value: 
       objectReference: {fileID: 8300000, guid: 7815e3490f70353418a27ff2c2e143ae, type: 3}
@@ -101,8 +101,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
---- !u!4 &6128284208675663175 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1791492250410619928, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
-  m_PrefabInstance: {fileID: 5607160417423505759}
-  m_PrefabAsset: {fileID: 0}
