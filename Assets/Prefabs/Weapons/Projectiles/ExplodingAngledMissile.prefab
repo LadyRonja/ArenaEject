@@ -102,7 +102,7 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0, z: 1}
   knockbackForce: 30
   ownerIndex: -1
-  useAimAssist: 1
+  useAimAssist: 0
   aimAssisstLookAhead: 10
   aimAssisstWidth: 10
   aimAssistSpeed: 0.7
