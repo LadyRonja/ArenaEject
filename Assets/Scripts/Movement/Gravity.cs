@@ -12,7 +12,6 @@ public class Gravity : MonoBehaviour
     private Rigidbody rb;
     private GroundChecker groundChecker;
 
-    //public bool IsGrounded { get => GetIsGrounded();  }
 
     private void Awake()
     {
