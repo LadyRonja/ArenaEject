@@ -9,6 +9,7 @@ public class KnockBackHandler : MonoBehaviour
 {
     private Rigidbody rb;
 
+    [SerializeField] private float knockbackMultiplicator = 0.5f;
     [SerializeField] private bool usingCumulativeKnockback = true;
     private float recievedKnockbackRaw = 0;
     public float recievedKnockbackDisplay { get => Mathf.Ceil(Mathf.Max(0, Mathf.Min(recievedKnockbackRaw, 999))); }
@@ -43,8 +44,7 @@ public class KnockBackHandler : MonoBehaviour
     public void GetKnockedBack(Vector3 dir, float force)
     {
         // Halving all force recieved for faster platesting
-        Debug.Log("Halving knockback recieved for faster playtesting");
-        force *= 0.5f;
+        force *= knockbackMultiplicator;
 
         if(TryGetComponent<Movement>(out Movement myMovement))
         {
