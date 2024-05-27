@@ -43,6 +43,14 @@ public class KnockBackHandler : MonoBehaviour
 
     public void GetKnockedBack(Vector3 dir, float force)
     {
+        if (TryGetComponent<PlayerStats>(out PlayerStats myPlayerStats))
+        {
+            if (!myPlayerStats.alive)
+            {
+                myPlayerStats.finalKnockbackDisplay = recievedKnockbackDisplay;
+            }
+        }
+        
         // Halving all force recieved for faster platesting
         force *= knockbackMultiplicator;
 

@@ -68,6 +68,19 @@ public class PlayerUIHandler : MonoBehaviour
 
         myPlayerPotrait.damagePercentage.text = $"{knockbackHandler.recievedKnockbackDisplay}%";
     }
+    
+    public void UpdateEndGameUI()
+    {
+        if (myPlayerPotrait == null) { return; }
+        if (!TryGetComponent<PlayerStats>(out PlayerStats myPlayerStats)) { return; }
+
+        if(myPlayerStats.endGamePlayerSprites.Count != 0)
+        {
+            myPlayerPotrait.playerPotrait.sprite = myPlayerStats.endGamePlayerSprites[myPlayerStats.playerIndex];
+        }
+
+        myPlayerPotrait.damagePercentage.text = $"{myPlayerStats.finalKnockbackDisplay}%";
+    }
 
     public void HidePlayerPotraits()
     {

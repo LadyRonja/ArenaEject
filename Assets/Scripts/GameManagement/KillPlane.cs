@@ -20,8 +20,8 @@ public class KillPlane : MonoBehaviour
     private Dictionary<int, int> timeAliveTracking = new Dictionary<int, int>();
     private static bool isTimeTrackingStarted = false;
     private bool gameIsOver = false;
-
-    [SerializeField] private PlayerPotrait playerPotraitPrefab;
+    
+    [SerializeField] PlayerPotrait endGamePlayerPotraitPrefab;
 
     [Header("Temp")]
     [SerializeField] private GameObject endGameCanvas;
@@ -106,6 +106,8 @@ public class KillPlane : MonoBehaviour
             if (player.lives <= 0)
             {
                 player.lives = 0;
+                
+                
             }
             
             if(!player.alive)
@@ -113,7 +115,11 @@ public class KillPlane : MonoBehaviour
                 if (!deadPlayers.Contains(player))
                 {
                     deadPlayers.Add(player);
-                    //player.playerIndex = deadPlayers.Count - 1;
+                    
+                    if(player.TryGetComponent<KnockBackHandler>(out KnockBackHandler knockbackHandler))
+                    {
+                        player.finalKnockbackDisplay = knockbackHandler.recievedKnockbackDisplay;
+                    }
                 }
             }
 
@@ -252,13 +258,16 @@ public class KillPlane : MonoBehaviour
         {
             PlayerStats playerStats = deadPlayers[i];
 
-            PlayerPotrait playerPotraitInstance = Instantiate(playerPotraitPrefab, avatars[deadPlayers.Count - 1 - i].transform);
+            PlayerPotrait playerPotraitInstance = Instantiate(endGamePlayerPotraitPrefab, avatars[deadPlayers.Count - 1 - i].transform);
 
-            playerPotraitInstance.background.color = playerStats.colors[playerStats.playerIndex];
-            playerPotraitInstance.playerPotrait.sprite = playerStats.playerSprites[playerStats.playerIndex];
-            playerPotraitInstance.damagePercentage.color = playerStats.colors[playerStats.playerIndex];
+            if(deadPlayers[i].TryGetComponent<PlayerUIHandler>(out PlayerUIHandler uiHandler))
+            {
+                uiHandler.UpdateEndGameUI();
+            }
             
-            playerPotraitInstance.damagePercentage.text = "0%";
+            playerPotraitInstance.background.color = playerStats.colors[playerStats.playerIndex];
+            playerPotraitInstance.playerPotrait.sprite = playerStats.endGamePlayerSprites[playerStats.playerIndex];
+            playerPotraitInstance.damagePercentage.text = $"{playerStats.finalKnockbackDisplay}%";
             playerPotraitInstance.transform.localScale = Vector3.zero;
             playerPotraitInstance.gameObject.SetActive(true);
             playerPotraits.Add(playerPotraitInstance);
