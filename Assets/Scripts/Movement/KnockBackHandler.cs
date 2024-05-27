@@ -42,6 +42,10 @@ public class KnockBackHandler : MonoBehaviour
 
     public void GetKnockedBack(Vector3 dir, float force)
     {
+        // Halving all force recieved for faster platesting
+        Debug.Log("Halving knockback recieved for faster playtesting");
+        force *= 0.5f;
+
         if(TryGetComponent<Movement>(out Movement myMovement))
         {
             myMovement.enabled = false;

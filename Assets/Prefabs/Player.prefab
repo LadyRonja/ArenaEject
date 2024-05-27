@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
-  instantlyRotate: 0
+  instantlyRotate: 1
   rotationSpeedRads: 24.3
 --- !u!114 &2782248709497289612
 MonoBehaviour:
