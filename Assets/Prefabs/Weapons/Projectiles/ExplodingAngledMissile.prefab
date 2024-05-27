@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8137867023283421158}
   - component: {fileID: 3074894832236722532}
   m_Layer: 0
-  m_Name: SharkBomb
+  m_Name: ExplodingAngledMissile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,6 +103,9 @@ MonoBehaviour:
   knockbackForce: 30
   ownerIndex: -1
   useAimAssist: 1
+  aimAssisstLookAhead: 10
+  aimAssisstWidth: 10
+  aimAssistSpeed: 0.7
   explodeTime: 1.5
   explosionPrefab: {fileID: 9019911631872019755, guid: 7e07a71a44a1456429b94d5d049f3c8c, type: 3}
   explodeOnImpact: 0

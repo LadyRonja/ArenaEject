@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6759703220165393284}
   - component: {fileID: 5626503327618957610}
   m_Layer: 0
-  m_Name: Grenade2
+  m_Name: '[Decrepit]Grenade2'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,10 +135,20 @@ MonoBehaviour:
   moveSpeed: 10
   moveDir: {x: 0, y: 0, z: 0}
   knockbackForce: 2
+  ownerIndex: -1
+  useAimAssist: 1
+  aimAssisstLookAhead: 10
+  aimAssisstWidth: 10
+  aimAssistSpeed: 0.7
   explodeOnImpact: 0
   explodeTime: 1.5
   explosionDelay: 5
+  proximityDistance: 6
   explosionPrefab: {fileID: 6860196289586296487, guid: 9099636871efcab4588408f9424438a1, type: 3}
+  triggerCollider: {fileID: 0}
+  freezingGroundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5460644942702441315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24181474b91f07e4392efff36f109b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackMultiplicator: 0.5
   usingCumulativeKnockback: 1
   frictionCoefficient: 5
   frictionDelay: 5
