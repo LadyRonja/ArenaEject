@@ -15,8 +15,9 @@ public abstract class Ammo : MonoBehaviour
 
     [Header("Aim Assist")]
     [SerializeField] protected bool useAimAssist = true;
-    protected float aimAssistLength = 10f;
-    protected float aimAssistSpeed = 0.7f;
+    [SerializeField] protected float aimAssisstLookAhead = 10f;
+    [SerializeField] protected float aimAssisstWidth = 10f;
+    [SerializeField] protected float aimAssistSpeed = 0.7f;
     
     protected Rigidbody rb;
 
@@ -37,13 +38,13 @@ public abstract class Ammo : MonoBehaviour
         if(!useAimAssist) { return; }
 
         List<Vector3> playerPosInSight = new();
-        for (int i = -10; i < 10; i++)
+        for (float i = (-1f * Mathf.Abs(aimAssisstWidth)); i < Mathf.Abs(aimAssisstWidth); i++)
         {
-            Vector3 rayStartPos = transform.position + (transform.right * i* 0.2f);
+            Vector3 rayStartPos = transform.position + (transform.right * (i * 0.2f));
 
-            Debug.DrawRay(rayStartPos, transform.forward * aimAssistLength, Color.magenta, Time.deltaTime);
+            Debug.DrawRay(rayStartPos, transform.forward * aimAssisstLookAhead, Color.magenta, Time.deltaTime);
 
-            if(Physics.Raycast(rayStartPos, transform.forward, out RaycastHit hit, aimAssistLength))
+            if(Physics.Raycast(rayStartPos, transform.forward, out RaycastHit hit, aimAssisstLookAhead))
             {
                 if(hit.collider.gameObject.TryGetComponent<PlayerStats>(out PlayerStats playerInVision))
                 {
@@ -70,7 +71,7 @@ public abstract class Ammo : MonoBehaviour
 
             Vector3 targetDir = closestPlayer - transform.position;
             targetDir.Normalize();
-            Vector3 newAim = Vector3.Lerp(rb.velocity.normalized, targetDir, aimAssistSpeed);
+            Vector3 newAim = Vector3.Lerp(rb.velocity.normalized, targetDir, aimAssistSpeed * Time.deltaTime);
             newAim.y = 0;
             transform.forward = newAim;
             rb.velocity = newAim * moveSpeed;

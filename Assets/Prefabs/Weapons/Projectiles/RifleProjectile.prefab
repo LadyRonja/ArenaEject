@@ -85,6 +85,9 @@ MonoBehaviour:
   knockbackForce: 3
   ownerIndex: -1
   useAimAssist: 1
+  aimAssisstLookAhead: 10
+  aimAssisstWidth: 15
+  aimAssistSpeed: 9999
 --- !u!54 &1086252269806628507
 Rigidbody:
   m_ObjectHideFlags: 0

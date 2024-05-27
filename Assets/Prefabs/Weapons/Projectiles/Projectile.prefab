@@ -83,6 +83,11 @@ MonoBehaviour:
   moveSpeed: 10
   moveDir: {x: 0, y: 0, z: 0}
   knockbackForce: 7
+  ownerIndex: -1
+  useAimAssist: 1
+  aimAssisstLookAhead: 10
+  aimAssisstWidth: 15
+  aimAssistSpeed: 3
 --- !u!54 &5025870226158059827
 Rigidbody:
   m_ObjectHideFlags: 0
