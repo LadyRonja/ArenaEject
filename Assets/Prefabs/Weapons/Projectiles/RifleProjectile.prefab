@@ -81,13 +81,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyDelay: 3
   moveSpeed: 10
-  moveDir: {x: 0, y: 0, z: 0}
   knockbackForce: 3
-  ownerIndex: -1
+  knockbackLocksPlayer: 0
   useAimAssist: 1
   aimAssisstLookAhead: 10
   aimAssisstWidth: 15
   aimAssistSpeed: 9999
+  moveDir: {x: 0, y: 0, z: 0}
+  ownerIndex: -1
 --- !u!54 &1086252269806628507
 Rigidbody:
   m_ObjectHideFlags: 0
