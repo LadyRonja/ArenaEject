@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void KnockbackRecieved();
+public delegate void KnockbackComplete();
 
 [RequireComponent(typeof(Rigidbody))]
 public class KnockBackHandler : MonoBehaviour
@@ -20,6 +21,7 @@ public class KnockBackHandler : MonoBehaviour
     private bool knockedBack = false;
 
     public KnockbackRecieved OnKnockbackRecieved;
+    public KnockbackComplete OnKnockbackComplete;
 
     void Start()
     {
@@ -36,12 +38,20 @@ public class KnockBackHandler : MonoBehaviour
             if (TryGetComponent<Movement>(out Movement myMovement))
             {
                 myMovement.enabled = true;
+                myMovement.isKnocked = false;
                 knockedBack = false;
             }
+
+            if (TryGetComponent<Aiming>(out Aiming myAim))
+            {
+                myAim.enabled = true;
+            }
+
+            OnKnockbackComplete?.Invoke();
         }
     }
 
-    public void GetKnockedBack(Vector3 dir, float force)
+    public void GetKnockedBack(Vector3 dir, float force, bool locksPlayerForDuration)
     {
         if (TryGetComponent<PlayerStats>(out PlayerStats myPlayerStats))
         {
@@ -54,10 +64,25 @@ public class KnockBackHandler : MonoBehaviour
         // Halving all force recieved for faster platesting
         force *= knockbackMultiplicator;
 
-        if(TryGetComponent<Movement>(out Movement myMovement))
+        if(locksPlayerForDuration)
         {
-            myMovement.enabled = false;
-        
+            if (TryGetComponent<Movement>(out Movement myMovement))
+            {
+                myMovement.enabled = false;   
+                myMovement.isKnocked = true;
+            }
+
+            if(TryGetComponent<Aiming>(out Aiming myAim))
+            {
+                myAim.enabled = false;
+            }
+        }
+        else
+        {
+            if (TryGetComponent<Movement>(out Movement myMovement))
+            {
+                myMovement.isKnocked = true;
+            }
         }
         this.CancelInvoke();
         dir.Normalize();
@@ -71,6 +96,11 @@ public class KnockBackHandler : MonoBehaviour
 
         rb.velocity = Vector3.zero;
         rb.AddForce(dir * forceToApply, ForceMode.Impulse);
+
+        if (locksPlayerForDuration)
+        {
+            transform.forward = dir * -1f;
+        }
 
         OnKnockbackRecieved?.Invoke();
 

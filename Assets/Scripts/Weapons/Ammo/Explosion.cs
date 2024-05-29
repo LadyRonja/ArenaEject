@@ -39,7 +39,7 @@ public class Explosion : MonoBehaviour
             Vector3 dir = other.transform.position - transform.position;
             dir.y = 0;
             dir.Normalize();
-            kbh.GetKnockedBack(dir, explosionForce);
+            kbh.GetKnockedBack(dir, explosionForce, true);
         }
     }
 

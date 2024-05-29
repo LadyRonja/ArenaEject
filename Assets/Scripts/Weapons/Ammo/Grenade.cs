@@ -47,7 +47,7 @@ public class Grenade : Ammo
             {
                 Vector3 dir = rb.velocity.normalized;
                 dir.y = 0;
-                hit.GetKnockedBack(dir, knockbackForce);
+                hit.GetKnockedBack(dir, knockbackForce, true);
             }
         }
         else

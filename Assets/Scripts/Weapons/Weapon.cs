@@ -117,7 +117,7 @@ public class Weapon : MonoBehaviour
                 dir.y = 0;
                 Vector3 velocityCheck = rb.velocity;
                 velocityCheck.y = 0;
-                if (velocityCheck.sqrMagnitude > 1f) { hit.GetKnockedBack(dir, knockbackForce); }
+                if (velocityCheck.sqrMagnitude > 1f) { hit.GetKnockedBack(dir, knockbackForce, false); }
             }
             Destroy(gameObject);
         }

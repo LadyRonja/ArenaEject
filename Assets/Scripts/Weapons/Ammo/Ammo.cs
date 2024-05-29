@@ -6,12 +6,13 @@ using UnityEngine;
 public abstract class Ammo : MonoBehaviour
 {
     [SerializeField] protected float destroyDelay = 10f;
-
     public float moveSpeed = 10f;
-    [HideInInspector] public Vector3 moveDir = Vector3.forward;
-    [SerializeField] protected float knockbackForce = 15f;
 
-    [HideInInspector] public int ownerIndex = -1;
+
+    [Header("Knockback")]
+    [SerializeField] protected float knockbackForce = 15f;
+    [SerializeField] protected bool knockbackLocksPlayer = true;
+
 
     [Header("Aim Assist")]
     [SerializeField] protected bool useAimAssist = true;
@@ -20,6 +21,8 @@ public abstract class Ammo : MonoBehaviour
     [SerializeField] protected float aimAssistSpeed = 0.7f;
     
     protected Rigidbody rb;
+    [HideInInspector] public Vector3 moveDir = Vector3.forward;
+    [HideInInspector] public int ownerIndex = -1;
 
     protected virtual void Start()
     {

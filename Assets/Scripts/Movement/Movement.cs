@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
@@ -16,6 +17,9 @@ public class Movement : MonoBehaviour
     private Vector2 moveInput;
     private Rigidbody rb;
     private GroundChecker groundChecker;
+
+
+    [HideInInspector] public bool isKnocked = false;
 
     // DEBUG TODO:REMOVE ON RELEASE
     PlayerStats playerStats;
@@ -73,6 +77,10 @@ public class Movement : MonoBehaviour
 
         // Calculate current acceleration
         float currentAcceleration = !groundChecker.IsGrounded ? airAcceleration : groundAcceleration;
+        if(isKnocked)
+        {
+            currentAcceleration *= 0.1f;
+        }
 
         // Acceleration
         if (moveInput != Vector2.zero)
@@ -81,7 +89,7 @@ public class Movement : MonoBehaviour
             rb.velocity += currentAcceleration * maxSpeed * Time.fixedDeltaTime * translatedMovement;
             if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed) rb.velocity = rb.velocity.normalized * maxSpeed;
         }
-        else
+        else if (!isKnocked)
         {
             // Deacceleration
             rb.velocity -= rb.velocity * deceleration * Time.fixedDeltaTime;
