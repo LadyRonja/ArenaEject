@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void KnockbackRecieved();
+public delegate void KnockbackComplete();
 
 [RequireComponent(typeof(Rigidbody))]
 public class KnockBackHandler : MonoBehaviour
 {
     private Rigidbody rb;
 
+    [SerializeField] private float knockbackMultiplicator = 0.5f;
     [SerializeField] private bool usingCumulativeKnockback = true;
     private float recievedKnockbackRaw = 0;
     public float recievedKnockbackDisplay { get => Mathf.Ceil(Mathf.Max(0, Mathf.Min(recievedKnockbackRaw, 999))); }
@@ -19,6 +21,7 @@ public class KnockBackHandler : MonoBehaviour
     private bool knockedBack = false;
 
     public KnockbackRecieved OnKnockbackRecieved;
+    public KnockbackComplete OnKnockbackComplete;
 
     void Start()
     {
@@ -35,17 +38,51 @@ public class KnockBackHandler : MonoBehaviour
             if (TryGetComponent<Movement>(out Movement myMovement))
             {
                 myMovement.enabled = true;
+                myMovement.isKnocked = false;
                 knockedBack = false;
             }
+
+            if (TryGetComponent<Aiming>(out Aiming myAim))
+            {
+                myAim.enabled = true;
+            }
+
+            OnKnockbackComplete?.Invoke();
         }
     }
 
-    public void GetKnockedBack(Vector3 dir, float force)
+    public void GetKnockedBack(Vector3 dir, float force, bool locksPlayerForDuration)
     {
-        if(TryGetComponent<Movement>(out Movement myMovement))
+        if (TryGetComponent<PlayerStats>(out PlayerStats myPlayerStats))
         {
-            myMovement.enabled = false;
+            if (!myPlayerStats.alive)
+            {
+                myPlayerStats.finalKnockbackDisplay = recievedKnockbackDisplay;
+            }
+        }
         
+        // Halving all force recieved for faster platesting
+        force *= knockbackMultiplicator;
+
+        if(locksPlayerForDuration)
+        {
+            if (TryGetComponent<Movement>(out Movement myMovement))
+            {
+                myMovement.enabled = false;   
+                myMovement.isKnocked = true;
+            }
+
+            if(TryGetComponent<Aiming>(out Aiming myAim))
+            {
+                myAim.enabled = false;
+            }
+        }
+        else
+        {
+            if (TryGetComponent<Movement>(out Movement myMovement))
+            {
+                myMovement.isKnocked = true;
+            }
         }
         this.CancelInvoke();
         dir.Normalize();
@@ -59,6 +96,11 @@ public class KnockBackHandler : MonoBehaviour
 
         rb.velocity = Vector3.zero;
         rb.AddForce(dir * forceToApply, ForceMode.Impulse);
+
+        if (locksPlayerForDuration)
+        {
+            transform.forward = dir * -1f;
+        }
 
         OnKnockbackRecieved?.Invoke();
 

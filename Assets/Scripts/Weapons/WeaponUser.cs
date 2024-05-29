@@ -93,7 +93,10 @@ public class WeaponUser : MonoBehaviour
         bool fireSuccess = carriedWeapon.TryShoot();
 
         if (fireSuccess)
+        {
             shotsFired++;
+            PlayerShooting.shotsFiredPerPlayer[userIndex] = shotsFired;
+        }
     }
 
     public bool AttemptAquireWeapon(Weapon weaponPrefabToAquire)

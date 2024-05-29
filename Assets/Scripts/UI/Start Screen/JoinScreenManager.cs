@@ -38,6 +38,16 @@ public class JoinScreenManager : MonoBehaviour
 
     public void OnSceneLoad()
     {
+        if (displayParent == null || playerDisplayPrefab == null || playerPrefab == null)
+        {
+            return;
+        }
+
+        if (playerPrefab == null)
+        {
+            return;
+        }
+
         // When entering a new scene, wcheck if the new scene is the start screen
         if (SceneManager.GetActiveScene().name == Paths.START_SCENE_NAME)
         {
@@ -58,8 +68,6 @@ public class JoinScreenManager : MonoBehaviour
                     Destroy(child.gameObject);
                 }
             }
-
-
 
             // Find things that should be in the scene
             displayParent = FindObjectOfType<JoinDisplayParent>(true).transform;

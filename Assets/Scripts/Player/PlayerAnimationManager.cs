@@ -11,6 +11,7 @@ public class PlayerAnimationManager : MonoBehaviour
     private GroundChecker _groundCheck;
     private KnockBackHandler _knockBackHandler;
     private int currentState = 0;
+    private bool animationStateIsLocked = false;
 
     private Dictionary<int, int> animationsWithWeaponPairings = new();
 
@@ -55,6 +56,11 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             Debug.LogError("AnimationHandler unable To find player KnockBackHandler script!");
         }
+        else
+        {
+            _knockBackHandler.OnKnockbackRecieved += PlayKnockbackAnimation;
+            _knockBackHandler.OnKnockbackComplete += LockAnimationState;
+        }
 
         defaultAnimation = IDLE;
         DecalareAnimationPairings();
@@ -64,6 +70,12 @@ public class PlayerAnimationManager : MonoBehaviour
     private void FixedUpdate()
     {
         ManageAnimations();
+    }
+
+    private void OnDestroy()
+    {
+        _knockBackHandler.OnKnockbackRecieved -= PlayKnockbackAnimation;
+        _knockBackHandler.OnKnockbackComplete -= UnlockAnimationState;
     }
 
     private void DecalareAnimationPairings()
@@ -85,6 +97,7 @@ public class PlayerAnimationManager : MonoBehaviour
     private int GetDesiredAnimationState()
     {
         if (!ComponentsVerified()) { return defaultAnimation; }
+        if (animationStateIsLocked) { return currentState; }
 
         int animationToReturn = GetBaseAnimation();
 
@@ -109,11 +122,13 @@ public class PlayerAnimationManager : MonoBehaviour
 
             int animationToReturn = defaultAnimation;
 
+            // Knockback moved to be ttriggered only by event
+            /*
             // Knocked back
             if (_knockBackHandler.KnockedBack)
             {
                 return KNOCKEDBACK;
-            }
+            }*/
 
             // Airborn
             if (!_groundCheck.IsGrounded)
@@ -153,10 +168,26 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private void TrySetAnimation(int animation)
     {
-        if (currentState != animation)
-        {
-            animator.CrossFade(animation, 0f, 0);
-            currentState = animation;
-        }
+        if (animationStateIsLocked) { return; }
+        if (currentState == animation) {return; }
+
+        animator.CrossFade(animation, 0f, 0);
+        currentState = animation;
+    }
+
+    private void PlayKnockbackAnimation()
+    {
+        TrySetAnimation(KNOCKEDBACK);
+        LockAnimationState();
+    }
+
+    private void LockAnimationState()
+    {
+        animationStateIsLocked = true;
+    }
+
+    private void UnlockAnimationState()
+    {
+        animationStateIsLocked = false;
     }
 }
