@@ -75,3 +75,6 @@ crashlytics-build.properties
 ProjectSettings/ShaderGraphSettings.asset
 ProjectSettings/ProjectSettings.asset
 ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+*.meta
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json

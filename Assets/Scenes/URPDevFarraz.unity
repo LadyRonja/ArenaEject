@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15949416, g: 0.19281867, b: 0.29580408, a: 1}
+  m_IndirectSpecularColor: {r: 0.15949428, g: 0.19281885, b: 0.29580438, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18832,6 +18832,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1723009978}
+    - target: {fileID: 4500655014683082880, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMenuButtonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500655014683082880, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: KillPlane, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5196225871168477692, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -18988,6 +18996,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1723009978}
+    - target: {fileID: 7645976004291127491, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNextButtonPress
+      objectReference: {fileID: 0}
     - target: {fileID: 7899442269955898850, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

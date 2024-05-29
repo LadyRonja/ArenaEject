@@ -114,12 +114,12 @@ public class KillPlane : MonoBehaviour
             {
                 if (!deadPlayers.Contains(player))
                 {
-                    deadPlayers.Add(player);
-                    
                     if(player.TryGetComponent<KnockBackHandler>(out KnockBackHandler knockbackHandler))
                     {
                         player.finalKnockbackDisplay = knockbackHandler.recievedKnockbackDisplay;
                     }
+                    
+                    deadPlayers.Add(player);
                 }
             }
 
@@ -247,6 +247,11 @@ public class KillPlane : MonoBehaviour
 
         if (!deadPlayers.Contains(winner))
         {
+            if(winner.TryGetComponent<KnockBackHandler>(out KnockBackHandler knockbackHandler))
+            {
+                winner.finalKnockbackDisplay = knockbackHandler.recievedKnockbackDisplay;
+            }
+            
             deadPlayers.Add(winner);
         }
         
