@@ -32,13 +32,14 @@ public class GameStartManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+            return;
         }
+        SpawnAllPlayers();
+        Invoke(nameof(StartCameraTracking), 0.2f);
     }
 
     private void Start()
     {
-        SpawnAllPlayers();
-        Invoke(nameof(StartCameraTracking), 0.2f);
     }
 
     private void SpawnAllPlayers()
@@ -114,7 +115,12 @@ public class GameStartManager : MonoBehaviour
             TeleportPlayerToSpawn(playersToSpawn[i].playerIndex, playerInputObj.gameObject);
 
             // Verify Component Validity
-            VerifyPlayer(playerInputObj.gameObject, playersToSpawn[i].playerIndex, true);     
+            VerifyPlayer(playerInputObj.gameObject, playersToSpawn[i].playerIndex, true);
+            
+            if(playerInputObj.TryGetComponent<CharacterSelectManager>(out CharacterSelectManager csm)){
+                csm.Start();
+                csm.UpdateModel(playersToSpawn[i].playerModelIndex);
+            }
         }
 
 

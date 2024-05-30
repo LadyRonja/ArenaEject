@@ -15,14 +15,14 @@ public struct ModelData
 
 public class CharacterSelectStation : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> modelPrefabs = new();
+    //[SerializeField] private List<GameObject> modelPrefabs = new();
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<CharacterSelectManager>(out CharacterSelectManager csm))
         {
             csm.closeStation = this;
-            Debug.Log("Character in range to change");
+           //Debug.Log("Character in range to change");
         }
     }
 
@@ -31,11 +31,11 @@ public class CharacterSelectStation : MonoBehaviour
         if (other.TryGetComponent<CharacterSelectManager>(out CharacterSelectManager csm))
         {
             csm.closeStation = null;
-            Debug.Log("Character no longer range to change");
+            //Debug.Log("Character no longer range to change");
         }
     }
 
-    public GameObject GetNextModel(bool goingRight, int startIndex, CharacterSelectManager caller)
+    /*public GameObject GetNextModel(bool goingRight, int startIndex, CharacterSelectManager caller)
     {
         if (modelPrefabs.Count < 1) { return null; }
 
@@ -54,5 +54,5 @@ public class CharacterSelectStation : MonoBehaviour
         GameObject objToReturn = Instantiate(modelPrefabs[nextIndex]);
         caller.currentIndex = nextIndex;
         return objToReturn;
-    }
+    }*/
 }

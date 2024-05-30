@@ -6781,6 +6781,8 @@ MonoBehaviour:
   joinScreen: {fileID: 674008237}
   optionsScreen: {fileID: 1679019257}
   creditsScreen: {fileID: 382090627}
+  bg1: {fileID: 28202297}
+  bg2: {fileID: 1319667843}
   joinButton: {fileID: 923937955}
   optionsButton: {fileID: 1860553241}
   creditsButton: {fileID: 1595516725}
@@ -6941,6 +6943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24181474b91f07e4392efff36f109b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackMultiplicator: 0.5
   usingCumulativeKnockback: 1
   frictionCoefficient: 10
   frictionDelay: 0.3
@@ -8254,6 +8257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24181474b91f07e4392efff36f109b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackMultiplicator: 0.5
   usingCumulativeKnockback: 1
   frictionCoefficient: 10
   frictionDelay: 0.3
@@ -9343,6 +9347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24181474b91f07e4392efff36f109b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackMultiplicator: 0.5
   usingCumulativeKnockback: 1
   frictionCoefficient: 10
   frictionDelay: 0.3
@@ -10130,6 +10135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24181474b91f07e4392efff36f109b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackMultiplicator: 0.5
   usingCumulativeKnockback: 1
   frictionCoefficient: 10
   frictionDelay: 0.3
