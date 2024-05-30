@@ -30,18 +30,22 @@ public class KillPlane : MonoBehaviour
     [SerializeField] private TMP_Text endGameTitle;
 
     [SerializeField] private GameObject winnerAvatar;
+    [SerializeField] private GameObject winnerStats;
     [SerializeField] private TMP_Text timeAliveWinner;
     [SerializeField] private TMP_Text shotsFiredWinner;
 
     [SerializeField] private GameObject secondAvatar;
+    [SerializeField] private GameObject secondStats;
     [SerializeField] private TMP_Text timeAliveSecond;
     [SerializeField] private TMP_Text shotsFiredSecond;
 
     [SerializeField] private GameObject thirdAvatar;
+    [SerializeField] private GameObject thirdStats;
     [SerializeField] private TMP_Text timeAliveThird;
     [SerializeField] private TMP_Text shotsFiredThird;
 
     [SerializeField] private GameObject fourthAvatar;
+    [SerializeField] private GameObject fourthStats;
     [SerializeField] private TMP_Text timeAliveFourth;
     [SerializeField] private TMP_Text shotsFiredFourth;
 
@@ -296,21 +300,44 @@ public class KillPlane : MonoBehaviour
             playerUIHandler.HidePlayerPotraits();
         }
         
+        List<GameObject> avatars = new List<GameObject> { winnerAvatar, secondAvatar, thirdAvatar, fourthAvatar };
+        List<GameObject> statsContainers = new List<GameObject> { winnerStats, secondStats, thirdStats, fourthStats };
         List<TMP_Text> timeAliveTexts = new List<TMP_Text> { timeAliveWinner, timeAliveSecond, timeAliveThird, timeAliveFourth };
         List<TMP_Text> shotsFiredTexts = new List<TMP_Text> { shotsFiredWinner, shotsFiredSecond, shotsFiredThird, shotsFiredFourth };
 
         endGameCanvas.SetActive(true);
         endGameTitle.text = "Player " + (winnerIndex + 1) + " Wins!";
         endGameTitle.transform.DOScale(1, 1f).SetEase(Ease.OutElastic);
+        
+        foreach (var text in timeAliveTexts)
+            text.gameObject.SetActive(false);
+
+        foreach (var text in shotsFiredTexts)
+            text.gameObject.SetActive(false);
+        
+        foreach (var statsContainer in statsContainers)
+            statsContainer.SetActive(false);
+
+        foreach (var avatar in avatars)
+            avatar.SetActive(false);
 
         DOVirtual.DelayedCall(1f, () =>
         {
             endGamePanel.transform.DOScale(1, 1f).SetEase(Ease.OutQuart);
         });
-
+        
         int playerCount = Math.Min(deadPlayers.Count, timeAliveTexts.Count);
         playerCount = Math.Min(playerCount, shotsFiredTexts.Count);
         playerCount = Math.Min(playerCount, playerPotraits.Count);
+        
+        for (int i = 0; i < playerCount; i++)
+        {
+            timeAliveTexts[i].gameObject.SetActive(true);
+            shotsFiredTexts[i].gameObject.SetActive(true);
+            statsContainers[i].SetActive(true);
+            avatars[i].SetActive(true);
+        }
+
         
         List<PlayerPotrait> reversedPlayerPotraits = new List<PlayerPotrait>(playerPotraits);
         reversedPlayerPotraits.Reverse();

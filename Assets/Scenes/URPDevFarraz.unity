@@ -340,6 +340,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1707455877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &110653692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8645261114707159917, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1381634036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &146123870
 GameObject:
   m_ObjectHideFlags: 0
@@ -6933,15 +6938,19 @@ MonoBehaviour:
   endGameLoading: {fileID: 1381634037}
   endGameTitle: {fileID: 1381634050}
   winnerAvatar: {fileID: 1381634049}
+  winnerStats: {fileID: 1296139876}
   timeAliveWinner: {fileID: 1381634048}
   shotsFiredWinner: {fileID: 1381634047}
   secondAvatar: {fileID: 1381634046}
+  secondStats: {fileID: 110653692}
   timeAliveSecond: {fileID: 1940237951}
   shotsFiredSecond: {fileID: 1912530360}
   thirdAvatar: {fileID: 1381634043}
+  thirdStats: {fileID: 1324614310}
   timeAliveThird: {fileID: 328350876}
   shotsFiredThird: {fileID: 1891523818}
   fourthAvatar: {fileID: 1381634040}
+  fourthStats: {fileID: 2034788433}
   timeAliveFourth: {fileID: 1818443114}
   shotsFiredFourth: {fileID: 1338347862}
   playerDeathSounds:
@@ -7636,15 +7645,19 @@ MonoBehaviour:
   endGameLoading: {fileID: 1381634037}
   endGameTitle: {fileID: 1381634050}
   winnerAvatar: {fileID: 1381634049}
+  winnerStats: {fileID: 1296139876}
   timeAliveWinner: {fileID: 1381634048}
   shotsFiredWinner: {fileID: 1381634047}
   secondAvatar: {fileID: 1381634046}
+  secondStats: {fileID: 110653692}
   timeAliveSecond: {fileID: 1940237951}
   shotsFiredSecond: {fileID: 1912530360}
   thirdAvatar: {fileID: 1381634043}
+  thirdStats: {fileID: 1324614310}
   timeAliveThird: {fileID: 328350876}
   shotsFiredThird: {fileID: 1891523818}
   fourthAvatar: {fileID: 1381634040}
+  fourthStats: {fileID: 2034788433}
   timeAliveFourth: {fileID: 1818443114}
   shotsFiredFourth: {fileID: 1338347862}
   playerDeathSounds:
@@ -18214,6 +18227,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 163627949}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &1296139876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2859122420369690407, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1381634036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1324614310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5815106901576028657, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1381634036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1327658022
 GameObject:
   m_ObjectHideFlags: 0
@@ -18272,15 +18295,19 @@ MonoBehaviour:
   endGameLoading: {fileID: 1381634037}
   endGameTitle: {fileID: 1381634050}
   winnerAvatar: {fileID: 1381634049}
+  winnerStats: {fileID: 1296139876}
   timeAliveWinner: {fileID: 1381634048}
   shotsFiredWinner: {fileID: 1381634047}
   secondAvatar: {fileID: 1381634046}
+  secondStats: {fileID: 110653692}
   timeAliveSecond: {fileID: 1940237951}
   shotsFiredSecond: {fileID: 1912530360}
   thirdAvatar: {fileID: 1381634043}
+  thirdStats: {fileID: 1324614310}
   timeAliveThird: {fileID: 328350876}
   shotsFiredThird: {fileID: 1891523818}
   fourthAvatar: {fileID: 1381634040}
+  fourthStats: {fileID: 2034788433}
   timeAliveFourth: {fileID: 1818443114}
   shotsFiredFourth: {fileID: 1338347862}
   playerDeathSounds:
@@ -18419,15 +18446,19 @@ MonoBehaviour:
   endGameLoading: {fileID: 1381634037}
   endGameTitle: {fileID: 1381634050}
   winnerAvatar: {fileID: 1381634049}
+  winnerStats: {fileID: 1296139876}
   timeAliveWinner: {fileID: 1381634048}
   shotsFiredWinner: {fileID: 1381634047}
   secondAvatar: {fileID: 1381634046}
+  secondStats: {fileID: 110653692}
   timeAliveSecond: {fileID: 1940237951}
   shotsFiredSecond: {fileID: 1912530360}
   thirdAvatar: {fileID: 1381634043}
+  thirdStats: {fileID: 1324614310}
   timeAliveThird: {fileID: 328350876}
   shotsFiredThird: {fileID: 1891523818}
   fourthAvatar: {fileID: 1381634040}
+  fourthStats: {fileID: 2034788433}
   timeAliveFourth: {fileID: 1818443114}
   shotsFiredFourth: {fileID: 1338347862}
   playerDeathSounds:
@@ -18703,6 +18734,22 @@ PrefabInstance:
     - target: {fileID: 1459678586295089277, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_Color.a
+      value: 0.87058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_Color.b
+      value: 0.1462264
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_Color.g
+      value: 0.21156624
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2162370728646747746, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchorMax.y
@@ -18990,6 +19037,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6312888449478594622, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213367352849244215, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7645976004291127491, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
@@ -21093,15 +21152,19 @@ MonoBehaviour:
   endGameLoading: {fileID: 1381634037}
   endGameTitle: {fileID: 1381634050}
   winnerAvatar: {fileID: 1381634049}
+  winnerStats: {fileID: 1296139876}
   timeAliveWinner: {fileID: 1381634048}
   shotsFiredWinner: {fileID: 1381634047}
   secondAvatar: {fileID: 1381634046}
+  secondStats: {fileID: 110653692}
   timeAliveSecond: {fileID: 1940237951}
   shotsFiredSecond: {fileID: 1912530360}
   thirdAvatar: {fileID: 1381634043}
+  thirdStats: {fileID: 1324614310}
   timeAliveThird: {fileID: 328350876}
   shotsFiredThird: {fileID: 1891523818}
   fourthAvatar: {fileID: 1381634040}
+  fourthStats: {fileID: 2034788433}
   timeAliveFourth: {fileID: 1818443114}
   shotsFiredFourth: {fileID: 1338347862}
   playerDeathSounds:
@@ -31532,6 +31595,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &2034788433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6852251914703799859, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+  m_PrefabInstance: {fileID: 1381634036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2090664954
 GameObject:
   m_ObjectHideFlags: 0
@@ -31627,15 +31695,19 @@ MonoBehaviour:
   endGameLoading: {fileID: 1381634037}
   endGameTitle: {fileID: 1381634050}
   winnerAvatar: {fileID: 1381634049}
+  winnerStats: {fileID: 1296139876}
   timeAliveWinner: {fileID: 1381634048}
   shotsFiredWinner: {fileID: 1381634047}
   secondAvatar: {fileID: 1381634046}
+  secondStats: {fileID: 110653692}
   timeAliveSecond: {fileID: 1940237951}
   shotsFiredSecond: {fileID: 1912530360}
   thirdAvatar: {fileID: 1381634043}
+  thirdStats: {fileID: 1324614310}
   timeAliveThird: {fileID: 328350876}
   shotsFiredThird: {fileID: 1891523818}
   fourthAvatar: {fileID: 1381634040}
+  fourthStats: {fileID: 2034788433}
   timeAliveFourth: {fileID: 1818443114}
   shotsFiredFourth: {fileID: 1338347862}
   playerDeathSounds:
