@@ -1,12 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public class WeaponUser : MonoBehaviour
 {
@@ -138,7 +132,7 @@ public class WeaponUser : MonoBehaviour
 
     private void ThrowWeapon(bool throwWeaponToExplode = false)
     {
-        if (carriedWeapon == null) return;
+        if (carriedWeapon == null || GameOverBool.gameOver) return;
         if (throwWeaponToExplode)
         {
             //if (carriedWeapon.ammoCount > 0) { return; } // TODO: Once ammo count is balanced, enable this check.

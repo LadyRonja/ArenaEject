@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,6 +49,8 @@ public class Aiming : MonoBehaviour
 
     private void AimLogic()
     {
+        if (GameOverBool.gameOver) return;
+        
         if (aimInput != Vector2.zero)
         {
             LookAt(aimInput);

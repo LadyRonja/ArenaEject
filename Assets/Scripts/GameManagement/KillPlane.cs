@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Coffee.UIExtensions;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -17,9 +18,9 @@ public class KillPlane : MonoBehaviour
     private List<PlayerStats> players = new();
     private List<PlayerStats> deadPlayers = new();
     private List<PlayerPotrait> playerPotraits = new List<PlayerPotrait>();
+    
     private Dictionary<int, int> timeAliveTracking = new Dictionary<int, int>();
     private static bool isTimeTrackingStarted = false;
-    private bool gameIsOver = false;
     
     [SerializeField] PlayerPotrait endGamePlayerPotraitPrefab;
 
@@ -94,7 +95,7 @@ public class KillPlane : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameIsOver) return;
+        if (GameOverBool.gameOver) return;
 
         if(other.TryGetComponent<PlayerStats>(out PlayerStats player))
         {
@@ -174,7 +175,7 @@ public class KillPlane : MonoBehaviour
                 if (alivePlayers.Count < 1)
                 {
                     // TODO: Tie
-                    gameIsOver = true;
+                    GameOverBool.gameOver = true;
                     Debug.LogError("No implementation for a TIED game");
 
                     EndGameTie();
@@ -247,7 +248,7 @@ public class KillPlane : MonoBehaviour
     private void EndGame(PlayerStats winner)
     {
         if (endGameCanvas == null) return;
-        gameIsOver = true;
+        GameOverBool.gameOver = true;
 
         if (!deadPlayers.Contains(winner))
         {
@@ -288,7 +289,7 @@ public class KillPlane : MonoBehaviour
     private void EndGameTie()
     {
         if(endGameCanvas == null) return;
-        gameIsOver = true;
+        GameOverBool.gameOver = true;
 
         ShowEndGamePanel(0);
     }
@@ -348,20 +349,32 @@ public class KillPlane : MonoBehaviour
             PlayerStats playerStats = deadPlayers[deadPlayers.Count - 1 - index];
             PlayerPotrait playerPotrait = reversedPlayerPotraits[i];
             
-            float delay = i == 0 ? 1.5f : 3.0f + (0.1f * (index - 1));
+            float delay = i == 0 ? 1.5f : 4.0f + (0.1f * (index - 1));
 
             DOVirtual.DelayedCall(delay + 0.1f, () =>
             {
-                playerPotrait.transform.DOScale(0.6f, 0.7f).SetEase(Ease.OutBounce);
+                var tween = playerPotrait.transform.DOScale(0.6f, 0.7f).SetEase(Ease.OutBounce);
+                if (index == 0)
+                {
+                    tween.OnComplete(() =>
+                    {
+                        Transform bgTransform = playerPotrait.transform.Find("BG");
+                        if (bgTransform != null)
+                        {
+                            UIShiny shineEffect = bgTransform.GetComponent<UIShiny>();
+                            shineEffect.Play();
+                        }
+                    });
+                }
             });
 
-            DOVirtual.DelayedCall(delay + 0.3f, () =>
+            DOVirtual.DelayedCall(delay + 0.2f, () =>
             {
                 timeAliveTexts[index].text = $"Survived {playerStats.timeAlive} s";
                 timeAliveTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
             });
 
-            DOVirtual.DelayedCall(delay + 0.6f, () =>
+            DOVirtual.DelayedCall(delay + 0.4f, () =>
             {
                 int shotsFired = PlayerShooting.shotsFiredPerPlayer.ContainsKey(playerStats.playerIndex) ? PlayerShooting.shotsFiredPerPlayer[playerStats.playerIndex] : 0;
                 shotsFiredTexts[index].text = $"Fired {shotsFired} shots";

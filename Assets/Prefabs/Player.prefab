@@ -155,10 +155,10 @@ MonoBehaviour:
   lives: 1
   timeAlive: 0
   colors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.9150943, g: 0, b: 0.054829244, a: 1}
-  - {r: 0.0040049935, g: 0.030560136, b: 0.8490566, a: 1}
-  - {r: 0.7169812, g: 0, b: 0.67784715, a: 1}
+  - {r: 1, g: 0.93238336, b: 0.2028302, a: 1}
+  - {r: 1, g: 0.3, b: 0.3228757, a: 1}
+  - {r: 0.3, g: 0.32287604, b: 1, a: 1}
+  - {r: 0.3, g: 1, b: 0.33202612, a: 1}
   playerSprites:
   - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
   - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
@@ -207,10 +207,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
-  maxSpeed: 13
+  maxSpeed: 12
   groundAcceleration: 15
   deceleration: 15
   airAcceleration: 3
+  isKnocked: 0
 --- !u!114 &209684254705093327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a78ff56cc629e749ac4dcefebfcf78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorToFlash: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.28
 --- !u!114 &989872724748604163
 MonoBehaviour:
   m_ObjectHideFlags: 0
