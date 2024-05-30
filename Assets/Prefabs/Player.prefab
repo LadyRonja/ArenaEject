@@ -211,6 +211,7 @@ MonoBehaviour:
   groundAcceleration: 15
   deceleration: 15
   airAcceleration: 3
+  isKnocked: 0
 --- !u!114 &209684254705093327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +349,9 @@ MonoBehaviour:
   ps: {fileID: 0}
   currentIndex: -1
   closeStation: {fileID: 0}
+  modelPrefabs:
+  - {fileID: 5081925470564621760, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
+  - {fileID: 2551072330599308663, guid: 6ef9dde174e357a4eb9e6487300c1f76, type: 3}
 --- !u!114 &7099439140047253940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a78ff56cc629e749ac4dcefebfcf78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorToFlash: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.28
 --- !u!114 &989872724748604163
 MonoBehaviour:
   m_ObjectHideFlags: 0

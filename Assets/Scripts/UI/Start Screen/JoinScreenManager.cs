@@ -12,7 +12,7 @@ public class JoinScreenManager : MonoBehaviour
     [HideInInspector] public List<PlayerConfigurations> playerConfigs = new();
     [SerializeField] private int maxPLayers = 4;
 
-    [SerializeField] private GameObject playerDisplayPrefab;
+    //[SerializeField] private GameObject playerDisplayPrefab;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform displayParent;
     [SerializeField] private List<Color> playerColors = new List<Color>();
@@ -21,13 +21,19 @@ public class JoinScreenManager : MonoBehaviour
     private static JoinScreenManager instance;
     public static JoinScreenManager Instance { get => instance; }
 
+    int timesLoaded = 0; // awful solution to subscribing multiple times
+
     private void Awake()
     {
         if (instance == null || instance == this)
         {
             instance = this;
             playerConfigs = new();
-            SceneManager.sceneLoaded += delegate { OnSceneLoad(); };
+            if(timesLoaded == 0)
+            {
+                SceneManager.sceneLoaded += delegate { OnSceneLoad(); };
+            }
+            timesLoaded++;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -38,16 +44,6 @@ public class JoinScreenManager : MonoBehaviour
 
     public void OnSceneLoad()
     {
-        if (displayParent == null || playerDisplayPrefab == null || playerPrefab == null)
-        {
-            return;
-        }
-
-        if (playerPrefab == null)
-        {
-            return;
-        }
-
         // When entering a new scene, wcheck if the new scene is the start screen
         if (SceneManager.GetActiveScene().name == Paths.START_SCENE_NAME)
         {
@@ -124,19 +120,19 @@ public class JoinScreenManager : MonoBehaviour
                 displayParent = this.transform;
             }
 
-            GameObject displayObj = Instantiate(playerDisplayPrefab, Vector3.zero, Quaternion.identity, displayParent);
-            JoinDisplay displayComponents = displayObj.GetComponent<JoinDisplay>();
-            displayComponents.playerIndex = pi.playerIndex;
-            displayComponents.playerText.text = $"Player {pi.playerIndex + 1}";
+            //GameObject displayObj = Instantiate(playerDisplayPrefab, Vector3.zero, Quaternion.identity, displayParent);
+            //JoinDisplay displayComponents = displayObj.GetComponent<JoinDisplay>();
+            //displayComponents.playerIndex = pi.playerIndex;
+           //displayComponents.playerText.text = $"Player {pi.playerIndex + 1}";
             if (playerColors[pi.playerIndex] != null)
             {
-                displayComponents.displayImage.color = playerColors[pi.playerIndex];
+                //displayComponents.displayImage.color = playerColors[pi.playerIndex];
                 playerConfigs[pi.playerIndex].playerColor = playerColors[pi.playerIndex];
             }
 
             PlayerInput player = GameStartManager.SpawnAPlayer(playerPrefab, pi.playerIndex, playerConfig.input.devices[0]);
             GameStartManager.VerifyPlayer(player.gameObject, pi.playerIndex, true);
-            player.transform.position = spawnPoints[playerConfigs.Count - 1].transform.position;
+            player.transform.position = spawnPoints[playerConfigs.Count].transform.position;
 
             UpdateCameraTracking();
         }
@@ -217,6 +213,21 @@ public class JoinScreenManager : MonoBehaviour
         }
     }
 
+    public void UpdatePlayerConfigModel(int playerIndex, int newModelIndex)
+    {
+        try
+        {
+            PlayerConfigurations playerToUpdate = playerConfigs.Where(i => i.playerIndex == playerIndex).First();
+            playerToUpdate.playerModelIndex = newModelIndex;
+            Debug.Log("playerconfig: " + playerToUpdate.playerIndex + " now has model index: " + playerToUpdate.playerModelIndex);
+
+        }
+        catch 
+        {
+            Debug.LogError("Unable to update player config model data");
+        }
+    }
+
 }
 
 public class PlayerConfigurations
@@ -230,4 +241,5 @@ public class PlayerConfigurations
     public PlayerInput input;
     public int playerIndex;
     public Color playerColor = Color.white;
+    public int playerModelIndex = 0;
 }
