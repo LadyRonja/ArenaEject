@@ -22,17 +22,20 @@ public class DevShortcuts : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
+            SceneHandler.Instance.GoToScene(0);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene(1);
+            SceneHandler.Instance.GoToScene(1);
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            SceneManager.LoadScene(2);
+            //SceneManager.LoadScene(2);
+            SceneHandler.Instance.GoToScene(2);
         }
 
         /*

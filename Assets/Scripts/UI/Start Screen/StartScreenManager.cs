@@ -151,6 +151,7 @@ public class StartScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
+        //SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
+        SceneHandler.Instance.GoToScene(Paths.FARRAZ_SCENE_NAME);
     }
 }
