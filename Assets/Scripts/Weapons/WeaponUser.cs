@@ -132,7 +132,7 @@ public class WeaponUser : MonoBehaviour
 
     private void ThrowWeapon(bool throwWeaponToExplode = false)
     {
-        if (carriedWeapon == null || GameOverBool.gameOver) return;
+        if (carriedWeapon == null || StaticStats.gameOver) return;
         if (throwWeaponToExplode)
         {
             //if (carriedWeapon.ammoCount > 0) { return; } // TODO: Once ammo count is balanced, enable this check.

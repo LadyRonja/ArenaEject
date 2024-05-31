@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
 
     private void MoveLogic()
     {
-        if (GameOverBool.gameOver)
+        if (StaticStats.gameOver)
         {
             rb.velocity = Vector3.zero;
             return;
@@ -107,7 +107,7 @@ public class Movement : MonoBehaviour
 
     private void OnMovement(InputValue value)
     {
-        if (GameOverBool.gameOver) return;
+        if (StaticStats.gameOver) return;
         
         moveInput = value.Get<Vector2>();
 

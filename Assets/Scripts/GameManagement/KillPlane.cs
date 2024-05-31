@@ -29,7 +29,7 @@ public class KillPlane : MonoBehaviour
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private GameObject endGameLoading;
     [SerializeField] private TMP_Text endGameTitle;
-
+    
     [SerializeField] private GameObject winnerAvatar;
     [SerializeField] private GameObject winnerStats;
     [SerializeField] private TMP_Text timeAliveWinner;
@@ -95,7 +95,7 @@ public class KillPlane : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (GameOverBool.gameOver) return;
+        if (StaticStats.gameOver) return;
 
         if(other.TryGetComponent<PlayerStats>(out PlayerStats player))
         {
@@ -175,7 +175,7 @@ public class KillPlane : MonoBehaviour
                 if (alivePlayers.Count < 1)
                 {
                     // TODO: Tie
-                    GameOverBool.gameOver = true;
+                    StaticStats.gameOver = true;
                     Debug.LogError("No implementation for a TIED game");
 
                     EndGameTie();
@@ -248,7 +248,7 @@ public class KillPlane : MonoBehaviour
     private void EndGame(PlayerStats winner)
     {
         if (endGameCanvas == null) return;
-        GameOverBool.gameOver = true;
+        StaticStats.gameOver = true;
 
         if (!deadPlayers.Contains(winner))
         {
@@ -258,6 +258,15 @@ public class KillPlane : MonoBehaviour
             }
             
             deadPlayers.Add(winner);
+        }
+        
+        if (StaticStats.playerWins.ContainsKey(winner.playerIndex))
+        {
+            StaticStats.playerWins[winner.playerIndex]++;
+        }
+        else
+        {
+            StaticStats.playerWins.Add(winner.playerIndex, 1);
         }
         
         GameObject[] avatars = new GameObject[] { winnerAvatar, secondAvatar, thirdAvatar, fourthAvatar };
@@ -277,6 +286,7 @@ public class KillPlane : MonoBehaviour
             
             playerPotraitInstance.background.color = playerStats.colors[playerStats.playerIndex];
             playerPotraitInstance.playerPotrait.sprite = playerStats.endGamePlayerSprites[playerStats.playerIndex];
+            playerPotraitInstance.playerWins.text = StaticStats.playerWins.ContainsKey(playerStats.playerIndex) ? $"{StaticStats.playerWins[playerStats.playerIndex]} Wins" : "0 Wins";
             playerPotraitInstance.damagePercentage.text = $"{playerStats.finalKnockbackDisplay}%";
             playerPotraitInstance.transform.localScale = Vector3.zero;
             playerPotraitInstance.gameObject.SetActive(true);
@@ -289,7 +299,7 @@ public class KillPlane : MonoBehaviour
     private void EndGameTie()
     {
         if(endGameCanvas == null) return;
-        GameOverBool.gameOver = true;
+        StaticStats.gameOver = true;
 
         ShowEndGamePanel(0);
     }
@@ -339,7 +349,6 @@ public class KillPlane : MonoBehaviour
             avatars[i].SetActive(true);
         }
 
-        
         List<PlayerPotrait> reversedPlayerPotraits = new List<PlayerPotrait>(playerPotraits);
         reversedPlayerPotraits.Reverse();
 
@@ -349,11 +358,11 @@ public class KillPlane : MonoBehaviour
             PlayerStats playerStats = deadPlayers[deadPlayers.Count - 1 - index];
             PlayerPotrait playerPotrait = reversedPlayerPotraits[i];
             
-            float delay = i == 0 ? 1.5f : 4.0f + (0.1f * (index - 1));
+            float delay = i == 0 ? 1.5f : 3.5f + (0.1f * (index - 1));
 
             DOVirtual.DelayedCall(delay + 0.1f, () =>
             {
-                var tween = playerPotrait.transform.DOScale(0.6f, 0.7f).SetEase(Ease.OutBounce);
+                var tween = playerPotrait.transform.DOScale(0.6f, 0.5f).SetEase(Ease.InOutQuint);
                 if (index == 0)
                 {
                     tween.OnComplete(() =>
@@ -364,25 +373,35 @@ public class KillPlane : MonoBehaviour
                             UIShiny shineEffect = bgTransform.GetComponent<UIShiny>();
                             shineEffect.Play();
                         }
+                        
+                        playerPotrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+                    });
+                }
+
+                else
+                {
+                    tween.OnComplete(() =>
+                    {
+                        playerPotrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
                     });
                 }
             });
 
-            DOVirtual.DelayedCall(delay + 0.2f, () =>
+            DOVirtual.DelayedCall(delay + 1.2f, () =>
             {
                 timeAliveTexts[index].text = $"Survived {playerStats.timeAlive} s";
-                timeAliveTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+                timeAliveTexts[index].transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
             });
-
-            DOVirtual.DelayedCall(delay + 0.4f, () =>
+            
+            DOVirtual.DelayedCall(delay + 1.4f, () =>
             {
                 int shotsFired = PlayerShooting.shotsFiredPerPlayer.ContainsKey(playerStats.playerIndex) ? PlayerShooting.shotsFiredPerPlayer[playerStats.playerIndex] : 0;
                 shotsFiredTexts[index].text = $"Fired {shotsFired} shots";
-                shotsFiredTexts[index].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+                shotsFiredTexts[index].transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
             });
         }
 
-        DOVirtual.DelayedCall(5f, () =>
+        DOVirtual.DelayedCall(6f, () =>
         {
             menu.interactable = true;
             next.interactable = true;
@@ -390,10 +409,9 @@ public class KillPlane : MonoBehaviour
             EventSystem eventSystem = FindObjectOfType<EventSystem>();
             eventSystem.SetSelectedGameObject(next.gameObject);
             
-            menu.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
-            next.transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+            menu.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+            next.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
         });
-        
     }
     
     public void OnMenuButtonPress()
@@ -408,8 +426,8 @@ public class KillPlane : MonoBehaviour
     
     public IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
     {
-        menu.transform.DOScale(0, 0.7f).SetEase(Ease.OutBounce);
-        next.transform.DOScale(0, 0.7f).SetEase(Ease.OutBounce);
+        menu.transform.DOScale(0, 1.5f).SetEase(Ease.OutExpo);
+        next.transform.DOScale(0, 1.5f).SetEase(Ease.InExpo);
         menu.interactable = false;
         next.interactable = false;
         
@@ -430,9 +448,9 @@ public class KillPlane : MonoBehaviour
         
         StartCoroutine(Countdown(levelLoadTime));
         
-        DOVirtual.DelayedCall(0.2f, () =>
+        DOVirtual.DelayedCall(0.3f, () =>
         {
-            endGameLoading.transform.DOScale(1, 0.7f).SetEase(Ease.OutExpo);
+            endGameLoading.transform.DOScale(1, 0.5f).SetEase(Ease.InExpo);
         });
         
         yield return new WaitForSecondsRealtime(levelLoadTime);

@@ -49,7 +49,7 @@ public class Aiming : MonoBehaviour
 
     private void AimLogic()
     {
-        if (GameOverBool.gameOver) return;
+        if (StaticStats.gameOver) return;
         
         if (aimInput != Vector2.zero)
         {
