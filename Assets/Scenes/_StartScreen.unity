@@ -9762,9 +9762,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd1edd80d0ac974a91a02cd4c32fd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelPrefabs:
-  - {fileID: 2551072330599308663, guid: 6ef9dde174e357a4eb9e6487300c1f76, type: 3}
-  - {fileID: 5081925470564621760, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
 --- !u!23 &2043953264
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11280,9 +11277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd1edd80d0ac974a91a02cd4c32fd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelPrefabs:
-  - {fileID: 2551072330599308663, guid: 6ef9dde174e357a4eb9e6487300c1f76, type: 3}
-  - {fileID: 882072095142466480, guid: 0b1df028b99abf94b95a5e70b7b46a15, type: 3}
 --- !u!65 &4544185689009961231
 BoxCollider:
   m_ObjectHideFlags: 0

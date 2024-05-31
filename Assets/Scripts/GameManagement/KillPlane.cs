@@ -398,7 +398,8 @@ public class KillPlane : MonoBehaviour
     
     public void OnMenuButtonPress()
     {
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+        SceneHandler.Instance.GoToScene(Paths.START_SCENE_NAME);
     }
     
     public void OnNextButtonPress()
@@ -436,7 +437,8 @@ public class KillPlane : MonoBehaviour
         });
         
         yield return new WaitForSecondsRealtime(levelLoadTime);
-        SceneManager.LoadScene(nextSceneIndex);
+        //SceneManager.LoadScene(nextSceneIndex);
+        SceneHandler.Instance.GoToScene(nextSceneIndex);
     }
     
     private IEnumerator Countdown(int countdownTime)
