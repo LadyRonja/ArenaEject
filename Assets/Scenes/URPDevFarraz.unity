@@ -5378,7 +5378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1288350372321757139, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: playerCountToSpawn
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1955220042488997718, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18785,15 +18785,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_Color.b
-      value: 0.23921567
+      value: 0.31910822
       objectReference: {fileID: 0}
     - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_Color.g
-      value: 0.41808626
+      value: 0.43559587
       objectReference: {fileID: 0}
     - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.6698113
       objectReference: {fileID: 0}
     - target: {fileID: 2008669424028142177, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_Material

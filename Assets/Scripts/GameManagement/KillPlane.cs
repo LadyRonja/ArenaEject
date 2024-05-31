@@ -427,8 +427,8 @@ public class KillPlane : MonoBehaviour
     
     public IEnumerator ChangeLevel(List<int> avoidedSceneIndex)
     {
-        menu.transform.DOScale(0, 1.5f).SetEase(Ease.OutExpo);
-        next.transform.DOScale(0, 1.5f).SetEase(Ease.InExpo);
+        menu.transform.DOScale(0, 0.5f).SetEase(Ease.OutExpo);
+        next.transform.DOScale(0, 0.5f).SetEase(Ease.InExpo);
         menu.interactable = false;
         next.interactable = false;
         
