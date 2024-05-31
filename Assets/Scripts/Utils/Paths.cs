@@ -15,6 +15,7 @@ public static class Paths
 
     // Graphics
     public const string TRANSITION_SPRITE = @"Graphics/transitionSprite";
+    public const string TRANSITION_CURVE = @"Graphics/transitionCurve";
 
     // Settings
     public const string FIRST_TIME_LAUNCH = "firstTimeLaunch";

@@ -12,10 +12,9 @@ public class SceneHandler : MonoBehaviour
     public static SceneHandler Instance { get { return GetInstance(); } }
 
     private GameObject transitionInstance;
-    private float transitionTime = 3f;
-    private float scaleRequiredToCover = 7f;
     private bool changingScene = false;
 
+    private SerializedAnimationCurve scaleCurve;
 
 
     private void Awake()
@@ -75,7 +74,7 @@ public class SceneHandler : MonoBehaviour
     {
         EnsureTransitionInstance();
         Transform transitionTransform = transitionInstance.transform.GetChild(0);
-        if(transitionOut)
+        /*if(transitionOut)
         {
             transitionTransform.localScale = Vector3.zero;
         }
@@ -102,7 +101,39 @@ public class SceneHandler : MonoBehaviour
             yield return null;
         }
 
-        transitionTransform.localScale = endScale;
+        transitionTransform.localScale = endScale;*/
+
+        #region Attempting use of animation curve
+        EnsureAnimationCurve();
+
+        float duration = scaleCurve.curve.length;
+        float timePassed = 0f;
+        if (transitionOut)
+        {
+            while (timePassed < duration)
+            {
+                float scaleAtTime = scaleCurve.curve.Evaluate(timePassed);
+                transitionTransform.localScale = Vector3.one * scaleAtTime;
+                timePassed += Time.deltaTime;
+                yield return null;
+            }
+            transitionTransform.localScale = Vector3.one * scaleCurve.curve.Evaluate(duration);
+        }
+        else
+        {
+            float timeLeft = duration;
+            while (timeLeft > 0)
+            {
+                float scaleAtTime = scaleCurve.curve.Evaluate(timeLeft);
+                transitionTransform.localScale = Vector3.one * scaleAtTime;
+                timeLeft -= Time.deltaTime;
+                yield return null;
+            }
+            transitionTransform.localScale = Vector3.zero;
+        }
+
+        #endregion
+
         changingScene = false;
         if(transitionOut)
         {
@@ -149,6 +180,36 @@ public class SceneHandler : MonoBehaviour
 
         transitionInstance = transitionCanvasObject;
         DontDestroyOnLoad(transitionInstance);
+    }
+
+    private void EnsureAnimationCurve()
+    {
+        if(scaleCurve != null)
+        {
+            EnsureCurve();
+            return;
+        }
+
+        scaleCurve = Resources.Load<SerializedAnimationCurve>(Paths.TRANSITION_CURVE);
+        if(scaleCurve != null)
+        {
+            EnsureCurve();
+            return;
+        }
+
+        scaleCurve = new SerializedAnimationCurve();
+        EnsureCurve();
+
+
+        void EnsureCurve()
+        {
+            if (scaleCurve.curve.length == 0)
+            {
+                scaleCurve.curve = new AnimationCurve();
+                scaleCurve.curve.AddKey(0f, 0f);
+                scaleCurve.curve.AddKey(3f, 15f);
+            }
+        }
     }
 
     private static SceneHandler GetInstance() {
