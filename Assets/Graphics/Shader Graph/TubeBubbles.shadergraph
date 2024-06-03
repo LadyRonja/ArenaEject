@@ -379,7 +379,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":10203,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
             "m_Guid": ""
         },
         "preventRotation": false
@@ -682,7 +682,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 2.0,
+    "m_Value": 0.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -912,10 +912,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -986.0,
-            "y": -13.999999046325684,
-            "width": 208.00006103515626,
-            "height": 302.0000305175781
+            "x": -992.800048828125,
+            "y": -31.20000648498535,
+            "width": 208.0,
+            "height": 301.5999755859375
         }
     },
     "m_Slots": [
@@ -1656,10 +1656,10 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.0,
-        "g": 3.047159433364868,
-        "b": 7.849056720733643,
-        "a": 0.0
+        "r": 0.15886574983596803,
+        "g": 0.6491842269897461,
+        "b": 0.09186560660600662,
+        "a": 1.0
     },
     "isMainColor": false,
     "m_ColorMode": 1
@@ -2214,7 +2214,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"56eacf117eb954babb9324f3350dbb90\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"a6f323e7484e9794b97365a3e0002bd1\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -2470,7 +2470,7 @@
     "m_DismissedVersion": 0,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
+    "hlslDeclarationOverride": 2,
     "m_Hidden": false,
     "m_Value": {
         "x": -0.25,
