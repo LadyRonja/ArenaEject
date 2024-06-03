@@ -95,26 +95,32 @@ public class KillPlane : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Check if the game is already over
         if (StaticStats.gameOver) return;
 
+        // Did a player collide?
         if(other.TryGetComponent<PlayerStats>(out PlayerStats player))
         {
+            // If this player hasn't collided before, save a reference to them.
             if (!players.Contains(player))
             {
                 players.Add(player);
             }
             
+            // Subtract a life from the player, clamp to 0
             player.lives--;
-
-            AudioHandler.PlayRandomEffectFromList(playerDeathSounds);
-
             if (player.lives <= 0)
             {
                 player.lives = 0;
-                
-                
             }
-            
+
+            // Play a deathsound effect
+            AudioHandler.PlayRandomEffectFromList(playerDeathSounds);
+
+            // If the player is now dead
+            // Check if there is a refence to the player in deadPlayers list
+            // If not, set how much total knockback they've recieved
+            // Then add them to the list of deadPlayers
             if(!player.alive)
             {
                 if (!deadPlayers.Contains(player))
@@ -128,64 +134,64 @@ public class KillPlane : MonoBehaviour
                 }
             }
 
-            if(player.alive)
+            // If the player is still alive,
+            // Update the camera tracking
+            // And respawn the player after a delay
+            if (player.alive)
             {
-                CameraController cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
-
-                List<Transform> activePlayers = FindAllPlayers();
-
+                List<Transform> activePlayers = FindAllPlayerTransforms(false);
                 foreach (Transform activePlayer in activePlayers)
                 {
-                    if(activePlayer == player.gameObject)
+                    if (activePlayer == player.transform)
                     {
                         activePlayers.Remove(activePlayer);
                     }
                 }
-                
-                if(cameraController != null)
-                {
-                    cameraController.StartTrackingObjects(activePlayers); // Think this works but needs testing with more than one controller
-                }
+                CameraController.Instance.StartTrackingObjects(activePlayers);
                 RespawnAfterDelay();
             }
-            else
+            // If the player is dead
+            else 
             {
-                // Check how many players are remaining
-                PlayerStats[] allPlayers = (PlayerStats[])FindObjectsOfType(typeof(PlayerStats));
-                List<PlayerStats> alivePlayers = new();
+                // Check how many players are alive still alive
+                List<PlayerStats> allPlayers = FindAllPlayers(false);
+                List<PlayerStats> alivePlayers = new(); 
                 foreach (PlayerStats p in allPlayers)
                 {
                     if (p.alive) alivePlayers.Add(p);
                 }
 
-                try
+                // Update camera tracking with only alive players
+                List<Transform> alivePlayerTransforms = new();
+                foreach (PlayerStats p in alivePlayers)
                 {
-                    List<Transform> alivePlayerTransforms = new();  
-                    foreach (var item in alivePlayers)
-                    {
-                        alivePlayerTransforms.Add(item.transform);
-                    }
-                    CameraController.Instance.StartTrackingObjects(alivePlayerTransforms);
+                    alivePlayerTransforms.Add(p.transform);
                 }
-                catch
-                {
-                    // No camera controller
-                }
+                CameraController.Instance.StartTrackingObjects(alivePlayerTransforms);
 
+                // If fewer than 1 player is alive
+                // The game is a tie
+                // This is probably not possible, at the very least it's highly unlikely
+                // If it does happen I'll just let this player become the winner.
                 if (alivePlayers.Count < 1)
                 {
-                    // TODO: Tie
                     StaticStats.gameOver = true;
-                    Debug.LogError("No implementation for a TIED game");
+                    Debug.LogError("No implementation for a TIED game, picking winner");
 
-                    EndGameTie();
+                    // Ending the game making 
+                    EndGame(player);
                 }
+                // If there is only one player left alive
+                // That is the winner
+                // End the game
                 else if (alivePlayers.Count == 1)
                 {
                     // Winner
                     EndGame(alivePlayers[0]);
                 }
 
+                // If the player had a weapon user script
+                // Save how many total shots they had fired during the game
                 if(player.TryGetComponent<WeaponUser>(out WeaponUser dyingUser))
                 {
                     try
@@ -197,24 +203,63 @@ public class KillPlane : MonoBehaviour
                         PlayerShooting.shotsFiredPerPlayer[player.playerIndex] = dyingUser.shotsFired;
                     }
                 }
+
+                // Disable the player
                 player.gameObject.SetActive(false);
             }
         }
+        // If it wasn't a player that was encountered, destory it after a short delay
         else
         {
-            // Destroy(other.gameObject);
+            Destroy(other.gameObject, 3f);
         }
     }
 
-    List<Transform> FindAllPlayers()
+    /// <summary>
+    /// Find all players in the scene
+    /// </summary>
+    /// <param name="includeInactive">Determine if the players can be found while inactive in the hierarchy</param>
+    /// <returns></returns>
+    List<PlayerStats> FindAllPlayers(bool includeInactive)
     {
+        // Check how many players are alive still alive
+        PlayerStats[] allPlayers = (PlayerStats[])FindObjectsOfType(typeof(PlayerStats), includeInactive);
+        List<PlayerStats> players = new();
+        foreach (PlayerStats p in allPlayers)
+        {
+            players.Add(p);
+        }
+
+
+        #region Unoptomized
+        /*
         // Find all game objects in the scene
-        Transform[] allObjects = FindObjectsOfType<Transform>();
+        Transform[] allObjects = FindObjectsOfType<Transform>(true);
 
         // Filter the objects to those named "Player" and convert to a list
         List<Transform> playerObjects = allObjects.Where(obj => obj.name == "Player").ToList();
+        */
+        #endregion
 
-        return playerObjects;
+        return players;
+    }
+
+    /// <summary>
+    /// Find all player transforms in the scene
+    /// </summary>
+    /// <param name="includeInactive">Determine if the players can be found while inactive in the hierarchy</param>
+    /// <returns></returns>
+    List<Transform> FindAllPlayerTransforms(bool includeInactive)
+    {
+        List<PlayerStats> playerStats = FindAllPlayers(includeInactive);
+
+        List<Transform> transforms = new();
+        foreach (PlayerStats p in playerStats)
+        {
+            transforms.Add(p.transform);
+        }
+
+        return transforms;
     }
 
     private void RespawnAfterDelay()
@@ -247,9 +292,18 @@ public class KillPlane : MonoBehaviour
 
     private void EndGame(PlayerStats winner)
     {
-        if (endGameCanvas == null) return;
+        // Early exit if reference is missing
+        if (endGameCanvas == null) {
+            Debug.LogError("Missing endGameCanvas, instantly going to start screen");
+            SceneHandler.Instance.GoToScene(Paths.START_SCENE_NAME);
+            return; 
+        }
+        // Set the game to be over
         StaticStats.gameOver = true;
 
+        // If the winner isn't in the deadPlayers list
+        // Try and get their total knockback recieved
+        // Then add them to the list
         if (!deadPlayers.Contains(winner))
         {
             if(winner.TryGetComponent<KnockBackHandler>(out KnockBackHandler knockbackHandler))
@@ -260,6 +314,10 @@ public class KillPlane : MonoBehaviour
             deadPlayers.Add(winner);
         }
         
+        // If this player has won a game before
+        // Up their win total
+        // Else
+        // Give them a win total of 1
         if (StaticStats.playerWins.ContainsKey(winner.playerIndex))
         {
             StaticStats.playerWins[winner.playerIndex]++;
@@ -269,10 +327,13 @@ public class KillPlane : MonoBehaviour
             StaticStats.playerWins.Add(winner.playerIndex, 1);
         }
         
+        // Set all desired parent objects
         GameObject[] avatars = new GameObject[] { winnerAvatar, secondAvatar, thirdAvatar, fourthAvatar };
         
+        // Clear old potraits
         playerPotraits.Clear();
         
+        // For each dead player, update their potrait stats according to all fetched data
         for (int i = 0; i < deadPlayers.Count; i++)
         {
             PlayerStats playerStats = deadPlayers[i];
@@ -293,6 +354,7 @@ public class KillPlane : MonoBehaviour
             playerPotraits.Add(playerPotraitInstance);
         }
 
+        // Go to display the end game panel
         ShowEndGamePanel(winner.playerIndex);
     }
 

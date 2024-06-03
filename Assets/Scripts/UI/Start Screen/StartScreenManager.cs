@@ -151,7 +151,8 @@ public class StartScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        //SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
-        SceneHandler.Instance.GoToScene(Paths.FARRAZ_SCENE_NAME);
+        //SceneHandler.Instance.GoToScene(Paths.FARRAZ_SCENE_NAME);
+        Debug.Log("Going to Joels Scene - via scene index");
+        SceneHandler.Instance.GoToScene(2);
     }
 }

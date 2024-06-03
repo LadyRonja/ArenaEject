@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class JoinScreenManager : MonoBehaviour
 {
     [HideInInspector] public List<PlayerConfigurations> playerConfigs = new();
-    [SerializeField] private int maxPLayers = 4;
+    //[SerializeField] private int maxPLayers = 4;
 
     //[SerializeField] private GameObject playerDisplayPrefab;
     [SerializeField] private GameObject playerPrefab;
@@ -108,6 +108,11 @@ public class JoinScreenManager : MonoBehaviour
 
     public void HandlePlayerJoined(PlayerInput pi)
     {
+        if(SceneManager.GetActiveScene().name != Paths.START_SCENE_NAME)
+        {
+            return;
+        }
+
         Debug.Log("Player joined: " + pi.playerIndex);
         pi.transform.SetParent(this.transform);
         if(!playerConfigs.Any(p => p.playerIndex == pi.playerIndex))

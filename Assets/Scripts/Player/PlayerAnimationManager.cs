@@ -22,11 +22,15 @@ public class PlayerAnimationManager : MonoBehaviour
     private static readonly int RUN = Animator.StringToHash("rig|anim_player_run");
     private static readonly int RUN_GUN = Animator.StringToHash("rig|anim_player_run_with_gun");
     private static readonly int JUMP = Animator.StringToHash("rig|anim_jump_start");
+    private static readonly int JUMP_GUN = Animator.StringToHash("rig|anim_jump_weapon_start");
     private static readonly int FALL = Animator.StringToHash("rig|anim_jump_midair");
+    private static readonly int FALL_GUN = Animator.StringToHash("rig|anim_jump__weapon_midair");
+    private static readonly int KNOCKEDBACK = Animator.StringToHash("rig|anim_damage");
 
     // Unimplemented
     private static readonly int LAND = Animator.StringToHash("rig|anim_jump_end");
-    private static readonly int KNOCKEDBACK = Animator.StringToHash(defaultAnimationName);
+    private static readonly int LAND_GUN = Animator.StringToHash("rig|anim_jump_end");
+
 
 
     private void Start()
@@ -59,7 +63,7 @@ public class PlayerAnimationManager : MonoBehaviour
         else
         {
             _knockBackHandler.OnKnockbackRecieved += PlayKnockbackAnimation;
-            _knockBackHandler.OnKnockbackComplete += LockAnimationState;
+            _knockBackHandler.OnKnockbackComplete += UnlockAnimationState;
         }
 
         defaultAnimation = IDLE;
@@ -84,6 +88,8 @@ public class PlayerAnimationManager : MonoBehaviour
 
         animationsWithWeaponPairings.Add(IDLE, IDLE_GUN);
         animationsWithWeaponPairings.Add(RUN, RUN_GUN);
+        animationsWithWeaponPairings.Add(JUMP, JUMP_GUN);
+        animationsWithWeaponPairings.Add(FALL, FALL_GUN);
     }
 
     private void ManageAnimations()
