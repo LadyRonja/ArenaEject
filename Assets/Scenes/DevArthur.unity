@@ -743,7 +743,11 @@ PrefabInstance:
     - target: {fileID: 7645976004291127491, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 558192792}
+      objectReference: {fileID: 2055342897}
+    - target: {fileID: 7645976004291127491, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNextButtonPress
+      objectReference: {fileID: 0}
     - target: {fileID: 7899442269955898850, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -27291,7 +27295,7 @@ PrefabInstance:
     - target: {fileID: 1288350372321757139, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: countDownCanvasPrefab
       value: 
-      objectReference: {fileID: 1132087286299905270, guid: 36403586dcd18bb47809485011fad485, type: 3}
+      objectReference: {fileID: 1132087286299905270, guid: 174adfbcc522890418fcd77deffc1ffd, type: 3}
     - target: {fileID: 1955220042488997718, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4
