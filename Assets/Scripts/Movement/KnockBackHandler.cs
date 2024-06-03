@@ -47,6 +47,7 @@ public class KnockBackHandler : MonoBehaviour
                 myAim.enabled = true;
             }
 
+            Debug.Log("knockback complete!");
             OnKnockbackComplete?.Invoke();
         }
     }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5332757469604249268}
   - component: {fileID: 4332774946598464864}
   - component: {fileID: 6586013828558555816}
-  - component: {fileID: 5234324714424518775}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -77,39 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5234324714424518775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4418902862791001386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 300
-  m_EffectMaterial: {fileID: 2100000, guid: 9dc7e810a87b444ab96919f3215c2fe5, type: 2}
-  m_EffectFactor: 0
-  m_Width: 0.218
-  m_Rotation: 110
-  m_Softness: 0.651
-  m_Brightness: 0.648
-  m_Gloss: 0.831
-  m_EffectArea: 0
-  m_Player:
-    play: 0
-    initialPlayDelay: 0
-    duration: 2
-    loop: 1
-    loopDelay: 0
-    updateMode: 0
-  m_Play: 0
-  m_Loop: 0
-  m_Duration: 1
-  m_LoopDelay: 1
-  m_UpdateMode: 0
 --- !u!1 &6766130208499283948
 GameObject:
   m_ObjectHideFlags: 0

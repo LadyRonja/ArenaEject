@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
-{
+{/*
     public GameObject projectilePrefab;
     public GameObject[] playerPrefabs;
     public Transform shootPoint;
@@ -13,14 +13,16 @@ public class PlayerShooting : MonoBehaviour
 
     [HideInInspector] public bool appropriatlySpawned = false;
     [HideInInspector] public int controllerIndex = 1;
-    [HideInInspector] public int playerIndex = 1;
+    [HideInInspector] public int playerIndex = 1;*/
+    
+    public static Dictionary<int, int> shotsFiredPerPlayer = new Dictionary<int, int>();
 
+/*
     void Start()
     {
         playerPrefabs = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    public static Dictionary<int, int> shotsFiredPerPlayer = new Dictionary<int, int>();
 
     void Update()
     {
@@ -57,5 +59,5 @@ public class PlayerShooting : MonoBehaviour
 
         // Set the rotation of the projectile to match the shoot direction
         projectile.transform.rotation = Quaternion.LookRotation(shootDirection);
-    }
+    }*/
 }
