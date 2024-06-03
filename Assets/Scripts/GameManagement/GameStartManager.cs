@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +15,8 @@ public class GameStartManager : MonoBehaviour
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private List<Transform> spawnPoints;
+    [SerializeField] private GameObject countDownCanvasPrefab;
+    [SerializeField] private int countDownTime = 5;
 
     [Header("Development options")]
     [SerializeField] private bool createAPlayerForEachGamepad = false;
@@ -35,7 +38,7 @@ public class GameStartManager : MonoBehaviour
             return;
         }
         SpawnAllPlayers();
-        Invoke(nameof(StartCameraTracking), 0.2f);
+        //Invoke(nameof(StartCameraTracking), 0.2f);
     }
 
     private void Start()
@@ -99,8 +102,10 @@ public class GameStartManager : MonoBehaviour
             // Raise Event for spawned players
             OnAllPlayersSpawned?.Invoke();
 
-            // Development players created, exit function
+            // Disable Player Movements for time
+            DisableAllPlayerMovementsForTime(countDownTime);
 
+            // Development players created, exit function
             return;
         }
 
@@ -126,6 +131,73 @@ public class GameStartManager : MonoBehaviour
 
         // Raise Event for spawned players
         OnAllPlayersSpawned?.Invoke();
+
+        // Disable Player Movements for time
+        DisableAllPlayerMovementsForTime(countDownTime);
+    }
+
+    private void DisableAllPlayerMovementsForTime(int seconds)
+    {
+        Movement[] allMovements = (Movement[])FindObjectsOfType(typeof(Movement));
+
+        foreach (Movement movement in allMovements)
+        {
+            movement.enabled = false;
+        }
+
+        StartCoroutine(DoCountDown(seconds));
+    }
+
+    private void EnableAllPlayerMovements()
+    {
+        Movement[] allMovements = (Movement[])FindObjectsOfType(typeof(Movement));
+
+        foreach (Movement movement in allMovements)
+        {
+            movement.enabled = true;
+        }
+
+    }
+
+    private IEnumerator DoCountDown(int seconds)
+    {
+        if(countDownCanvasPrefab == null)
+        {
+            Debug.LogError("countDownCanvasPrefab missing");
+            EnableAllPlayerMovements();
+            StopCoroutine(DoCountDown(seconds));
+            yield break;
+        }
+
+        int timer = Mathf.Clamp(seconds, 1, 10);
+        GameObject countDownCanvas = Instantiate(countDownCanvasPrefab);
+        TMP_Text countDownText = countDownCanvas.GetComponentInChildren<TMP_Text>();
+
+        if (countDownText == null)
+        {
+            Debug.LogError("countDownCanvasPrefab missing countDownText");
+            EnableAllPlayerMovements();
+            StopCoroutine(DoCountDown(seconds));
+            yield break;
+        }
+
+        for (int i = timer; i > -1; i--)
+        {
+            if(i != 0)
+            {
+                countDownText.text = i.ToString();
+
+            }
+            else{
+                countDownText.text = "Go!";
+                EnableAllPlayerMovements();
+                StartCameraTracking();
+            }
+            yield return new WaitForSeconds(1);
+        }
+
+        countDownText.text = "";
+        yield return null;
     }
 
     private PlayerInput SpawnAPlayer(int playerIndex, InputDevice inputDevice)

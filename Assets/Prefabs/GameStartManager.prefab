@@ -85,6 +85,7 @@ MonoBehaviour:
   - {fileID: 5948664649216344828}
   - {fileID: 7984152991054833360}
   - {fileID: 1955220042488997718}
+  countDownCanvasPrefab: {fileID: 1132087286299905270, guid: 36403586dcd18bb47809485011fad485, type: 3}
   createAPlayerForEachGamepad: 0
   playerCountToSpawn: 2
 --- !u!1 &5500262543744755323
