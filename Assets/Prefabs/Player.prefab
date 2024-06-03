@@ -157,10 +157,10 @@ MonoBehaviour:
   lives: 1
   timeAlive: 0
   colors:
-  - {r: 1, g: 0.93238336, b: 0.2028302, a: 1}
-  - {r: 1, g: 0.3, b: 0.3228757, a: 1}
-  - {r: 0.3, g: 0.32287604, b: 1, a: 1}
-  - {r: 0.3, g: 1, b: 0.33202612, a: 1}
+  - {r: 0.84705883, g: 0.105882354, b: 0.3764706, a: 1}
+  - {r: 0.11764706, g: 0.53333336, b: 0.8980392, a: 1}
+  - {r: 1, g: 0.75686276, b: 0.02745098, a: 1}
+  - {r: 0.014017441, g: 0.5943396, b: 0.49636316, a: 1}
   playerSprites:
   - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
   - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
@@ -177,6 +177,18 @@ MonoBehaviour:
   - {fileID: 1372415968193853245}
   - {fileID: 5836100220782165649}
   - {fileID: 2984836633514406909}
+  aimMaterials:
+  - {fileID: 2100000, guid: 373d40a8a5b0d3a4a84d1b6d0c5700d2, type: 2}
+  - {fileID: 2100000, guid: 61e3a56d01e755841ab5b916f4ff5d63, type: 2}
+  - {fileID: 2100000, guid: 879382a11b79c7848bc7fe95e29f89dc, type: 2}
+  - {fileID: 2100000, guid: 63f7b98252acd1944bf25e7d2620b1e3, type: 2}
+  aimAssisst: {fileID: 687899780915874521}
+  throwMaterials:
+  - {fileID: 2100000, guid: f993b61f737740b45b35206066145f11, type: 2}
+  - {fileID: 2100000, guid: 6fd2304a0d421b04c8fee330d4d8c922, type: 2}
+  - {fileID: 2100000, guid: 8ae8f007699c043479f81444b296fa35, type: 2}
+  - {fileID: 2100000, guid: 1fd46a30e97340f438d443931bb1ce24, type: 2}
+  throwAssisst: {fileID: 496477243372660503}
 --- !u!114 &5333253258484969159
 MonoBehaviour:
   m_ObjectHideFlags: 0

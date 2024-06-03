@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class PlayerStats : MonoBehaviour
     public List<Sprite> endGamePlayerSprites = new();
     public Sprite backGrpundSprites;
     public List<SkinnedMeshRenderer> myRenderers = new();
+    public List<Material> aimMaterials = new List<Material>();
+    public DecalProjector aimAssisst;
+    public List<Material> throwMaterials = new List<Material>();
+    public DecalProjector throwAssisst;
 
     private void Start()
     {
@@ -31,17 +36,33 @@ public class PlayerStats : MonoBehaviour
                 rendered.material.color = colors[playerIndex];
             }
         }
+
+        if(aimAssisst != null)
+        {
+            try
+            {
+                aimAssisst.material = Instantiate(aimMaterials[playerIndex]);
+            }
+            catch
+            {
+
+                throw;
+            }
+        }
+
+        if(throwAssisst != null)
+        {
+            try
+            {
+                throwAssisst.material = Instantiate(throwMaterials[playerIndex]);
+            }
+            catch
+            {
+
+                throw;
+            }
+        }
     }
 
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("KillPlane"))
-        {
-            Debug.Log("See comment beneth this debug");
-            // The killplane should probably be the one to handle this, I'm leaving it in for now.
-            // For example if we're on a level where you don't destroy the player.
-            // I'm leaving it here for now but this might need to be removed
-            Destroy(gameObject);
-        }
-    }*/
+    
 }
