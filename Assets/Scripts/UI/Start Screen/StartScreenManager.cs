@@ -16,6 +16,9 @@ public class StartScreenManager : MonoBehaviour
     [SerializeField] private GameObject optionsScreen;
     [SerializeField] private GameObject creditsScreen;
     private List<GameObject> screens;
+    [Space]
+    [SerializeField] private GameObject bg1;
+    [SerializeField] private GameObject bg2;
 
     [Space]
     [SerializeField] private Button joinButton;
@@ -62,6 +65,8 @@ public class StartScreenManager : MonoBehaviour
     public void GoToJoin()
     {
         GoToScreen(joinScreen);
+        if (bg1 != null) bg1.SetActive(false);
+        if (bg2 != null) bg2.SetActive(false);
         PlayerInputManager.instance.EnableJoining();
         buttonRegion.SetActive(false);
         if (joinButton != null)
@@ -99,6 +104,8 @@ public class StartScreenManager : MonoBehaviour
     private void GoToScreen(GameObject screen)
     {
         TurnOffAllSCreens(screen);
+        if(bg1!= null) bg1.SetActive(true);
+        if (bg2 != null) bg2.SetActive(true);
         if (screen != null) screen.SetActive(!screen.activeSelf);
     }
 
@@ -144,6 +151,7 @@ public class StartScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
+        //SceneManager.LoadScene(Paths.FARRAZ_SCENE_NAME);
+        SceneHandler.Instance.GoToScene(Paths.FARRAZ_SCENE_NAME);
     }
 }

@@ -13,6 +13,10 @@ public static class Paths
     public const string START_MENU_MUSIC = @"Music/menu";
     public const string DEFAULT_GAMEPLAY_MUSIC = @"Music/gameplay";
 
+    // Graphics
+    public const string TRANSITION_SPRITE = @"Graphics/transitionSprite";
+    public const string TRANSITION_CURVE = @"Graphics/transitionCurve";
+
     // Settings
     public const string FIRST_TIME_LAUNCH = "firstTimeLaunch";
     public const string MUSIC_VOLUME_PATH = "musicVolume";
