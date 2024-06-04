@@ -186,7 +186,6 @@ public class SceneHandler : MonoBehaviour
     {
         if(scaleCurve != null)
         {
-            Debug.Log("No Scale curve");
             EnsureCurve();
             
             return;
@@ -195,7 +194,6 @@ public class SceneHandler : MonoBehaviour
         scaleCurve = Resources.Load<SerializedAnimationCurve>(Paths.TRANSITION_CURVE);
         if(scaleCurve != null)
         {
-            Debug.Log("No curve found");
             EnsureCurve();
             
             return;
