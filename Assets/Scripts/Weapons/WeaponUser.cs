@@ -6,7 +6,7 @@ public class WeaponUser : MonoBehaviour
 {
     [HideInInspector] public bool appropriatlySpawned = false;
 
-    [SerializeField] private Transform weaponCarryPoint;
+    [SerializeField] public Transform weaponCarryPoint;
     [SerializeField] private Transform throwPoint;
     [SerializeField] private float weaponLaunchForce = 8f;
     public Transform carriedWeaponTransform;
