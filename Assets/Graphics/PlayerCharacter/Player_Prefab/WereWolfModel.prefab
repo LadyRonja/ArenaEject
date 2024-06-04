@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5953612732561753833}
+  - component: {fileID: 6538426389664085031}
   m_Layer: 0
   m_Name: WereWolfModel
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 1728557717874007711}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6538426389664085031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551072330599308663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c078bf3ed708a1646a94c01a87ea2e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPoint: {fileID: 2683580039870964973}
 --- !u!1001 &1186605504850213236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80,10 +94,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3364214484229163282, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b965dcaecdf298b4ab62aa6f359c90fd, type: 2}
+    - target: {fileID: -1564981822529562444, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a66d7119a6895cd48b5a8f1693677011, type: 2}
     - target: {fileID: 919132149155446097, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_Name
       value: player_werewolf_model
       objectReference: {fileID: 0}
+    - target: {fileID: 8840295966091523227, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 63ab365887cd4c24c9d04f152ee866a7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -123,3 +149,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &2683580039870964973 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5383395053881729639, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
+  m_PrefabInstance: {fileID: 1186605504850213236}
+  m_PrefabAsset: {fileID: 0}
