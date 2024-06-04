@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.675031
+      value: -167.253
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 116.27278
+      value: -0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -167.32933
+      value: 2235.689
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_LocalRotation.w
@@ -51,11 +51,11 @@ PrefabInstance:
     - target: {fileID: -3364214484229163282, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9445a8620a8244550bf7b644eb0955ae, type: 2}
+      objectReference: {fileID: 2100000, guid: b965dcaecdf298b4ab62aa6f359c90fd, type: 2}
     - target: {fileID: -1564981822529562444, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f1c5395475fb048008832dfea0357838, type: 2}
+      objectReference: {fileID: 2100000, guid: a66d7119a6895cd48b5a8f1693677011, type: 2}
     - target: {fileID: 919132149155446097, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_Name
       value: player_werewolf_model
@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: 8840295966091523227, guid: da9a80ce39b4aa545ad1639d3ac90617, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ba03c2c73f8a141719a9a8cbb8ad8a4f, type: 2}
+      objectReference: {fileID: 2100000, guid: 63ab365887cd4c24c9d04f152ee866a7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
