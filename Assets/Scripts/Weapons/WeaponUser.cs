@@ -167,15 +167,20 @@ public class WeaponUser : MonoBehaviour
         if (wpRb != null)
         {
             Vector3 launchDirection = gameObject.transform.forward;
+
+            Vector3 explosiveRotation = transform.forward;
             if (throwWeaponToExplode)
             {
                 dropRotation = Quaternion.Euler(angleToThrowExplosiveWeapon, 0, 0f);
+
+                Vector3 angle = Vector3.Cross(explosiveRotation, Vector3.down);
+                explosiveRotation = Quaternion.AngleAxis(angleToThrowExplosiveWeapon, angle) * explosiveRotation;
             }
 
             if (throwWeaponToExplode)
             {
                 wpRb.useGravity = false;
-                wpRb.AddForce(launchDirection * weaponLaunchForceExplosive, ForceMode.Impulse);
+                wpRb.AddForce(explosiveRotation.normalized * weaponLaunchForceExplosive, ForceMode.Impulse);
                 if (TryGetComponent<Rigidbody>(out Rigidbody userRb))
                 {
                     wpRb.AddForce(userRb.velocity, ForceMode.Impulse);
