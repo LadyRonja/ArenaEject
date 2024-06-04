@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 2aa23da293268b74f867665793127212
+<<<<<<<< Updated upstream:Assets/Graphics/UI/InGameFrankie.png.meta
+guid: dbd440738f31f234ea07b52145befd20
+========
+guid: b3329ab2e2191494daad314802cf8e39
+>>>>>>>> Stashed changes:Assets/Graphics/materials/cinema/materials/maps/shark_launcher4/shark_launcher4_lambert8_Metallic.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 78731725d47c53844bf659eec013580f
+<<<<<<<< Updated upstream:Assets/Graphics/UI/EndGameVampire 1.png.meta
+guid: f0fcb0edc7739e14a81556de35e358fa
+========
+guid: e074c827602ff0342ab17735a5c2365d
+>>>>>>>> Stashed changes:Assets/Graphics/materials/cinema/materials/maps/shark_launcher4/shark_launcher4_lambert8_Height.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

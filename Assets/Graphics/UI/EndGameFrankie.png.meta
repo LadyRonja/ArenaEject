@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 822944b9f457ae647a8d9e64181808de
+<<<<<<<< Updated upstream:Assets/Graphics/UI/EndGameFrankie.png.meta
+guid: b3feee0bb55541f4c98eb545ac5571ed
+========
+guid: 01a74a9ef6d67df42b236e2c6a6b7972
+>>>>>>>> Stashed changes:Assets/Graphics/materials/cinema/materials/maps/shark_launcher4/shark_launcher4_lambert8_BaseColor.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
