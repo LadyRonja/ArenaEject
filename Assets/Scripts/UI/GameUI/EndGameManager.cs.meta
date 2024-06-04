@@ -3,7 +3,9 @@ guid: 3b96d1155a6ec8b47bd4fca0cbf69c30
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - endGameCanvasPrefab: {fileID: 2084612708523199181, guid: b03e2f4cdc7411a48a22391ef7911a61, type: 3}
+  - endGamePotraitProfilePrefab: {fileID: 5373189252084757798, guid: 1bc3246b1d732d248bbae56b8f699587, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
