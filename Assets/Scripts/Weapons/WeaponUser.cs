@@ -7,6 +7,7 @@ public class WeaponUser : MonoBehaviour
     [HideInInspector] public bool appropriatlySpawned = false;
 
     [SerializeField] private Transform weaponCarryPoint;
+    [SerializeField] private Transform throwPoint;
     [SerializeField] private float weaponLaunchForce = 8f;
     public Transform carriedWeaponTransform;
 
@@ -126,6 +127,7 @@ public class WeaponUser : MonoBehaviour
         else { weaponCarryParent = transform; }
         weaponObj.transform.SetParent(weaponCarryParent);
         weaponObj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        weaponObj.transform.localRotation = Quaternion.Euler(-90f, 0, 180f);
 
         carriedWeapon = weaponScr;
     }
@@ -167,7 +169,7 @@ public class WeaponUser : MonoBehaviour
             Vector3 launchDirection = gameObject.transform.forward;
             if (throwWeaponToExplode)
             {
-                launchDirection = carriedWeapon.transform.forward.normalized;
+                dropRotation = Quaternion.Euler(angleToThrowExplosiveWeapon, 0, 0f);
             }
 
             if (throwWeaponToExplode)

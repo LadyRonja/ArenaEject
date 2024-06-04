@@ -56,6 +56,11 @@ public class HitFlash : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        OnDestroy();
+    }
+
     private void CauseHitFlash()
     {
         if (!CanFlash) { return; }
