@@ -24,7 +24,7 @@ public class PlayerAnimationManager : MonoBehaviour
     private static readonly int JUMP = Animator.StringToHash("rig|anim_jump_start");
     private static readonly int JUMP_GUN = Animator.StringToHash("rig|anim_jump_weapon_start");
     private static readonly int FALL = Animator.StringToHash("rig|anim_jump_midair");
-    private static readonly int FALL_GUN = Animator.StringToHash("rig|anim_jump__weapon_midair");
+    private static readonly int FALL_GUN = Animator.StringToHash("rig|anim_jump_weapon_midair");
     private static readonly int KNOCKEDBACK = Animator.StringToHash("rig|anim_damage");
 
     // Unimplemented
