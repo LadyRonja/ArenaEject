@@ -362,6 +362,7 @@ MonoBehaviour:
   modelParent: {fileID: 8101329978500350887}
   pam: {fileID: 0}
   ps: {fileID: 0}
+  wu: {fileID: 0}
   currentIndex: -1
   closeStation: {fileID: 0}
   modelPrefabs:
@@ -380,7 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a78ff56cc629e749ac4dcefebfcf78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorToFlash: {r: 1, g: 0, b: 0, a: 1}
+  flashPlayerColor: 0
+  colorToFlash: {r: 0, g: 0, b: 0, a: 1}
   flashDuration: 0.28
 --- !u!114 &989872724748604163
 MonoBehaviour:
