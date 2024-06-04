@@ -1144,7 +1144,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120794051}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 535b477ce346341419d24da8e298db4d, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -1296,6 +1296,10 @@ PrefabInstance:
       propertyPath: playerCountToSpawn
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1288350372321757139, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
+      propertyPath: countDownCanvasPrefab
+      value: 
+      objectReference: {fileID: 1132087286299905270, guid: 36403586dcd18bb47809485011fad485, type: 3}
     - target: {fileID: 1955220042488997718, guid: 309e1bf5498aff240aaf16b7ebdf14af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.17
@@ -3171,7 +3175,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422148972}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 535b477ce346341419d24da8e298db4d, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -3881,7 +3885,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552117578}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 535b477ce346341419d24da8e298db4d, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -6568,26 +6572,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 903248849}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_enableKerning
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: checkPaddingRequired
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_enableExtraPadding
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_useMaxVisibleDescender
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4903553546492107618, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
-      propertyPath: m_IsTextObjectScaleStatic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5779277581503338046, guid: 258ab80582a206f4d8a1ed92aa1d5190, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -9709,7 +9693,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1280172243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb2eadf268e6bc47a208c46ff3218f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 00c0c73e1bea0424c9eb04cf8d6013de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1280172245
@@ -10458,7 +10442,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360132684}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 535b477ce346341419d24da8e298db4d, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0

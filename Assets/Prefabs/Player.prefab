@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 2487563434103801847}
   - component: {fileID: 7099439140047253940}
   - component: {fileID: 989872724748604163}
+  - component: {fileID: 8587569562873261146}
   - component: {fileID: -4713559047619484691}
   - component: {fileID: 8277015850034542796}
   m_Layer: 0
@@ -174,8 +175,8 @@ MonoBehaviour:
   myRenderers:
   - {fileID: 4347760922464630130}
   - {fileID: 1372415968193853245}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 847252633598654899}
+  - {fileID: 3136726556905583917}
   aimMaterials:
   - {fileID: 2100000, guid: 373d40a8a5b0d3a4a84d1b6d0c5700d2, type: 2}
   - {fileID: 2100000, guid: 61e3a56d01e755841ab5b916f4ff5d63, type: 2}
@@ -269,7 +270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appropriatlySpawned: 0
-  weaponCarryPoint: {fileID: 3093174816102973738}
+  weaponCarryPoint: {fileID: 2626010320876650476}
+  throwPoint: {fileID: 3093174816102973738}
   weaponLaunchForce: 8
   carriedWeaponTransform: {fileID: 7336916088099221024}
   carriedWeapon: {fileID: 0}
@@ -360,6 +362,7 @@ MonoBehaviour:
   modelParent: {fileID: 8101329978500350887}
   pam: {fileID: 0}
   ps: {fileID: 0}
+  wu: {fileID: 0}
   currentIndex: -1
   closeStation: {fileID: 0}
   modelPrefabs:
@@ -378,7 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a78ff56cc629e749ac4dcefebfcf78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorToFlash: {r: 1, g: 1, b: 1, a: 1}
+  flashPlayerColor: 0
+  colorToFlash: {r: 0, g: 0, b: 0, a: 1}
   flashDuration: 0.28
 --- !u!114 &989872724748604163
 MonoBehaviour:
@@ -393,6 +397,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+--- !u!114 &8587569562873261146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455113739012497393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f15e1349370454ba6e5dfd01bd3a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &-4713559047619484691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -614,8 +630,8 @@ VisualEffect:
   m_GameObject: {fileID: 4721569528595560014}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: ca92cba80d3d34f3bb918d0ca82a705c, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -808,7 +824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3093174816102973738}
   m_Layer: 0
-  m_Name: WeaponCarryPoint
+  m_Name: throw point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,6 +885,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8101329978500350887}
     m_Modifications:
+    - target: {fileID: 76649695987737824, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 76649695987737824, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 76649695987737824, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2424003474918992177, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -923,9 +951,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2424003474918992177, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
   m_PrefabInstance: {fileID: 3069119932011221453}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &847252633598654899 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2402036641132767358, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
+  m_PrefabInstance: {fileID: 3069119932011221453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &1372415968193853245 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4151326392654309104, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
+  m_PrefabInstance: {fileID: 3069119932011221453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2626010320876650476 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1073759040255110689, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
+  m_PrefabInstance: {fileID: 3069119932011221453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &3136726556905583917 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 76649695987737824, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
   m_PrefabInstance: {fileID: 3069119932011221453}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &4347760922464630130 stripped

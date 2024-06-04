@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HitFlash : MonoBehaviour
 {
+    [SerializeField] private bool flashPlayerColor = true;
     [SerializeField] private Color colorToFlash = Color.white;
     [SerializeField] private float flashDuration = 0.28f;
 
@@ -17,6 +18,15 @@ public class HitFlash : MonoBehaviour
     private void Start()
     {
         SetUp();
+
+        if(flashPlayerColor)
+        {
+            if (TryGetComponent<PlayerStats>(out PlayerStats ps))
+            {
+                colorToFlash = ps.colors[ps.playerIndex];
+            }
+        }
+
     }
 
     private void SetUp()
@@ -54,6 +64,11 @@ public class HitFlash : MonoBehaviour
         {
             _knockbackHandler.OnKnockbackRecieved -= CauseHitFlash;
         }
+    }
+
+    private void OnDisable()
+    {
+        OnDestroy();
     }
 
     private void CauseHitFlash()

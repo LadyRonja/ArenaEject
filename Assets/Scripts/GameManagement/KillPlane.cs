@@ -16,7 +16,7 @@ public class KillPlane : MonoBehaviour
 {
     [SerializeField] private List<Transform> spawnPoints = new();
     private List<PlayerStats> players = new();
-    private List<PlayerStats> deadPlayers = new();
+    private static List<PlayerStats> deadPlayers = new();
     private List<PlayerPotrait> playerPotraits = new List<PlayerPotrait>();
     
     private Dictionary<int, int> timeAliveTracking = new Dictionary<int, int>();
@@ -63,6 +63,7 @@ public class KillPlane : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1.0f;
+        deadPlayers = new();
     }
 
     private void Start()
@@ -211,7 +212,7 @@ public class KillPlane : MonoBehaviour
         // If it wasn't a player that was encountered, destory it after a short delay
         else
         {
-            Destroy(other.gameObject, 3f);
+            //Destroy(other.gameObject, 3f);
         }
     }
 

@@ -13,6 +13,7 @@ public class CharacterSelectManager : MonoBehaviour
     [SerializeField] private Transform modelParent;
     [SerializeField] private PlayerAnimationManager pam;
     [SerializeField] private PlayerStats ps;
+    [SerializeField] private WeaponUser wu;
     [HideInInspector] public int currentIndex = -1;
 
     [HideInInspector] public CharacterSelectStation closeStation;
@@ -29,6 +30,21 @@ public class CharacterSelectManager : MonoBehaviour
         {
             Debug.LogError("CharacterSelectMaanger unable to find PlayerStats");
         }
+
+        if(!TryGetComponent<WeaponUser>(out wu))
+        {
+            Debug.LogError("CharacterSelectMaanger unable to find WeaponUser");
+        }
+
+        if(SceneManager.GetActiveScene().name == Paths.START_SCENE_NAME)
+        {
+            int range = Random.Range(0, modelPrefabs.Count);
+            for (int i = 0; i < range; i++)
+            {
+                ChangeModel(true);
+            }
+        }
+
     }
 
     private void OnDPadRight(InputValue value)
@@ -90,7 +106,6 @@ public class CharacterSelectManager : MonoBehaviour
     public void UpdateModel(int modelIndex)
     {
         GameObject newModelObj = Instantiate(modelPrefabs[modelIndex], transform.position, Quaternion.identity);
-        Debug.Log(newModelObj.name);
         UpdateModel(newModelObj);
     }
 
@@ -103,6 +118,23 @@ public class CharacterSelectManager : MonoBehaviour
             Debug.LogError("New Model missing Animator Component");
             Destroy(newModel);
             return false;
+        }
+
+        WeaponPointFinder wpf = newModel.GetComponentInChildren<WeaponPointFinder>();
+        if (wpf == null)
+        {
+            Debug.LogError("New Model missing Weapon Point Finder Component");
+            Destroy(newModel);
+            return false;
+        }
+        else
+        {
+            if(wpf.weaponPoint == null)
+            {
+                Debug.LogError("New Model Weapon Point Finder missing weapon point");
+                Destroy(newModel);
+                return false;
+            }
         }
 
         foreach (Transform child in modelParent)
@@ -121,7 +153,7 @@ public class CharacterSelectManager : MonoBehaviour
             try
             {
                 renderer.material = Instantiate(renderer.material);
-                renderer.material.color = ps.colors[ps.playerIndex];
+               // renderer.material.color = ps.colors[ps.playerIndex];
             }
             catch
             {
@@ -139,6 +171,8 @@ public class CharacterSelectManager : MonoBehaviour
         newModel.transform.localRotation = Quaternion.identity;
 
         pam.animator = newAnim;
+        wu.carriedWeapon = null;
+        wu.weaponCarryPoint = wpf.weaponPoint;
         Debug.Log("New model sucsesfully updated");
         return true;
     }
@@ -155,6 +189,7 @@ public class CharacterSelectManager : MonoBehaviour
         if (closeStation == null) { return false; }
         if (pam == null) { return false; }
         if (ps == null) { return false; }
+        if(wu == null) { return false; }
 
         return true; 
     }

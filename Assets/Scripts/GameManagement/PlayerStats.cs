@@ -33,7 +33,7 @@ public class PlayerStats : MonoBehaviour
             foreach (SkinnedMeshRenderer rendered in myRenderers)
             {
                 rendered.material = Instantiate(rendered.material);
-                rendered.material.color = colors[playerIndex];
+                //rendered.material.color = colors[playerIndex];
             }
         }
 
