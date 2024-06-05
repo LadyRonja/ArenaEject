@@ -1,7 +1,10 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using Coffee.UIExtensions;
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class EndGameManager : MonoBehaviour
 {
@@ -9,9 +12,9 @@ public class EndGameManager : MonoBehaviour
     public static EndGameManager Instance { get { return GetInstance(); } }
 
     List<PlayerStats> deadPlayers = new();
-    bool gameIsOver = false;
+    [NonSerialized] public bool gameIsOver = false;
     [SerializeField] private GameObject endGameCanvasPrefab;
-    [SerializeField] private TempPLayerEndPotrait endGamePotraitProfilePrefab;
+    [SerializeField] private TempPLayerEndPotrait tempPlayerEndPotraitPrefab;
 
     private void Awake()
     {
@@ -80,6 +83,17 @@ public class EndGameManager : MonoBehaviour
         if (gameIsOver) { return; }
 
         gameIsOver = true;
+        
+        winner.gameObject.GetComponent<Movement>().enabled = false;
+        
+        if (StaticStats.playerWins.ContainsKey(winner.playerIndex))
+        {
+            StaticStats.playerWins[winner.playerIndex]++;
+        }
+        else
+        {
+            StaticStats.playerWins.Add(winner.playerIndex, 1);
+        }
 
         if(endGameCanvasPrefab == null )
         {
@@ -87,17 +101,18 @@ public class EndGameManager : MonoBehaviour
             return;
         }
 
-        if(endGamePotraitProfilePrefab == null)
+        if(tempPlayerEndPotraitPrefab == null)
         {
             FailSafe("endGamePotraitProfilePrefab missing! Instantly going to next level");
             return;
         }
 
         GameObject gameOverScreen = Instantiate(endGameCanvasPrefab);
+        TempEndGameCanvas serializedCanvasVars = gameOverScreen.GetComponent<TempEndGameCanvas>();
         Transform potraitParent = this.transform;
         try
         {
-            potraitParent = gameOverScreen.GetComponent<TempEndGameCanvas>().playerGridRegion;
+            potraitParent = serializedCanvasVars.playerGridRegion;
         }
         catch
         {
@@ -107,21 +122,60 @@ public class EndGameManager : MonoBehaviour
 
         List<PlayerStats> allPlayers = FindAllPlayers(true);
 
+        serializedCanvasVars.gameOverText.transform.DOScale(1, 1f).SetEase(Ease.OutQuart);
+        
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            serializedCanvasVars.BG.transform.DOScale(1, 1f).SetEase(Ease.OutQuart);
+        });
+
+        int index = 0;
+        
+        // Reverse the player list
+        
+        allPlayers.Reverse();
+        
         foreach (PlayerStats p in allPlayers)
         {
-            TempPLayerEndPotrait potrait = Instantiate(endGamePotraitProfilePrefab, potraitParent);
+            TempPLayerEndPotrait potrait = Instantiate(tempPlayerEndPotraitPrefab, potraitParent);
+            
             potrait.background.color = p.colors[p.playerIndex];
-            potrait.picture.sprite = p.endGameSprite;
-            if(p == winner)
-            {
-                potrait.winnerText.text = "Winner!";
-            }
-            else
-            {
-                potrait.winnerText.text = "";
-            }
+            potrait.playerPotrait.sprite = p.endGameSprite;
+            potrait.playerWins.text = StaticStats.playerWins.ContainsKey(p.playerIndex) ? $"{StaticStats.playerWins[p.playerIndex]} Wins" : "0 Wins";
 
+            float delay = index == 0 ? 1.5f : 3.5f + (0.1f * (index - 1));
+
+            DOVirtual.DelayedCall(delay + 0.1f, () =>
+            {
+                var tween = potrait.transform.DOScale(0.6f, 0.5f).SetEase(Ease.InOutQuint);
+                if (index == 0)
+                {
+                    tween.OnComplete(() =>
+                    {
+                        UIShiny shineEffect = serializedCanvasVars.BG.GetComponent<UIShiny>();
+                        shineEffect.Play();
+                        
+                        potrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+                    });
+                }
+
+                else
+                {
+                    tween.OnComplete(() =>
+                    {
+                        potrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+                    });
+                }
+            });
+
+            index++;
         }
+
+        DOVirtual.DelayedCall(5f, () =>
+        {
+            serializedCanvasVars.menuButton.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+            serializedCanvasVars.againButton.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+        });
 
         //Invoke(nameof(GoToNextScene), 5f);
 
@@ -150,5 +204,4 @@ public class EndGameManager : MonoBehaviour
         instance= newInstance;
         return instance;
     }
-
 }

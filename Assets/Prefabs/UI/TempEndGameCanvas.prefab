@@ -177,7 +177,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3775347173102567171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -294,10 +294,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5044131424283293207}
-  - {fileID: 6632754644905020091}
   - {fileID: 3381575494203387291}
-  - {fileID: 1917935799088648327}
+  - {fileID: 6632754644905020091}
   - {fileID: 469212039840530706}
+  - {fileID: 1917935799088648327}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -382,6 +382,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerGridRegion: {fileID: 6632754644905020091}
   defaultButtonChoice: {fileID: 2921514354436516428}
+  BG: {fileID: 4768202727147230745}
+  gameOverText: {fileID: 3635653325265000655}
+  menuButton: {fileID: 6837906228900638495}
+  againButton: {fileID: 7736609349000521520}
 --- !u!114 &3124895280805218303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,8 +426,8 @@ RectTransform:
   m_GameObject: {fileID: 3635653325265000655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3775347173102567171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -569,8 +573,8 @@ RectTransform:
   m_GameObject: {fileID: 4768202727147230745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3775347173102567171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -643,7 +647,7 @@ GameObject:
   - component: {fileID: 93071032081503821}
   - component: {fileID: 2084586626709671019}
   m_Layer: 5
-  m_Name: Return To Menu Button
+  m_Name: Menu Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,8 +662,8 @@ RectTransform:
   m_GameObject: {fileID: 6837906228900638495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1871971952358884190}
   m_Father: {fileID: 3775347173102567171}
@@ -804,8 +808,8 @@ RectTransform:
   m_GameObject: {fileID: 7736609349000521520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2505265612436116755}
   m_Father: {fileID: 3775347173102567171}

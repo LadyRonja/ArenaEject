@@ -69,7 +69,6 @@ public class Jump : MonoBehaviour
 
     private void OnSouthButtonDown(InputValue value)
     {
-        if (StaticStats.gameOver) return;
         if (CanJump)
         {
             AttemptJump();

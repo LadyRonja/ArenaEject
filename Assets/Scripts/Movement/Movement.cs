@@ -69,12 +69,6 @@ public class Movement : MonoBehaviour
 
     private void MoveLogic()
     {
-        if (StaticStats.gameOver)
-        {
-            rb.velocity = Vector3.zero;
-            return;
-        }
-        
         Vector3 preservedFallingVelocity = rb.velocity;
 
         // Calculate current acceleration
@@ -107,8 +101,6 @@ public class Movement : MonoBehaviour
 
     private void OnMovement(InputValue value)
     {
-        if (StaticStats.gameOver) return;
-        
         moveInput = value.Get<Vector2>();
 
         float x = moveInput.x;

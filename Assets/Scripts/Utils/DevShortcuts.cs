@@ -9,7 +9,7 @@ public class DevShortcuts : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneHandler.Instance.GoToScene(SceneManager.GetActiveScene().name);
         }
 
         if(Input.GetKeyDown(KeyCode.Escape)) 
