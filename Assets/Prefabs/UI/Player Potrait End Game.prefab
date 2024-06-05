@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4332774946598464864}
   - component: {fileID: 6586013828558555816}
   - component: {fileID: 7083072020213349934}
+  - component: {fileID: 507745184773359273}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -96,20 +97,32 @@ MonoBehaviour:
   m_Rotation: 110
   m_Softness: 1
   m_Brightness: 1
-  m_Gloss: 0.686
+  m_Gloss: 0.75
   m_EffectArea: 0
   m_Player:
     play: 0
     initialPlayDelay: 0
     duration: 2
     loop: 1
-    loopDelay: 1
+    loopDelay: 0
     updateMode: 0
   m_Play: 0
   m_Loop: 0
   m_Duration: 1
   m_LoopDelay: 1
   m_UpdateMode: 0
+--- !u!114 &507745184773359273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4418902862791001386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af92bb5eeb808444eb4d866219336bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6766130208499283948
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +210,7 @@ GameObject:
   - component: {fileID: 827307529761620226}
   - component: {fileID: 6253530302621605316}
   - component: {fileID: 2680056601636275826}
+  - component: {fileID: 3682241566623079809}
   m_Layer: 5
   m_Name: Wins
   m_TagString: Untagged
@@ -320,6 +334,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3682241566623079809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256054495942115833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af92bb5eeb808444eb4d866219336bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8438639808869832819
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +358,7 @@ GameObject:
   - component: {fileID: 1433401337664249699}
   - component: {fileID: 3011929872262615561}
   - component: {fileID: 5641084882573438943}
+  - component: {fileID: 7531533434820018292}
   m_Layer: 5
   m_Name: Potrait
   m_TagString: Untagged
@@ -411,3 +438,15 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 10, y: 10}
   m_UseGraphicAlpha: 1
+--- !u!114 &7531533434820018292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8438639808869832819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af92bb5eeb808444eb4d866219336bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

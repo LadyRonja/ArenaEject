@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using Coffee.UIExtensions;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class EndGameManager : MonoBehaviour
@@ -124,9 +127,19 @@ public class EndGameManager : MonoBehaviour
 
         serializedCanvasVars.gameOverText.transform.DOScale(1, 1f).SetEase(Ease.OutQuart);
         
+        if (SceneManager.GetActiveScene().name == Paths.FARRAZ_SCENE_NAME)
+        {
+            serializedCanvasVars.BG.GetComponent<Image>().color = new Color(1f, 0f, 0.2484708f, 0.9f);
+        }
+        else
+        {
+            serializedCanvasVars.BG.GetComponent<Image>().color = Color.magenta.WithAlpha(0.9f);
+        }
+        
         DOVirtual.DelayedCall(1f, () =>
         {
             serializedCanvasVars.BG.transform.DOScale(1, 1f).SetEase(Ease.OutQuart);
+            
         });
 
         int index = 0;
@@ -140,6 +153,8 @@ public class EndGameManager : MonoBehaviour
             TempPLayerEndPotrait potrait = Instantiate(tempPlayerEndPotraitPrefab, potraitParent);
             
             potrait.background.color = p.colors[p.playerIndex];
+            
+            
             potrait.playerPotrait.sprite = p.endGameSprite;
             potrait.playerWins.text = StaticStats.playerWins.ContainsKey(p.playerIndex) ? $"{StaticStats.playerWins[p.playerIndex]} Wins" : "0 Wins";
 
@@ -148,12 +163,12 @@ public class EndGameManager : MonoBehaviour
             DOVirtual.DelayedCall(delay + 0.1f, () =>
             {
                 var tween = potrait.transform.DOScale(0.6f, 0.5f).SetEase(Ease.InOutQuint);
-                if (index == 0)
+                if (p == winner)
                 {
                     tween.OnComplete(() =>
                     {
-                        UIShiny shineEffect = serializedCanvasVars.BG.GetComponent<UIShiny>();
-                        shineEffect.Play();
+                        // UIShiny shineEffect = serializedCanvasVars.BG.GetComponent<UIShiny>();
+                        // shineEffect.Play(true);
                         
                         potrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
                     });
@@ -163,6 +178,7 @@ public class EndGameManager : MonoBehaviour
                 {
                     tween.OnComplete(() =>
                     {
+                        
                         potrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
                     });
                 }
