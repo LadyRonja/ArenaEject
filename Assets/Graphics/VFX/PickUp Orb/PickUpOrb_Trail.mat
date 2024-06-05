@@ -49,7 +49,7 @@ Material:
     - _Color_1: {r: 0, g: 0.04270705, b: 0.6037736, a: 0}
     - _Color_2: {r: 0, g: 2, b: 1.838703, a: 0}
     - _Dissolve_Speed: {r: -0.5, g: 0, b: 0, a: 0}
-    - _MainTexture_Speed: {r: -0.1, g: 0, b: 0, a: 0}
+    - _MainTexture_Speed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7157516874898034150
 MonoBehaviour:
