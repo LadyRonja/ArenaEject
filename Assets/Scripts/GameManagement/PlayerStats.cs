@@ -9,15 +9,16 @@ public class PlayerStats : MonoBehaviour
     public int playerIndex = 0;
     public int lives = 1;
     public int timeAlive = 0;
+    public Sprite endGameSprite;
     public float finalKnockbackDisplay { get; set; }
     
     public bool alive { get => lives > 0; }
 
     [Header("TEMP")]
     public List<Color> colors = new List<Color>();
-    public List<Sprite> playerSprites = new();
-    public List<Sprite> endGamePlayerSprites = new();
-    public Sprite backGrpundSprites;
+    //public List<Sprite> playerSprites = new();
+    //public List<Sprite> endGamePlayerSprites = new();
+    //public Sprite backGrpundSprites;
     public List<SkinnedMeshRenderer> myRenderers = new();
     public List<Material> aimMaterials = new List<Material>();
     public DecalProjector aimAssisst;

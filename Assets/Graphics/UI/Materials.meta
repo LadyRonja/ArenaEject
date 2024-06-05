@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 32decc26e03621d46a1326905e9a2fb3
+<<<<<<<< Updated upstream:Assets/Graphics/UI/Materials.meta
+guid: 15e130913a16104478f97bddffabfc54
+========
+guid: ccd2368524772f14187d83837703a602
+>>>>>>>> Stashed changes:Assets/Graphics/materials/cinema/materials/maps/shark_launcher4.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

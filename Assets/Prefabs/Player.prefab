@@ -156,22 +156,12 @@ MonoBehaviour:
   playerIndex: 1
   lives: 1
   timeAlive: 0
+  endGameSprite: {fileID: 0}
   colors:
   - {r: 0.84705883, g: 0.105882354, b: 0.3764706, a: 1}
   - {r: 0.11764706, g: 0.53333336, b: 0.8980392, a: 1}
   - {r: 1, g: 0.75686276, b: 0.02745098, a: 1}
   - {r: 0.014017441, g: 0.5943396, b: 0.49636316, a: 1}
-  playerSprites:
-  - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
-  - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
-  - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
-  - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
-  endGamePlayerSprites:
-  - {fileID: 21300000, guid: c53811bea97aa43fabb24e975d548df5, type: 3}
-  - {fileID: 21300000, guid: c53811bea97aa43fabb24e975d548df5, type: 3}
-  - {fileID: 21300000, guid: c53811bea97aa43fabb24e975d548df5, type: 3}
-  - {fileID: 21300000, guid: c53811bea97aa43fabb24e975d548df5, type: 3}
-  backGrpundSprites: {fileID: 21300000, guid: 1e6167ce73a66df4e9e2046fd397d15c, type: 3}
   myRenderers:
   - {fileID: 4347760922464630130}
   - {fileID: 1372415968193853245}
@@ -347,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPotraitPrefab: {fileID: 6867416200695068276, guid: 668c5ba2b0bd58846922a7d78e1009f8, type: 3}
+  backgroundSprite: {fileID: 0}
 --- !u!114 &2487563434103801847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +360,14 @@ MonoBehaviour:
   - {fileID: 5081925470564621760, guid: a088a0561a359dc4d98532bfde7e9adf, type: 3}
   - {fileID: 2551072330599308663, guid: 6ef9dde174e357a4eb9e6487300c1f76, type: 3}
   - {fileID: 5614167311603341645, guid: f6931e46c5a78dd49b79aea9d506ad93, type: 3}
+  inGameSprites:
+  - {fileID: 21300000, guid: 9026f0761c0106347af01c84a543553b, type: 3}
+  - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
+  - {fileID: 21300000, guid: 5beadb52353c28a4e88e047934cafcf0, type: 3}
+  endGameSprites:
+  - {fileID: 21300000, guid: 2626ca858aa50a54aa41dad0e61c8ed3, type: 3}
+  - {fileID: 21300000, guid: c53811bea97aa43fabb24e975d548df5, type: 3}
+  - {fileID: 21300000, guid: b3feee0bb55541f4c98eb545ac5571ed, type: 3}
 --- !u!114 &7099439140047253940
 MonoBehaviour:
   m_ObjectHideFlags: 0

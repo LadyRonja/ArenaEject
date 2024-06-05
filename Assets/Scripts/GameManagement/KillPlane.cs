@@ -343,11 +343,13 @@ public class KillPlane : MonoBehaviour
 
             if(deadPlayers[i].TryGetComponent<PlayerUIHandler>(out PlayerUIHandler uiHandler))
             {
-                uiHandler.UpdateEndGameUI();
+                Debug.Log("Code commented out here");
+                //uiHandler.UpdateEndGameUI();
             }
             
             playerPotraitInstance.background.color = playerStats.colors[playerStats.playerIndex];
-            playerPotraitInstance.playerPotrait.sprite = playerStats.endGamePlayerSprites[playerStats.playerIndex];
+            Debug.Log("Code commented out here");
+            //playerPotraitInstance.playerPotrait.sprite = playerStats.endGamePlayerSprites[playerStats.playerIndex];
             playerPotraitInstance.playerWins.text = StaticStats.playerWins.ContainsKey(playerStats.playerIndex) ? $"{StaticStats.playerWins[playerStats.playerIndex]} Wins" : "0 Wins";
             playerPotraitInstance.damagePercentage.text = $"{playerStats.finalKnockbackDisplay}%";
             playerPotraitInstance.transform.localScale = Vector3.zero;
