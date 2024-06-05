@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class EndGameManager : MonoBehaviour
 {
@@ -198,14 +197,14 @@ public class EndGameManager : MonoBehaviour
         void FailSafe(string debugMsg)
         {
             Debug.Log(debugMsg);
-            int randomLevel = Random.Range(1, 3);
+            int randomLevel = UnityEngine.Random.Range(1, 3);
             SceneHandler.Instance.GoToScene(randomLevel);
         }
     }
 
     public void GoToNextScene()
     {
-        int randomLevel = Random.Range(1, 3);
+        int randomLevel = UnityEngine.Random.Range(1, 3);
         SceneHandler.Instance.GoToScene(randomLevel);
     }
 
