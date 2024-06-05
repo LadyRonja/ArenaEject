@@ -167,9 +167,24 @@ public class EndGameManager : MonoBehaviour
                 {
                     tween.OnComplete(() =>
                     {
-                        // UIShiny shineEffect = serializedCanvasVars.BG.GetComponent<UIShiny>();
-                        // shineEffect.Play(true);
-                        
+                        Transform bgTransform = potrait.transform.Find("BG");
+                        if (bgTransform != null)
+                        {
+                            UIShiny shineEffect = bgTransform.GetComponent<UIShiny>();
+                            if (shineEffect != null)
+                            {
+                                shineEffect.Play();
+                            }
+                            else
+                            {
+                                Debug.LogError("UIShiny component not found on BG GameObject");
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogError("BG GameObject not found");
+                        }
+            
                         potrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
                     });
                 }
