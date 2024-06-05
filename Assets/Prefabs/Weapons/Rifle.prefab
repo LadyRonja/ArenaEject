@@ -196,6 +196,34 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b9e3c012c62fcd644b7581f2ec14dd09, type: 2}
+    - target: {fileID: 5096143912310073098, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096143912310073098, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096143912310073098, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096143912310073098, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096143912310073098, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096143912310073098, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096143912310073098, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341555756347850958, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       propertyPath: fireRate
       value: 0.2
@@ -231,6 +259,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4239998344385352947, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
+    - {fileID: 6889134564399648815, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5096143912310073098, guid: 9a619b2ed5fe78640a6a6faca902f387, type: 3}
       insertIndex: -1
