@@ -132,7 +132,9 @@ public class EndGameManager : MonoBehaviour
         }
         else
         {
-            serializedCanvasVars.BG.GetComponent<Image>().color = Color.magenta.WithAlpha(0.9f);
+            Color newColor = Color.magenta;
+            newColor.a = 0.9f;
+            serializedCanvasVars.BG.GetComponent<Image>().color = newColor;//Color.magenta.WithAlpha(0.9f);
         }
         
         DOVirtual.DelayedCall(1f, () =>
