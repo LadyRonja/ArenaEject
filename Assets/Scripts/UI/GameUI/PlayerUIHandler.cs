@@ -5,6 +5,7 @@ public class PlayerUIHandler : MonoBehaviour
     KnockBackHandler knockbackHandler;
     [SerializeField] PlayerPotrait playerPotraitPrefab;
     PlayerPotrait myPlayerPotrait;
+    [SerializeField] Sprite backgroundSprite;
     Transform potraitParentGroup;
 
     void Start()
@@ -35,21 +36,28 @@ public class PlayerUIHandler : MonoBehaviour
 
         myPlayerPotrait = Instantiate(playerPotraitPrefab, potraitParentGroup);
 
+        if(TryGetComponent<CharacterSelectManager>(out CharacterSelectManager csm))
+        {
+            if(csm.inGameSprites.Count > 0)
+            {
+                myPlayerPotrait.playerPotrait.sprite = csm.inGameSprites[csm.currentIndex];
+            }
+        }
+
         if(TryGetComponent<PlayerStats>(out PlayerStats myPlayerStats))
         {
-            if(myPlayerStats.playerSprites.Count != 0)
+           /* if(myPlayerStats.playerSprites.Count != 0)
             {
                 myPlayerPotrait.playerPotrait.sprite = myPlayerStats.playerSprites[myPlayerStats.playerIndex];
-            }
+            }*/
 
-            if(myPlayerStats.backGrpundSprites != null)
+            if(backgroundSprite != null)
             {
-                myPlayerPotrait.background.sprite = myPlayerStats.backGrpundSprites;
+                myPlayerPotrait.background.sprite = backgroundSprite;
             }
 
             if(myPlayerStats.colors.Count != 0)
             {
-                //myPlayerPotrait.playerPotrait.color = myPlayerStats.colors[myPlayerStats.playerIndex];
                 myPlayerPotrait.background.color = myPlayerStats.colors[myPlayerStats.playerIndex];
                 myPlayerPotrait.damagePercentage.color = myPlayerStats.colors[myPlayerStats.playerIndex];
             }
@@ -66,8 +74,16 @@ public class PlayerUIHandler : MonoBehaviour
 
         myPlayerPotrait.damagePercentage.text = $"{knockbackHandler.recievedKnockbackDisplay}%";
     }
+
+    public void UpdateSpriteInGame(Sprite newSprite)
+    {
+        if (myPlayerPotrait != null)
+        {
+            myPlayerPotrait.playerPotrait.sprite = newSprite;
+        }
+    }
     
-    public void UpdateEndGameUI()
+    /*public void UpdateEndGameUI()
     {
         if (myPlayerPotrait == null) { return; }
         if (!TryGetComponent<PlayerStats>(out PlayerStats myPlayerStats)) { return; }
@@ -78,7 +94,7 @@ public class PlayerUIHandler : MonoBehaviour
         }
 
         myPlayerPotrait.damagePercentage.text = $"{myPlayerStats.finalKnockbackDisplay}%";
-    }
+    }*/
 
     public void HidePlayerPotraits()
     {

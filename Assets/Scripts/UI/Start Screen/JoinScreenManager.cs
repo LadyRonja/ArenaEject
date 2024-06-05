@@ -232,7 +232,6 @@ public class JoinScreenManager : MonoBehaviour
             Debug.LogError("Unable to update player config model data");
         }
     }
-
 }
 
 public class PlayerConfigurations

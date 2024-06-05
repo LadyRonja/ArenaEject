@@ -111,8 +111,7 @@ public class EndGameManager : MonoBehaviour
         {
             TempPLayerEndPotrait potrait = Instantiate(endGamePotraitProfilePrefab, potraitParent);
             potrait.background.color = p.colors[p.playerIndex];
-            potrait.picture.color = p.colors[p.playerIndex];
-            Debug.Log("Picture is changing color temporarily, this is only until the picture is functionally accessible");
+            potrait.picture.sprite = p.endGameSprite;
             if(p == winner)
             {
                 potrait.winnerText.text = "Winner!";

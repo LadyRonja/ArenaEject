@@ -14,10 +14,12 @@ public class CharacterSelectManager : MonoBehaviour
     [SerializeField] private PlayerAnimationManager pam;
     [SerializeField] private PlayerStats ps;
     [SerializeField] private WeaponUser wu;
-    [HideInInspector] public int currentIndex = -1;
+    [HideInInspector] public int currentIndex = 0;
 
     [HideInInspector] public CharacterSelectStation closeStation;
     [SerializeField] private List<GameObject> modelPrefabs = new();
+    [SerializeField] public List<Sprite> inGameSprites = new();
+    [SerializeField] private List<Sprite> endGameSprites = new();
 
     public void Start()
     {
@@ -106,6 +108,7 @@ public class CharacterSelectManager : MonoBehaviour
     public void UpdateModel(int modelIndex)
     {
         GameObject newModelObj = Instantiate(modelPrefabs[modelIndex], transform.position, Quaternion.identity);
+        currentIndex = modelIndex;
         UpdateModel(newModelObj);
     }
 
@@ -170,9 +173,20 @@ public class CharacterSelectManager : MonoBehaviour
         newModel.transform.localPosition = Vector3.zero;
         newModel.transform.localRotation = Quaternion.identity;
 
+        ps.endGameSprite = endGameSprites[currentIndex];
         pam.animator = newAnim;
         wu.carriedWeapon = null;
-        wu.weaponCarryPoint = wpf.weaponPoint;
+        wu.weaponCarryPoint = wpf.weaponPoint; 
+        if (SceneManager.GetActiveScene().name != Paths.START_SCENE_NAME)
+        {
+            if (TryGetComponent<PlayerUIHandler>(out PlayerUIHandler pUIH))
+            {
+                Debug.Log("Updating UI to sprite: " + inGameSprites[currentIndex].name + " (index: " + currentIndex+")");
+                pUIH.UpdateSpriteInGame(inGameSprites[currentIndex]);
+            }
+        }
+
+
         Debug.Log("New model sucsesfully updated");
         return true;
     }

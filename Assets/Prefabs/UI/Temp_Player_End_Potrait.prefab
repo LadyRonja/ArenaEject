@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4864706839558251469}
   - component: {fileID: 6956180460319647284}
   - component: {fileID: 2793176656430367296}
+  - component: {fileID: 5729825926495843708}
   m_Layer: 5
   m_Name: WinnerText
   m_TagString: Untagged
@@ -134,6 +135,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5729825926495843708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79010503261210061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af92bb5eeb808444eb4d866219336bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &264372862420768977
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +158,7 @@ GameObject:
   - component: {fileID: 6912826149130347119}
   - component: {fileID: 2192964684900580239}
   - component: {fileID: 4424015893031415706}
+  - component: {fileID: 7302355021282505603}
   m_Layer: 5
   m_Name: Picture
   m_TagString: Untagged
@@ -209,6 +223,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7302355021282505603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264372862420768977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af92bb5eeb808444eb4d866219336bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &880512248272581578
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +246,7 @@ GameObject:
   - component: {fileID: 3708184114704107703}
   - component: {fileID: 8895491788275628705}
   - component: {fileID: 3281253654546302246}
+  - component: {fileID: 7812373836281795678}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -284,6 +311,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7812373836281795678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880512248272581578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af92bb5eeb808444eb4d866219336bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8673586337820905668
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +334,7 @@ GameObject:
   - component: {fileID: 6870955072885732159}
   - component: {fileID: 3275106223403323288}
   - component: {fileID: 5373189252084757798}
+  - component: {fileID: 8318656954375042609}
   m_Layer: 5
   m_Name: Temp_Player_End_Potrait
   m_TagString: Untagged
@@ -347,3 +387,15 @@ MonoBehaviour:
   background: {fileID: 3281253654546302246}
   picture: {fileID: 4424015893031415706}
   winnerText: {fileID: 2793176656430367296}
+--- !u!114 &8318656954375042609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8673586337820905668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af92bb5eeb808444eb4d866219336bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
