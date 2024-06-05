@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class EndGameManager : MonoBehaviour
 {
@@ -29,6 +30,13 @@ public class EndGameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+
+        deadPlayers.Clear();
+        deadPlayers = new();
     }
 
     public void PlayerDied(PlayerStats player)
@@ -148,6 +156,13 @@ public class EndGameManager : MonoBehaviour
         List<PlayerStats> temp = new List<PlayerStats>();
         temp.Add(winner);
         temp.AddRange(deadPlayers);
+        temp = temp.Select(p => p).Distinct().ToList();
+
+        Debug.Log("player count: " + temp.Count);
+        foreach (PlayerStats ps in temp)
+        {
+            Debug.Log(ps.playerIndex + ps.name);
+        }
         
         foreach (PlayerStats p in temp)
         {
