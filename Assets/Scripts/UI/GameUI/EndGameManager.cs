@@ -143,17 +143,15 @@ public class EndGameManager : MonoBehaviour
 
         int index = 0;
         
-        // Reverse the player list
+        List<PlayerStats> temp = new List<PlayerStats>();
+        temp.Add(winner);
+        temp.AddRange(deadPlayers);
         
-        allPlayers.Reverse();
-        
-        foreach (PlayerStats p in allPlayers)
+        foreach (PlayerStats p in temp)
         {
             TempPLayerEndPotrait potrait = Instantiate(tempPlayerEndPotraitPrefab, potraitParent);
             
             potrait.background.color = p.colors[p.playerIndex];
-            
-            
             potrait.playerPotrait.sprite = p.endGameSprite;
             potrait.playerWins.text = StaticStats.playerWins.ContainsKey(p.playerIndex) ? $"{StaticStats.playerWins[p.playerIndex]} Wins" : "0 Wins";
 
