@@ -78,7 +78,6 @@ public class CharacterSelectManager : MonoBehaviour
 
         UpdateModelInfoForSceneChanges();
 
-        //Debug.Log("New model");
     }
 
 
@@ -99,7 +98,6 @@ public class CharacterSelectManager : MonoBehaviour
         if (nextIndex < 0) { nextIndex = modelPrefabs.Count - 1; }
         if (nextIndex >= modelPrefabs.Count) { nextIndex = 0; }
 
-        //Debug.Log("Returning a model");
         GameObject objToReturn = Instantiate(modelPrefabs[nextIndex]);
         caller.currentIndex = nextIndex;
         return objToReturn;
@@ -156,7 +154,6 @@ public class CharacterSelectManager : MonoBehaviour
             try
             {
                 renderer.material = Instantiate(renderer.material);
-               // renderer.material.color = ps.colors[ps.playerIndex];
             }
             catch
             {
@@ -181,13 +178,11 @@ public class CharacterSelectManager : MonoBehaviour
         {
             if (TryGetComponent<PlayerUIHandler>(out PlayerUIHandler pUIH))
             {
-                Debug.Log("Updating UI to sprite: " + inGameSprites[currentIndex].name + " (index: " + currentIndex+")");
                 pUIH.UpdateSpriteInGame(inGameSprites[currentIndex]);
             }
         }
 
 
-        Debug.Log("New model sucsesfully updated");
         return true;
     }
 
