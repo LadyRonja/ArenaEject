@@ -95,8 +95,21 @@ public class CharacterSelectManager : MonoBehaviour
             nextIndex--;
         }
 
+
         if (nextIndex < 0) { nextIndex = modelPrefabs.Count - 1; }
         if (nextIndex >= modelPrefabs.Count) { nextIndex = 0; }
+        int whileExit = 0;
+        while (startIndex == nextIndex)
+        {
+            nextIndex++;
+            whileExit++;
+
+            if(whileExit > 500)
+            {
+                break;
+            }
+        }
+
 
         GameObject objToReturn = Instantiate(modelPrefabs[nextIndex]);
         caller.currentIndex = nextIndex;

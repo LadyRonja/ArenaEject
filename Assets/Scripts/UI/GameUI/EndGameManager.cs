@@ -18,6 +18,7 @@ public class EndGameManager : MonoBehaviour
     [NonSerialized] public bool gameIsOver = false;
     [SerializeField] private GameObject endGameCanvasPrefab;
     [SerializeField] private TempPLayerEndPotrait tempPlayerEndPotraitPrefab;
+    public List<AudioClip> deathSounds = new();
 
     private void Awake()
     {
@@ -45,6 +46,8 @@ public class EndGameManager : MonoBehaviour
         {
             player.lives = 0;
             deadPlayers.Add(player);
+
+            AudioHandler.PlayRandomEffectFromList(deathSounds);
         }
         else
         {

@@ -14813,6 +14813,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endGameCanvasPrefab: {fileID: 2084612708523199181, guid: b03e2f4cdc7411a48a22391ef7911a61, type: 3}
   tempPlayerEndPotraitPrefab: {fileID: 2225612739630616113, guid: d497bcaf79766224585201b80f239c80, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 746056a1bac6e9f44b0c47aa07d56233, type: 3}
+  - {fileID: 8300000, guid: e91c312e35a09dc4189db7a5c646cbba, type: 3}
 --- !u!4 &2070939931
 Transform:
   m_ObjectHideFlags: 0
