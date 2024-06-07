@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class WeaponUser : MonoBehaviour
 {
@@ -227,5 +228,28 @@ public class WeaponUser : MonoBehaviour
         if (weaponThrowAssisst == null) { return; }
         if (!weaponThrowAssisst.gameObject.activeSelf) { return; }
         weaponThrowAssisst.SetActive(false);
+    }
+
+    public void BotFire(bool fire)
+    {
+        shooting = fire;
+    }
+
+    public void BotThrow()
+    {
+        if (groundChecker == null)
+        {
+            ThrowWeapon();
+            return;
+        }
+
+        if (groundChecker.IsGrounded)
+        {
+            ThrowWeapon();
+        }
+        else
+        {
+            ThrowWeapon(true);
+        }
     }
 }

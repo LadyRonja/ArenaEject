@@ -119,4 +119,20 @@ public class Jump : MonoBehaviour
             jumpCounter = 0; 
         }
     }
+
+    public void BotJump()
+    {
+        if (CanJump)
+        {
+            AttemptJump();
+        }
+        else if (CanMultiJump)
+        {
+            AttemptDoubleJump();
+        }
+        else if (CanCoyoteJump)
+        {
+            ExecuteJump((Vector3.up + transform.forward).normalized);
+        }
+    }
 }

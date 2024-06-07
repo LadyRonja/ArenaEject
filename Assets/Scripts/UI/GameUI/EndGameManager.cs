@@ -69,7 +69,14 @@ public class EndGameManager : MonoBehaviour
             alivePLayers.Remove(p);
         }
 
-        if(alivePLayers.Count == 1)
+        List<Transform> transforms = new();
+        foreach (PlayerStats p in alivePLayers)
+        {
+            transforms.Add(p.transform);
+        }
+        CameraController.Instance.StartTrackingObjects(transforms);
+
+        if (alivePLayers.Count == 1)
         {
             EndGame(alivePLayers[0]);
         }     
@@ -96,7 +103,13 @@ public class EndGameManager : MonoBehaviour
         if (gameIsOver) { return; }
 
         gameIsOver = true;
-        
+
+        Bot[] bots = (Bot[])FindObjectsOfType(typeof(Bot), true);
+        foreach (Bot b in bots)
+        {
+            b.enabled = false;
+        }
+
         winner.gameObject.GetComponent<Movement>().enabled = false;
         
         if (StaticStats.playerWins.ContainsKey(winner.playerIndex))

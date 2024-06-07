@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(GroundChecker))]
@@ -18,7 +19,7 @@ public class Movement : MonoBehaviour
     [HideInInspector] public bool isKnocked = false;
 
     // DEBUG TODO:REMOVE ON RELEASE
-    PlayerStats playerStats;
+    //PlayerStats playerStats;
     public Rigidbody RB { get => rb; }
 
     private void Awake()
@@ -26,40 +27,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         groundChecker = GetComponent<GroundChecker>();
         
-        playerStats= GetComponent<PlayerStats>(); // REMOVE ON BUILD
-    }
-
-    private void Update()
-    {
-        // TODO: Remove before build
-       /* if (appropriatlySpawned) return;
-        #region Debug
-        if (playerStats == null) return;
-        if (playerStats.playerIndex != 0) return;
-
-        int x = 0;
-        int z = 0;
-        if (Input.GetKey(KeyCode.A))
-        {
-            x--;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            x++;
-        }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            z++;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            z--;
-        }
-
-        moveInput= new Vector2(x, z);
-        #endregion
-       */
+        //playerStats= GetComponent<PlayerStats>(); // REMOVE ON BUILD
     }
 
     void FixedUpdate()
@@ -102,6 +70,19 @@ public class Movement : MonoBehaviour
     private void OnMovement(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+
+        float x = moveInput.x;
+        float z = moveInput.y;
+
+        if (Mathf.Abs(x) < 0.3f) x = 0;
+        if (Mathf.Abs(z) < 0.3f) z = 0;
+
+        moveInput = new Vector2(x, z);
+    }
+
+    public void BotMovement(Vector2 input)
+    {
+        moveInput = input;
 
         float x = moveInput.x;
         float z = moveInput.y;
