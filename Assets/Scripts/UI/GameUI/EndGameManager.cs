@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using Coffee.UIExtensions;
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System.Linq;
 

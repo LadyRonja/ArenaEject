@@ -130,6 +130,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DPadUp",
+                    "type": "Button",
+                    "id": "f3484cd9-83c6-4b38-8455-099be8fb352b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -284,6 +293,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DPadLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0f29410-7bf2-4fe1-ab03-912d5573f388",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DPadUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

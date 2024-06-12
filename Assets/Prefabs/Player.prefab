@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 8587569562873261146}
   - component: {fileID: -4713559047619484691}
   - component: {fileID: 8277015850034542796}
+  - component: {fileID: 5331859438641038610}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -456,6 +457,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.73786235, y: 1.945233, z: 0.45199767}
   m_Center: {x: 0.018834233, y: 0.9591002, z: -0.027304366}
+--- !u!114 &5331859438641038610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455113739012497393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d148b2db8c6e4b44d83905b6480d94d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tauntSound: {fileID: 8300000, guid: ce89f0b6aec743946a606211820b23ba, type: 3}
 --- !u!1 &4411590136687848730
 GameObject:
   m_ObjectHideFlags: 0

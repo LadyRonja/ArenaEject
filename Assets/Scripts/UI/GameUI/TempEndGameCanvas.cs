@@ -15,10 +15,10 @@ public class TempEndGameCanvas : MonoBehaviour
 
     private void Start()
     {
-        if(defaultButtonChoice!= null)
+        /*if(defaultButtonChoice!= null)
         {
             defaultButtonChoice.Select();
-        }
+        }*/
     }
 
 
