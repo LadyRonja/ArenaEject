@@ -111,6 +111,7 @@ public class EndGameManager : MonoBehaviour
         }
 
         winner.gameObject.GetComponent<Movement>().enabled = false;
+        if(winner.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb)){ rb.velocity = Vector3.zero; }
         
         if (StaticStats.playerWins.ContainsKey(winner.playerIndex))
         {
