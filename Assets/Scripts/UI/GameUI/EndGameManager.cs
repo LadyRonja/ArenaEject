@@ -1,7 +1,11 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using Coffee.UIExtensions;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class EndGameManager : MonoBehaviour
 {
@@ -9,9 +13,10 @@ public class EndGameManager : MonoBehaviour
     public static EndGameManager Instance { get { return GetInstance(); } }
 
     List<PlayerStats> deadPlayers = new();
-    bool gameIsOver = false;
+    [NonSerialized] public bool gameIsOver = false;
     [SerializeField] private GameObject endGameCanvasPrefab;
-    [SerializeField] private TempPLayerEndPotrait endGamePotraitProfilePrefab;
+    [SerializeField] private TempPLayerEndPotrait tempPlayerEndPotraitPrefab;
+    public List<AudioClip> deathSounds = new();
 
     private void Awake()
     {
@@ -26,12 +31,21 @@ public class EndGameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+
+        deadPlayers.Clear();
+        deadPlayers = new();
+    }
+
     public void PlayerDied(PlayerStats player)
     {
         if (!deadPlayers.Contains(player))
         {
             player.lives = 0;
             deadPlayers.Add(player);
+
+            AudioHandler.PlayRandomEffectFromList(deathSounds);
         }
         else
         {
@@ -53,7 +67,14 @@ public class EndGameManager : MonoBehaviour
             alivePLayers.Remove(p);
         }
 
-        if(alivePLayers.Count == 1)
+        List<Transform> transforms = new();
+        foreach (PlayerStats p in alivePLayers)
+        {
+            transforms.Add(p.transform);
+        }
+        CameraController.Instance.StartTrackingObjects(transforms);
+
+        if (alivePLayers.Count == 1)
         {
             EndGame(alivePLayers[0]);
         }     
@@ -81,23 +102,42 @@ public class EndGameManager : MonoBehaviour
 
         gameIsOver = true;
 
+        Bot[] bots = (Bot[])FindObjectsOfType(typeof(Bot), true);
+        foreach (Bot b in bots)
+        {
+            b.enabled = false;
+        }
+
+        winner.gameObject.GetComponent<Movement>().enabled = false;
+        if(winner.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb)){ rb.velocity = Vector3.zero; }
+        
+        if (StaticStats.playerWins.ContainsKey(winner.playerIndex))
+        {
+            StaticStats.playerWins[winner.playerIndex]++;
+        }
+        else
+        {
+            StaticStats.playerWins.Add(winner.playerIndex, 1);
+        }
+
         if(endGameCanvasPrefab == null )
         {
             FailSafe("endGameCanvasPrefab missing! Instantly going to next level");
             return;
         }
 
-        if(endGamePotraitProfilePrefab == null)
+        if(tempPlayerEndPotraitPrefab == null)
         {
             FailSafe("endGamePotraitProfilePrefab missing! Instantly going to next level");
             return;
         }
 
         GameObject gameOverScreen = Instantiate(endGameCanvasPrefab);
+        TempEndGameCanvas serializedCanvasVars = gameOverScreen.GetComponent<TempEndGameCanvas>();
         Transform potraitParent = this.transform;
         try
         {
-            potraitParent = gameOverScreen.GetComponent<TempEndGameCanvas>().playerGridRegion;
+            potraitParent = serializedCanvasVars.playerGridRegion;
         }
         catch
         {
@@ -107,35 +147,109 @@ public class EndGameManager : MonoBehaviour
 
         List<PlayerStats> allPlayers = FindAllPlayers(true);
 
-        foreach (PlayerStats p in allPlayers)
+        serializedCanvasVars.gameOverText.transform.DOScale(1, 1f).SetEase(Ease.OutQuart);
+        
+        if (SceneManager.GetActiveScene().name == Paths.FARRAZ_SCENE_NAME)
         {
-            TempPLayerEndPotrait potrait = Instantiate(endGamePotraitProfilePrefab, potraitParent);
-            potrait.background.color = p.colors[p.playerIndex];
-            potrait.picture.sprite = p.endGameSprite;
-            if(p == winner)
-            {
-                potrait.winnerText.text = "Winner!";
-            }
-            else
-            {
-                potrait.winnerText.text = "";
-            }
-
+            serializedCanvasVars.BG.GetComponent<Image>().color = new Color(1f, 0f, 0.2484708f, 0.9f);
         }
+        else
+        {
+            Color newColor = Color.magenta;
+            newColor.a = 0.9f;
+            serializedCanvasVars.BG.GetComponent<Image>().color = newColor;//Color.magenta.WithAlpha(0.9f);
+        }
+        
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            serializedCanvasVars.BG.transform.DOScale(1, 1f).SetEase(Ease.OutQuart);
+            
+        });
+
+        int index = 0;
+        
+        List<PlayerStats> temp = new List<PlayerStats>();
+        temp.Add(winner);
+        temp.AddRange(deadPlayers);
+        temp = temp.Select(p => p).Distinct().ToList();
+
+        Debug.Log("player count: " + temp.Count);
+        foreach (PlayerStats ps in temp)
+        {
+            Debug.Log(ps.playerIndex + ps.name);
+        }
+        
+        foreach (PlayerStats p in temp)
+        {
+            TempPLayerEndPotrait potrait = Instantiate(tempPlayerEndPotraitPrefab, potraitParent);
+            
+            potrait.background.color = p.colors[p.playerIndex];
+            potrait.playerPotrait.sprite = p.endGameSprite;
+            potrait.playerWins.text = StaticStats.playerWins.ContainsKey(p.playerIndex) ? $"{StaticStats.playerWins[p.playerIndex]} Wins" : "0 Wins";
+
+            float delay = index == 0 ? 1.5f : 3.5f + (0.1f * (index - 1));
+
+            DOVirtual.DelayedCall(delay + 0.1f, () =>
+            {
+                var tween = potrait.transform.DOScale(0.6f, 0.5f).SetEase(Ease.InOutQuint);
+                if (p == winner)
+                {
+                    tween.OnComplete(() =>
+                    {
+                        Transform bgTransform = potrait.transform.Find("BG");
+                        if (bgTransform != null)
+                        {
+                            UIShiny shineEffect = bgTransform.GetComponent<UIShiny>();
+                            if (shineEffect != null)
+                            {
+                                shineEffect.Play();
+                            }
+                            else
+                            {
+                                Debug.LogError("UIShiny component not found on BG GameObject");
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogError("BG GameObject not found");
+                        }
+            
+                        potrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+                    });
+                }
+
+                else
+                {
+                    tween.OnComplete(() =>
+                    {
+                        
+                        potrait.playerWins.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+                    });
+                }
+            });
+
+            index++;
+        }
+
+        DOVirtual.DelayedCall(5f, () =>
+        {
+            serializedCanvasVars.menuButton.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+            serializedCanvasVars.againButton.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuint);
+        });
 
         //Invoke(nameof(GoToNextScene), 5f);
 
         void FailSafe(string debugMsg)
         {
             Debug.Log(debugMsg);
-            int randomLevel = Random.Range(1, 3);
+            int randomLevel = UnityEngine.Random.Range(1, 3);
             SceneHandler.Instance.GoToScene(randomLevel);
         }
     }
 
     public void GoToNextScene()
     {
-        int randomLevel = Random.Range(1, 3);
+        int randomLevel = UnityEngine.Random.Range(1, 3);
         SceneHandler.Instance.GoToScene(randomLevel);
     }
 
@@ -150,5 +264,4 @@ public class EndGameManager : MonoBehaviour
         instance= newInstance;
         return instance;
     }
-
 }

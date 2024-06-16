@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Aiming : MonoBehaviour
 {
@@ -49,8 +50,6 @@ public class Aiming : MonoBehaviour
 
     private void AimLogic()
     {
-        if (StaticStats.gameOver) return;
-        
         if (aimInput != Vector2.zero)
         {
             LookAt(aimInput);
@@ -73,5 +72,17 @@ public class Aiming : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeedRads);
         }
+    }
+
+    public void BotAiming(Vector2 input)
+    {
+        aimInput = input;
+        float x = aimInput.x;
+        float z = aimInput.y;
+
+        if (Mathf.Abs(x) < 0.2f) x = 0;
+        if (Mathf.Abs(z) < 0.2f) z = 0;
+
+        aimInput = new Vector2(x, z);
     }
 }

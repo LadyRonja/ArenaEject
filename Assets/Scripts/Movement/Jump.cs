@@ -69,7 +69,6 @@ public class Jump : MonoBehaviour
 
     private void OnSouthButtonDown(InputValue value)
     {
-        if (StaticStats.gameOver) return;
         if (CanJump)
         {
             AttemptJump();
@@ -118,6 +117,22 @@ public class Jump : MonoBehaviour
 
         if (groundChecker.IsGrounded) { 
             jumpCounter = 0; 
+        }
+    }
+
+    public void BotJump()
+    {
+        if (CanJump)
+        {
+            AttemptJump();
+        }
+        else if (CanMultiJump)
+        {
+            AttemptDoubleJump();
+        }
+        else if (CanCoyoteJump)
+        {
+            ExecuteJump((Vector3.up + transform.forward).normalized);
         }
     }
 }

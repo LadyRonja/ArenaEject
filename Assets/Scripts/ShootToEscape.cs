@@ -6,11 +6,9 @@ public class ShootToEscape : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Hitting");
 
         if(!other.gameObject.TryGetComponent<Ammo>(out Ammo hitBy))
         {
-            Debug.Log("Not Ammo");
             return;
         }
 
@@ -25,11 +23,9 @@ public class ShootToEscape : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hitting");
 
         if (!other.gameObject.TryGetComponent<Ammo>(out Ammo hitBy))
         {
-            Debug.Log("Not Ammo");
             return;
         }
 

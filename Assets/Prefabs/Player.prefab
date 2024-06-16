@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 8587569562873261146}
   - component: {fileID: -4713559047619484691}
   - component: {fileID: 8277015850034542796}
+  - component: {fileID: 5331859438641038610}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -361,9 +362,9 @@ MonoBehaviour:
   - {fileID: 2551072330599308663, guid: 6ef9dde174e357a4eb9e6487300c1f76, type: 3}
   - {fileID: 5614167311603341645, guid: f6931e46c5a78dd49b79aea9d506ad93, type: 3}
   inGameSprites:
-  - {fileID: 21300000, guid: 9026f0761c0106347af01c84a543553b, type: 3}
+  - {fileID: 21300000, guid: b52b342bc6e20544fb17e81a56aa64d7, type: 3}
   - {fileID: 21300000, guid: 5302e8f98c5e24bc6872e0938634e9dc, type: 3}
-  - {fileID: 21300000, guid: 5beadb52353c28a4e88e047934cafcf0, type: 3}
+  - {fileID: 21300000, guid: 7f14defe3e731ab4499c27d35b674cb2, type: 3}
   endGameSprites:
   - {fileID: 21300000, guid: 2626ca858aa50a54aa41dad0e61c8ed3, type: 3}
   - {fileID: 21300000, guid: c53811bea97aa43fabb24e975d548df5, type: 3}
@@ -456,6 +457,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.73786235, y: 1.945233, z: 0.45199767}
   m_Center: {x: 0.018834233, y: 0.9591002, z: -0.027304366}
+--- !u!114 &5331859438641038610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455113739012497393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d148b2db8c6e4b44d83905b6480d94d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tauntSound: {fileID: 8300000, guid: ce89f0b6aec743946a606211820b23ba, type: 3}
 --- !u!1 &4411590136687848730
 GameObject:
   m_ObjectHideFlags: 0

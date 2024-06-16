@@ -75,8 +75,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -177,7 +177,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3775347173102567171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -294,10 +294,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5044131424283293207}
-  - {fileID: 6632754644905020091}
   - {fileID: 3381575494203387291}
-  - {fileID: 1917935799088648327}
+  - {fileID: 6632754644905020091}
   - {fileID: 469212039840530706}
+  - {fileID: 1917935799088648327}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -382,6 +382,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerGridRegion: {fileID: 6632754644905020091}
   defaultButtonChoice: {fileID: 2921514354436516428}
+  BG: {fileID: 4768202727147230745}
+  gameOverText: {fileID: 3635653325265000655}
+  menuButton: {fileID: 6837906228900638495}
+  againButton: {fileID: 7736609349000521520}
 --- !u!114 &3124895280805218303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,14 +426,14 @@ RectTransform:
   m_GameObject: {fileID: 3635653325265000655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3775347173102567171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: -124}
   m_SizeDelta: {x: 457.1, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8085836849812845103
@@ -460,7 +464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over!
+  m_text: Game Over !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e37528d22ca04a1449575ad952e23117, type: 2}
   m_sharedMaterial: {fileID: -8430013914157147358, guid: e37528d22ca04a1449575ad952e23117, type: 2}
@@ -469,8 +473,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -487,7 +491,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 104.35
+  m_fontSize: 100.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -569,8 +573,8 @@ RectTransform:
   m_GameObject: {fileID: 4768202727147230745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3775347173102567171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -600,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.24847078, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -643,7 +647,7 @@ GameObject:
   - component: {fileID: 93071032081503821}
   - component: {fileID: 2084586626709671019}
   m_Layer: 5
-  m_Name: Return To Menu Button
+  m_Name: Menu Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,8 +662,8 @@ RectTransform:
   m_GameObject: {fileID: 6837906228900638495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1871971952358884190}
   m_Father: {fileID: 3775347173102567171}
@@ -787,6 +791,7 @@ GameObject:
   - component: {fileID: 1360002568357170093}
   - component: {fileID: 3019573657679870125}
   - component: {fileID: 2921514354436516428}
+  - component: {fileID: 1473096105856921492}
   - component: {fileID: 7270028933251679480}
   m_Layer: 5
   m_Name: Again Button
@@ -804,8 +809,8 @@ RectTransform:
   m_GameObject: {fileID: 7736609349000521520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2505265612436116755}
   m_Father: {fileID: 3775347173102567171}
@@ -909,6 +914,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1473096105856921492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736609349000521520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9791bb790d8cfdd429bc161022a469b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7270028933251679480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,8 +1013,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

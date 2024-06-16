@@ -152,6 +152,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DPadUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3484cd9-83c6-4b38-8455-099be8fb352b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -308,6 +317,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""DPadLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0f29410-7bf2-4fe1-ab03-912d5573f388"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -330,6 +350,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_LeftTrigger = m_Gameplay.FindAction("LeftTrigger", throwIfNotFound: true);
         m_Gameplay_DPadRight = m_Gameplay.FindAction("DPadRight", throwIfNotFound: true);
         m_Gameplay_DPadLeft = m_Gameplay.FindAction("DPadLeft", throwIfNotFound: true);
+        m_Gameplay_DPadUp = m_Gameplay.FindAction("DPadUp", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -405,6 +426,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_LeftTrigger;
     private readonly InputAction m_Gameplay_DPadRight;
     private readonly InputAction m_Gameplay_DPadLeft;
+    private readonly InputAction m_Gameplay_DPadUp;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -423,6 +445,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @LeftTrigger => m_Wrapper.m_Gameplay_LeftTrigger;
         public InputAction @DPadRight => m_Wrapper.m_Gameplay_DPadRight;
         public InputAction @DPadLeft => m_Wrapper.m_Gameplay_DPadLeft;
+        public InputAction @DPadUp => m_Wrapper.m_Gameplay_DPadUp;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -474,6 +497,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @DPadLeft.started += instance.OnDPadLeft;
             @DPadLeft.performed += instance.OnDPadLeft;
             @DPadLeft.canceled += instance.OnDPadLeft;
+            @DPadUp.started += instance.OnDPadUp;
+            @DPadUp.performed += instance.OnDPadUp;
+            @DPadUp.canceled += instance.OnDPadUp;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -520,6 +546,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @DPadLeft.started -= instance.OnDPadLeft;
             @DPadLeft.performed -= instance.OnDPadLeft;
             @DPadLeft.canceled -= instance.OnDPadLeft;
+            @DPadUp.started -= instance.OnDPadUp;
+            @DPadUp.performed -= instance.OnDPadUp;
+            @DPadUp.canceled -= instance.OnDPadUp;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -553,5 +582,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnLeftTrigger(InputAction.CallbackContext context);
         void OnDPadRight(InputAction.CallbackContext context);
         void OnDPadLeft(InputAction.CallbackContext context);
+        void OnDPadUp(InputAction.CallbackContext context);
     }
 }

@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StaticStats : MonoBehaviour
 {
-    public static bool gameOver = false;
-    
     public static Dictionary<int, int> playerWins = new Dictionary<int, int>();
 
     private void Awake()
@@ -21,6 +18,6 @@ public class StaticStats : MonoBehaviour
     
     public void ResetGameOverFlag(Scene scene, LoadSceneMode mode)
     {
-        gameOver = false;
+        EndGameManager.Instance.gameIsOver = false;
     }
 }

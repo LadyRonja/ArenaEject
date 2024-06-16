@@ -7,13 +7,18 @@ public class TempEndGameCanvas : MonoBehaviour
 {
     public Transform playerGridRegion;
     public Selectable defaultButtonChoice;
+    
+    public GameObject BG;
+    public GameObject gameOverText;
+    public GameObject menuButton;
+    public GameObject againButton;
 
     private void Start()
     {
-        if(defaultButtonChoice!= null)
+        /*if(defaultButtonChoice!= null)
         {
             defaultButtonChoice.Select();
-        }
+        }*/
     }
 
 

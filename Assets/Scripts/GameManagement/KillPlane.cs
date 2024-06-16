@@ -97,7 +97,7 @@ public class KillPlane : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if the game is already over
-        if (StaticStats.gameOver) return;
+        if (EndGameManager.Instance.gameIsOver) return;
 
         // Did a player collide?
         if(other.TryGetComponent<PlayerStats>(out PlayerStats player))
@@ -176,7 +176,7 @@ public class KillPlane : MonoBehaviour
                 // If it does happen I'll just let this player become the winner.
                 if (alivePlayers.Count < 1)
                 {
-                    StaticStats.gameOver = true;
+                    EndGameManager.Instance.gameIsOver = true;
                     Debug.LogError("No implementation for a TIED game, picking winner");
 
                     // Ending the game making 
@@ -300,7 +300,7 @@ public class KillPlane : MonoBehaviour
             return; 
         }
         // Set the game to be over
-        StaticStats.gameOver = true;
+        EndGameManager.Instance.gameIsOver = true;
 
         // If the winner isn't in the deadPlayers list
         // Try and get their total knockback recieved
@@ -364,7 +364,7 @@ public class KillPlane : MonoBehaviour
     private void EndGameTie()
     {
         if(endGameCanvas == null) return;
-        StaticStats.gameOver = true;
+        EndGameManager.Instance.gameIsOver = true;
 
         ShowEndGamePanel(0);
     }

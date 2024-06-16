@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -137,7 +138,7 @@ public class JoinScreenManager : MonoBehaviour
 
             PlayerInput player = GameStartManager.SpawnAPlayer(playerPrefab, pi.playerIndex, playerConfig.input.devices[0]);
             GameStartManager.VerifyPlayer(player.gameObject, pi.playerIndex, true);
-            player.transform.position = spawnPoints[playerConfigs.Count].transform.position;
+            player.transform.position = spawnPoints[playerConfigs.Count - 1].transform.position;
 
             UpdateCameraTracking();
         }

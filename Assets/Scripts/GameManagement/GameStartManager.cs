@@ -122,10 +122,10 @@ public class GameStartManager : MonoBehaviour
             // Verify Component Validity
             VerifyPlayer(playerInputObj.gameObject, playersToSpawn[i].playerIndex, true);
             
-            if(playerInputObj.TryGetComponent<CharacterSelectManager>(out CharacterSelectManager csm)){
+           if(playerInputObj.TryGetComponent<CharacterSelectManager>(out CharacterSelectManager csm)){
                 csm.Start();
                 csm.UpdateModel(playersToSpawn[i].playerModelIndex);
-            }
+           }
         }
 
 
@@ -341,7 +341,7 @@ public class GameStartManager : MonoBehaviour
         }
         else
         {
-            characterSelectManager.currentIndex = playerIndex;
+            //characterSelectManager.currentIndex = playerIndex;
         }
     }
 

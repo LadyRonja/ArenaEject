@@ -41,7 +41,7 @@ public class ReadyRegion : MonoBehaviour
         ReadyBehaivor[] allPlayers = (ReadyBehaivor[])FindObjectsOfType(typeof(ReadyBehaivor));
         if(allPlayers.Length != allPlayers.Length ) { return; }
 
-        if(playersInRegion.All(p => p.isReady))
+        if(allPlayers.All(p => p.isReady))
         {
             StartCoroutine(StartGame());
         }   
